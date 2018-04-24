@@ -1,0 +1,13 @@
+@import "../../styles/Color.scss";
+
+// Page footer
+.page-footer {
+  background-color: $bgcolor_footer;
+  color: $color_sitemap;
+  padding-top: 50px;
+  padding-bottom: 25px;
+
+  a {
+    color: $color_sitemap;
+  }
+}

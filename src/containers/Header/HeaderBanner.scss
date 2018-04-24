@@ -1,0 +1,34 @@
+@import "../../styles/Color.scss";
+
+// Header banner
+.header-banner {
+  position: relative;
+  width: 100%;
+  height: 365px;
+  margin-bottom: 70px;
+  background-image: url(/img/home-banner-top.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .glass-section {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .slogan-section {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 110px;
+
+    .slogan {
+      display: inline-block;
+      max-width: 625px;
+      line-height: 1.32;
+      color: #ffffff;
+      font-size: 38px;
+      text-align: left;
+    }
+  }
+}

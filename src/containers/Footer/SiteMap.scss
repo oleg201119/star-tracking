@@ -1,0 +1,62 @@
+@import "../../styles/Color.scss";
+
+.site-map {
+  .logo {
+    width: 100px;
+  }
+
+  .link-title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 17px;
+    line-height: 1.44;
+    text-align: left;
+  }
+
+  .link-group {
+    font-size: 15px;
+    line-height: 1.88;
+    text-align: left;
+    
+    .link-group-item {
+      .site-map-link {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .social-group-row {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  .link-social {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;    
+    background-color: $color_white;
+    color: $color_charcoal_grey;      
+  
+    text-align: center;
+    text-decoration: none;
+  
+    &:hover {
+      background-color: darken($color_white, 7.5%);
+      color: darken($color_charcoal_grey, 7.5%);
+    }
+
+    .fa {
+      line-height: 44px;
+      font-size: 24px;
+    }
+  }
+
+  .link-social+.link-social {
+    margin-left: 8px;
+
+    @media (min-width: 1200px) {
+      margin-left: 0px;
+    }
+  }
+}

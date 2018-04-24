@@ -1,0 +1,18 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true,
+        "jasmine": true
+    },
+    "extends": ["airbnb"],
+    "rules": {
+        "no-debugger": [1],
+        "indent": ["error", 2],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/prefer-stateless-function": [0],
+        "no-return-assign": [0],
+        "camelcase": [0],
+        "react/prop-types": [1]
+    }
+}

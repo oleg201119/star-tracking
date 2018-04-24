@@ -1,0 +1,29 @@
+@import "../../styles/Color.scss";
+
+.section-title {
+  font-size: 28px;
+  line-height: 1.25;
+  color: $color_charcoal_grey;
+  margin-bottom: 20px;
+}
+
+.section-advertisement {
+  width: 100%;
+  margin: 30px 0px;
+
+  .advertisement {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.section-view-all-link {
+  margin: 30px 0px;
+
+  .view-all-link {
+    color: $color_red;
+    text-decoration: underline;
+    font-size: 18px;
+    line-height: 1.67;
+  }
+}

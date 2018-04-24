@@ -1,0 +1,20 @@
+@import "../../styles/Color.scss";
+
+// Language menu
+.navbar.header-language {
+  padding-bottom: 0px;
+
+  .nav-item+.nav-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: $color_menu;
+    content: "|";
+  }
+
+  .language-link {
+    font-size: 14px;
+    font-weight: 300;
+    color: $color_menu;
+  }
+}

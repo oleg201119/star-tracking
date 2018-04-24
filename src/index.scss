@@ -1,0 +1,27 @@
+@import "./styles/Color.scss";
+@import "./styles/Font.scss";
+@import "./styles/Button.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: MaisonNeue;
+  background-color: $color_white;
+}
+
+// Link
+a {
+  font-family: MaisonNeue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// List
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

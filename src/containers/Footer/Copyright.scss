@@ -1,0 +1,11 @@
+@import "../../styles/Color.scss";
+
+.copyright {
+  align-items: center;
+  font-size: 14px;
+  margin-top: 50px;
+
+  .policy-link {
+    text-decoration: underline;
+  }
+}

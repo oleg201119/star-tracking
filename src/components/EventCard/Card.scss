@@ -1,0 +1,154 @@
+@import "../../styles/Color.scss";
+@import "../../styles/Font.scss";
+
+.event-card {
+  position: relative;
+  word-wrap: break-word;
+  background-color: $color_white;
+  margin-bottom: 30px;
+
+  .card-banner {
+    display: flex;
+    justify-content: center;
+    height: 180px;
+    background-color: rgba(0, 0, 0, 1);
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-glass {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 180px;
+    background-color: transparent;
+
+    .slogan {
+      margin-top: 105px;
+      margin-left: 35px;
+      margin-right: 35px;
+      
+      color: $color_white;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+  }
+
+  .card-star {
+    position: absolute;
+    top: 153px;
+    right: 25px;
+    width: 54px;
+    height: 54px;
+
+    background-color: $color_red;
+    border-radius: 50%;
+    text-align: center;
+
+    img {
+      width: 27px;
+      height: 25px;
+      margin-top: 25%;
+    }
+  }
+
+  .event-info {    
+    border-top: none;
+  }
+}
+
+.event-info {
+  display: flex;
+  width: 100%;   
+  border: 1px solid #eceae8;
+  border-left: none;
+  background-color: $color_cloudy_blue;
+  color: $color_dark;
+
+  .event-content {
+    margin-left: 6px;
+    width: 100%;
+    height: 100%;
+    background-color: $color-white;
+    display: flex;
+    padding: 18px 7px;
+  }
+
+  .event-time {
+    text-align: center;
+    padding: 5px 3px;
+
+    .day {        
+      font-size: 26px;
+      line-height: 26px;
+    }
+
+    .month {
+      opacity: 0.6;
+      font-size: 13px;
+    }
+
+    .time {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+  }
+
+  .event-description {
+    text-align: left;
+    padding: 3px 5px;
+    width: 100%;
+
+    .title {
+      font-size: 16px;
+      line-height: 1.4;
+      max-width: 195px;
+      max-height: 45px;
+      min-height: 28px;
+    }
+
+    .by-options {
+      position: relative;
+
+      .by {
+        opacity: 0.5;
+        font-size: 14px;              
+        padding-right: 65px;                
+      }
+
+      .options {
+        position: absolute;
+        top: -5px;
+        right: 0px;
+        
+        .event-option {
+          display:inline-block;
+          padding: 0px 5px;
+          font-size: 18px;
+          line-height: 1.67;
+          color: $color_red;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .friends {
+      margin-top: 10px;
+
+      .friend-link {
+        width: 29px;
+        height: 29px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .friend-link+.friend-link {
+        margin-left: 5px;
+      }
+    }
+  }
+}
