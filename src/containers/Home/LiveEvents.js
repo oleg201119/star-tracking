@@ -17,7 +17,7 @@ class LiveEvents extends Component {
     return (
       <div className="live-events">
         <div className="section-title">
-          Volg nu live!
+          {eventCards.length ? "Volg nu live!" : null}
         </div>
         {eventCards}
       </div>

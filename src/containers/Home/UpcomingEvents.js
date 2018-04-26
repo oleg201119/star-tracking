@@ -16,14 +16,13 @@ class UpcomingEvents extends Component {
   }
 
   buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} />))
-
+  
   render() {
     const eventCards = this.buildEventCards(this.props.upcomingEvents);
-
     return (
       <div className="upcoming-events">
         <div className="section-title">
-          Eerstvolgende events
+          {eventCards.length ? "Eerstvolgende events" : null}
         </div>
         <div className="row">
           <Masonry className="event-gallery" options={masonryOptions}>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './MainNavBar.css';
 
 export default class MainNavBar extends Component {
@@ -6,7 +7,7 @@ export default class MainNavBar extends Component {
     return (
       <nav className="navbar navbar-expand-xl header-menu">
         <div className="container">
-          <a className="logo-link" href="#/">
+          <a className="logo-link" href="/">
             <img className="logo" alt="ST-logo" src="img/logo-header.png" />
           </a>
           <button className="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarHeaderMenu">
@@ -20,7 +21,7 @@ export default class MainNavBar extends Component {
               <li className="nav-item"><a className="menu-link" href="#/" title="">Over Star Tracking</a></li>
               <li className="nav-item"><a className="menu-link" href="#/" title="">Contact</a></li>
             </ul>
-            <button type="button" className="btn btn-red btn-login">Login</button>
+            <Link to="login"><button type="button" className="btn btn-red btn-login">Login</button></Link>
           </div>
         </div>
       </nav>
