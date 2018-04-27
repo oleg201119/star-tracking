@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
 import Homeperson from '../Homeperson/Homeperson';
+import Person from '../Person/Person';
 
 class Layout extends Component {
   render() {
@@ -19,6 +20,10 @@ class Layout extends Component {
           <Route
             path="/homeperson"
             render={props => <Homeperson {...props} />}
+          />
+          <Route
+            path="/person"
+            render={props => <Person {...props} />}
           />
         </Switch>
         <Footer />

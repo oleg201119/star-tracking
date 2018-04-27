@@ -69,7 +69,7 @@
         color: $color_white;
         line-height: 2;
         letter-spacing: 0.2px;
-        font-family: "SFProText"
+        font-family: 'Roboto', sans-serif;
       }
     }
 
@@ -98,7 +98,7 @@
       }
 
       input {
-        font-family: "SFProText";
+        font-family: 'Roboto', sans-serif;
         color: var(--dark);
         line-height: 1.75;
         letter-spacing: 0.3px;
@@ -143,7 +143,7 @@
       padding-bottom: 100px;
 
       .create-forgot-text {
-        font-family: "SFProText";
+        font-family: 'Roboto', sans-serif;
         color: $color_white;
         line-height: 1.5;
         letter-spacing: 0.3px;

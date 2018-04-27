@@ -37,7 +37,7 @@ export default class PastEvents extends Component {
         </div>
         <div className="past-events-description">
           {eventCards.length ? <div>De makkelijkste manier om snel  je resultaten terug te vinden is om 
-           &nbsp;<a href="#/">in te loggen op je account</a>&nbsp;
+           &nbsp;<a href="/person">in te loggen op je account</a>&nbsp;
            en te kijken onder <a href="#/">'My events'</a>.<br/>
            Heb je nog geen account (maar heb je wel deelgenomen aan een event), aarzel niet om er
            &nbsp;<a href="#/">eentje aan te maken</a>, en we koppelen jouw resultaten.<br/>
