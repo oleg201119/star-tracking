@@ -5,6 +5,8 @@ import * as eventActions from '../../store/events/actions';
 import UpcomingEvents from './UpcomingEvents';
 import LiveEvents from './LiveEvents';
 import ResultEvents from './ResultEvents';
+import HeaderBanner from '../Common/HeaderBanner';
+import FooterBanner from '../Common/FooterBanner';
 import './Home.css';
 
 class Home extends Component {
@@ -21,6 +23,7 @@ class Home extends Component {
   render() {
     return (
       <div className="site-content">
+        <HeaderBanner />
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-6 col-xl-8">
@@ -32,6 +35,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
+        <FooterBanner />
       </div>
     );
   }

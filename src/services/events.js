@@ -51,5 +51,40 @@ export default class EventService {
     const data = await response.json();
     return data;
   }
+
+  static async getPersonEvents(id, maxNumber, language) {
+    const url = `${EVENT_API_ENDPOINT}/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`EventService getUpcomingEvents failed, HTTP status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  }
+
+  static async getFriendEvents(id, maxNumber, language) {
+    const url = `${EVENT_API_ENDPOINT}/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`EventService getUpcomingEvents failed, HTTP status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  }
 }
+
 

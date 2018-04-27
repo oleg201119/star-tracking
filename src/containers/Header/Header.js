@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import LanguageNavBar from './LanguageNavBar';
 import MainNavBar from './MainNavBar';
-import HeaderBanner from './HeaderBanner';
 import './Header.css';
 
 export default class Header extends Component {
@@ -12,7 +11,6 @@ export default class Header extends Component {
           <LanguageNavBar />
           <MainNavBar />
         </div>
-        <HeaderBanner />
       </div>
     );
   }

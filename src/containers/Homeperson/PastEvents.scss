@@ -1,0 +1,37 @@
+@import "../../styles/Color.scss";
+.past-events {
+  margin-top: 70px;
+
+  .past-events-description {
+    font-family: "SFProText";
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.67;
+    color: $color_grey_text;
+    max-width: 830px;
+
+    a {
+      color: $color_grey_text;
+      text-decoration: underline;
+    }
+  }
+
+  .event-result {
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+
+  .event-all {
+    margin-bottom: 60px;
+
+    .detail-option {
+      font-family: "SFProText";
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.67;
+      text-align: right;
+      color: $color_red;
+      text-decoration: underline;
+    }
+  }
+}

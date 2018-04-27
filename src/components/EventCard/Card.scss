@@ -152,3 +152,79 @@
     }
   }
 }
+
+.category-card {
+  position: relative;
+  word-wrap: break-word;
+  background-color: $color_white;
+  margin-bottom: 30px;
+
+  .card-banner {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 1);
+    height: 304px;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-glass {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: transparent;
+
+    .category-name {
+      margin-top: 100px;
+      color: $color_white;
+      text-align: center;
+      font-size: 28px;
+      line-height: 1.8;
+    }
+
+    .item-num {
+      margin-top: 14px;
+      opacity: 0.5;
+      font-family: "SFProText";
+      font-size: 12px;
+      line-height: 1.83;
+      letter-spacing: 1.1px;
+      text-align: center;
+      color: $color_white;
+    }
+
+    .category-line {
+      margin-top: 8px;
+      
+      .line {
+        display: flex;
+        width: 28.8px;
+        height: 1.9px;
+        border: solid 3px $color_cloudy_blue;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.past-card {
+  font-family: "SFProText";
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.88;
+  color: $color_grey_text;
+
+  .detail-option {
+    font-family: "SFProText";
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.67;
+    text-align: right;
+    color: $color_red;
+    text-decoration: underline;
+  }
+}

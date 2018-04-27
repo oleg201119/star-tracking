@@ -42,3 +42,31 @@ export function fetchResultEvents() {
     }
   };
 }
+
+export function fetchPersonEvents() {
+  return async (dispatch, getState) => {
+    try {
+      const id = getState().events.get('id');
+      const maxNumber = getState().events.get('maxNumber');
+      const language = getState().events.get('language');
+      const events = await EventService.getPersonEvents(id, maxNumber, language);
+      dispatch({ type: types.PERSON_EVENTS_FETCHED, events });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+
+export function fetchFriendEvents() {
+  return async (dispatch, getState) => {
+    try {
+      const id = getState().events.get('id');
+      const maxNumber = getState().events.get('maxNumber');
+      const language = getState().events.get('language');
+      const events = await EventService.getFriendEvents(id, maxNumber, language);
+      dispatch({ type: types.FRIEND_EVENTS_FETCHED, events });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}

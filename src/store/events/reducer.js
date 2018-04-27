@@ -8,6 +8,8 @@ const initialState = Map({
   upcomingEvents: List(),
   liveEvents: List(),
   resultEvents: List(),
+  personEvents: List(),
+  friendEvents: List(),
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -23,6 +25,14 @@ export default function reduce(state = initialState, action = {}) {
   case types.RESULT_EVENTS_FETCHED:
     return state.merge({
       resultEvents: action.events,
+    });
+  case types.PERSON_EVENTS_FETCHED:
+    return state.merge({
+      personEvents: action.events,
+    });
+  case types.FRIEND_EVENTS_FETCHED:
+    return state.merge({
+      friendEvents: action.events,
     });
   default:
     return state;
@@ -40,4 +50,12 @@ export function getLiveEvents(state) {
 
 export function getResultEvents(state) {
   return state.events.get('resultEvents').toJS();
+}
+
+export function getPersonEvents(state) {
+  return state.events.get('personEvents').toJS();
+}
+
+export function getFriendEvents(state) {
+  return state.events.get('friendEvents').toJS();
 }

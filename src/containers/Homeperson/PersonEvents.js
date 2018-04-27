@@ -4,25 +4,25 @@ import { connect } from 'react-redux';
 import Masonry from 'react-masonry-component';
 import * as eventsSelectors from '../../store/events/reducer';
 import EventCard from '../../components/EventCard/EventCard';
-import './UpcomingEvents.css';
+import './PersonEvents.css';
 
 const masonryOptions = {
   transitionDuration: 0,
 };
 
-class UpcomingEvents extends Component {
+class PersonEvents extends Component {
   static propTypes = {
-    upcomingEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
+    personEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
   }
 
-  buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} person={false}/>))
+  buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} person={true}/>))
   
   render() {
-    const eventCards = this.buildEventCards(this.props.upcomingEvents);
+    const eventCards = this.buildEventCards(this.props.personEvents);
     return (
-      <div className="upcoming-events">
+      <div className="person-events">
         <div className="section-title">
-          {eventCards.length ? "Eerstvolgende events" : null}
+          {eventCards.length ? "Events geselecteerd voor jou" : null}
         </div>
         <div className="row">
           <Masonry className="event-gallery" options={masonryOptions}>
@@ -35,11 +35,11 @@ class UpcomingEvents extends Component {
 }
 
 function mapStateToProps(state) {
-  const upcomingEvents = eventsSelectors.getUpcomingEvents(state);
+  const personEvents = eventsSelectors.getPersonEvents(state);
 
   return {
-    upcomingEvents,
+    personEvents,
   };
 }
 
-export default connect(mapStateToProps)(UpcomingEvents);
+export default connect(mapStateToProps)(PersonEvents);

@@ -5,13 +5,13 @@ import './Card.css';
 export default class EventCard extends Component {
   static propTypes = {
     event: PropTypes.objectOf(PropTypes.any).isRequired,
+    person: PropTypes.bool.isRequired,
   }
 
   render() {
-    const { event } = this.props;
-
+    const { event, person } = this.props;
     return (
-      <div className="event-card col-12 col-md-12 col-xl-6">
+      <div className={person?"event-card col-12 col-md-6 col-xl-4":"event-card col-12 col-md-12 col-xl-6"}>
         <div className="card-banner">
           <img alt="banner" src="img/card-banner.png" />
         </div>
