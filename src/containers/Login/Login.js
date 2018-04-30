@@ -1,15 +1,39 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import * as authActions from '../../store/auth/actions';
+import * as authSelectors from '../../store/auth/reducer';
 import './Login.css';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(){
     super();
     this.state = {
-      stay_signin : false
+      stay_signin : false,
+      username : '',
+      password : '',
     }
+    this.changeUsername = this.changeUsername.bind(this);
+    this.changePassword = this.changePassword.bind(this);
+  }
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    // authToken: PropTypes.string.isRequired,
+  }
+  changeUsername(e){
+    this.setState({username:e.target.value})
+  }
+  changePassword(e){
+    this.setState({password:e.target.value})
   }
   render() {
+    const { authToken } = this.props;
+
+    if (authToken !== '') return <Redirect to="/person" />;
+    else 
     return (
+
       <div className="login">
         <div className="login-logo"> 
           <a className="logo-link" href="/">
@@ -34,16 +58,17 @@ export default class Login extends Component {
           <div className="login-other">
             <div className="login-other-input">
               <img className="login-other-icon" alt="ST-icon" src="img/login-icon-username.png" />
-              <input type="text" placeholder="Username"/>
+              <input type="text" placeholder="Username" value={this.state.username} onChange={this.changeUsername}/>
             </div>
             <div className="login-other-line"></div>
             <div className="login-other-input">
               <img className="login-other-icon login-other-icon-password" alt="ST-icon" src="img/login-icon-password.png" />
-              <input type="text" placeholder="Password"/>
+              <input type="text" placeholder="Password"  value={this.state.password} onChange={this.changePassword}/>
             </div>
           </div>
           <button type="button" className="btn btn-red signin" onClick={()=>{
-            this.props.history.push('homeperson');
+            this.props.dispatch(authActions.fetchLoginAuth(this.state.username,this.state.password));
+            // this.props.history.push('homeperson');
             }}>Sign In</button>
           <div className="stay-signin">
             <img className="stay-signin-check" alt="ST-icon" src={this.state.stay_signin?"img/check-check.png":"img/check-uncheck.png"} onClick={()=>this.state.stay_signin?this.setState({stay_signin:false}):this.setState({stay_signin:true})}/>
@@ -58,3 +83,12 @@ export default class Login extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  const authToken = authSelectors.getLoginAuth(state);
+
+  return {
+    authToken,
+  };
+}
+
+export default connect(mapStateToProps)(Login);

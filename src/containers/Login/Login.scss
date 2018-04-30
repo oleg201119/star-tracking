@@ -7,14 +7,32 @@
   background-image: url(/img/login-bg.png);
   background-size: cover;
   background-repeat: no-repeat;
+  background-position-x: center;
 
   .login-logo {
-    padding-top: 96px;
+    padding-top: 36px;
     display: flex;
     justify-content: center;
-    
+    @media (min-width: 576px) {
+      padding-top: 56px;
+    }
+    @media (min-width: 768px) {
+      padding-top: 76px;
+    }
+    @media (min-width: 992px) {
+      padding-top: 96px;
+    }
     .logo {
-      width: 142px;
+      width: 112px;
+      @media (min-width: 576px) {
+        width: 122px;
+      }
+      @media (min-width: 768px) {
+        width: 132px;
+      }
+      @media (min-width: 992px) {
+        width: 142px;
+      }
     }
   }
 
@@ -22,8 +40,16 @@
     position: relative;
     width: 310px;
     margin: 0 auto;
-    margin-top: 54px;
-  
+    margin-top: 24px;
+    @media (min-width: 576px) {
+      margin-top: 34px;
+    }
+    @media (min-width: 768px) {
+      margin-top: 44px;
+    }
+    @media (min-width: 992px) {
+      margin-top: 54px;
+    }
     .btn-login {
       width: 100%;
       border-radius: 16px;
@@ -137,11 +163,23 @@
     }
 
     .create-forgot {
-      margin-top: 40px;
+      margin-top: 10px;
       flex-direction: column;
       display: flex;
-      padding-bottom: 100px;
+      padding-bottom: 40px;
 
+      @media (min-width: 576px) {
+        margin-top: 15px;
+        padding-bottom: 50px;
+      }
+      @media (min-width: 768px) {
+        margin-top: 20px;
+        padding-bottom: 60px;
+      }
+      @media (min-width: 992px) {
+        margin-top: 30px;
+        padding-bottom: 70px;
+      }
       .create-forgot-text {
         font-family: 'Roboto', sans-serif;
         color: $color_white;

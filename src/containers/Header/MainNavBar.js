@@ -18,8 +18,8 @@ export default class MainNavBar extends Component {
               <li className="nav-item"><a className="menu-link" href="#/" title="">Browse alle events</a></li>
               <li className="nav-item"><a className="menu-link" href="#/" title="">Blogartikels</a></li>
               <li className="nav-item"><a className="menu-link" href="#/" title="">Voor organisatoren</a></li>
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Over Star Tracking</a></li>
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Contact</a></li>
+              <li className="nav-item"><a className="menu-link" href="/about" title="">Over Star Tracking</a></li>
+              <li className="nav-item"><a className="menu-link" href="/contact" title="">Contact</a></li>
             </ul>
             <Link to="login"><button type="button" className="btn btn-red btn-login">Login</button></Link>
           </div>

@@ -5,7 +5,9 @@ import * as eventActions from '../../store/events/actions';
 import PersonEvents from '../Homeperson/PersonEvents';
 import FriendEvents from '../Homeperson/FriendEvents';
 import CategoryEvents from '../Homeperson/CategoryEvents';
+import Tabbar from '../Tabbar/Tabbar';
 import '../Homeperson/Homeperson.css';
+import './Person.css';
 
 class Person extends Component {
   static propTypes = {
@@ -20,6 +22,9 @@ class Person extends Component {
   render() {
     return (
       <div className="home-person">
+        <div className="person-tabbar">
+            <Tabbar />
+        </div>
         <div className="container">
             <PersonEvents />
         </div>

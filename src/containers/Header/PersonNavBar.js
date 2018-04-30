@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './MainNavBar.css';
+import './PersonNavBar.css';
 
 export default class MainNavBar extends Component {
   render() {
@@ -13,16 +12,21 @@ export default class MainNavBar extends Component {
           <button className="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarHeaderMenu">
             <i className="fa fa-bars" />
           </button>
+          <a className="avatar-link d-block d-xl-none" href="#/">
+            <img className="avatar" alt="auth-avatar" src="img/navbar-avatar.png" />
+          </a>
           <div className="collapse navbar-collapse" id="navbarHeaderMenu">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item"><a className="menu-link" href="#/" title="">Browse alle events</a></li>
               <li className="nav-item"><a className="menu-link" href="#/" title="">Blogartikels</a></li>
               <li className="nav-item"><a className="menu-link" href="#/" title="">Voor organisatoren</a></li>
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Over Star Tracking</a></li>
+              <li className="nav-item"><a className="menu-link" href="/about" title="">Over Star Tracking</a></li>
               <li className="nav-item"><a className="menu-link" href="#/" title="">Contact</a></li>
             </ul>
-            <Link to="login"><button type="button" className="btn btn-red btn-login">Login</button></Link>
           </div>
+          <a className="avatar-link d-none d-xl-block" href="#/">
+            <img className="avatar" alt="auth-avatar" src="img/navbar-avatar.png" />
+          </a>
         </div>
       </nav>
     );

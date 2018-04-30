@@ -1,0 +1,1 @@
+export const LOGIN_AUTH_FETCHED = 'events.LOGIN_AUTH_FETCHED';
