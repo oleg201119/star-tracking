@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './FooterBanner.css';
 
 export default class FooterBanner extends Component {
@@ -18,7 +19,7 @@ export default class FooterBanner extends Component {
           </div>
           <div className="button-section">
             <div className="container">
-              <button type="button" className="btn btn-red">Leer meer over de Star Tracking tijdsregistratie</button>
+              <Link to="organizer"><button type="button" className="btn btn-red">Leer meer over de Star Tracking tijdsregistratie</button></Link>
             </div>
           </div>
         </div>

@@ -66,9 +66,23 @@
   width: 100%;   
   border: 1px solid #eceae8;
   border-left: none;
-  background-color: $color_cloudy_blue;
+  background-color: $color_event_other;
   color: $color_dark;
-
+  &.Running {
+    background-color: $color_event_running;
+  }
+  &.BikeRun {
+    background-color: $color_event_bikerun;
+  }
+  &.BikeRace {
+    background-color: $color_event_bikerace;
+  }
+  &.Mountainbike {
+    background-color: $color_event_mountainbike;
+  }
+  &.TrialRun {
+    background-color: $color_event_trialrun;
+  }
   .event-content {
     margin-left: 6px;
     width: 100%;

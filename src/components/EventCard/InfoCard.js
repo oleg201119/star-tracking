@@ -11,7 +11,7 @@ export default class InfoCard extends Component {
     const { event } = this.props;
 
     return (
-      <div className="event-info mb-2">
+      <div className={"event-info mb-2 "+event.Type}>
         <div className="event-content">
           <div className="event-time">
             <div className="day">

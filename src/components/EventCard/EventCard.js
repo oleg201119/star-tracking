@@ -23,7 +23,7 @@ export default class EventCard extends Component {
         <div className="card-star">
           <img alt="star" src="img/card-white-star.png" />
         </div>
-        <div className="event-info">
+        <div className={"event-info "+event.Type}>
           <div className="event-content">
             <div className="event-time">
               <div className="day">

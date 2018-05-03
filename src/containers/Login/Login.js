@@ -19,7 +19,6 @@ class Login extends Component {
   }
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    // authToken: PropTypes.string.isRequired,
   }
   changeUsername(e){
     this.setState({username:e.target.value})
@@ -63,12 +62,12 @@ class Login extends Component {
             <div className="login-other-line"></div>
             <div className="login-other-input">
               <img className="login-other-icon login-other-icon-password" alt="ST-icon" src="img/login-icon-password.png" />
-              <input type="text" placeholder="Password"  value={this.state.password} onChange={this.changePassword}/>
+              <input type="password" placeholder="Password"  value={this.state.password} onChange={this.changePassword}/>
+              {this.state.password!==""?<button type="button" className="btn btn-clear" onClick={()=>this.setState({password:""})}>x</button>:null}
             </div>
           </div>
           <button type="button" className="btn btn-red signin" onClick={()=>{
             this.props.dispatch(authActions.fetchLoginAuth(this.state.username,this.state.password));
-            // this.props.history.push('homeperson');
             }}>Sign In</button>
           <div className="stay-signin">
             <img className="stay-signin-check" alt="ST-icon" src={this.state.stay_signin?"img/check-check.png":"img/check-uncheck.png"} onClick={()=>this.state.stay_signin?this.setState({stay_signin:false}):this.setState({stay_signin:true})}/>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './PersonNavBar.css';
 
 export default class MainNavBar extends Component {
@@ -17,11 +18,10 @@ export default class MainNavBar extends Component {
           </a>
           <div className="collapse navbar-collapse" id="navbarHeaderMenu">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Browse alle events</a></li>
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Blogartikels</a></li>
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Voor organisatoren</a></li>
-              <li className="nav-item"><a className="menu-link" href="/about" title="">Over Star Tracking</a></li>
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Contact</a></li>
+              <li className="nav-item"><Link to="person" className="menu-link">Browse alle events</Link></li>
+              <li className="nav-item"><Link to="organizer" className="menu-link">Voor organisatoren</Link></li>
+              <li className="nav-item"><Link to="about" className="menu-link">Over Star Tracking</Link></li>
+              <li className="nav-item"><Link to="contact" className="menu-link">Contact</Link></li>
             </ul>
           </div>
           <a className="avatar-link d-none d-xl-block" href="#/">

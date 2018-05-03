@@ -1,1 +1,1 @@
-export const LOGIN_AUTH_FETCHED = 'events.LOGIN_AUTH_FETCHED';
+export const LOGIN_AUTH_FETCHED = 'auth.LOGIN_AUTH_FETCHED';

@@ -15,11 +15,10 @@ export default class MainNavBar extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarHeaderMenu">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Browse alle events</a></li>
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Blogartikels</a></li>
-              <li className="nav-item"><a className="menu-link" href="#/" title="">Voor organisatoren</a></li>
-              <li className="nav-item"><a className="menu-link" href="/about" title="">Over Star Tracking</a></li>
-              <li className="nav-item"><a className="menu-link" href="/contact" title="">Contact</a></li>
+              <li className="nav-item"><Link to="homepage" className="menu-link">Browse alle events</Link></li>
+              <li className="nav-item"><Link to="organizer" className="menu-link">Voor organisatoren</Link></li>
+              <li className="nav-item"><Link to="about" className="menu-link">Over Star Tracking</Link></li>
+              <li className="nav-item"><Link to="contact" className="menu-link">Contact</Link></li>
             </ul>
             <Link to="login"><button type="button" className="btn btn-red btn-login">Login</button></Link>
           </div>

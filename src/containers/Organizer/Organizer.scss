@@ -1,0 +1,87 @@
+@import "../../styles/Color.scss";
+
+.organizer-banner {
+  background-image: url(/img/home-banner-bottom.png);
+  
+  .slogan-section {
+    bottom: 20px;
+
+    .organizer-banner-text {
+      display: grid;
+      justify-content: center;
+      .slogan {
+        line-height: 1.26 !important;
+        text-align: center !important;
+      }
+  
+      .slogan-description {
+        font-size: 28px;
+        font-weight: 300;
+        line-height: 1.39;
+        text-align: center;
+        color: $color_white;
+        max-width: 900px;
+        margin-top: 20px;
+      }
+    }
+
+    .btn-organizer {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .organizer-scroll-arrow {
+      width: 10px;
+      height: 19px;
+      transform: rotate(90deg);
+      // border: solid 1px #b9babf;
+      color: #b9babf;
+      font-size: 20px;
+      cursor: pointer;
+      margin: 0 auto;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
+}
+
+.btn-organizer {
+  margin-top: -100px;
+  margin-bottom: 80px;
+}
+
+.organizer-body {
+  justify-content: center;
+}
+.organizer-body-topic {
+  font-size: 28px;
+  line-height: 1.39;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.organizer-body-main {
+  margin-bottom: 40px;
+}
+
+.organizer-main-circle {
+  width: 128px;
+  height: 128px;
+  border-radius: 64px;
+  background-color: $color_grey_circle;
+  margin: 0 auto;
+}
+
+.organizer-main-text {
+  margin: auto;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--charcoal-grey);
+  line-height: 1.63;
+  text-align: center;
+  max-width: 230px;
+}

@@ -21,6 +21,9 @@
     background-color: #c41227;
     border-color: #c41227; }
 
+.btn-clear {
+  display: contents; }
+
 body {
   margin: 0;
   padding: 0;

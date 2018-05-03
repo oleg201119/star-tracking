@@ -30,3 +30,6 @@
   @include btn-variant($color_red, $color_white);
 }
 
+.btn-clear {
+  display: contents;
+}

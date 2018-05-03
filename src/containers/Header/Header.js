@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
 import LanguageNavBar from './LanguageNavBar';
 import MainNavBar from './MainNavBar';
+import { connect } from 'react-redux';
 import PersonNavBar from './PersonNavBar';
+import * as authSelectors from '../../store/auth/reducer';
 import './Header.css';
 
 class Header extends Component {
@@ -11,20 +12,16 @@ class Header extends Component {
       <div className="header">
         <div className="page-header">
           <LanguageNavBar />
-          <Switch>
-            <Route
-              path="/person"
-              render={props => <PersonNavBar {...props} />}
-            />
-            <Route
-              path="/" 
-              render={props => <MainNavBar {...props} />}
-            />
-          </Switch>
+          {this.props.authToken===""?<MainNavBar />:<PersonNavBar />}
         </div>
       </div>
     );
   }
 }
-
-export default withRouter(Header);
+function mapStateToProps(state) {
+  const authToken = authSelectors.getLoginAuth(state);
+  return {
+    authToken,
+  };
+}
+export default connect(mapStateToProps)(Header);

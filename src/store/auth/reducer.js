@@ -5,7 +5,7 @@ const initialState = Map({
   authToken: '',
 });
 
-export default function reduce(state = initialState, action = {}) {
+export default function reduce(state=initialState , action = {}) {
   switch (action.type) {
   case types.LOGIN_AUTH_FETCHED:
     return state.merge({
