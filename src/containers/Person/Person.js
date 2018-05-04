@@ -25,20 +25,19 @@ class Person extends Component {
     const { authToken } = this.props;
 
     if (authToken === '') return <Redirect to="/login" />;
-    else 
     return (
       <div className="home-person">
         <div className="person-tabbar">
-            <Tabbar />
+          <Tabbar />
         </div>
         <div className="container">
-            <PersonEvents />
+          <PersonEvents />
         </div>
         <div className="container friend-event">
-            <FriendEvents />
+          <FriendEvents />
         </div>
         <div className="container category-event">
-            <CategoryEvents />
+          <CategoryEvents />
         </div>
       </div>
     );
