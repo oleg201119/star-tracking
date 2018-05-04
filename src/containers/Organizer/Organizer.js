@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Withwork from '../Footer/Withwork';
 import './Organizer.css';
 export default class Organizer extends Component {
   render() {
+    var settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
     return (
       <div className="about">
         <div className="header-banner organizer-banner">
@@ -109,6 +119,83 @@ export default class Organizer extends Component {
               <div className="about-body-topic organizer-body-topic" >
                 <span>Van kleine events tot sportwedstrijden met duizende deelnemers, van eenvoudige loopwedstrijden, tot complexe multilap, multisport events, wij kunnen het allemaal aan</span>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="image-slider">
+            <Slider {...settings}>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-1.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-2.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-3.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-4.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-5.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-6.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-7.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-8.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-9.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-10.png" />
+              </div>
+              <div>
+                <img className="slider-image" alt="slider-img-1" src="img/image-11.png" />
+              </div>
+            </Slider>
+          </div>
+          <div className="row">
+            <div className="text-slider col-10 col-lg-10">
+              <Slider {...settings}>
+                <div className="slider-text-body">
+                  <div className="slider-text">
+                    <span>StarTracking leverde met gerichte communicatie in hun netwerk omtrent ons event ons 20% meer deelnemers op dan de vorige editie. Duidelijk een juiste keuze!</span>
+                  </div>
+                  <div className="slider-text-small">
+                    <span>Pascal Leys, Grote Prijs Stephan Defreyne</span>
+                  </div>
+                </div>
+                <div className="slider-text-body">
+                  <div className="slider-text">
+                    <span>Onmiddellijk na de wedstrijd waren alle uitslagen in onze 41 leeftijds- en groepscategoriën beschikbaar waardoor de prijzenceremonie heel vlot verliep</span>
+                  </div>
+                  <div className="slider-text-small">
+                    <span>Filiep Vanthournout, Alpro Leiemarathon</span>
+                  </div>
+                </div>
+                <div className="slider-text-body">
+                  <div className="slider-text">
+                    <span>De deelnemers kunnen de uitslagen en aantal ronden live volgen op hun smartphone, wat voor een 24u MTB race een grote meerwaarde is</span>
+                  </div>
+                  <div className="slider-text-small">
+                    <span>Robin Vanleirsberge, 24u MTB Hooglede-Gits</span>
+                  </div>
+                </div>
+                <div className="slider-text-body">
+                  <div className="slider-text">
+                    <span>Door de professionaliteit van StarTracking twijfelden we niet lang om hen in te schakelen voor de tijdsregistratie van het BK halve marathon</span>
+                  </div>
+                  <div className="slider-text-small">
+                    <span>Filiep Vanthournout, Alpro Leiemarathon</span>
+                  </div>
+                </div>
+              </Slider>
             </div>
           </div>
         </div>

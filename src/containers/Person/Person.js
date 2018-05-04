@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import * as eventActions from '../../store/events/actions';
 import PersonEvents from '../Homeperson/PersonEvents';
 import FriendEvents from '../Homeperson/FriendEvents';
 import CategoryEvents from '../Homeperson/CategoryEvents';
 import Tabbar from '../Tabbar/Tabbar';
+import * as authSelectors from '../../store/auth/reducer';
 import '../Homeperson/Homeperson.css';
 import './Person.css';
 
@@ -20,6 +22,10 @@ class Person extends Component {
   }
 
   render() {
+    const { authToken } = this.props;
+
+    if (authToken === '') return <Redirect to="/login" />;
+    else 
     return (
       <div className="home-person">
         <div className="person-tabbar">
@@ -38,5 +44,11 @@ class Person extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  const authToken = authSelectors.getLoginAuth(state);
 
-export default connect()(Person);
+  return {
+    authToken,
+  };
+}
+export default connect(mapStateToProps)(Person);
