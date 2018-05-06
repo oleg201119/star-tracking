@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import './Copyright.css';
 
-export default class Copyright extends Component {
+class Copyright extends Component {
   render() {
+    const { t } = this.props;
+
     return (
       <div className="copyright d-flex justify-content-between">
         <span>
@@ -10,10 +13,11 @@ export default class Copyright extends Component {
           <a className="policy-link" href="#/">Privacy Policy</a>
         </span>
         <span className="d-none d-lg-block">
-          Met de steun van&nbsp;&nbsp;
+          {t('Met de steun van')}&nbsp;&nbsp;
           <img className="logo-flanders" alt="Flanders-logo" src="img/logo-flanders.png" />
         </span>
       </div>
     );
   }
 }
+export default translate('translations')(Copyright);

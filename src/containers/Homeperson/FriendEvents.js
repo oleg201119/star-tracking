@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Masonry from 'react-masonry-component';
+import { translate } from 'react-i18next';
 import * as eventsSelectors from '../../store/events/reducer';
 import EventCard from '../../components/EventCard/EventCard';
 import './FriendEvents.css';
@@ -19,10 +20,12 @@ class FriendEvents extends Component {
   
   render() {
     const eventCards = this.buildEventCards(this.props.friendEvents);
+    const { t } = this.props;
+
     return (
       <div className="friend-events">
         <div className="section-title">
-          {eventCards.length ? "Events waar jouw vrienden deelnemen" : null}
+          {eventCards.length ? t('Events waar jouw vrienden deelnemen') : null}
         </div>
         <div className="row">
           <Masonry className="event-gallery" options={masonryOptions}>
@@ -42,4 +45,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(FriendEvents);
+export default connect(mapStateToProps)(translate('translations')(FriendEvents));

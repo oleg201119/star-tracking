@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import './Card.css';
 
-export default class PastCard extends Component {
+class PastCard extends Component {
   static propTypes = {
     event: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   render() {
-    const { event } = this.props;
+    const { event, t } = this.props;
     return (
       <div className="past-card row">
         <div className="col-3 col-md-2 col-xl-1">
@@ -21,9 +22,10 @@ export default class PastCard extends Component {
           {event.Description}
         </div>
         <div className="col-4 col-md-1 col-xl-1">
-          <a href="#/" className="detail-option">Resultaten</a>
+          <a href="#/" className="detail-option">{t('Resultaten')}</a>
         </div>
       </div>
     );
   }
 }
+export default translate('translations')(PastCard);

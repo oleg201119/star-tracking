@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 import Masonry from 'react-masonry-component';
+import { translate } from 'react-i18next';
 // import * as eventsSelectors from '../../store/events/reducer';
 import CategoryCard from '../../components/EventCard/CategoryCard';
 import './CategoryEvents.css';
@@ -18,7 +19,7 @@ const categoryevents=[{ "Name": " Marathons",
                         { "Name": " Mountainbiking",
                         "categorynum": 8,
                         "ID": 3}];
-export default class CategoryEvents extends Component {
+class CategoryEvents extends Component {
   // static propTypes = {
   //   categoryEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
   // }
@@ -27,10 +28,12 @@ export default class CategoryEvents extends Component {
   render() {
     // const eventCards = this.buildEventCards(this.props.categoryEvents);
     const eventCards = this.buildEventCards(categoryevents);
+    const { t } = this.props;
+
     return (
       <div className="category-events">
         <div className="section-title">
-          {eventCards.length ? "Zoek in jouw voorkeurscategorien" : null}
+          {eventCards.length ? t('Zoek in jouw voorkeurscategorien') : null}
         </div>
         <div className="row">
           <Masonry className="event-gallery" options={masonryOptions}>
@@ -51,3 +54,4 @@ export default class CategoryEvents extends Component {
 // }
 
 // export default connect(mapStateToProps)(CategoryEvents);
+export default translate('translations')(CategoryEvents);

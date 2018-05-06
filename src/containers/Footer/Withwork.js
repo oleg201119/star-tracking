@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import './Withwork.css';
 
-export default class Withwork extends Component {
+class Withwork extends Component {
   render() {
+    const { t } = this.props;
+
     return (
       <div className="withwork">
-        <span>Zij werkten al met ons</span>
+        <span>{t('Zij werkten al met ons')}</span>
         <div className="withwork-logos">
           <a href="#/">
             <img alt="gent-logo" src="img/gent-logo.png" className="gent-logo"/>
@@ -21,3 +24,4 @@ export default class Withwork extends Component {
     );
   }
 }
+export default translate('translations')(Withwork);

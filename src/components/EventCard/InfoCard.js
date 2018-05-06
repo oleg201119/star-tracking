@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import './Card.css';
 
-export default class InfoCard extends Component {
+class InfoCard extends Component {
   static propTypes = {
     event: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   render() {
-    const { event } = this.props;
+    const { event, t } = this.props;
 
     return (
       <div className={"event-info mb-2 "+event.Type}>
@@ -30,11 +31,11 @@ export default class InfoCard extends Component {
             </div>
             <div className="by-options">
               <div className="by">
-                Door: {event.Organizer}
+                {t('Door')}: {event.Organizer}
               </div>
               <div className="options">
                 <a href="#/" className="event-option">
-                  Resultaten
+                  {t('Resultaten')}
                 </a>
               </div>
             </div>
@@ -55,3 +56,4 @@ export default class InfoCard extends Component {
     );
   }
 }
+export default translate('translations')(InfoCard);

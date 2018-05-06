@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import * as eventsSelectors from '../../store/events/reducer';
 import InfoCard from '../../components/EventCard/InfoCard';
 
@@ -13,11 +14,12 @@ class LiveEvents extends Component {
 
   render() {
     const eventCards = this.buildEventCards(this.props.liveEvents);
+    const { t } = this.props;
 
     return (
       <div className="live-events">
         <div className="section-title">
-          {eventCards.length ? "Volg nu live!" : null}
+          {eventCards.length ? t('Volg nu live!') : null}
         </div>
         {eventCards}
       </div>
@@ -33,4 +35,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(LiveEvents);
+export default connect(mapStateToProps)(translate('translations')(LiveEvents));

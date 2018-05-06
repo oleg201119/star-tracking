@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import './Card.css';
 
-export default class EventCard extends Component {
+class EventCard extends Component {
   static propTypes = {
     event: PropTypes.objectOf(PropTypes.any).isRequired,
     person: PropTypes.bool.isRequired,
   }
 
   render() {
-    const { event, person } = this.props;
+    const { event, person, t } = this.props;
+
     return (
       <div className={person?"event-card col-12 col-md-6 col-xl-4":"event-card col-12 col-md-12 col-xl-6"}>
         <div className="card-banner">
@@ -42,7 +44,7 @@ export default class EventCard extends Component {
               </div>
               <div className="by-options">
                 <div className="by">
-                  Door: {event.Organizer}
+                  {t('Door')}: {event.Organizer}
                 </div>
                 <div className="options">
                   <a href="#/" className="event-option">
@@ -71,3 +73,4 @@ export default class EventCard extends Component {
     );
   }
 }
+export default translate('translations')(EventCard);

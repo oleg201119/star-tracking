@@ -129,6 +129,14 @@
   border-radius: 64px;
   background-color: $color_grey_circle;
   margin: 0 auto;
+  align-items: center;
+  display: flex;
+
+  .organizer-circle-image {
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+  }
 }
 
 .organizer-main-text {

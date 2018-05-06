@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 // import * as eventsSelectors from '../../store/events/reducer';
@@ -21,7 +22,7 @@ const categoryevents=[{ "Name": " Duo & Corporate Race",
                         "ID": 4,
                         "Description":"Race voor mountainbikes over duinen en strand vanaf Twins Club in Bredene.",
                         "Date": "04/02/2018"}];
-export default class PastEvents extends Component {
+class PastEvents extends Component {
   // static propTypes = {
   //   categoryEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
   // }
@@ -30,24 +31,26 @@ export default class PastEvents extends Component {
   render() {
     // const eventCards = this.buildEventCards(this.props.categoryEvents);
     const eventCards = this.buildEventCards(categoryevents);
+    const { t } = this.props;
+
     return (
       <div className="past-events">
         <div className="section-title">
-          {eventCards.length ? "Bekijk de resultaten van de voorbije events" : null}
+          {eventCards.length ? t('Bekijk de resultaten van de voorbije events') : null}
         </div>
         <div className="past-events-description">
-          {eventCards.length ? <div>De makkelijkste manier om snel  je resultaten terug te vinden is om 
-           &nbsp;<a href="/person">in te loggen op je account</a>&nbsp;
-           en te kijken onder <a href="#/">'My events'</a>.<br/>
-           Heb je nog geen account (maar heb je wel deelgenomen aan een event), aarzel niet om er
-           &nbsp;<a href="#/">eentje aan te maken</a>, en we koppelen jouw resultaten.<br/>
-           Je kan ook hieronder zoeken in de lijst van events.</div> : null}
+          {eventCards.length ? <div>{t('De makkelijkste manier om snel  je resultaten terug te vinden is om')} 
+           &nbsp;<a href="/person">{t('in te loggen op je account')}</a>&nbsp;
+           {t('en te kijken onder')} <a href="#/">'{t('My events')}'</a>.<br/>
+           {t('Heb je nog geen account (maar heb je wel deelgenomen aan een event), aarzel niet om er')}
+           &nbsp;<a href="#/">{t('eentje aan te maken')}</a>, {t('en we koppelen jouw resultaten')}.<br/>
+           {t('Je kan ook hieronder zoeken in de lijst van events')}.</div> : null}
         </div>
         <div className="event-result">
           {eventCards}
         </div>
         <div className="event-all">
-          <a href="#/" className="detail-option">Bekijk alle events</a>
+          <a href="#/" className="detail-option">{t('Bekijk alle events')}</a>
         </div>
       </div>
     );
@@ -63,3 +66,4 @@ export default class PastEvents extends Component {
 // }
 
 // export default connect(mapStateToProps)(CategoryEvents);
+export default translate('translations')(PastEvents);

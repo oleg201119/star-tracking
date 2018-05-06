@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import Withwork from '../Footer/Withwork';
 import './About.css';
-export default class About extends Component {
+class About extends Component {
   render() {
+    const { t } = this.props;
+
     return (
       <div className="about">
         <div className="header-banner about-banner">
@@ -11,7 +14,7 @@ export default class About extends Component {
               <div className="container">
                 <div className="about-banner-text">
                   <span className="slogan">
-                    Making organizing sports events a breeze in the park!
+                    {t('Making organizing sports events a breeze in the park!')}
                   </span>
                 </div>
               </div>
@@ -22,19 +25,19 @@ export default class About extends Component {
           <div className="row">
             <div className="col-12 col-md-10 col-xl-8 about-body-container">
               <div className="about-body-topic">
-                <span>Star Tracking wil sport organisatoren het leven makkelijker maken, en sporters connecteren tijdens sport events.</span>
+                <span>{t('Star Tracking wil sport organisatoren het leven makkelijker maken, en sporters connecteren tijdens sport events.')}</span>
               </div>
               <div className="about-body-text">
-                <span>Star-Tracking werd geboren uit de frustratie over hoe complex sportevents waren. Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. 
+                <span>{t('about-text-1')}
                 <br/><br/>
-                Star-Tracking heeft intussen meer dan 16.000 leden en stelt een robuust online platform ter beschikking voor sport organisatoren zodat de organisator snel en eenvoudig een online inschrijvingssysteem kan maken. 
+                {t('about-text-2')}
                 <br/><br/>
-                Alle Star-Tracking leden anderzijds worden geïnformeerd over de sport events, kunnen zich inschrijven, hun events beheren, hun tijden consulteren, en informatie met vrienden uitwisselen. </span>
+                {t('about-text-3')} </span>
               </div>
               <div className="about-body-end">
-                <span>Zelf jouw event makkelijk organiseren?</span>
+                <span>{t('Zelf jouw event makkelijk organiseren')}?</span>
               </div>
-              <button type="button" className="btn btn-red btn-create-event">Maak nu jouw event aan</button>
+              <button type="button" className="btn btn-red btn-create-event">{t('Maak nu jouw event aan')}</button>
             </div>
           </div>
         </div>
@@ -43,3 +46,4 @@ export default class About extends Component {
     );
   }
 }
+export default translate('translations')(About);

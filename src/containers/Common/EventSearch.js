@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import { translate } from 'react-i18next';
 import 'react-select/dist/react-select.css';
 import './EventSearch.css';
 
-export default class EventSearch extends Component {
+class EventSearch extends Component {
   constructor(){
     super();
     this.state = {
@@ -20,10 +21,12 @@ export default class EventSearch extends Component {
     this.setState({selectStatus: e});
   }
   render() {
+    const { t } = this.props;
+
     return (
       <div className="search-main">
         <div className="search-title">
-          <span className="title-context">Vind hier jouw sportevent:</span>
+          <span className="title-context">{t('Vind hier jouw sportevent')}:</span>
         </div>
         <div className="search-bar">
           <div className="row search-bar-main">
@@ -62,7 +65,7 @@ export default class EventSearch extends Component {
               />
             </div>
             <div className="col-2 search-element">
-              <button type="button" className="btn btn-red btn-search">Zoek</button>
+              <button type="button" className="btn btn-red btn-search">{t('Zoek')}</button>
             </div>
           </div>
         </div>
@@ -70,3 +73,4 @@ export default class EventSearch extends Component {
     );
   }
 }
+export default translate('translations')(EventSearch);

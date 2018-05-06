@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "i18next": "^11.2.3",
+    "i18next-browser-languagedetector": "^2.2.0",
     "immutable": "^3.8.2",
     "lodash": "^4.17.5",
     "node-sass-chokidar": "^1.2.2",
@@ -10,6 +12,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-i18next": "^7.6.1",
     "react-masonry-component": "^6.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",

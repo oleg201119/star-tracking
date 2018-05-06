@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import Slider from "react-slick";
+import { translate } from 'react-i18next';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Withwork from '../Footer/Withwork';
 import './Organizer.css';
-export default class Organizer extends Component {
+class Organizer extends Component {
   render() {
     var settings = {
       dots: false,
@@ -14,6 +15,8 @@ export default class Organizer extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
+    const { t } = this.props;
+
     return (
       <div className="about">
         <div className="header-banner organizer-banner">
@@ -22,17 +25,17 @@ export default class Organizer extends Component {
               <div className="container">
                 <div className="organizer-banner-text">
                   <span className="slogan">
-                    Organiseer jouw sportevent met betrouwbare tools
+                    {t('Organiseer jouw sportevent met betrouwbare tools')}
                   </span>
                 </div>
                 <div className="organizer-banner-text">
                   <span className="slogan-description d-none d-sm-block">
-                    1 performant platform voor beheer, inschrijvingen, tijdstracking & accurate rapportage.
+                    {t('1 performant platform voor beheer, inschrijvingen, tijdstracking & accurate rapportage.')}
                   </span>
                 </div>
                 <div className="row">
                   <div className="col-12 col-md-10 col-xl-8 about-body-container">
-                    <button type="button" className="btn btn-red btn-create-event btn-organizer">Maak nu jouw event aan</button>
+                    <button type="button" className="btn btn-red btn-create-event btn-organizer">{t('Maak nu jouw event aan')}</button>
                   </div>
                 </div>
                 <div className="organizer-scroll-arrow" onClick={()=>{
@@ -48,76 +51,96 @@ export default class Organizer extends Component {
           <div className="row">
             <div className="col-12 col-md-10 col-xl-9 about-body-container">
               <div className="about-body-topic organizer-body-topic">
-                <span>Onze tools helpen jou om jouw event tot een succes te maken, we nemen de technische kant uit handen <br/>zodat jij kan focussen op de organisatie.</span>
+                <span>{t('Onze tools helpen jou om jouw event tot een succes te maken, we nemen de technische kant uit handen')} <br/>{t('zodat jij kan focussen op de organisatie.')}</span>
               </div>
             </div>
           </div>
           <div className="row organizer-body">
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="computer-img" src="img/computer.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Een eigen makkelijk beheerbare eventpagina</span>
+                <span>{t('Een eigen makkelijk beheerbare eventpagina')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="online-payment-img" src="img/online-payment.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Registratiemodule met online betalingsmodule</span>
+                <span>{t('Registratiemodule met online betalingsmodule')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="thumbs-up-img" src="img/thumbs-up.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Livetracking & tijdsregistratie via laatste technologie</span>
+                <span>{t('Livetracking & tijdsregistratie via laatste technologie')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="cpu-img" src="img/cpu.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Borstnummers op naam met ingebouwde chips</span>
+                <span>{t('Borstnummers op naam met ingebouwde chips')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="screen-img" src="img/screen.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Live rapportering op grote screens tijdens uw event</span>
+                <span>{t('Live rapportering op grote screens tijdens uw event')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="stopwatch-img" src="img/stopwatch.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Accurate eindresultaten, met controlepunten</span>
+                <span>{t('Accurate eindresultaten, met controlepunten')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="analytics-img" src="img/analytics.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Constant overzicht van stand van zaken van uw event</span>
+                <span>{t('Constant overzicht van stand van zaken van uw event')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="application-img" src="img/application.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Handige online applicatie voor deelnemers & supporters</span>
+                <span>{t('Handige online applicatie voor deelnemers & supporters')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="globe-img" src="img/globe.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Toegang tot ons netwerk van 16.000+ sporters</span>
+                <span>{t('Toegang tot ons netwerk van 16.000+ sporters')}</span>
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
-              <div className="organizer-main-circle"></div>
+              <div className="organizer-main-circle">
+                <img className="organizer-circle-image" alt="network-img" src="img/network.svg" />
+              </div>
               <div className="organizer-main-text">
-                <span>Ondersteuning van ons team tijdens uw event</span>
+                <span>{t('Ondersteuning van ons team tijdens uw event')}</span>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-12 col-md-10 col-xl-9 about-body-container" ref="scrollpoint">
               <div className="about-body-topic organizer-body-topic" >
-                <span>Van kleine events tot sportwedstrijden met duizende deelnemers, van eenvoudige loopwedstrijden, tot complexe multilap, multisport events, wij kunnen het allemaal aan</span>
+                <span>{t('Van kleine events tot sportwedstrijden met duizende deelnemers, van eenvoudige loopwedstrijden, tot complexe multilap, multisport events, wij kunnen het allemaal aan')}</span>
               </div>
             </div>
           </div>
@@ -165,7 +188,7 @@ export default class Organizer extends Component {
               <Slider {...settings}>
                 <div className="slider-text-body">
                   <div className="slider-text">
-                    <span>StarTracking leverde met gerichte communicatie in hun netwerk omtrent ons event ons 20% meer deelnemers op dan de vorige editie. Duidelijk een juiste keuze!</span>
+                    <span>{t('StarTracking leverde met gerichte communicatie in hun netwerk omtrent ons event ons 20% meer deelnemers op dan de vorige editie. Duidelijk een juiste keuze!')}</span>
                   </div>
                   <div className="slider-text-small">
                     <span>Pascal Leys, Grote Prijs Stephan Defreyne</span>
@@ -173,7 +196,7 @@ export default class Organizer extends Component {
                 </div>
                 <div className="slider-text-body">
                   <div className="slider-text">
-                    <span>Onmiddellijk na de wedstrijd waren alle uitslagen in onze 41 leeftijds- en groepscategoriën beschikbaar waardoor de prijzenceremonie heel vlot verliep</span>
+                    <span>{t('Onmiddellijk na de wedstrijd waren alle uitslagen in onze 41 leeftijds- en groepscategoriën beschikbaar waardoor de prijzenceremonie heel vlot verliep')}</span>
                   </div>
                   <div className="slider-text-small">
                     <span>Filiep Vanthournout, Alpro Leiemarathon</span>
@@ -181,7 +204,7 @@ export default class Organizer extends Component {
                 </div>
                 <div className="slider-text-body">
                   <div className="slider-text">
-                    <span>De deelnemers kunnen de uitslagen en aantal ronden live volgen op hun smartphone, wat voor een 24u MTB race een grote meerwaarde is</span>
+                    <span>{t('De deelnemers kunnen de uitslagen en aantal ronden live volgen op hun smartphone, wat voor een 24u MTB race een grote meerwaarde is')}</span>
                   </div>
                   <div className="slider-text-small">
                     <span>Robin Vanleirsberge, 24u MTB Hooglede-Gits</span>
@@ -189,7 +212,7 @@ export default class Organizer extends Component {
                 </div>
                 <div className="slider-text-body">
                   <div className="slider-text">
-                    <span>Door de professionaliteit van StarTracking twijfelden we niet lang om hen in te schakelen voor de tijdsregistratie van het BK halve marathon</span>
+                    <span>{t('Door de professionaliteit van StarTracking twijfelden we niet lang om hen in te schakelen voor de tijdsregistratie van het BK halve marathon')}</span>
                   </div>
                   <div className="slider-text-small">
                     <span>Filiep Vanthournout, Alpro Leiemarathon</span>
@@ -203,7 +226,7 @@ export default class Organizer extends Component {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-10 col-xl-8 about-body-container">
-              <button type="button" className="btn btn-red btn-create-event btn-organizer">Maak nu jouw event aan</button>
+              <button type="button" className="btn btn-red btn-create-event btn-organizer">{t('Maak nu jouw event aan')}</button>
             </div>
           </div>
         </div>
@@ -211,3 +234,4 @@ export default class Organizer extends Component {
     );
   }
 }
+export default translate('translations')(Organizer);

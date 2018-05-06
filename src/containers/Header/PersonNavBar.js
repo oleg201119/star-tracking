@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { translate } from 'react-i18next';
 import './PersonNavBar.css';
 
-export default class MainNavBar extends Component {
+class MainNavBar extends Component {
   render() {
+    const { t } = this.props;
+
     return (
       <nav className="navbar navbar-expand-xl header-menu">
         <div className="container">
@@ -18,10 +21,10 @@ export default class MainNavBar extends Component {
           </a>
           <div className="collapse navbar-collapse" id="navbarHeaderMenu">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item"><Link to="person" className="menu-link">Browse alle events</Link></li>
-              <li className="nav-item"><Link to="organizer" className="menu-link">Voor organisatoren</Link></li>
-              <li className="nav-item"><Link to="about" className="menu-link">Over Star Tracking</Link></li>
-              <li className="nav-item"><Link to="contact" className="menu-link">Contact</Link></li>
+              <li className="nav-item"><Link to="person" className="menu-link">{t('Browse all events')}</Link></li>
+              <li className="nav-item"><Link to="organizer" className="menu-link">{t('For organizers')}</Link></li>
+              <li className="nav-item"><Link to="about" className="menu-link">{t('About Star Tracking')}</Link></li>
+              <li className="nav-item"><Link to="contact" className="menu-link">{t('Contact us')}</Link></li>
             </ul>
           </div>
           <a className="avatar-link d-none d-xl-block" href="#/">
@@ -32,3 +35,4 @@ export default class MainNavBar extends Component {
     );
   }
 }
+export default translate('translations')(MainNavBar);
