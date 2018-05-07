@@ -11,3 +11,25 @@ export function fetchLoginAuth(username,password) {
     }
   };
 }
+
+export function fetchResetPwd(email) {
+  return async (dispatch, getState) => {
+    try {
+      const auth = await AuthService.getResetPwd(email);
+      dispatch({ type: types.RESET_PWD_FETCHED, auth });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+
+export function fetchResetPwdFormat() {
+  return async (dispatch, getState) => {
+    try {
+      const auth = '';
+      dispatch({ type: types.RESETPWD_FORMAT_FETCHED, auth });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}

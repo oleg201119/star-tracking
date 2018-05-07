@@ -2,7 +2,7 @@
 @import "../../styles/Button.scss";
 
 // login
-.login {
+.resetpwd {
   width: 100%;
   min-height: 100vh;
   background-image: url(/img/login-bg.png);
@@ -51,21 +51,6 @@
     @media (min-width: 992px) {
       margin-top: 54px;
     }
-    .btn-login {
-      width: 100%;
-      border-radius: 16px;
-      font-size: 15px;
-      height: 52px;
-  
-    }
-  
-    .btn-facebook {
-      @include btn-variant($color_btn_facebook, $color_white);
-    }
-    .btn-twitter {
-      @include btn-variant($color_btn_twitter, $color_white);
-      margin-top: 10px;
-    }
 
     .fa {
       font-size: 23px;
@@ -76,44 +61,13 @@
     span {
       line-height: 2;
     }
-
-    .login-border {
-      flex-direction: row;
-      margin: 23px 8px 20px 8px;
-      display: flex;
-      justify-content: space-between;
-
-      .login-border-line {
-        width: 102px;
-        height: 2px;
-        opacity: 0.7;
-        border: solid 1px $color_white;
-        align-self: center;
-      }
-
-      .login-border-text {
-        font-size: 14px;
-        color: $color_white;
-        line-height: 2;
-        letter-spacing: 0.2px;
-        font-family: 'Roboto', sans-serif;
-      }
-    }
-
     .login-other {
-      height: 115px;
-      border-radius: 16px;
+      border-radius: 12px;
       background-color: $color_white;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 14px 0;
-
-      .login-other-line{
-        height: 2px;
-        opacity: 0.05;
-        border: solid 2px var(--dark)
-      }
 
       img {
         height: 23.5px;
@@ -137,58 +91,21 @@
         }
       }
     }
-
     .signin {
       width: 100%;
       height: 53px;
       border-radius: 16px;
       line-height: 1.88;
-      margin-top: 15px;
-    }
+      margin-top: 45px;
+      margin-bottom: 20px;
 
-    .stay-signin{
-      margin-top: 35px;
-
-      .stay-signin-check {
-        margin-left: 1px;
-        height: 31px;
-        vertical-align: middle;
-        margin-top: -6px;
+      &.reset-success {
+        border-color: #A0D468;
+        background-color: #A0D468;
+        color: white;
+        cursor: not-allowed;
       }
-
-      span {
-        color: $color_white;
-        line-height: 1.88;
-        margin-left: 8px;
-      }
-    }
-
-    .create-forgot {
-      margin-top: 10px;
-      flex-direction: column;
-      display: flex;
-      padding-bottom: 40px;
-
-      @media (min-width: 576px) {
-        margin-top: 15px;
-        padding-bottom: 50px;
-      }
-      @media (min-width: 768px) {
-        margin-top: 20px;
-        padding-bottom: 60px;
-      }
-      @media (min-width: 992px) {
-        margin-top: 30px;
-        padding-bottom: 70px;
-      }
-      .create-forgot-text {
-        font-family: 'Roboto', sans-serif;
-        color: $color_white;
-        line-height: 1.5;
-        letter-spacing: 0.3px;
-        text-align: center;
-      }
-    }
+    } 
   }
 
   .close-cross {
@@ -200,5 +117,22 @@
     i {
       font-size: 30px;
     }
+  }
+
+  .resetpwd-description {
+    margin-top: 24px;
+    color: white;
+    text-align: center;
+
+    .resetpwd-title {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .error-text {
+    text-align: center;
+    font-size: 14px;
+    color: tomato;
   }
 }

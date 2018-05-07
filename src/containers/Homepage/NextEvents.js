@@ -24,9 +24,10 @@ class NextEvents extends Component {
 
     return (
       <div className="upcoming-events">
-        <div className="section-title">
-          {eventCards.length ? t('Onze eerstvolgende events') : null}
-        </div>
+        {eventCards.length ?
+          <div className="section-title">
+            {t('Onze eerstvolgende events')}
+          </div> : null}
         <div className="row">
           <Masonry className="event-gallery" options={masonryOptions}>
             {eventCards}

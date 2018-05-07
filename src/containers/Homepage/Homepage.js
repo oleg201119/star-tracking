@@ -15,17 +15,19 @@ class Homepage extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.dispatch(eventActions.fetchUpcomingEvents());
   }
-
+  
   render() {
+    const selectEvent = this.props.location.state !== undefined ? this.props.location.state.selectEvent: ""
     return (
       <div className="home-person">
         <HeaderBanner />
         <div className="container">
           <div className="row">
             <div className="col-9 event-search">
-              <EventSearch />
+              <EventSearch {...{selectEvent: selectEvent}} />
             </div>
           </div>
         </div>

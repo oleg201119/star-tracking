@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import Slider from "react-slick";
+import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Withwork from '../Footer/Withwork';
 import './Organizer.css';
 class Organizer extends Component {
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
   render() {
     var settings = {
       dots: false,
@@ -35,7 +41,7 @@ class Organizer extends Component {
                 </div>
                 <div className="row">
                   <div className="col-12 col-md-10 col-xl-8 about-body-container">
-                    <button type="button" className="btn btn-red btn-create-event btn-organizer">{t('Maak nu jouw event aan')}</button>
+                    <Link to="newevent"><button type="button" className="btn btn-red btn-create-event btn-organizer">{t('Maak nu jouw event aan')}</button></Link>
                   </div>
                 </div>
                 <div className="organizer-scroll-arrow" onClick={()=>{
@@ -226,7 +232,7 @@ class Organizer extends Component {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-10 col-xl-8 about-body-container">
-              <button type="button" className="btn btn-red btn-create-event btn-organizer">{t('Maak nu jouw event aan')}</button>
+              <Link to="newevent"><button type="button" className="btn btn-red btn-create-event btn-organizer">{t('Maak nu jouw event aan')}</button></Link>
             </div>
           </div>
         </div>

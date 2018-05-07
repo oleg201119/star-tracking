@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import Withwork from '../Footer/Withwork';
 import './About.css';
 class About extends Component {
@@ -37,7 +38,7 @@ class About extends Component {
               <div className="about-body-end">
                 <span>{t('Zelf jouw event makkelijk organiseren')}?</span>
               </div>
-              <button type="button" className="btn btn-red btn-create-event">{t('Maak nu jouw event aan')}</button>
+              <Link to="newevent"><button type="button" className="btn btn-red btn-create-event">{t('Maak nu jouw event aan')}</button></Link>
             </div>
           </div>
         </div>

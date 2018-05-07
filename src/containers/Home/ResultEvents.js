@@ -18,9 +18,10 @@ class ResultEvents extends Component {
 
     return (
       <div className="result-events">
-        <div className="section-title">
-          {eventCards.length ? t('Resultaten voorbije events') : null}
-        </div>
+        {eventCards.length ?
+          <div className="section-title">
+            {t('Resultaten voorbije events')}
+          </div> : null}
         {eventCards}
       </div>
     );

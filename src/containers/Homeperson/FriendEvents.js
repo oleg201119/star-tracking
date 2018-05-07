@@ -24,9 +24,10 @@ class FriendEvents extends Component {
 
     return (
       <div className="friend-events">
-        <div className="section-title">
-          {eventCards.length ? t('Events waar jouw vrienden deelnemen') : null}
-        </div>
+        {eventCards.length ?
+          <div className="section-title">
+            {t('Events waar jouw vrienden deelnemen')}
+          </div> : null}
         <div className="row">
           <Masonry className="event-gallery" options={masonryOptions}>
             {eventCards}

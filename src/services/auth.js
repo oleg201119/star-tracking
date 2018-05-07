@@ -20,6 +20,27 @@ export default class AuthService {
     const data = await response.json();
     return data.access_token;
   }
+
+  static async getResetPwd(email) {
+    var bodydata = encodeURIComponent("email") + '=' + encodeURIComponent(email);
+    
+    const response = await fetch("https://www.star-tracking.be/App/Account/ResetPassword", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json', 
+      },
+      body: bodydata
+    });
+
+    if (!response.ok) {
+      // throw new Error(`AuthService getResetPwd failed, HTTP status ${response.status}`);
+      return false;
+    }
+
+    const data = await response.json();
+    return data;
+  }
 }
 
 

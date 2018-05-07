@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import * as authActions from '../../store/auth/actions';
 import * as authSelectors from '../../store/auth/reducer';
 import './Login.css';
@@ -26,13 +26,15 @@ class Login extends Component {
   changePassword(e){
     this.setState({password:e.target.value})
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     const { authToken } = this.props;
 
     if (authToken !== '') return <Redirect to="/person" />;
     else 
     return (
-
       <div className="login">
         <div className="login-logo"> 
           <a className="logo-link" href="/">
@@ -75,8 +77,13 @@ class Login extends Component {
           </div>
           <div className="create-forgot">
             <a className="create-forgot-text" href="/#">Create your free account</a>
-            <a className="create-forgot-text" href="/#">Forgot Password</a>
+            <Link to="resetpwd" className="create-forgot-text">Forgot Password</Link>
           </div>
+        </div>
+        <div className="close-cross">
+            <i className="material-icons" onClick={()=>{
+              this.props.history.go(-1)
+            }}>clear</i>
         </div>
       </div>
     );

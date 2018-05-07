@@ -20,6 +20,9 @@ class EventSearch extends Component {
   updateselectStatus(e) {
     this.setState({selectStatus: e});
   }
+  componentDidMount() {
+    this.setState({selectEvent : this.props.selectEvent})
+  }
   render() {
     const { t } = this.props;
 
@@ -34,9 +37,12 @@ class EventSearch extends Component {
               <Select
                 ref={(ref) => { this.select = ref; }}
                 options={[
-                  { value: 'one', label: 'Marathons' },
-                  { value: 'two', label: 'Triathlons' },
-                  { value: 'three', label: 'Mountainbiking' },
+                  { value: 'Running', label: t('Running') },
+                  { value: 'TrialRun', label: t('TrialRun') },
+                  { value: 'Roadbike', label: t('Roadbike') },
+                  { value: 'Mountainbike', label: t('Mountainbike') },
+                  { value: 'MultiSport', label: t('MultiSport') },
+                  { value: 'Other', label: t('Other') },
                 ]}
                 simpleValue
                 // clearable={this.state.clearable}

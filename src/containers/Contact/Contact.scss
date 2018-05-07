@@ -1,5 +1,5 @@
 @import "../../styles/Color.scss";
-
+@import "../../styles/Button.scss";
 // Header banner
 .contact-banner {
   background-image: url(/img/contact-banner.jpg);
@@ -78,7 +78,35 @@
   }
   .btn-contact-send {
     border-radius: 8px;
-    width: 140px;
+    min-width: 140px;
+  }
+  .pb-container {
+    height: 40px;
+    .pb-button {
+      line-height: 1.5;
+      @include btn-variant($color_red, $color_white);
+      padding: 2px 6px;
+      border-radius: 8px;
+      span {
+        font-size: 1rem;
+        
+      }
+    }
+    &.loading {
+      .pb-button{
+        border-radius: 20px;
+        color: currentColor;
+        // border-color: #ddd;
+      }
+    }
+  }
+  .error-text {
+    margin-left: 10px;
+  }
+
+  .sent-state {
     margin-top: 30px;
+    display: flex;
+    font-size: 18px;
   }
 }

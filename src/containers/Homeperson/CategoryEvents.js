@@ -32,9 +32,10 @@ class CategoryEvents extends Component {
 
     return (
       <div className="category-events">
-        <div className="section-title">
-          {eventCards.length ? t('Zoek in jouw voorkeurscategorien') : null}
-        </div>
+        {eventCards.length ?
+          <div className="section-title">
+            {t('Zoek in jouw voorkeurscategorien')}
+          </div> : null}
         <div className="row">
           <Masonry className="event-gallery" options={masonryOptions}>
             {eventCards}

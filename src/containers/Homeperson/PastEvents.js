@@ -35,9 +35,10 @@ class PastEvents extends Component {
 
     return (
       <div className="past-events">
-        <div className="section-title">
-          {eventCards.length ? t('Bekijk de resultaten van de voorbije events') : null}
-        </div>
+        {eventCards.length ?
+          <div className="section-title">
+            {t('Bekijk de resultaten van de voorbije events')}
+          </div> : null}
         <div className="past-events-description">
           {eventCards.length ? <div>{t('De makkelijkste manier om snel  je resultaten terug te vinden is om')} 
            &nbsp;<a href="/person">{t('in te loggen op je account')}</a>&nbsp;

@@ -24,9 +24,10 @@ class PersonEvents extends Component {
 
     return (
       <div className="person-events">
-        <div className="section-title">
-          {eventCards.length ? t('Events geselecteerd voor jou') : null}
-        </div>
+        {eventCards.length ?
+          <div className="section-title">
+            {t('Events geselecteerd voor jou')}
+          </div> : null}
         <div className="row">
           <Masonry className="event-gallery" options={masonryOptions}>
             {eventCards}

@@ -4,6 +4,7 @@ import * as types from './actionTypes';
 const initialState = Map({
   id: 1,
   requestContact: '',
+  requestEvent: ''
 });
 
 export default function reduce(state=initialState , action = {}) {
@@ -16,6 +17,14 @@ export default function reduce(state=initialState , action = {}) {
     return state.merge({
       requestContact: action.general,
     });
+  case types.REQUEST_EVENT_FETCHED:
+    return state.merge({
+      requestEvent: action.general,
+    });
+  case types.EVENT_FORMAT_FETCHED:
+    return state.merge({
+      requestEvent: action.general,
+    });
   default:
     return state;
   }
@@ -26,4 +35,9 @@ export default function reduce(state=initialState , action = {}) {
 export function getRequestContact(state) {
 
   return state.general.get('requestContact');
+}
+
+export function getRequestEvent(state) {
+
+  return state.general.get('requestEvent');
 }

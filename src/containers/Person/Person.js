@@ -17,6 +17,7 @@ class Person extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.dispatch(eventActions.fetchPersonEvents());
     this.props.dispatch(eventActions.fetchFriendEvents());
   }
