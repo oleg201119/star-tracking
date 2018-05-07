@@ -33,3 +33,24 @@ export function fetchResetPwdFormat() {
     }
   };
 }
+export function fetchSendPwd() {
+  return async (dispatch, getState) => {
+    try {
+      const auth = await AuthService.getSendPwd();
+      dispatch({ type: types.SEND_PWD_FETCHED, auth });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+
+export function fetchSendPwdFormat() {
+  return async (dispatch, getState) => {
+    try {
+      const auth = '';
+      dispatch({ type: types.SENDPWD_FORMAT_FETCHED, auth });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}

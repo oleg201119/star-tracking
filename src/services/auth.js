@@ -41,6 +41,27 @@ export default class AuthService {
     const data = await response.json();
     return data;
   }
+
+  static async getSendPwd() {
+    var bodydata = encodeURIComponent("id") + '=' + encodeURIComponent("1");
+    
+    const response = await fetch("https://www.star-tracking.be/App/Account/SendPassword", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json', 
+      },
+      body: bodydata
+    });
+
+    if (!response.ok) {
+      // throw new Error(`AuthService getSendPwd failed, HTTP status ${response.status}`);
+      return false;
+    }
+
+    const data = await response.json();
+    return data;
+  }
 }
 
 

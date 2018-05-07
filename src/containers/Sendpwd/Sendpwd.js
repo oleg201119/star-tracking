@@ -4,22 +4,17 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import * as authActions from '../../store/auth/actions';
 import * as authSelectors from '../../store/auth/reducer';
-import './Resetpwd.css';
+import './Sendpwd.css';
 
-class Resetpwd extends Component {
+class Sendpwd extends Component {
   constructor(){
     super();
     this.state = {
-      email : '',
       buttonState : ''
     }
-    this.changeEmail = this.changeEmail.bind(this);
   }
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-  }
-  changeEmail(e){
-    this.setState({email:e.target.value})
   }
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -31,7 +26,7 @@ class Resetpwd extends Component {
     }
     if(resetPwd===false){
       this.setState({buttonState: 'error'});
-      this.props.dispatch(authActions.fetchResetPwdFormat());
+      this.props.dispatch(authActions.fetchSendPwdFormat());
     }
   }
   render() {
@@ -46,37 +41,25 @@ class Resetpwd extends Component {
         <div className="container">
           <div className="resetpwd-description">
             <div className="resetpwd-title">
-              <span>{t('Paswoord vergeten?')}</span>
+              <span>{t('Paswoord opnieuw instellen')}</span>
             </div>
             <div className="resetpwd-body">
-              {t('Als u uw paswoord vergeten bent, kunt u Star-Tracking vragen uw paswoord opnieuw in te stellen.')}
+              {t('U hebt zonet aangegeven dat u uw paswoord vergeten bent en via de link in de mail kon uw identiteit bevestigd worden.')}
               <br/>
-              {t('Om na te gaan dat u zelf deze aanvraag stuurt, vragen we u eerst een bevestiging per mail.')}
-              <br/><br/>
-              {t('Vul hieronder uw email adres in waarmee u inlogt, en vraag uw paswoord terug te zetten.')}
-              <br/>
-              {t('U zal dan binnen enkele minuten een Star-Tracking email ontvangen met daarin een link.')}
-              <br/>
-              {t('Als u op deze link klikt, zal u uw paswoordwijziging bevestigen en zal uw paswoord opnieuw ingesteld worden.')}
+              {t("Via de knop hieronder kan u nu uw paswoord opnieuw instellen en dit nieuw paswoord wordt dan naar uw email adres gestuurd. Zo kan u opnieuw aanloggen. Daarna kan u via de 'Mijn account' optie uw paswoord wijzigen.")}
             </div>
           </div>
         </div>
         <div className="login-main">
-          <div className="login-other">
-            <div className="login-other-input">
-              <img className="login-other-icon" alt="ST-icon" src="img/login-icon-username.png" />
-              <input type="text" placeholder="Email" value={this.state.email} onChange={this.changeEmail}/>
-            </div>
-          </div>
           {this.state.buttonState === 'success'?
             <button type="button" className="btn btn-red signin reset-success">
               <i class="fa fa-check"></i> Request sent
             </button> :
             <button type="button" className="btn btn-red signin" onClick={()=>{
               this.setState({buttonState:''})
-              this.props.dispatch(authActions.fetchResetPwd(this.state.email));
+              this.props.dispatch(authActions.fetchSendPwd());
               }}>
-              {t('Paswoord terugzetten')}
+              {t('Paswoord  instellen')}
             </button>
           }
         </div>
@@ -97,11 +80,11 @@ class Resetpwd extends Component {
   }
 }
 function mapStateToProps(state) {
-  const resetPwd = authSelectors.getResetPwd(state);
+  const resetPwd = authSelectors.getSendPwd(state);
 
   return {
     resetPwd,
   };
 }
 
-export default connect(mapStateToProps)(translate('translations')(Resetpwd));
+export default connect(mapStateToProps)(translate('translations')(Sendpwd));

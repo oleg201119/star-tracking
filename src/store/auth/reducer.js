@@ -3,7 +3,8 @@ import * as types from './actionTypes';
 
 const initialState = Map({
   authToken: '',
-  resetPwd: ''
+  resetPwd: '',
+  sendPwd:''
 });
 
 export default function reduce(state=initialState , action = {}) {
@@ -20,6 +21,14 @@ export default function reduce(state=initialState , action = {}) {
     return state.merge({
       resetPwd: action.auth,
     });
+  case types.SEND_PWD_FETCHED:
+    return state.merge({
+      sendPwd: action.auth,
+    });
+  case types.SENDPWD_FORMAT_FETCHED:
+    return state.merge({
+      sendPwd: action.auth,
+    });
   default:
     return state;
   }
@@ -32,4 +41,7 @@ export function getLoginAuth(state) {
 }
 export function getResetPwd(state) {
   return state.auth.get('resetPwd');
+}
+export function getSendPwd(state) {
+  return state.auth.get('sendPwd');
 }
