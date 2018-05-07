@@ -46,7 +46,6 @@ class Organizer extends Component {
                 </div>
                 <div className="organizer-scroll-arrow" onClick={()=>{
                   const tesNode = ReactDOM.findDOMNode(this.refs.scrollpoint);
-                  console.log(tesNode.offsetTop);
                   window.scrollTo(0, tesNode.offsetTop);
                 }}><span>></span></div>
               </div>
