@@ -7,7 +7,7 @@ import ProgressButton from './ProgressButton'
 import * as generalActions from '../../store/general/actions';
 import * as generalSelectors from '../../store/general/reducer';
 import './Contact.css';
-import './react-progress-button.css';
+import './ProgressButton.css';
 class Contact extends Component {
   constructor(){
     super();

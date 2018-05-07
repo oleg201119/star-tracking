@@ -10,7 +10,7 @@ import * as generalActions from '../../store/general/actions';
 import * as generalSelectors from '../../store/general/reducer';
 import './Newevent.css';
 import 'react-datepicker/dist/react-datepicker.css';
-// import '../Contact/react-progress-button.css';
+
 class Newevent extends Component {
   constructor(){
     super();
