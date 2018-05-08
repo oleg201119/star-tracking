@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Masonry from 'react-masonry-component';
 import { translate } from 'react-i18next';
 import * as eventsSelectors from '../../store/events/reducer';
 import EventCard from '../../components/EventCard/EventCard';
 import './UpcomingEvents.css';
-
-const masonryOptions = {
-  transitionDuration: 0,
-};
 
 class UpcomingEvents extends Component {
   static propTypes = {
     upcomingEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
   }
 
-  buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} person={false}/>))
-  
+  buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} person={false} />))
+
   render() {
     const { t } = this.props;
     const eventCards = this.buildEventCards(this.props.upcomingEvents);
@@ -29,9 +24,7 @@ class UpcomingEvents extends Component {
             {t('Eerstvolgende events')}
           </div> : null}
         <div className="row">
-          <Masonry className="event-gallery" options={masonryOptions}>
-            {eventCards}
-          </Masonry>
+          {eventCards}
         </div>
       </div>
     );

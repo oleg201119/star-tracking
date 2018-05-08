@@ -1,16 +1,15 @@
-const EVENT_API_ENDPOINT = 'https://www.star-tracking.be/Token';
+const API_ENDPOINT = 'https://www.star-tracking.be/';
 
 export default class AuthService {
-  static async getLoginAuth(username,password) {
-    var bodydata = encodeURIComponent("grant_type") + '=' + encodeURIComponent("password") + "&" + encodeURIComponent("username") + '=' + encodeURIComponent(username) + "&"+ encodeURIComponent("password") + '=' + encodeURIComponent(password);
-    
-    const response = await fetch(EVENT_API_ENDPOINT, {
+  static async getLoginAuth(username, password) {
+    const bodydata = `${encodeURIComponent('grant_type')}=${encodeURIComponent('password')}&${encodeURIComponent('username')}=${encodeURIComponent(username)}&${encodeURIComponent('password')}=${encodeURIComponent(password)}`;
+    const response = await fetch(`${API_ENDPOINT}/Token`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json', 
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
       },
-      body: bodydata
+      body: bodydata,
     });
 
     if (!response.ok) {
@@ -18,19 +17,21 @@ export default class AuthService {
     }
 
     const data = await response.json();
+    window.sessionStorage.setItem('token', data.access_token);
     return data.access_token;
   }
 
   static async getResetPwd(email) {
-    var bodydata = encodeURIComponent("email") + '=' + encodeURIComponent(email);
-    
-    const response = await fetch("https://www.star-tracking.be/App/Account/ResetPassword", {
+    const bodydata = {
+      Email: email,
+    };
+    const response = await fetch(`${API_ENDPOINT}App/Account/ResetPassword`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json', 
+        Accept: 'application/json',
       },
-      body: bodydata
+      body: JSON.stringify(bodydata),
     });
 
     if (!response.ok) {
@@ -42,16 +43,17 @@ export default class AuthService {
     return data;
   }
 
-  static async getSendPwd() {
-    var bodydata = encodeURIComponent("id") + '=' + encodeURIComponent("1");
-    
-    const response = await fetch("https://www.star-tracking.be/App/Account/SendPassword", {
+  static async getSendPwd(requestId) {
+    const bodydata = {
+      RequestId: requestId,
+    };
+    const response = await fetch(`${API_ENDPOINT}App/Account/SendPassword`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json', 
+        Accept: 'application/json',
       },
-      body: bodydata
+      body: JSON.stringify(bodydata),
     });
 
     if (!response.ok) {
@@ -63,5 +65,4 @@ export default class AuthService {
     return data;
   }
 }
-
 

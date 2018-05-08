@@ -100,10 +100,15 @@
       margin-bottom: 20px;
 
       &.reset-success {
-        border-color: #A0D468;
-        background-color: #A0D468;
+        border-color: rgb(74, 108, 111);
+        background-color: rgb(74, 108, 111);
         color: white;
         cursor: not-allowed;
+        .material-icons {
+          vertical-align: middle;
+          margin-top: -3px;
+          margin-right: 10px;
+        }
       }
     } 
   }

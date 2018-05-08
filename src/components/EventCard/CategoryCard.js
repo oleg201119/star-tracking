@@ -12,7 +12,7 @@ export default class CategoryCard extends Component {
     return (
       <div className="category-card col-12 col-md-6 col-xl-4">
         <div className="card-banner">
-          <img alt="banner" src="img/category-banner.png" />
+          <img alt="banner" src="/img/category-banner.png" />
         </div>
         <div className="card-glass">
           <div className="category-name">
@@ -22,7 +22,7 @@ export default class CategoryCard extends Component {
             {event.categorynum} ITEMS
           </div>
           <div className="category-line">
-            <div className="line"></div>
+            <div className="line" />
           </div>
         </div>
       </div>

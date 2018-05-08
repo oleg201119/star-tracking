@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Masonry from 'react-masonry-component';
 import { translate } from 'react-i18next';
 import * as eventsSelectors from '../../store/events/reducer';
 import EventCard from '../../components/EventCard/EventCard';
 import './NextEvents.css';
-
-const masonryOptions = {
-  transitionDuration: 0,
-};
 
 class NextEvents extends Component {
   static propTypes = {
@@ -29,9 +24,7 @@ class NextEvents extends Component {
             {t('Onze eerstvolgende events')}
           </div> : null}
         <div className="row">
-          <Masonry className="event-gallery" options={masonryOptions}>
-            {eventCards}
-          </Masonry>
+          {eventCards}
         </div>
       </div>
     );

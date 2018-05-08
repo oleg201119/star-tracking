@@ -13,7 +13,7 @@ class SiteMap extends Component {
       <div className="site-map">
         <div className="row">
           <div className="col-12 col-md-12 col-xl-2 text-left text-sm-center text-xl-left">
-            <img className="logo" alt="ST-logo" src="img/logo-footer.png" />
+            <img className="logo" alt="ST-logo" src="/img/logo-footer.png" />
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
             <div className="link-title">

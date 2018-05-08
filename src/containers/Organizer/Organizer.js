@@ -63,7 +63,7 @@ class Organizer extends Component {
           <div className="row organizer-body">
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="computer-img" src="img/computer.svg" />
+                <img className="organizer-circle-image" alt="computer-img" src="/img/computer.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Een eigen makkelijk beheerbare eventpagina')}</span>
@@ -71,7 +71,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="online-payment-img" src="img/online-payment.svg" />
+                <img className="organizer-circle-image" alt="online-payment-img" src="/img/online-payment.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Registratiemodule met online betalingsmodule')}</span>
@@ -79,7 +79,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="thumbs-up-img" src="img/thumbs-up.svg" />
+                <img className="organizer-circle-image" alt="thumbs-up-img" src="/img/thumbs-up.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Livetracking & tijdsregistratie via laatste technologie')}</span>
@@ -87,7 +87,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="cpu-img" src="img/cpu.svg" />
+                <img className="organizer-circle-image" alt="cpu-img" src="/img/cpu.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Borstnummers op naam met ingebouwde chips')}</span>
@@ -95,7 +95,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="screen-img" src="img/screen.svg" />
+                <img className="organizer-circle-image" alt="screen-img" src="/img/screen.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Live rapportering op grote screens tijdens uw event')}</span>
@@ -103,7 +103,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="stopwatch-img" src="img/stopwatch.svg" />
+                <img className="organizer-circle-image" alt="stopwatch-img" src="/img/stopwatch.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Accurate eindresultaten, met controlepunten')}</span>
@@ -111,7 +111,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="analytics-img" src="img/analytics.svg" />
+                <img className="organizer-circle-image" alt="analytics-img" src="/img/analytics.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Constant overzicht van stand van zaken van uw event')}</span>
@@ -119,7 +119,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="application-img" src="img/application.svg" />
+                <img className="organizer-circle-image" alt="application-img" src="/img/application.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Handige online applicatie voor deelnemers & supporters')}</span>
@@ -127,7 +127,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="globe-img" src="img/globe.svg" />
+                <img className="organizer-circle-image" alt="globe-img" src="/img/globe.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Toegang tot ons netwerk van 16.000+ sporters')}</span>
@@ -135,7 +135,7 @@ class Organizer extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-4 col-xl-3 organizer-body-main">
               <div className="organizer-main-circle">
-                <img className="organizer-circle-image" alt="network-img" src="img/network.svg" />
+                <img className="organizer-circle-image" alt="network-img" src="/img/network.svg" />
               </div>
               <div className="organizer-main-text">
                 <span>{t('Ondersteuning van ons team tijdens uw event')}</span>
@@ -154,37 +154,37 @@ class Organizer extends Component {
           <div className="image-slider">
             <Slider {...settings}>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-1.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-1.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-2.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-2.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-3.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-3.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-4.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-4.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-5.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-5.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-6.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-6.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-7.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-7.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-8.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-8.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-9.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-9.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-10.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-10.png" />
               </div>
               <div>
-                <img className="slider-image" alt="slider-img-1" src="img/image-11.png" />
+                <img className="slider-image" alt="slider-img-1" src="/img/image-11.png" />
               </div>
             </Slider>
           </div>

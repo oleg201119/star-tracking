@@ -12,7 +12,7 @@ class InfoCard extends Component {
     const { event, t } = this.props;
 
     return (
-      <div className={"event-info mb-2 "+event.Type}>
+      <div className={`event-info mb-2 ${event.Type}`}>
         <div className="event-content">
           <div className="event-time">
             <div className="day">
@@ -41,13 +41,13 @@ class InfoCard extends Component {
             </div>
             <div className="friends">
               <a href="#/" className="friend-link">
-                <img alt="avatar" src="img/avatar.png" />
+                <img alt="avatar" src="/img/avatar.png" />
               </a>
               <a href="#/" className="friend-link">
-                <img alt="avatar" src="img/avatar.png" />
+                <img alt="avatar" src="/img/avatar.png" />
               </a>
               <a href="#/" className="friend-link">
-                <img alt="avatar" src="img/avatar.png" />
+                <img alt="avatar" src="/img/avatar.png" />
               </a>
             </div>
           </div>

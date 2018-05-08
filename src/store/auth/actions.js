@@ -1,10 +1,10 @@
 import * as types from './actionTypes';
 import AuthService from '../../services/auth';
 
-export function fetchLoginAuth(username,password) {
-  return async (dispatch, getState) => {
+export function fetchLoginAuth(username, password) {
+  return async (dispatch) => {
     try {
-      const auth = await AuthService.getLoginAuth(username,password);
+      const auth = await AuthService.getLoginAuth(username, password);
       dispatch({ type: types.LOGIN_AUTH_FETCHED, auth });
     } catch (error) {
       console.error(error);
@@ -13,7 +13,7 @@ export function fetchLoginAuth(username,password) {
 }
 
 export function fetchResetPwd(email) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const auth = await AuthService.getResetPwd(email);
       dispatch({ type: types.RESET_PWD_FETCHED, auth });
@@ -24,7 +24,7 @@ export function fetchResetPwd(email) {
 }
 
 export function fetchResetPwdFormat() {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const auth = '';
       dispatch({ type: types.RESETPWD_FORMAT_FETCHED, auth });
@@ -33,10 +33,10 @@ export function fetchResetPwdFormat() {
     }
   };
 }
-export function fetchSendPwd() {
-  return async (dispatch, getState) => {
+export function fetchSendPwd(requestId) {
+  return async (dispatch) => {
     try {
-      const auth = await AuthService.getSendPwd();
+      const auth = await AuthService.getSendPwd(requestId);
       dispatch({ type: types.SEND_PWD_FETCHED, auth });
     } catch (error) {
       console.error(error);
@@ -45,10 +45,20 @@ export function fetchSendPwd() {
 }
 
 export function fetchSendPwdFormat() {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const auth = '';
       dispatch({ type: types.SENDPWD_FORMAT_FETCHED, auth });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+
+export function fetchToken(token) {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: types.TOKEN_FETCHED, token });
     } catch (error) {
       console.error(error);
     }

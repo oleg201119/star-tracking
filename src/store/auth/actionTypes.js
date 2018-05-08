@@ -3,3 +3,4 @@ export const RESET_PWD_FETCHED = 'auth.RESET_PWD_FETCHED';
 export const RESETPWD_FORMAT_FETCHED = 'general.RESETPWD_FORMAT_FETCHED';
 export const SEND_PWD_FETCHED = 'auth.SEND_PWD_FETCHED';
 export const SENDPWD_FORMAT_FETCHED = 'general.SENDPWD_FORMAT_FETCHED';
+export const TOKEN_FETCHED = 'general.TOKEN_FETCHED';

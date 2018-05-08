@@ -4,10 +4,10 @@ import * as types from './actionTypes';
 const initialState = Map({
   authToken: '',
   resetPwd: '',
-  sendPwd:''
+  sendPwd: '',
 });
 
-export default function reduce(state=initialState , action = {}) {
+export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
   case types.LOGIN_AUTH_FETCHED:
     return state.merge({
@@ -28,6 +28,10 @@ export default function reduce(state=initialState , action = {}) {
   case types.SENDPWD_FORMAT_FETCHED:
     return state.merge({
       sendPwd: action.auth,
+    });
+  case types.TOKEN_FETCHED:
+    return state.merge({
+      authToken: action.auth,
     });
   default:
     return state;

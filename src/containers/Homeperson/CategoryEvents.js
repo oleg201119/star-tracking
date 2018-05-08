@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
-import Masonry from 'react-masonry-component';
 import { translate } from 'react-i18next';
 // import * as eventsSelectors from '../../store/events/reducer';
 import CategoryCard from '../../components/EventCard/CategoryCard';
 import './CategoryEvents.css';
 
-const masonryOptions = {
-  transitionDuration: 0,
-};
 const categoryevents=[{ "Name": " Marathons",
                         "categorynum": 25,
                         "ID": 1},
@@ -37,9 +33,7 @@ class CategoryEvents extends Component {
             {t('Zoek in jouw voorkeurscategorien')}
           </div> : null}
         <div className="row">
-          <Masonry className="event-gallery" options={masonryOptions}>
-            {eventCards}
-          </Masonry>
+          {eventCards}
         </div>
       </div>
     );

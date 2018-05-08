@@ -14,7 +14,7 @@ class Copyright extends Component {
         </span>
         <span className="d-none d-lg-block">
           {t('Met de steun van')}&nbsp;&nbsp;
-          <img className="logo-flanders" alt="Flanders-logo" src="img/logo-flanders.png" />
+          <img className="logo-flanders" alt="Flanders-logo" src="/img/logo-flanders.png" />
         </span>
       </div>
     );

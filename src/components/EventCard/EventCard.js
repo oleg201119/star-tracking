@@ -13,9 +13,9 @@ class EventCard extends Component {
     const { event, person, t } = this.props;
 
     return (
-      <div className={person?"event-card col-12 col-md-6 col-xl-4":"event-card col-12 col-md-12 col-xl-6"}>
+      <div className={person ? 'event-card col-12 col-md-6 col-xl-4' : 'event-card col-12 col-md-12 col-xl-6'}>
         <div className="card-banner">
-          <img alt="banner" src="img/card-banner.png" />
+          <img alt="banner" src="/img/card-banner.png" />
         </div>
         <div className="card-glass">
           <div className="slogan">
@@ -23,9 +23,9 @@ class EventCard extends Component {
           </div>
         </div>
         <div className="card-star">
-          <img alt="star" src="img/card-white-star.png" />
+          <img alt="star" src="/img/card-white-star.png" />
         </div>
-        <div className={"event-info "+event.Type}>
+        <div className={`event-info ${event.Type}`}>
           <div className="event-content">
             <div className="event-time">
               <div className="day">
@@ -48,22 +48,22 @@ class EventCard extends Component {
                 </div>
                 <div className="options">
                   <a href="#/" className="event-option">
-                    <img alt="down" src="img/card-calendar-down.png" />
+                    <img alt="down" src="/img/card-calendar-down.png" />
                   </a>
                   <a href="#/" className="event-option">
-                    <img alt="logout" src="img/card-logout.png" />
+                    <img alt="logout" src="/img/card-logout.png" />
                   </a>
                 </div>
               </div>
               <div className="friends">
                 <a href="#/" className="friend-link">
-                  <img alt="avatar" src="img/avatar.png" />
+                  <img alt="avatar" src="/img/avatar.png" />
                 </a>
                 <a href="#/" className="friend-link">
-                  <img alt="avatar" src="img/avatar.png" />
+                  <img alt="avatar" src="/img/avatar.png" />
                 </a>
                 <a href="#/" className="friend-link">
-                  <img alt="avatar" src="img/avatar.png" />
+                  <img alt="avatar" src="/img/avatar.png" />
                 </a>
               </div>
             </div>
