@@ -12,7 +12,7 @@ class App extends Component {
       <Switch>
         <Route path="/login" render={props => <Login {...props} />} />
         <Route path="/resetpwd" render={props => <Resetpwd {...props} />} />
-        <Route path="/Account" render={props => <Sendpwd {...props} />} />
+        <Route path="/Account/ResetPassword" render={props => <Sendpwd {...props} />} />
         <Route path="/" render={props => <Layout {...props} />} />
       </Switch>
     );
