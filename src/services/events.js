@@ -1,8 +1,8 @@
-const EVENT_API_ENDPOINT = 'https://www.star-tracking.be/App/Events';
+import API_ENDPOINT from './serviceEndpoint';
 
 export default class EventService {
   static async getUpcomingEvents(id, maxNumber, language) {
-    const url = `${EVENT_API_ENDPOINT}/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const url = `${API_ENDPOINT}/App/Events/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -19,7 +19,7 @@ export default class EventService {
   }
 
   static async getLiveEvents(id, maxNumber, language) {
-    const url = `${EVENT_API_ENDPOINT}/LiveEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const url = `${API_ENDPOINT}/App/Events/LiveEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -36,7 +36,7 @@ export default class EventService {
   }
 
   static async getResultEvents(id, maxNumber, language) {
-    const url = `${EVENT_API_ENDPOINT}/ResultEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const url = `${API_ENDPOINT}/App/Events/ResultEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -53,7 +53,7 @@ export default class EventService {
   }
 
   static async getPersonEvents(id, maxNumber, language) {
-    const url = `${EVENT_API_ENDPOINT}/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const url = `${API_ENDPOINT}/App/Events/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -70,7 +70,7 @@ export default class EventService {
   }
 
   static async getFriendEvents(id, maxNumber, language) {
-    const url = `${EVENT_API_ENDPOINT}/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const url = `${API_ENDPOINT}/App/Events/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {

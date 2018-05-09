@@ -1,4 +1,4 @@
-const API_ENDPOINT = 'https://www.star-tracking.be/';
+import API_ENDPOINT from './serviceEndpoint';
 
 export default class AuthService {
   static async getLoginAuth(username, password) {
@@ -25,7 +25,7 @@ export default class AuthService {
     const bodydata = {
       Email: email,
     };
-    const response = await fetch(`${API_ENDPOINT}App/Account/ResetPassword`, {
+    const response = await fetch(`${API_ENDPOINT}/App/Account/ResetPassword`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default class AuthService {
     const bodydata = {
       RequestId: requestId,
     };
-    const response = await fetch(`${API_ENDPOINT}App/Account/SendPassword`, {
+    const response = await fetch(`${API_ENDPOINT}/App/Account/SendPassword`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
