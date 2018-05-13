@@ -17,6 +17,7 @@ class Login extends Component {
       stay_signin: false,
       username: '',
       password: '',
+      loginstate: '',
     };
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
@@ -24,9 +25,14 @@ class Login extends Component {
   componentDidMount() {
     if (window.sessionStorage.getItem('token') !== null) {
       this.props.dispatch(authActions.fetchToken(window.sessionStorage.getItem('token')));
-      this.props.history.push('person');
     }
     window.scrollTo(0, 0);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.authToken === 'error') {
+      this.props.dispatch(authActions.fetchLoginStateFormat());
+      this.setState({ loginstate: 'error' });
+    }
   }
   changeUsername(e) {
     this.setState({ username: e.target.value });
@@ -36,8 +42,7 @@ class Login extends Component {
   }
   render() {
     const { authToken } = this.props;
-
-    if (authToken !== '') return <Redirect to="/person" />;
+    if (authToken !== '' && authToken !== 'error') return <Redirect to="/person" />;
     return (
       <div className="login">
         <div className="login-logo">
@@ -102,6 +107,7 @@ class Login extends Component {
             type="button"
             className="btn btn-red signin"
             onClick={() => {
+              this.setState({ loginstate: '' });
               this.props.dispatch(authActions.fetchLoginAuth(
                 this.state.username,
                 this.state.password,
@@ -110,6 +116,12 @@ class Login extends Component {
           >
             Sign In
           </button>
+          <div className="error-text">
+            {this.state.loginstate === 'error' ?
+              <span>Your email or password is not correct!</span>
+              : <span />
+            }
+          </div>
           <div className="stay-signin">
             <img
               className="stay-signin-check"
@@ -152,7 +164,6 @@ class Login extends Component {
 }
 function mapStateToProps(state) {
   const authToken = authSelectors.getLoginAuth(state);
-
   return {
     authToken,
   };

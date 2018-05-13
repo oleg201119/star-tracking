@@ -80,15 +80,6 @@ class Sendpwd extends Component {
             }
           </div>
         </div>
-        <div className="close-cross">
-          <i
-            className="material-icons" 
-            onClick={()=>{
-              this.props.history.go(-1)
-            }}
-          >clear
-          </i>
-        </div>
       </div>
     );
   }

@@ -9,9 +9,9 @@ import CategoryEvents from '../Homeperson/CategoryEvents';
 import Tabbar from '../Tabbar/Tabbar';
 import * as authSelectors from '../../store/auth/reducer';
 import '../Homeperson/Homeperson.css';
-import './Person.css';
+import './Eventdetail.css';
 
-class Person extends Component {
+class Eventdetail extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
   }
@@ -24,6 +24,7 @@ class Person extends Component {
 
   render() {
     const { authToken } = this.props;
+
     if (authToken === '') return <Redirect to="/login" />;
     return (
       <div className="home-person">
@@ -50,4 +51,4 @@ function mapStateToProps(state) {
     authToken,
   };
 }
-export default connect(mapStateToProps)(Person);
+export default connect(mapStateToProps)(Eventdetail);

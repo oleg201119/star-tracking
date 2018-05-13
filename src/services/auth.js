@@ -13,7 +13,8 @@ export default class AuthService {
     });
 
     if (!response.ok) {
-      throw new Error(`AuthService getLoginAuth failed, HTTP status ${response.status}`);
+      // throw new Error(`AuthService getLoginAuth failed, HTTP status ${response.status}`);
+      return 'error';
     }
 
     const data = await response.json();

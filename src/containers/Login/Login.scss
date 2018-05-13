@@ -147,7 +147,7 @@
     }
 
     .stay-signin{
-      margin-top: 35px;
+      margin-top: 10px;
 
       .stay-signin-check {
         margin-left: 1px;
@@ -200,5 +200,12 @@
     i {
       font-size: 30px;
     }
+  }
+
+  .error-text {
+    text-align: center;
+    font-size: 14px;
+    color: tomato;
+    height: 28px;
   }
 }

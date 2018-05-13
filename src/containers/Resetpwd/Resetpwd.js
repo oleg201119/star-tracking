@@ -48,17 +48,18 @@ class Resetpwd extends Component {
             <div className="resetpwd-title">
               <span>{t('Paswoord vergeten?')}</span>
             </div>
-            <div className="resetpwd-body">
-              {t('Als u uw paswoord vergeten bent, kunt u Star-Tracking vragen uw paswoord opnieuw in te stellen.')}
-              <br />
-              {t('Om na te gaan dat u zelf deze aanvraag stuurt, vragen we u eerst een bevestiging per mail.')}
-              <br /><br />
-              {t('Vul hieronder uw email adres in waarmee u inlogt, en vraag uw paswoord terug te zetten.')}
-              <br />
-              {t('U zal dan binnen enkele minuten een Star-Tracking email ontvangen met daarin een link.')}
-              <br />
-              {t('Als u op deze link klikt, zal u uw paswoordwijziging bevestigen en zal uw paswoord opnieuw ingesteld worden.')}
-            </div>
+            {this.state.buttonState !== 'success' ?
+              <div className="resetpwd-body">
+                {t('Als u uw paswoord vergeten bent, kunt u Star-Tracking vragen uw paswoord opnieuw in te stellen.')}
+                <br />
+                {t('Om na te gaan dat u zelf deze aanvraag stuurt, vragen we u eerst een bevestiging per mail.')}
+              </div> :
+              <div className="resetpwd-body">
+                {t('U zal dan binnen enkele minuten een Star-Tracking email ontvangen met daarin een link.')}
+                <br />
+                {t('Als u op deze link klikt, zal u uw paswoordwijziging bevestigen en zal uw paswoord opnieuw ingesteld worden.')}
+              </div>
+            }
           </div>
         </div>
         <div className="login-main">
@@ -94,7 +95,7 @@ class Resetpwd extends Component {
               : null}
           </div>
         </div>
-        <div className="close-cross" onClick={() => { this.props.history.go(-1); }}>
+        <div className="close-cross" onClick={() => { this.props.history.go(-2); }}>
           <i className="material-icons">
             clear
           </i>

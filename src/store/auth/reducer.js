@@ -33,6 +33,10 @@ export default function reduce(state = initialState, action = {}) {
     return state.merge({
       authToken: action.auth,
     });
+  case types.LOGINSTATE_FORMAT_FETCHED:
+    return state.merge({
+      authToken: action.auth,
+    });
   default:
     return state;
   }

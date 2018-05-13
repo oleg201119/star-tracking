@@ -12,7 +12,7 @@ const initialState = Map({
   friendEvents: List(),
 });
 
-export default function reduce(state=initialState , action = {}) {
+export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
   case types.UPCOMING_EVENTS_FETCHED:
     return state.merge({
