@@ -4,7 +4,6 @@ import * as types from './actionTypes';
 const initialState = Map({
   id: 1,
   maxNumber: 5,
-  language: 'en',
   upcomingEvents: List(),
   liveEvents: List(),
   resultEvents: List(),

@@ -14,7 +14,7 @@ i18n
       },
       en: {
         translations: require('./en.json')
-      }
+      },
     },
     fallbackLng: 'en',
     debug: true,
@@ -27,12 +27,12 @@ i18n
 
     interpolation: {
       escapeValue: false, // not needed for react!!
-      formatSeparator: ','
+      formatSeparator: ',',
     },
 
     react: {
-      wait: true
-    }
+      wait: true,
+    },
   });
 
 export default i18n;

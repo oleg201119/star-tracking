@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import * as eventActions from '../../store/events/actions';
 import HeaderBanner from '../Common/HeaderBanner';
 import FooterBanner from '../Common/FooterBanner';
@@ -17,8 +18,8 @@ class Homeperson extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(eventActions.fetchPersonEvents());
-    this.props.dispatch(eventActions.fetchFriendEvents());
+    this.props.dispatch(eventActions.fetchPersonEvents(this.props.i18n.language));
+    this.props.dispatch(eventActions.fetchFriendEvents(this.props.i18n.language));
   }
 
   render() {
@@ -50,4 +51,4 @@ class Homeperson extends Component {
   }
 }
 
-export default connect()(Homeperson);
+export default connect()(translate('translations')(Homeperson));

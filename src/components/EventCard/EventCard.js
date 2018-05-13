@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import './Card.css';
 
@@ -14,9 +15,12 @@ class EventCard extends Component {
 
     return (
       <div className={person ? 'event-card col-12 col-md-6 col-xl-4' : 'event-card col-12 col-md-12 col-xl-6'}>
-        <div className="card-banner">
+        <Link to={{
+          pathname: 'event',
+          state: {eventid: event.ID}}}
+          className="card-banner">
           <img alt="banner" src="/img/card-banner.png" />
-        </div>
+        </Link>
         <div className="card-glass">
           <div className="slogan">
             {event.Name}

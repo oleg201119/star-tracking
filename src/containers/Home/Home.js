@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import * as eventActions from '../../store/events/actions';
 import UpcomingEvents from './UpcomingEvents';
 import LiveEvents from './LiveEvents';
@@ -15,9 +16,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(eventActions.fetchUpcomingEvents());
-    this.props.dispatch(eventActions.fetchLiveEvents());
-    this.props.dispatch(eventActions.fetchResultEvents());
+    this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
+    this.props.dispatch(eventActions.fetchLiveEvents(this.props.i18n.language));
+    this.props.dispatch(eventActions.fetchResultEvents(this.props.i18n.language));
   }
 
   render() {
@@ -41,4 +42,4 @@ class Home extends Component {
   }
 }
 
-export default connect()(Home);
+export default connect()(translate('translations')(Home));

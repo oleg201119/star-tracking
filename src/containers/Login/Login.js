@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import { translate } from 'react-i18next';
 import * as authActions from '../../store/auth/actions';
 import * as authSelectors from '../../store/auth/reducer';
 import './Login.css';
@@ -41,7 +42,7 @@ class Login extends Component {
     this.setState({ password: e.target.value });
   }
   render() {
-    const { authToken } = this.props;
+    const { authToken, t } = this.props;
     if (authToken !== '' && authToken !== 'error') return <Redirect to="/person" />;
     return (
       <div className="login">
@@ -118,7 +119,7 @@ class Login extends Component {
           </button>
           <div className="error-text">
             {this.state.loginstate === 'error' ?
-              <span>Your email or password is not correct!</span>
+              <span>{t('Ongeldige gebruikersnaam of paswoord!')}</span>
               : <span />
             }
           </div>
@@ -169,4 +170,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(translate('translations')(Login));

@@ -10,6 +10,7 @@ import About from '../About/About';
 import Contact from '../Contact/Contact';
 import Organizer from '../Organizer/Organizer';
 import Newevent from '../Newevent/Newevent';
+import Eventdetail from '../Eventdetail/Eventdetail';
 
 class Layout extends Component {
   render() {
@@ -19,7 +20,7 @@ class Layout extends Component {
         <Switch>
           <Route
             path="/"
-            exact 
+            exact
             render={props => <Home {...props} />}
           />
           <Route
@@ -49,6 +50,10 @@ class Layout extends Component {
           <Route
             path="/newevent"
             render={props => <Newevent {...props} />}
+          />
+          <Route
+            path="/event"
+            render={props => <Eventdetail {...props} />}
           />
         </Switch>
         <Footer />

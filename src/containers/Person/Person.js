@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { translate } from 'react-i18next';
 import * as eventActions from '../../store/events/actions';
 import PersonEvents from '../Homeperson/PersonEvents';
 import FriendEvents from '../Homeperson/FriendEvents';
@@ -18,13 +19,13 @@ class Person extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.props.dispatch(eventActions.fetchPersonEvents());
-    this.props.dispatch(eventActions.fetchFriendEvents());
+    this.props.dispatch(eventActions.fetchPersonEvents(this.props.i18n.language));
+    this.props.dispatch(eventActions.fetchFriendEvents(this.props.i18n.language));
   }
 
   render() {
     const { authToken } = this.props;
-    if (authToken === '') return <Redirect to="/login" />;
+    if (authToken === '' || authToken === 'error') return <Redirect to="/login" />;
     return (
       <div className="home-person">
         <div className="person-tabbar">
@@ -50,4 +51,4 @@ function mapStateToProps(state) {
     authToken,
   };
 }
-export default connect(mapStateToProps)(Person);
+export default connect(mapStateToProps)(translate('translations')(Person));

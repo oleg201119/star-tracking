@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import * as eventActions from '../../store/events/actions';
 import HeaderBanner from '../Common/HeaderBanner';
 import FooterBanner from '../Common/FooterBanner';
@@ -16,11 +17,11 @@ class Homepage extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.props.dispatch(eventActions.fetchUpcomingEvents());
+    this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
   }
   
   render() {
-    const selectEvent = this.props.location.state !== undefined ? this.props.location.state.selectEvent: ""
+    const selectEvent = this.props.location.state !== undefined ? this.props.location.state.selectEvent: '';
     return (
       <div className="home-person">
         <HeaderBanner />
@@ -43,4 +44,4 @@ class Homepage extends Component {
   }
 }
 
-export default connect()(Homepage);
+export default connect()(translate('translations')(Homepage));

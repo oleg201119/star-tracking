@@ -10,7 +10,7 @@ class Tabbar extends Component {
 
     return (
       <div className="tabbar">
-      <div className="container">
+        <div className="container">
           <Tabs>
             <TabList>
               <Tab>{t('Discover')}</Tab>
