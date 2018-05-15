@@ -2,15 +2,66 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Map, GoogleApiWrapper} from 'google-maps-react';
 import * as eventsSelectors from '../../store/events/reducer';
 import * as authSelectors from '../../store/auth/reducer';
 import './Eventpage.css';
+
+const LoadingContainer = (props) => (
+  <div></div>
+)
 
 class Eventpage extends Component {
   static propTypes = {
     eventDetail: PropTypes.any.isRequired,
   }
-
+  constructor() {
+    super();
+    this.state = {
+      initialCenter: {
+        lat: 37.774929,
+        lng: -122.419416,
+      },
+      location: '',
+    };
+  }
+  componentDidMount () {
+    var self = this;
+    if (this.props.length !== 0 && this.state.location !== this.props.eventDetail.GoogleAddresss) {
+      this.setState({ location: this.props.eventDetail.GoogleAddresss });
+      const google = window.google;
+      const geocoder = new google.maps.Geocoder();
+      console.log('google');
+      if (geocoder) {
+        geocoder.geocode({
+          'address': this.props.eventDetail.GoogleAddresss
+        }, function (results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            self.setState({initialCenter : {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()}});
+          }
+        });
+      }
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    var self = this;
+    if (nextProps.length !== 0 && this.state.location !== nextProps.eventDetail.GoogleAddresss) {
+      this.setState({ location: nextProps.eventDetail.GoogleAddresss });
+      const google = window.google;
+      const geocoder = new google.maps.Geocoder();
+      console.log('google');
+      if (geocoder) {
+        geocoder.geocode({
+          'address': nextProps.eventDetail.GoogleAddresss
+        }, function (results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            self.setState({initialCenter : {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()}});
+          }
+        });
+      }
+    }
+  }
+  
   render() {
     const { eventDetail, t, authToken } = this.props;
     return (
@@ -157,6 +208,12 @@ class Eventpage extends Component {
                       </div>
                       <div className="event-google-map">
                         <div className="google-map">
+                          <Map
+                            google={window.google}
+                            className="google-map-container"
+                            center={this.state.initialCenter}
+                            zoom={15}
+                          />
                         </div>
                       </div>
                       <div className="event-organisation">
@@ -271,6 +328,12 @@ class Eventpage extends Component {
               </div>
               <div className="google-map-block">
                 <div className="google-map">
+                  <Map
+                    google={window.google}
+                    className="google-map-container"
+                    center={this.state.initialCenter}
+                    zoom={15}
+                  />
                 </div>
               </div>
               {authToken !== '' && authToken !== 'error' ?
@@ -368,4 +431,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(translate('translations')(Eventpage));
+export default connect(mapStateToProps)(translate('translations')(GoogleApiWrapper({
+  apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo',
+  LoadingContainer: LoadingContainer,
+})(Eventpage)));

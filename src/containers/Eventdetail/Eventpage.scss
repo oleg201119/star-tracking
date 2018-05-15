@@ -274,7 +274,12 @@
       .google-map {
         width: 100%;
         height: 200px;
-        background-color: red;
+
+        .google-map-container {
+          width: 100%;
+          height: 100%;
+          position: relative !important;
+        }
       }
     }
 
@@ -470,7 +475,12 @@
     .google-map {
       width: 100%;
       height: 200px;
-      background-color: red;
+
+      .google-map-container {
+        width: 100%;
+        height: 100%;
+        position: relative !important;
+      }
     }
   }
 

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "create-react-class": "^15.6.3",
+    "google-maps-react": "^2.0.2",
     "i18next": "^11.2.3",
     "i18next-browser-languagedetector": "^2.2.0",
     "immutable": "^3.8.2",
