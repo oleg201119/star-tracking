@@ -1,0 +1,643 @@
+@import "../../styles/Color.scss";
+@import "../../styles/Font.scss";
+
+.event-page {
+  .header-banner {
+    margin-bottom: 0px;
+    background-image: url(/img/event-banner-top.png);
+    z-index: -1;
+
+    .slogan-section {
+      bottom: 60px;
+
+      .event-header {
+        display: flex;
+        color: #ffffff;
+
+        .event-name {
+          text-align: left;
+          font-weight: 300;
+          display: grid;
+  
+          .eventname {
+            font-size: 38px;
+            line-height: 1.5;
+          }
+          .event-organizer {
+            font-size: 25px;
+            line-height: 1.6;
+          }
+        }
+
+      }
+
+      .event-time {
+        text-align: center;
+        line-height: 1;
+        margin-left: auto;
+        align-self: flex-end;
+
+        .day {        
+          font-size: 50px;
+        }
+
+        .month {
+          font-size: 18px;
+          line-height: 1.5;
+          letter-spacing: 2px;
+        }
+
+        .time {
+          font-size: 18px;
+          letter-spacing: 2px;
+        }
+      }
+    }
+  }
+
+  .card-star {
+    width: 54px;
+    height: 54px;
+    background-color: $color_red;
+    border-radius: 50%;
+    text-align: center;
+    margin-top: -27px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    
+    img {
+      width: 27px;
+      height: 25px;
+      margin-top: 25%;
+    }
+  }
+
+  .event-buttons {
+    border-bottom: 1px solid#979797;
+    margin-top: -15px;
+    padding-bottom: 20px;
+
+    .options {
+      margin-left: 80px;
+
+      .event-option {
+        display:inline-block;
+        padding: 0px 10px;
+        font-size: 18px;
+        line-height: 1.67;
+        color: $color_red;
+        text-decoration: underline;
+
+        img {
+          height: 32px;
+        }
+      }
+    }
+
+    .btn-takepart {
+      width: 100%;
+      border-radius: 8px;
+    }
+  }
+
+  .event-detail {
+    .event-description {
+      margin-top: 25px;
+
+      .event-description-topic {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 2.22;
+        color: var(--dark);
+        display: flex;
+      }
+
+      .event-description-detail {
+        opacity: 0.79;
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        line-height: 1.67;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+        display: flex;
+        margin-top: 20px;
+        max-width: 650px;
+      }
+    }
+
+    .participate-friend {
+      margin-top: 40px;
+
+      .participate-friend-topic {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        line-height: 2.86;
+        letter-spacing: 0.3px;
+        text-align: left;
+        color: var(--dark);
+      }
+
+      .friend-link {
+        margin-left: 5px;
+        margin-right: 5px;
+
+        img {
+          width: 40px;
+        }
+      }
+    }
+
+    .share-friend {
+      margin-top: 40px;
+
+      .share-friend-topic {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.56;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+      }
+
+      .social-group-row {
+        margin-top: 20px;
+        
+        .link-social {
+          border-radius: 50%;
+          width: 35px;
+          height: 35px;    
+          background-color: $color_charcoal_grey;
+          color: $color_white;      
+          display: inline-block;
+          text-align: center;
+          text-decoration: none;
+          margin-right: 10px;
+        
+          &:hover {
+            background-color: darken($color_charcoal_grey, 7.5%);
+            color: darken($color_white, 7.5%);
+          }
+      
+          .fa {
+            line-height: 35px;
+            font-size: 18px;
+  
+            &.fa-linkedin {
+              color: $color_charcoal_grey;
+            }
+          }
+        }
+      }
+    }
+
+    .event-tags {
+      margin-top: 50px;
+
+      .event-tags-topic {
+        display: flex;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.56;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+      }
+
+      .event-tags-detail {
+        display: flex;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+        max-width: 530px;
+        text-decoration-line: underline;
+      }
+    }
+
+    .event-date-time {
+      margin-top: 25px;
+
+      .event-date-time-topic {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.56;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+      }
+    }
+
+    .event-date-time-detail {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+
+      .event-date-time-to {
+        text-align: right;
+      }
+    }
+
+    .event-location {
+      margin-top: 50px;
+
+      .event-location-topic {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.56;
+        letter-spacing: 0.5px;
+        color: var(--dark);
+      }
+
+      .event-location-detail {
+        margin-top: 14px;
+
+        span {
+          display: flex;
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          line-height: 1.63;
+          letter-spacing: 0.3px;
+          color: var(--dark);
+        }
+        .event-location-google {
+          text-decoration: underline;
+          display: flex;
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          line-height: 1.63;
+          letter-spacing: 0.3px;
+          color: var(--dark);
+        }
+      }
+    }
+
+    .event-google-map {
+      margin-top: 40px;
+
+      .google-map {
+        width: 100%;
+        height: 200px;
+        background-color: red;
+      }
+    }
+
+    .event-organisation {
+      margin-top: 50px;
+
+      .event-organisation-topic {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.56;
+        letter-spacing: 0.3px;
+        color: var(--dark)
+      }
+
+      .event-organisation-logo {
+        margin-top: 15px;
+
+        img {
+          width: 75%;
+        }
+      }
+
+      .event-organisation-detail {
+        margin-top: 15px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+        
+        span {
+          display: flex;
+        }
+
+        .event-organisation-web {
+          margin-top: 15px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          line-height: 1.5;
+          letter-spacing: 0.3px;
+          color: var(--dark);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+.event-page-mobile {
+  .event-card {
+    margin-bottom: 0;
+
+    .card-glass {
+      top: 0px;
+      height: 180px;
+      left: unset;
+      width: 100%;
+      text-align: center;
+
+      .slogan {
+        margin-right: unset;
+        margin-top: 80px;
+      }
+    }
+
+    .card-star {
+      right: 50px;
+    }
+
+    .event-info {
+      .event-content {
+        padding: 15px 7px;
+
+        .event-time {
+          padding: 5px 10px;
+        }
+
+        .event-description {
+          .title {
+            max-width: unset;
+            max-height: unset;
+            min-height: unset;
+          }
+
+          .by {
+            padding-right: unset;
+          }
+        }
+        
+        .options {
+          min-width: 120px;
+          margin-top: 20px;
+
+          .event-option {
+            padding: 0 10px;
+
+            img {
+              width: 35px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .description-block {
+    border-bottom: 1px solid #eceae8;
+
+    .event-description {
+      margin-top: 10px;
+  
+      .event-description-detail {
+        display: flex;
+        margin-bottom: 15px;
+        opacity: 0.79;
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        line-height: 1.67;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+        display: flex;
+      }
+    }
+  }
+
+  .date-time-block {
+    border-bottom: 1px solid #eceae8;
+    margin-top: 25px;
+
+    .event-date-time-topic {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.56;
+      letter-spacing: 0.3px;
+      color: var(--dark);
+    }
+
+    .event-date-time-detail {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      .event-date-time-to {
+        text-align: right;
+      }
+    }
+  }
+
+  .location-block {
+    margin-top: 25px;
+
+    .container {
+      display: flex;
+
+      .event-location-topic {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.56;
+        letter-spacing: 0.5px;
+        color: var(--dark);
+        min-width: 100px;
+      }
+
+      .event-location-detail {
+        margin-left: auto;
+
+        div {
+          text-align: right;
+
+          span {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.63;
+            letter-spacing: 0.3px;
+            color: var(--dark);
+          }
+          .event-location-google {
+            text-decoration: underline;
+            display: flex;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.63;
+            letter-spacing: 0.3px;
+            color: var(--dark);
+          }
+        }
+      }
+    }
+  }
+
+  .google-map-block {
+    margin-top: 40px;
+
+    .google-map {
+      width: 100%;
+      height: 200px;
+      background-color: red;
+    }
+  }
+
+  .participate-block {
+    margin-top: 40px;
+    border-bottom: 1px solid #eceae8;
+
+    .participate-friend-topic {
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      line-height: 2.86;
+      letter-spacing: 0.3px;
+      text-align: left;
+      color: var(--dark);
+    }
+
+    .friend-link {
+      margin-left: 5px;
+      margin-right: 5px;
+
+      img {
+        width: 40px;
+      }
+    }
+  }
+
+  .share-friend-block {
+    margin-top: 20px;
+    border-bottom: 1px solid #eceae8;
+
+    .container {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .share-friend-topic {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.56;
+      letter-spacing: 0.3px;
+      color: var(--dark);
+    }
+
+    .social-group-row {
+      margin-left: auto;
+
+      .link-social {
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;    
+        background-color: $color_charcoal_grey;
+        color: $color_white;      
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        margin-right: 10px;
+      
+        &:hover {
+          background-color: darken($color_charcoal_grey, 7.5%);
+          color: darken($color_white, 7.5%);
+        }
+    
+        .fa {
+          line-height: 35px;
+          font-size: 18px;
+
+          &.fa-linkedin {
+            color: $color_charcoal_grey;
+          }
+        }
+      }
+    }
+  }
+
+  .tags-block {
+    margin-top: 20px;
+    border-bottom: 1px solid #eceae8;
+
+    .container {
+      display: flex;
+      margin-bottom: 20px;
+
+      .event-tags-topic {
+        display: flex;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.56;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+        min-width: 100px;
+      }
+
+      .event-tags-detail {
+        display: flex;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+        max-width: 530px;
+        text-decoration-line: underline;
+        text-align: right;
+      }
+    }
+  }
+
+  .organisation-block {
+    margin-top: 40px;
+    border-bottom: 1px solid #eceae8;
+
+    .container{
+      margin-bottom: 30px;
+
+      .event-organisation-topic {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.56;
+        letter-spacing: 0.3px;
+        color: var(--dark)
+      }
+
+      .event-organisation-logo {
+        margin-bottom: 20px;
+        img {
+          display: flex;
+          width: 75%;
+          margin-left: auto;
+        }
+      }
+
+      .event-organisation-detail {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.3px;
+        color: var(--dark);
+        width: 100%;
+        text-align: right;
+
+        span {
+          margin-left: auto;
+        }
+
+        .event-organisation-web {
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          line-height: 1.5;
+          letter-spacing: 0.3px;
+          color: var(--dark);
+          text-decoration: underline;
+          
+        }
+      }
+    }
+  }
+
+  .button-block {
+    margin-top: 30px;
+
+    .event-price {
+      text-align: center;
+    }
+
+    .btn-takepart {
+      margin-top: 10px;
+      width: 100%;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+  }
+}

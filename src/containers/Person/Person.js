@@ -16,13 +16,25 @@ class Person extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
   }
-
+  constructor() {
+    super();
+    this.state = {
+      currentlanguage: '',
+    };
+  }
   componentDidMount() {
+    this.setState({currentlanguage: this.props.i18n.language });
     window.scrollTo(0, 0);
     this.props.dispatch(eventActions.fetchPersonEvents(this.props.i18n.language));
     this.props.dispatch(eventActions.fetchFriendEvents(this.props.i18n.language));
   }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.i18n.language !== this.state.currentlanguage) {
+      this.setState({ currentlanguage: nextProps.i18n.language });
+      this.props.dispatch(eventActions.fetchPersonEvents(this.props.i18n.language));
+      this.props.dispatch(eventActions.fetchFriendEvents(this.props.i18n.language));
+    }
+  }
   render() {
     const { authToken } = this.props;
     if (authToken === '' || authToken === 'error') return <Redirect to="/login" />;

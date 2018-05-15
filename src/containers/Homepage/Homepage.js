@@ -14,12 +14,23 @@ class Homepage extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
   }
-
+  constructor() {
+    super();
+    this.state = {
+      currentlanguage: '',
+    };
+  }
   componentDidMount() {
+    this.setState({currentlanguage: this.props.i18n.language });
     window.scrollTo(0, 0);
     this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
   }
-  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.i18n.language !== this.state.currentlanguage) {
+      this.setState({ currentlanguage: nextProps.i18n.language });
+      this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
+    }
+  }
   render() {
     const selectEvent = this.props.location.state !== undefined ? this.props.location.state.selectEvent: '';
     return (
@@ -33,11 +44,11 @@ class Homepage extends Component {
           </div>
         </div>
         <div className="container">
-            <NextEvents />
+          <NextEvents />
         </div>
         <FooterBanner />
         <div className="container">
-            <PastEvents />
+          <PastEvents />
         </div>
       </div>
     );

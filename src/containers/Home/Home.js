@@ -14,13 +14,26 @@ class Home extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
   }
-
+  constructor() {
+    super();
+    this.state = {
+      currentlanguage: '',
+    };
+  }
   componentDidMount() {
+    this.setState({currentlanguage: this.props.i18n.language });
     this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
     this.props.dispatch(eventActions.fetchLiveEvents(this.props.i18n.language));
     this.props.dispatch(eventActions.fetchResultEvents(this.props.i18n.language));
   }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.i18n.language !== this.state.currentlanguage) {
+      this.setState({ currentlanguage: nextProps.i18n.language });
+      this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
+      this.props.dispatch(eventActions.fetchLiveEvents(this.props.i18n.language));
+      this.props.dispatch(eventActions.fetchResultEvents(this.props.i18n.language));
+    }
+  }
   render() {
     return (
       <div className="site-content">

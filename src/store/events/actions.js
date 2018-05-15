@@ -66,3 +66,27 @@ export function fetchFriendEvents(language) {
   };
 }
 
+export function fetchSimilarEvents(language) {
+  return async (dispatch, getState) => {
+    try {
+      const id = getState().events.get('id');
+      // const maxNumber = getState().events.get('maxNumber');
+      const maxNumber = 3;
+      const events = await EventService.getSimilarEvents(id, maxNumber, language);
+      dispatch({ type: types.SIMILAR_EVENTS_FETCHED, events });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+
+export function fetchEventDetail(id, language) {
+  return async (dispatch) => {
+    try {
+      const events = await EventService.getEventDetail(id, language);
+      dispatch({ type: types.EVENT_DETAIL_FETCHED, events });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}

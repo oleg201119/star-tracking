@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
 import './LanguageNavBar.css';
 
 class LanguageNavBar extends Component {
@@ -15,10 +16,6 @@ class LanguageNavBar extends Component {
             <span className="language-link"
               onClick={()=>{
                 changeLanguage('nl');
-                const pathname = window.location.pathname;
-                if (pathname === '/' || pathname === '/homepage' || pathname === '/person' || pathname === '/event') {
-                  window.location.reload();
-                }
               }}
             >
               Nl
@@ -28,10 +25,6 @@ class LanguageNavBar extends Component {
             <span className="language-link"
               onClick={()=>{
                 changeLanguage('fr');
-                const pathname = window.location.pathname;
-                if (pathname === '/' || pathname === '/homepage' || pathname === '/person' || pathname === '/event') {
-                  window.location.reload();
-                }
               }}
             >
               Fr
@@ -41,10 +34,6 @@ class LanguageNavBar extends Component {
             <span className="language-link"
               onClick={()=>{
                 changeLanguage('en');
-                const pathname = window.location.pathname;
-                if (pathname === '/' || pathname === '/homepage' || pathname === '/person' || pathname === '/event') {
-                  window.location.reload();
-                } 
               }}
             >
               En
@@ -55,4 +44,4 @@ class LanguageNavBar extends Component {
     );
   }
 }
-export default translate('translations')(LanguageNavBar);
+export default translate('translations')(connect()(LanguageNavBar));

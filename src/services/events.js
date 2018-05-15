@@ -79,7 +79,41 @@ export default class EventService {
     });
 
     if (!response.ok) {
-      throw new Error(`EventService getUpcomingEvents failed, HTTP status ${response.status}`);
+      throw new Error(`EventService getFriendEvents failed, HTTP status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  }
+
+  static async getSimilarEvents(id, maxNumber, language) {
+    const url = `${API_ENDPOINT}/App/Events/UpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`EventService getSimilarEvents failed, HTTP status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  }
+
+  static async getEventDetail(id, language) {
+    const url = `${API_ENDPOINT}/App/Events/EventDetail/${id}?language=${language}`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`EventService getSimilarEvents failed, HTTP status ${response.status}`);
     }
 
     const data = await response.json();
