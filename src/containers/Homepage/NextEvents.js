@@ -11,8 +11,8 @@ class NextEvents extends Component {
     upcomingEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
   }
 
-  buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} person={true}/>))
-  
+  buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} person={true} />))
+
   render() {
     const eventCards = this.buildEventCards(this.props.upcomingEvents);
     const { t } = this.props;

@@ -19,47 +19,47 @@ class SiteMap extends Component {
             <div className="link-title">
               {t('Vind events')}
             </div>
-            {this.props.authToken===""?
-            <ul className="link-group row">
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to={{pathname:"homepage",state:{selectEvent:"Running"}}} className="site-map-link">{t('Running')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to={{pathname:"homepage",state:{selectEvent:"TrialRun"}}} className="site-map-link">{t('TrialRun')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to={{pathname:"homepage",state:{selectEvent:"Roadbike"}}} className="site-map-link">{t('Roadbike')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to={{pathname:"homepage",state:{selectEvent:"Mountainbike"}}} className="site-map-link">{t('Mountainbike')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to={{pathname:"homepage",state:{selectEvent:"MultiSport"}}} className="site-map-link">{t('MultiSport')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to={{pathname:"homepage",state:{selectEvent:"Other"}}} className="site-map-link">{t('Other')}</Link></li>
-              </div> 
-            </ul> :
-            <ul className="link-group row">
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to="person" className="site-map-link">{t('Running')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to="person" className="site-map-link">{t('TrialRun')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to="person" className="site-map-link">{t('Roadbike')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to="person" className="site-map-link">{t('Mountainbike')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to="person" className="site-map-link">{t('MultiSport')}</Link></li>
-              </div>
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <li className="link-group-item"><Link to="person" className="site-map-link">{t('Other')}</Link></li>
-              </div> 
-            </ul> }
+            {this.props.authToken === '' ?
+              <ul className="link-group row">
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to={{ pathname:"homepage",state:{selectEvent:"Running"}}} className="site-map-link">{t('Running')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to={{ pathname:"homepage",state:{selectEvent:"TrialRun"}}} className="site-map-link">{t('TrialRun')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to={{ pathname:"homepage",state:{selectEvent:"Roadbike"}}} className="site-map-link">{t('Roadbike')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to={{ pathname:"homepage",state:{selectEvent:"Mountainbike"}}} className="site-map-link">{t('Mountainbike')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to={{ pathname:"homepage",state:{selectEvent:"MultiSport"}}} className="site-map-link">{t('MultiSport')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to={{ pathname:"homepage",state:{selectEvent:"Other"}}} className="site-map-link">{t('Other')}</Link></li>
+                </div>
+              </ul> :
+              <ul className="link-group row">
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to="person" className="site-map-link">{t('Running')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to="person" className="site-map-link">{t('TrialRun')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to="person" className="site-map-link">{t('Roadbike')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to="person" className="site-map-link">{t('Mountainbike')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to="person" className="site-map-link">{t('MultiSport')}</Link></li>
+                </div>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                  <li className="link-group-item"><Link to="person" className="site-map-link">{t('Other')}</Link></li>
+                </div> 
+              </ul> }
           </div>
           <div className="col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2">
             <div className="link-title">

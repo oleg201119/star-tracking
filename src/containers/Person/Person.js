@@ -23,10 +23,13 @@ class Person extends Component {
     };
   }
   componentDidMount() {
-    this.setState({currentlanguage: this.props.i18n.language });
+    let currentlanguage = this.props.i18n.language;
+    if (this.props.i18n.language.length > 2) {
+      currentlanguage = this.props.i18n.language.substring(0, 2);
+    }
     window.scrollTo(0, 0);
-    this.props.dispatch(eventActions.fetchPersonEvents(this.props.i18n.language));
-    this.props.dispatch(eventActions.fetchFriendEvents(this.props.i18n.language));
+    this.props.dispatch(eventActions.fetchPersonEvents(currentlanguage));
+    this.props.dispatch(eventActions.fetchFriendEvents(currentlanguage));
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.i18n.language !== this.state.currentlanguage) {

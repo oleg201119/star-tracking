@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import LanguageNavBar from './LanguageNavBar';
 import MainNavBar from './MainNavBar';
-import { connect } from 'react-redux';
 import PersonNavBar from './PersonNavBar';
 import * as authSelectors from '../../store/auth/reducer';
 import './Header.css';
@@ -12,7 +12,7 @@ class Header extends Component {
       <div className="header">
         <div className="page-header">
           <LanguageNavBar />
-          {this.props.authToken===""?<MainNavBar />:<PersonNavBar />}
+          {this.props.authToken === '' ? <MainNavBar /> : <PersonNavBar />}
         </div>
       </div>
     );

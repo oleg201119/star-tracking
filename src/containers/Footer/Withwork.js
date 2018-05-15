@@ -11,13 +11,13 @@ class Withwork extends Component {
         <span>{t('Zij werkten al met ons')}</span>
         <div className="withwork-logos">
           <a href="#/">
-            <img alt="gent-logo" src="/img/gent-logo.png" className="gent-logo"/>
+            <img alt="gent-logo" src="/img/gent-logo.png" className="gent-logo" />
           </a>
           <a href="#/">
-            <img alt="oostende-logo" src="/img/oostende-logo.png" className="oostende-logo"/>
+            <img alt="oostende-logo" src="/img/oostende-logo.png" className="oostende-logo" />
           </a>
           <a href="#/">
-            <img alt="middelkerke-logo" src="/img/middelkerke-logo.png" className="middelkerke-logo"/>
+            <img alt="middelkerke-logo" src="/img/middelkerke-logo.png" className="middelkerke-logo" />
           </a>
         </div>
       </div>

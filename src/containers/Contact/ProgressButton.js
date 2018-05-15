@@ -1,14 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import createReactClass from 'create-react-class'
+import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 
 export const STATE = {
   LOADING: 'loading',
   DISABLED: 'disabled',
   SUCCESS: 'success',
   ERROR: 'error',
-  NOTHING: ''
-}
+  NOTHING: '',
+};
 
 const ProgressButton = createReactClass({
   propTypes: {

@@ -7,5 +7,5 @@ export {
   events,
   organizers,
   auth,
-  general
+  general,
 };

@@ -3,6 +3,7 @@ import { translate } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Withwork from '../Footer/Withwork';
 import './About.css';
+
 class About extends Component {
   render() {
     const { t } = this.props;
@@ -30,10 +31,11 @@ class About extends Component {
               </div>
               <div className="about-body-text">
                 <span>{t('about-text-1')}
-                <br/><br/>
-                {t('about-text-2')}
-                <br/><br/>
-                {t('about-text-3')} </span>
+                  <br /><br />
+                  {t('about-text-2')}
+                  <br /><br />
+                  {t('about-text-3')}
+                </span>
               </div>
               <div className="about-body-end">
                 <span>{t('Zelf jouw event makkelijk organiseren')}?</span>
@@ -42,7 +44,7 @@ class About extends Component {
             </div>
           </div>
         </div>
-        <Withwork/>
+        <Withwork />
       </div>
     );
   }

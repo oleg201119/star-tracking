@@ -25,8 +25,8 @@ class Eventpage extends Component {
       location: '',
     };
   }
-  componentDidMount () {
-    var self = this;
+  componentDidMount() {
+    const self = this;
     if (this.props.length !== 0 && this.state.location !== this.props.eventDetail.GoogleAddresss) {
       this.setState({ location: this.props.eventDetail.GoogleAddresss });
       const google = window.google;
@@ -44,24 +44,22 @@ class Eventpage extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    var self = this;
+    const self = this;
     if (nextProps.length !== 0 && this.state.location !== nextProps.eventDetail.GoogleAddresss) {
       this.setState({ location: nextProps.eventDetail.GoogleAddresss });
       const google = window.google;
       const geocoder = new google.maps.Geocoder();
-      console.log('google');
       if (geocoder) {
         geocoder.geocode({
           'address': nextProps.eventDetail.GoogleAddresss
         }, function (results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
-            self.setState({initialCenter : {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()}});
+            self.setState({initialCenter: {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()}});
           }
         });
       }
     }
   }
-  
   render() {
     const { eventDetail, t, authToken } = this.props;
     return (

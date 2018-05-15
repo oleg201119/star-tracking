@@ -131,19 +131,19 @@ class Newevent extends Component {
                   value={this.state.type}
                   onChange={e => this.setState({ type: e.target.value })}
                 />
-                <div>{t('Stad'  )}:</div>
+                <div>{t('Stad')}:</div>
                 <input
                   type="text"
                   className="contact-body-input"
                   value={this.state.city}
                   onChange={e => this.setState({ city: e.target.value })}
                 />
-                <div>{t("Datum")}:</div>
+                <div>{t('Datum')}:</div>
                 <DatePicker
                   selected={this.state.startDate}
                   onChange={this.handleChange}
                 />
-                <div>{t("Meer informatie")}:</div>
+                <div>{t('Meer informatie')}:</div>
                 <textarea
                   className="contact-body-input contact-body-multiinput"
                   value={this.state.extraInfo}
@@ -155,12 +155,12 @@ class Newevent extends Component {
                     state={this.state.buttonState}
                     className="btn-contact-send"
                   >
-                    {this.state.buttonState === "success"
-                      ? "Sent successfully"
-                      : t("Verstuur")}
+                    {this.state.buttonState === 'success'
+                      ? 'Sent successfully'
+                      : t('Verstuur')}
                   </ProgressButton>
                   <div className="error-text">
-                    {this.state.buttonState === "error" ? (
+                    {this.state.buttonState === 'error' ? (
                       <span>
                         Your new event could not be sent. Please try again!
                       </span>
@@ -179,7 +179,7 @@ class Newevent extends Component {
 function mapStateToProps(state) {
   const requestEvent = generalSelectors.getRequestEvent(state);
   return {
-    requestEvent
+    requestEvent,
   };
 }
-export default connect(mapStateToProps)(translate("translations")(Newevent));
+export default connect(mapStateToProps)(translate('translations')(Newevent));

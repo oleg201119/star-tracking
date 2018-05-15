@@ -21,10 +21,14 @@ class Home extends Component {
     };
   }
   componentDidMount() {
-    this.setState({currentlanguage: this.props.i18n.language });
-    this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
-    this.props.dispatch(eventActions.fetchLiveEvents(this.props.i18n.language));
-    this.props.dispatch(eventActions.fetchResultEvents(this.props.i18n.language));
+    let currentlanguage = this.props.i18n.language;
+    if (this.props.i18n.language.length > 2) {
+      currentlanguage = this.props.i18n.language.substring(0, 2);
+    }
+    this.setState({ currentlanguage: currentlanguage });
+    this.props.dispatch(eventActions.fetchUpcomingEvents(currentlanguage));
+    this.props.dispatch(eventActions.fetchLiveEvents(currentlanguage));
+    this.props.dispatch(eventActions.fetchResultEvents(currentlanguage));
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.i18n.language !== this.state.currentlanguage) {

@@ -21,9 +21,13 @@ class Homepage extends Component {
     };
   }
   componentDidMount() {
-    this.setState({currentlanguage: this.props.i18n.language });
+    let currentlanguage = this.props.i18n.language;
+    if (this.props.i18n.language.length > 2) {
+      currentlanguage = this.props.i18n.language.substring(0, 2);
+    }
+    this.setState({ currentlanguage: currentlanguage });
     window.scrollTo(0, 0);
-    this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
+    this.props.dispatch(eventActions.fetchUpcomingEvents(currentlanguage));
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.i18n.language !== this.state.currentlanguage) {
@@ -32,14 +36,14 @@ class Homepage extends Component {
     }
   }
   render() {
-    const selectEvent = this.props.location.state !== undefined ? this.props.location.state.selectEvent: '';
+    const selectEvent = this.props.location.state !== undefined ? this.props.location.state.selectEvent : '';
     return (
       <div className="home-person">
         <HeaderBanner />
         <div className="container">
           <div className="row">
             <div className="col-9 event-search">
-              <EventSearch {...{selectEvent: selectEvent}} />
+              <EventSearch {...{ selectEvent: selectEvent }} />
             </div>
           </div>
         </div>

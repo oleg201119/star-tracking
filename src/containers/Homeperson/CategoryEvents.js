@@ -6,20 +6,28 @@ import { translate } from 'react-i18next';
 import CategoryCard from '../../components/EventCard/CategoryCard';
 import './CategoryEvents.css';
 
-const categoryevents=[{ "Name": " Marathons",
-                        "categorynum": 25,
-                        "ID": 1},
-                        { "Name": " Triathlons",
-                        "categorynum": 12,
-                        "ID": 2},
-                        { "Name": " Mountainbiking",
-                        "categorynum": 8,
-                        "ID": 3}];
+const categoryevents = [
+  {
+    Name: 'Marathons',
+    categorynum: 25,
+    ID: 1,
+  },
+  {
+    Name: 'Triathlons',
+    categorynum: 12,
+    ID: 2,
+  },
+  {
+    Name: 'Mountainbiking',
+    categorynum: 8,
+    ID: 3,
+  },
+];
 class CategoryEvents extends Component {
   // static propTypes = {
   //   categoryEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
   // }
-  buildEventCards = events => events.map(event => (<CategoryCard key={event.ID} event={event}/>))
+  buildEventCards = events => events.map(event => (<CategoryCard key={event.ID} event={event} />))
   
   render() {
     // const eventCards = this.buildEventCards(this.props.categoryEvents);

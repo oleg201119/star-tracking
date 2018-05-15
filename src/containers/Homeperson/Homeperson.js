@@ -34,17 +34,17 @@ class Homeperson extends Component {
           </div>
         </div>
         <div className="container">
-            <PersonEvents />
+          <PersonEvents />
         </div>
         <div className="container friend-event">
-            <FriendEvents />
+          <FriendEvents />
         </div>
         <div className="container category-event">
-            <CategoryEvents />
+          <CategoryEvents />
         </div>
         <FooterBanner />
         <div className="container">
-            <PastEvents />
+          <PastEvents />
         </div>
       </div>
     );
