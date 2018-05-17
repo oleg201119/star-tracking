@@ -35,8 +35,6 @@ class Login extends Component {
       this.setState({ loginstate: 'error' });
     }
     if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
-      // window.history.replaceState(null, null, '/person');
-      
       this.props.history.push('/person');
     }
   }

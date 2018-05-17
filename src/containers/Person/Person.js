@@ -26,10 +26,7 @@ class Person extends Component {
     var self = this;
     window.onpopstate = function() {
       if (self.props.history.location.pathname === '/login') {
-        
-        window.history.go(1);
-        // window.history.pushState(null, null, '/person');
-        
+        self.props.history.push('/person');
       }
     };
     let currentlanguage = this.props.i18n.language;
