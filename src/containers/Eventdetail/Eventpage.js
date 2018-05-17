@@ -31,7 +31,6 @@ class Eventpage extends Component {
       this.setState({ location: this.props.eventDetail.GoogleAddresss });
       const google = window.google;
       const geocoder = new google.maps.Geocoder();
-      console.log('google');
       if (geocoder) {
         geocoder.geocode({
           'address': this.props.eventDetail.GoogleAddresss
@@ -175,7 +174,7 @@ class Eventpage extends Component {
                     </div>
                     <div className="col-4">
                       <div className="event-date-time">
-                        <span className="event-date-time-topic">{t('Date et heure')}</span>
+                        <span className="event-date-time-topic">{t('Date and time')}</span>
                       </div>
                       <div className="event-date-time-detail">
                         <div className="event-date-time-from">
@@ -291,7 +290,7 @@ class Eventpage extends Component {
               <div className="date-time-block">
                 <div className="container">
                   <div className="event-date-time">
-                    <span className="event-date-time-topic">{t('Date et heure')}</span>
+                    <span className="event-date-time-topic">{t('Date and time')}</span>
                   </div>
                   <div className="event-date-time-detail">
                     <div className="event-date-time-from">
