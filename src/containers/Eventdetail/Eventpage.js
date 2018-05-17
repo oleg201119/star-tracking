@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { Map, GoogleApiWrapper} from 'google-maps-react';
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 import * as eventsSelectors from '../../store/events/reducer';
 import * as authSelectors from '../../store/auth/reducer';
 import './Eventpage.css';
@@ -124,7 +124,6 @@ class Eventpage extends Component {
                   <div className="row">
                     <div className="col-8">
                       <div className="event-description">
-                        <span className="event-description-topic">{t('Beschrijving')}</span>
                         <span className="event-description-detail">{eventDetail.Description}</span>
                         <span className="event-description-detail">{eventDetail.FullDescription}</span>
                       </div>
@@ -184,7 +183,7 @@ class Eventpage extends Component {
                         </div>
                         {eventDetail.To !== null ?
                           <div className="event-date-time-line">
-                            <span>-</span>
+                            <span>&nbsp;-&nbsp;</span>
                           </div> : null }
                         {eventDetail.To !== null ?
                           <div className="event-date-time-to">
@@ -300,7 +299,7 @@ class Eventpage extends Component {
                     </div>
                     {eventDetail.To !== null ?
                       <div className="event-date-time-line">
-                        <span>-</span>
+                        <span>&nbsp;-&nbsp;</span>
                       </div> : null }
                     {eventDetail.To !== null ?
                       <div className="event-date-time-to">

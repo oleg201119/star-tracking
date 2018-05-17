@@ -26,8 +26,8 @@ class EventCard extends Component {
             {event.Name}
           </div>
         </div>
-        <div className="card-star">
-          <img alt="star" src="/img/card-white-star.png" />
+        <div className={`card-star ${event.State}`}>
+          <img alt={`${event.State}`} src={`/img/card-${event.State}.png`} />
         </div>
         <div className={`event-info ${event.Type}`}>
           <div className="event-content">

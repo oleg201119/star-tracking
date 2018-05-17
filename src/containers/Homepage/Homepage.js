@@ -30,9 +30,13 @@ class Homepage extends Component {
     this.props.dispatch(eventActions.fetchUpcomingEvents(currentlanguage));
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.i18n.language !== this.state.currentlanguage) {
-      this.setState({ currentlanguage: nextProps.i18n.language });
-      this.props.dispatch(eventActions.fetchUpcomingEvents(this.props.i18n.language));
+    let nextlanguage = nextProps.i18n.language;
+    if (nextProps.i18n.language.length > 2) {
+      nextlanguage = nextProps.i18n.language.substring(0, 2);
+    }
+    if (nextlanguage !== this.state.currentlanguage) {
+      this.setState({ currentlanguage: nextlanguage });
+      this.props.dispatch(eventActions.fetchUpcomingEvents(nextlanguage));
     }
   }
   render() {

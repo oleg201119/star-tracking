@@ -10,7 +10,7 @@ class MainNavBar extends Component {
     return (
       <nav className="navbar navbar-expand-xl header-menu">
         <div className="container">
-          <a className="logo-link" href="/">
+          <a className="logo-link" href="/person">
             <img className="logo" alt="ST-logo" src="/img/logo-header.png" />
           </a>
           <button className="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarHeaderMenu">

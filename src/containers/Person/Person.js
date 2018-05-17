@@ -23,19 +23,33 @@ class Person extends Component {
     };
   }
   componentDidMount() {
+    var self = this;
+    window.onpopstate = function() {
+      if (self.props.history.location.pathname === '/login') {
+        
+        window.history.go(1);
+        // window.history.pushState(null, null, '/person');
+        
+      }
+    };
     let currentlanguage = this.props.i18n.language;
     if (this.props.i18n.language.length > 2) {
       currentlanguage = this.props.i18n.language.substring(0, 2);
     }
+    this.setState({ currentlanguage: currentlanguage });
     window.scrollTo(0, 0);
     this.props.dispatch(eventActions.fetchPersonEvents(currentlanguage));
     this.props.dispatch(eventActions.fetchFriendEvents(currentlanguage));
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.i18n.language !== this.state.currentlanguage) {
-      this.setState({ currentlanguage: nextProps.i18n.language });
-      this.props.dispatch(eventActions.fetchPersonEvents(this.props.i18n.language));
-      this.props.dispatch(eventActions.fetchFriendEvents(this.props.i18n.language));
+    let nextlanguage = nextProps.i18n.language;
+    if (nextProps.i18n.language.length > 2) {
+      nextlanguage = nextProps.i18n.language.substring(0, 2);
+    }
+    if (nextlanguage !== this.state.currentlanguage) {
+      this.setState({ currentlanguage: nextlanguage });
+      this.props.dispatch(eventActions.fetchPersonEvents(nextlanguage));
+      this.props.dispatch(eventActions.fetchFriendEvents(nextlanguage));
     }
   }
   render() {

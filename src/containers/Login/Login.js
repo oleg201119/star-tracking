@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import * as authActions from '../../store/auth/actions';
 import * as authSelectors from '../../store/auth/reducer';
@@ -34,6 +34,11 @@ class Login extends Component {
       this.props.dispatch(authActions.fetchLoginStateFormat());
       this.setState({ loginstate: 'error' });
     }
+    if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
+      // window.history.replaceState(null, null, '/person');
+      
+      this.props.history.push('/person');
+    }
   }
   changeUsername(e) {
     this.setState({ username: e.target.value });
@@ -42,8 +47,7 @@ class Login extends Component {
     this.setState({ password: e.target.value });
   }
   render() {
-    const { authToken, t } = this.props;
-    if (authToken !== '' && authToken !== 'error') return <Redirect to="/person" />;
+    const { t } = this.props;
     return (
       <div className="login">
         <div className="login-logo">

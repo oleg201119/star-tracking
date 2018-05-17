@@ -26,6 +26,7 @@ class Eventdetail extends Component {
     if (this.props.i18n.language.length > 2) {
       currentlanguage = this.props.i18n.language.substring(0, 2);
     }
+    this.setState({ currentlanguage: currentlanguage });
     if (this.props.location.state !== undefined) {
       this.props.dispatch(eventActions.fetchEventDetail(this.props.location.state.eventid, currentlanguage));
     }
@@ -33,12 +34,16 @@ class Eventdetail extends Component {
     this.props.dispatch(eventActions.fetchSimilarEvents(currentlanguage));
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.i18n.language !== this.state.currentlanguage) {
-      this.setState({ currentlanguage: nextProps.i18n.language });
+    let nextlanguage = nextProps.i18n.language;
+    if (nextProps.i18n.language.length > 2) {
+      nextlanguage = nextProps.i18n.language.substring(0, 2);
+    }
+    if (nextlanguage !== this.state.currentlanguage) {
+      this.setState({ currentlanguage: nextlanguage });
       if (this.props.location.state !== undefined) {
-        this.props.dispatch(eventActions.fetchEventDetail(this.props.location.state.eventid, this.props.i18n.language));
+        this.props.dispatch(eventActions.fetchEventDetail(this.props.location.state.eventid, nextlanguage));
       }
-      this.props.dispatch(eventActions.fetchSimilarEvents(this.props.i18n.language));
+      this.props.dispatch(eventActions.fetchSimilarEvents(nextlanguage));
     }
   }
   render() {
