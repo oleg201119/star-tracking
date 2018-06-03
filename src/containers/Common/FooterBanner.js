@@ -22,7 +22,7 @@ class FooterBanner extends Component {
           </div>
           <div className="button-section">
             <div className="container">
-              <Link to="organizer"><button type="button" className="btn btn-red">{t('Leer meer over de Star Tracking tijdsregistratie')}</button></Link>
+              <Link to="organizer"><button type="button" className="btn btn-red btn-footer">{t('Leer meer over de Star Tracking tijdsregistratie')}</button></Link>
             </div>
           </div>
         </div>
