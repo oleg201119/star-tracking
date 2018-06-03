@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import * as authActions from '../../store/auth/actions';
 import * as authSelectors from '../../store/auth/reducer';
-import './Login.css';
+import './Register.css';
 
-class Login extends Component {
+class Register extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     authToken: PropTypes.string.isRequired,
@@ -19,9 +18,11 @@ class Login extends Component {
       username: '',
       password: '',
       loginstate: '',
+      confirmpassword: '',
     };
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
+    this.changeConfirmPassword = this.changeConfirmPassword.bind(this);
   }
   componentDidMount() {
     if (window.sessionStorage.getItem('token') !== null) {
@@ -44,10 +45,13 @@ class Login extends Component {
   changePassword(e) {
     this.setState({ password: e.target.value });
   }
+  changeConfirmPassword(e) {
+    this.setState({ confirmpassword: e.target.value });
+  }
   render() {
     const { t } = this.props;
     return (
-      <div className="login">
+      <div className="login register">
         <div className="login-logo">
           <a className="logo-link" href="/">
             <img className="logo" alt="ST-logo" src="/img/login-logo.png" />
@@ -57,11 +61,11 @@ class Login extends Component {
         <div className="login-main">
           <button type="button" className="btn btn-login btn-facebook">
             <i className="fa fa-facebook" aria-hidden="true" />
-            <span>Login using Facebook Connect</span>
+            <span>Register using Facebook Connect</span>
           </button>
           <button type="button" className="btn btn-login btn-twitter">
             <i className="fa fa-twitter" />
-            <span>Login using Twitter</span>
+            <span>Register using Twitter</span>
           </button>
           <div className="login-border">
             <div className="login-border-line" />
@@ -105,25 +109,29 @@ class Login extends Component {
                 </button>
               ) : null}
             </div>
-          </div>
-          <button
-            type="button"
-            className="btn btn-red signin"
-            onClick={() => {
-              this.setState({ loginstate: '' });
-              this.props.dispatch(authActions.fetchLoginAuth(
-                this.state.username,
-                this.state.password,
-              ));
-            }}
-          >
-            Sign In
-          </button>
-          <div className="error-text">
-            {this.state.loginstate === 'error' ?
-              <span>{t('Ongeldige gebruikersnaam of paswoord!')}</span>
-              : <span />
-            }
+            <div className="login-other-line" />
+            <div className="login-other-input">
+              <img
+                className="login-other-icon login-other-icon-password"
+                alt="ST-icon"
+                src="/img/login-icon-password.png"
+              />
+              <input
+                type="password"
+                placeholder="Confirm password"
+                value={this.state.confirmpassword}
+                onChange={this.changeConfirmPassword}
+              />
+              {this.state.confirmpassword !== '' ? (
+                <button
+                  type="button"
+                  className="btn btn-clear"
+                  onClick={() => this.setState({ confirmpassword: '' })}
+                >
+                  x
+                </button>
+              ) : null}
+            </div>
           </div>
           <div className="stay-signin">
             <img
@@ -140,15 +148,32 @@ class Login extends Component {
                   : this.setState({ stay_signin: true })
               }
             />
-            <span>Stay signed in</span>
+            <span>I accept the terms of use and the privacy policy</span>
+          </div>
+          <button
+            type="button"
+            className="btn btn-red signin"
+            onClick={() => {
+              this.setState({ loginstate: '' });
+              this.props.dispatch(authActions.fetchLoginAuth(
+                this.state.username,
+                this.state.password,
+              ));
+            }}
+          >
+            Register
+          </button>
+          <div className="error-text">
+            {this.state.loginstate === 'error' ?
+              <span>{t('Ongeldige gebruikersnaam of paswoord!')}</span>
+              : <span />
+            }
           </div>
           <div className="create-forgot">
-            <Link to="register" className="create-forgot-text">
-              Create your free account
-            </Link>
-            <Link to="resetpwd" className="create-forgot-text">
-              Forgot Password
-            </Link>
+            <span className="create-forgot-text">Already have an account?&nbsp;</span>
+            <span className="create-forgot-text sign-in" onClick={()=>{this.props.history.go(-1);}}>
+              Sign In
+            </span>
           </div>
         </div>
         <div className="close-cross">
@@ -172,4 +197,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(translate('translations')(Login));
+export default connect(mapStateToProps)(translate('translations')(Register));
