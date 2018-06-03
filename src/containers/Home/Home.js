@@ -8,6 +8,7 @@ import LiveEvents from './LiveEvents';
 import ResultEvents from './ResultEvents';
 import HeaderBanner from '../Common/HeaderBanner';
 import FooterBanner from '../Common/FooterBanner';
+import ServiceSecurity from '../../services/serviceSecurity';
 import './Home.css';
 
 class Home extends Component {
@@ -21,6 +22,12 @@ class Home extends Component {
     };
   }
   componentDidMount() {
+    var self = this;
+    ServiceSecurity.isUserAuthenticated().then(function(isLoggedin) {
+      if(isLoggedin){
+        self.props.history.push('/person');
+      }
+    })
     let currentlanguage = this.props.i18n.language;
     if (this.props.i18n.language.length > 2) {
       currentlanguage = this.props.i18n.language.substring(0, 2);

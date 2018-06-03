@@ -1,46 +1,25 @@
 import API_ENDPOINT from './serviceEndpoint';
+import ServiceSecurity from './serviceSecurity';
 
 export default class AuthService {
-  static async getLoginAuth(username, password) {
-    const bodydata = `${encodeURIComponent('grant_type')}=${encodeURIComponent('password')}&${encodeURIComponent('username')}=${encodeURIComponent(username)}&${encodeURIComponent('password')}=${encodeURIComponent(password)}`;
-    const response = await fetch(`${API_ENDPOINT}/Token`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Accept: 'application/json',
-      },
-      body: bodydata,
+  static async getLoginAuth(username, pwd) {
+    const data = await ServiceSecurity.login({
+      login: username,
+      password: pwd,
     });
-
-    if (!response.ok) {
-      // throw new Error(`AuthService getLoginAuth failed, HTTP status ${response.status}`);
-      return 'error';
-    }
-
-    const data = await response.json();
-    window.sessionStorage.setItem('token', data.access_token);
-    return data.access_token;
+    return data;
   }
 
   static async getResetPwd(email) {
     const bodydata = {
       Email: email,
+      TimerID: 0,
     };
-    const response = await fetch(`${API_ENDPOINT}/App/Account/ResetPassword`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(bodydata),
+    const url = `${API_ENDPOINT}/App/Account/ResetPassword`;
+    const data = await ServiceSecurity.PostFetch({
+      url: url,
+      bodydata: JSON.stringify(bodydata),
     });
-
-    if (!response.ok) {
-      // throw new Error(`AuthService getResetPwd failed, HTTP status ${response.status}`);
-      return false;
-    }
-
-    const data = await response.json();
     return data;
   }
 
@@ -48,21 +27,11 @@ export default class AuthService {
     const bodydata = {
       RequestId: requestId,
     };
-    const response = await fetch(`${API_ENDPOINT}/App/Account/SendPassword`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(bodydata),
+    const url = `${API_ENDPOINT}/App/Account/SendPassword`;
+    const data = await ServiceSecurity.PostFetch({
+      url: url,
+      bodydata: JSON.stringify(bodydata),
     });
-
-    if (!response.ok) {
-      // throw new Error(`AuthService getSendPwd failed, HTTP status ${response.status}`);
-      return false;
-    }
-
-    const data = await response.json();
     return data;
   }
 }
