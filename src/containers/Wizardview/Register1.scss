@@ -1,0 +1,34 @@
+.register-wizard {
+
+  .register-wizard-state {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 22px;
+    font-weight: bold;
+
+    .register-step {
+      float: right;
+    }
+  }
+
+  .about-body-topic {
+    background-color: #e9e9e9;
+    line-height: normal;
+    padding: 20px;
+    margin-top: 50px;
+  }
+
+  .contact-body {
+    margin-left: 20px;
+    margin-right: 20px;
+
+    .sent-state {
+      justify-content: center;
+      
+      .btn-register-next {
+        width: 400px;
+        height: 50px;
+      }
+    }
+  }
+}

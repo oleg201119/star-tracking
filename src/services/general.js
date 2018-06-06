@@ -3,7 +3,7 @@ import ServiceSecurity from './serviceSecurity';
 
 export default class GeneralService {
   static async getRequestContact(id, name, email, organization, phone, event, message) {
-    const url = `${API_ENDPOINT}/App/General/RequestContact/${id}?eventName=${event}&name=${name}&organization=${organization}&email=${email}&phone=${phone}&message=${message}`;
+    const url = `${API_ENDPOINT}/App/General/RequestContact/${id}?eventName=${event}&name=${name}&organization=${organization}&email=${email}&phone=${phone}&message=${message}&timerID=${0}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
       errortype: true,
@@ -12,7 +12,7 @@ export default class GeneralService {
   }
 
   static async getRequestEvent(id, name, email, organization, type, city, extraInfo, date) {
-    const url = `${API_ENDPOINT}/App/General/RequestNewEvent/${id}?name=${name}&organization=${organization}&email=${email}&city=${city}&date=${date}&type=${type}&extraInfo=${extraInfo}`;
+    const url = `${API_ENDPOINT}/App/General/RequestNewEvent/${id}?name=${name}&organization=${organization}&email=${email}&city=${city}&date=${date}&type=${type}&extraInfo=${extraInfo}&timerID=${0}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
       errortype: true,

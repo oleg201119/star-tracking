@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import * as authActions from '../../store/auth/actions';
 import * as authSelectors from '../../store/auth/reducer';
 import './Register.css';
@@ -14,7 +15,7 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      stay_signin: false,
+      accept_policy: false,
       username: '',
       password: '',
       loginstate: '',
@@ -25,9 +26,6 @@ class Register extends Component {
     this.changeConfirmPassword = this.changeConfirmPassword.bind(this);
   }
   componentDidMount() {
-    if (window.sessionStorage.getItem('token') !== null) {
-      this.props.dispatch(authActions.fetchToken(window.sessionStorage.getItem('token')));
-    }
     window.scrollTo(0, 0);
   }
   componentWillReceiveProps(nextProps) {
@@ -36,7 +34,7 @@ class Register extends Component {
       this.setState({ loginstate: 'error' });
     }
     if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
-      this.props.history.push('/person');
+      this.props.history.push('/person', { registered: true });
     }
   }
   changeUsername(e) {
@@ -138,24 +136,24 @@ class Register extends Component {
               className="stay-signin-check"
               alt="ST-icon"
               src={
-                this.state.stay_signin
+                this.state.accept_policy
                   ? "/img/check-check.png"
                   : "/img/check-uncheck.png"
               }
               onClick={() =>
-                this.state.stay_signin
-                  ? this.setState({ stay_signin: false })
-                  : this.setState({ stay_signin: true })
+                this.state.accept_policy
+                  ? this.setState({ accept_policy: false })
+                  : this.setState({ accept_policy: true })
               }
             />
-            <span>I accept the terms of use and the privacy policy</span>
+            <Link to="policy"><span>I accept the terms of use and the privacy policy</span></Link>
           </div>
           <button
             type="button"
             className="btn btn-red signin"
             onClick={() => {
               this.setState({ loginstate: '' });
-              this.props.dispatch(authActions.fetchLoginAuth(
+              this.props.dispatch(authActions.fetchRegisterAuth(
                 this.state.username,
                 this.state.password,
               ));

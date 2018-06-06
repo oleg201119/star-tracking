@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import * as eventActions from '../../store/events/actions';
-import PersonEvents from '../Homeperson/PersonEvents';
-import FriendEvents from '../Homeperson/FriendEvents';
-import CategoryEvents from '../Homeperson/CategoryEvents';
 import Tabbar from '../Tabbar/Tabbar';
 import * as authSelectors from '../../store/auth/reducer';
 import '../Homeperson/Homeperson.css';
@@ -51,20 +48,12 @@ class Person extends Component {
   }
   render() {
     const { authToken } = this.props;
+    const registered = this.props.location.state !== undefined ? this.props.location.state.registered : '';
     if (authToken === '' || authToken === 'error') return <Redirect to="/login" />;
     return (
       <div className="home-person">
         <div className="person-tabbar">
-          <Tabbar />
-        </div>
-        <div className="container">
-          <PersonEvents />
-        </div>
-        <div className="container friend-event">
-          <FriendEvents />
-        </div>
-        <div className="container category-event">
-          <CategoryEvents />
+          <Tabbar {...{ registered: registered }} />
         </div>
       </div>
     );

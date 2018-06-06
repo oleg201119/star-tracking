@@ -5,23 +5,23 @@ import 'react-select/dist/react-select.css';
 import './EventSearch.css';
 
 class EventSearch extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      selectEvent : "",
-      selectStatus: ""
-    }
+      selectEvent: '',
+      selectStatus: '',
+    };
     this.updateselectEvent = this.updateselectEvent.bind(this);
     this.updateselectStatus = this.updateselectStatus.bind(this);
   }
+  componentDidMount() {
+    this.setState({ selectEvent : this.props.selectEvent });
+  }
   updateselectEvent(e) {
-    this.setState({selectEvent: e});
+    this.setState({ selectEvent: e });
   }
   updateselectStatus(e) {
-    this.setState({selectStatus: e});
-  }
-  componentDidMount() {
-    this.setState({selectEvent : this.props.selectEvent})
+    this.setState({ selectStatus: e });
   }
   render() {
     const { t } = this.props;

@@ -10,6 +10,14 @@ export default class AuthService {
     return data;
   }
 
+  static async getRegisterAuth(username, pwd) {
+    const data = await ServiceSecurity.login({
+      login: username,
+      password: pwd,
+    });
+    return data;
+  }
+
   static async getResetPwd(email) {
     const bodydata = {
       Email: email,

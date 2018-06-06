@@ -60,7 +60,7 @@ class Organizer extends Component {
           <div className="row">
             <div className="col-12 col-md-10 col-xl-9 about-body-container">
               <div className="about-body-topic organizer-body-topic">
-                <span>{t('Onze tools helpen jou om jouw event tot een succes te maken, we nemen de technische kant uit handen')} <br/>{t('zodat jij kan focussen op de organisatie.')}</span>
+                <span>{t('Onze tools helpen jou om jouw event tot een succes te maken, we nemen de technische kant uit handen')} <br />{t('zodat jij kan focussen op de organisatie.')}</span>
               </div>
             </div>
           </div>

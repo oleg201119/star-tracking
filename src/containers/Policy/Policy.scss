@@ -1,0 +1,49 @@
+@import "../../styles/Color.scss";
+
+// Header banner
+.about-banner {
+  background-image: url(/img/about-banner.jpg);
+
+  .slogan {
+    text-align: center !important;
+  }
+
+  .about-banner-text {
+    display: flex;
+    justify-content: center;
+  }
+}
+.about-body-container {
+  margin: 0 auto;
+}
+.about-body-topic {
+  margin-top: 60px;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.77;
+  color: var(--charcoal-grey);
+}
+.about-body-text {
+  margin-top: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.67;
+  color: var(--charcoal-grey);
+}
+.about-body-end {
+  margin-top: 25px;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.77;
+  text-align: center;
+  color: var(--charcoal-grey);
+  margin-bottom: 30px;
+}
+.btn-create-event {
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 125px;
+}
