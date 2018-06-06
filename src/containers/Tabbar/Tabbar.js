@@ -7,6 +7,7 @@ import FriendEvents from '../Homeperson/FriendEvents';
 import CategoryEvents from '../Homeperson/CategoryEvents';
 import './Tabbar.css';
 import Wizardview from '../Wizardview/Wizardview';
+import Register6 from '../Wizardview/Register6';
 
 class Tabbar extends Component {
   constructor() {
@@ -47,7 +48,7 @@ class Tabbar extends Component {
           <TabPanel></TabPanel>
           <TabPanel></TabPanel>
           <TabPanel>
-            {this.props.registered ? <Wizardview /> : <Wizardview />}
+            {this.props.registered ? <Wizardview /> : <Register6 />}
           </TabPanel>
         </Tabs>
       </div>

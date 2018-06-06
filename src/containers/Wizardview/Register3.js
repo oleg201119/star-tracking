@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import './Register3.css';
 
 class Register3 extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      email: '',
-      organization: '',
-      type: '',
-      city: '',
-      startDate: moment(),
+      mobile: '',
+      number: '',
+      fixedline: '',
     };
   }
   componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
-    const { t } = this.props;
+    // const { t } = this.props;
     return (
       <div className="container register-wizard">
         <div className="row">
@@ -31,51 +26,39 @@ class Register3 extends Component {
             </div>
             <div className="about-body-topic">
               <span>
-                General
+                CONTACT (FOR PROBLEMS)
               </span>
             </div>
             <div className="contact-body">
-              <div>{t('Jouw naam')}:</div>
+              <div>Mobile:</div>
               <input
                 type="text"
                 className="contact-body-input"
-                value={this.state.name}
-                onChange={e => this.setState({ name: e.target.value })}
+                value={this.state.mobile}
+                onChange={e => this.setState({ mobile: e.target.value })}
               />
-              <div>{t('Jouw organisatie')}:</div>
+              <div>Fixed line:</div>
               <input
                 type="text"
                 className="contact-body-input"
-                value={this.state.organization}
+                value={this.state.fixedline}
                 onChange={e =>
-                  this.setState({ organization: e.target.value })
+                  this.setState({ fixedline: e.target.value })
                 }
               />
-              <div>{t('Jouw email adress')}:</div>
+            </div>
+            <div className="about-body-topic">
+              <span>
+                CONTACT IN CASE OF EMERGENCY (during a race)
+              </span>
+            </div>
+            <div className="contact-body">
+              <div>Number (family member / friend):</div>
               <input
                 type="text"
                 className="contact-body-input"
-                value={this.state.email}
-                onChange={e => this.setState({ email: e.target.value })}
-              />
-              <div>{t('Type sport')}:</div>
-              <input
-                type="text"
-                className="contact-body-input"
-                value={this.state.type}
-                onChange={e => this.setState({ type: e.target.value })}
-              />
-              <div>{t('Stad')}:</div>
-              <input
-                type="text"
-                className="contact-body-input"
-                value={this.state.city}
-                onChange={e => this.setState({ city: e.target.value })}
-              />
-              <div>{t('Datum')}:</div>
-              <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChange}
+                value={this.state.number}
+                onChange={e => this.setState({ number: e.target.value })}
               />
               <div className="sent-state">
                 <button

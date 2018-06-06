@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import './Register5.css';
 
 class Register5 extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      email: '',
-      organization: '',
-      type: '',
-      city: '',
-      startDate: moment(),
+      facebook: '',
+      strava: '',
+      twitter: '',
     };
   }
+
   componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
-    const { t } = this.props;
+    // const { t } = this.props;
     return (
       <div className="container register-wizard">
         <div className="row">
@@ -31,52 +27,57 @@ class Register5 extends Component {
             </div>
             <div className="about-body-topic">
               <span>
-                General
+                Social
               </span>
             </div>
             <div className="contact-body">
-              <div>{t('Jouw naam')}:</div>
+              <div className="register-btn">
+                <button type="button" className="btn btn-facebook">
+                  <i className="fa fa-facebook" aria-hidden="true" />
+                  <span>Connect with your friends</span>
+                </button>
+              </div>
+              <div>Facebook:</div>
               <input
                 type="text"
                 className="contact-body-input"
-                value={this.state.name}
-                onChange={e => this.setState({ name: e.target.value })}
+                value={this.state.facebook}
+                onChange={e => this.setState({ facebook: e.target.value })}
               />
-              <div>{t('Jouw organisatie')}:</div>
+              <div>Twitter:</div>
               <input
                 type="text"
                 className="contact-body-input"
-                value={this.state.organization}
+                value={this.state.twitter}
                 onChange={e =>
-                  this.setState({ organization: e.target.value })
+                  this.setState({ twitter: e.target.value })
                 }
               />
-              <div>{t('Jouw email adress')}:</div>
+              <div>Strava:</div>
               <input
                 type="text"
                 className="contact-body-input"
-                value={this.state.email}
-                onChange={e => this.setState({ email: e.target.value })}
+                value={this.state.strava}
+                onChange={e => this.setState({ strava: e.target.value })}
               />
-              <div>{t('Type sport')}:</div>
-              <input
-                type="text"
-                className="contact-body-input"
-                value={this.state.type}
-                onChange={e => this.setState({ type: e.target.value })}
-              />
-              <div>{t('Stad')}:</div>
-              <input
-                type="text"
-                className="contact-body-input"
-                value={this.state.city}
-                onChange={e => this.setState({ city: e.target.value })}
-              />
-              <div>{t('Datum')}:</div>
-              <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChange}
-              />
+            </div>
+            <div className="about-body-topic">
+              <span>
+                Connect with services
+              </span>
+            </div>
+            <div className="contact-body">
+              <div className="register-btn">
+                <button type="button" className="btn btn-strava">
+                  <span>Connect with Strava</span>
+                </button>
+              </div>
+              <div className="register-btn">
+                <button type="button" className="btn btn-misfit">
+                  <i className="fa fa-facebook" aria-hidden="true" />
+                  <span>Connect with Misfit</span>
+                </button>
+              </div>
               <div className="sent-state">
                 <button
                   onClick={() => { this.props.nextStep(); }}
