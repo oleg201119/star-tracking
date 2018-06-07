@@ -1,0 +1,60 @@
+.LapsSlide {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(146deg, #4a4b6c, #343547);
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.LapsSlide .TopContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 4;
+}
+
+.LapsSlide .TopContent .Timer {
+  width: 250px;
+}
+
+.LapsSlide .CenterContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  flex: 2;
+}
+
+.LapsSlide .BottomContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 4;
+}
+
+.LapsSlide .BottomContent .Time {
+  font-size: 60px;
+  padding-top: 30px;
+}
+
+.LapsSlide .BottomContent .Distance {
+  font-size: 50px;
+  padding-bottom: 30px;
+}
+
+.LapsSlide .LogoWrapper {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 80px;
+}
+
+.LapsSlide .LogoWrapper .Logo {
+  max-width: 100%;
+}

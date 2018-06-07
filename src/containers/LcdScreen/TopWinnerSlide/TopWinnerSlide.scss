@@ -1,0 +1,50 @@
+.TopWinnerSlide {
+  width: 100%;
+  height: 100vh;
+  background-color: #353647;
+}
+
+.TopWinnerSlide .TopWinnerTable {
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.TopWinnerSlide .TopWinnerTable .HeaderRow {
+  height: 100px;
+  background-color: #ea1f37;
+  font-size: 30px;
+}
+
+.TopWinnerSlide .TopWinnerTable .TitleRow {
+  height: 200px;
+}
+
+.TopWinnerSlide .TopWinnerTable .TitleRow .TitleContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.TopWinnerSlide .TopWinnerTable .TitleRow .TitleContent .LogoWrapper {
+  width: 80px;
+}
+
+.TopWinnerSlide .TopWinnerTable .TitleRow .TitleContent .LogoWrapper .Logo {
+  max-width: 100%;
+}
+
+.TopWinnerSlide .TopWinnerTable .TitleRow .TitleContent .Title {
+  font-size: 60px;
+  margin-left: 20px;
+}
+
+.TopWinnerSlide .TopWinnerTable .BodyRow {
+  height: 80px;
+  font-size: 30px;
+}
+
+.TopWinnerSlide .TopWinnerTable .BodyRow.Light {
+  background-color: #4b4c61;
+}
