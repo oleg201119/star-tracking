@@ -12,13 +12,18 @@
 .LapsSlide .TopContent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex: 4;
 }
 
 .LapsSlide .TopContent .Timer {
   width: 250px;
+}
+
+.LapsSlide .TopContent .ResultName {
+  font-size: 30px;
+  height: 35px;
 }
 
 .LapsSlide .CenterContent {
@@ -38,13 +43,13 @@
   flex: 4;
 }
 
-.LapsSlide .BottomContent .Time {
-  font-size: 60px;
+.LapsSlide .BottomContent .Distance {
+  font-size: 50px;
   padding-top: 30px;
 }
 
-.LapsSlide .BottomContent .Distance {
-  font-size: 50px;
+.LapsSlide .BottomContent .Time {
+  font-size: 30px;
   padding-bottom: 30px;
 }
 

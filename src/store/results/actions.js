@@ -1,62 +1,38 @@
-import * as types from "./actionTypes";
-import ResultService from "../../services/results";
+import * as types from './actionTypes';
+import ResultService from '../../services/results';
 
-async function fetchResultCategoryInfo(
-  eventId,
-  categoryId,
-  showNbWinners,
-  extraFieldPositions,
-  language
-) {
+export async function fetchWinnerInfo(eventId, categoryId, showNbWinners, language) {
   try {
     const fetchPromises = [
       ResultService.getHeader(eventId, categoryId, language),
       ResultService.getWinners(eventId, categoryId, showNbWinners, language),
-      ResultService.getResultDetail(
-        eventId,
-        categoryId,
-        extraFieldPositions,
-        language
-      )
     ];
 
-    const resultCategoryInfo = await Promise.all(fetchPromises);
-    return resultCategoryInfo;
+    const resultWinnerInfo = await Promise.all(fetchPromises);
+    return resultWinnerInfo;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
 export function fetchResultCategories(eventId, language) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
-      const results = await ResultService.getResultCategories(
-        eventId,
-        language
-      );
+      const results = await ResultService.getResultCategories(eventId, language);
 
-      let fetchPromises = [];
-      for (let i = 0; i < results.length; i++) {
-        fetchPromises.push(
-          fetchResultCategoryInfo(
-            results[i].EventID,
-            results[i].ID,
-            results[i].ShowNbWinners,
-            results[i].ExtraFieldPositions,
-            language
-          )
-        );
+      const fetchPromises = [];
+      for (let i = 0; i < results.length; i += 1) {
+        fetchPromises.push(fetchWinnerInfo(results[i].EventID, results[i].ID, results[i].ShowNbWinners, language));
       }
 
-      const resultCategoryInfos = await Promise.all(fetchPromises);
+      const resultWinnerInfos = await Promise.all(fetchPromises);
 
-      let resultInfos = [];
-      for (let i = 0; i < results.length; i++) {
+      const resultInfos = [];
+      for (let i = 0; i < results.length; i += 1) {
         const resultInfo = {
           ...results[i],
-          Header: resultCategoryInfos[i][0],
-          Winners: resultCategoryInfos[i][1],
-          Details: resultCategoryInfos[i][2]
+          Header: resultWinnerInfos[i][0],
+          Winners: resultWinnerInfos[i][1],
         };
 
         resultInfos.push(resultInfo);
@@ -64,7 +40,7 @@ export function fetchResultCategories(eventId, language) {
 
       dispatch({ type: types.RESULTS_FETCHED, resultInfos });
     } catch (error) {
-      console.error(error);
+      dispatch({ type: types.RESULTS_FAILED });
     }
   };
 }

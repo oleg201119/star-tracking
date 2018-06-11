@@ -1,29 +1,53 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { translate } from "react-i18next";
-import Slider from "react-slick";
-import HomeSlide from "./HomeSlide/HomeSlide";
-import CategorySlide from "./CategorySlide/CategorySlide";
-import LapsSlide from "./LapsSlide/LapsSlide";
-import WinnerSlide from "./WinnerSlide/WinnerSlide";
-import TopWinnerSlide from "./TopWinnerSlide/TopWinnerSlide";
-import ImageSlide from "./ImageSlide/ImageSlide";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
+import Slider from 'react-slick';
 
-import * as resultActions from "../../store/results/actions";
-import * as resultSelectors from "../../store/results/reducer";
-import * as adActions from "../../store/ads/actions";
-import * as adSelectors from "../../store/ads/reducer";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import HomeSlide from './HomeSlide/HomeSlide';
+import StarTrackingSlide from './StarTrackingSlide/StarTrackingSlide';
+import CategorySlide from './CategorySlide/CategorySlide';
+import LapsSlide from './LapsSlide/LapsSlide';
+import WinnerSlide from './WinnerSlide/WinnerSlide';
+import TopWinnerSlide from './TopWinnerSlide/TopWinnerSlide';
+import ImageSlide from './ImageSlide/ImageSlide';
 
-import "./LcdScreen.css";
+import * as resultActions from '../../store/results/actions';
+import * as resultSelectors from '../../store/results/reducer';
+import * as adActions from '../../store/ads/actions';
+import * as adSelectors from '../../store/ads/reducer';
+
+import * as Config from './Config';
+
+import './LcdScreen.css';
 
 class LcdScreen extends Component {
   static propTypes = {
-    resultInfos: PropTypes.arrayOf(PropTypes.any).isRequired,
-    ads: PropTypes.arrayOf(PropTypes.any).isRequired
+    match: PropTypes.shape({
+      params: PropTypes.shape({ id: PropTypes.string.isRequired }),
+    }),
+    resultInfos: PropTypes
+      .arrayOf(PropTypes.any)
+      .isRequired,
+    ads: PropTypes
+      .arrayOf(PropTypes.any)
+      .isRequired,
+  };
+
+  static defaultProps = {
+    match: {
+      params: {
+        id: 409,
+      },
+    },
+  }
+
+  state = {
+    checkIndex: 0,
+    currentIndex: -1,
   };
 
   componentDidMount = () => {
@@ -33,47 +57,137 @@ class LcdScreen extends Component {
     // Get current language
     let currentlanguage = this.props.i18n.language;
     if (this.props.i18n.language.length > 2) {
-      currentlanguage = this.props.i18n.language.substring(0, 2);
+      currentlanguage = this
+        .props
+        .i18n
+        .language
+        .substring(0, 2);
     }
 
-    this.props.dispatch(
-      resultActions.fetchResultCategories(eventId, currentlanguage)
-    );
-
-    this.props.dispatch(adActions.fetchAds(eventId, currentlanguage));
+    this.fetchData(eventId, currentlanguage);
+    this.interval = setInterval(() => {
+      this.fetchData(eventId, currentlanguage);
+    }, Config.RESULT_CHECK_PERIOD);
   };
 
-  buildResultInfoSlides = () => {
-    const { resultInfos } = this.props;
-    let slides = [];
+  componentWillUnmount = () => {
+    clearInterval(this.interval);
+  }
 
-    for (let i = 0; i < resultInfos.length; i++) {
+  fetchData = (eventId, language) => {
+    this
+      .props
+      .dispatch(resultActions.fetchResultCategories(eventId, language));
+    this
+      .props
+      .dispatch(adActions.fetchAds(eventId, language));
+  }
+
+  buildSlides = () => {
+    const { checkIndex, currentIndex } = this.state;
+    const { resultInfos, ads } = this.props;
+
+    const slides = [];
+    let slideIndex = 0;
+
+    slides.push(<HomeSlide
+      slideIndex={slideIndex}
+      checkIndex={checkIndex}
+      currentIndex={currentIndex}
+      key="HomeSlide" 
+    />);
+    slideIndex += 1;
+
+    slides.push(<StarTrackingSlide
+      slideIndex={slideIndex}
+      checkIndex={checkIndex}
+      currentIndex={currentIndex}
+      key="StarTrackingSlide" 
+    />);
+    slideIndex += 1;
+
+    let i;
+    for (i = 0; i < resultInfos.length; i += 1) {
       const resultInfo = resultInfos[i];
-      if (resultInfo.Details.ID !== undefined) {
-        slides.push(
-          <CategorySlide
-            category={resultInfo.Type}
-            key={`CategorySlide-${i}`}
-          />
-        );
-        slides.push(
-          <LapsSlide detail={resultInfo.Details} key={`LapsSlide-${i}`} />
-        );
-        slides.push(
-          <WinnerSlide detail={resultInfo.Details} key={`WinnerSlide-${i}`} />
-        );
-        slides.push(
-          <TopWinnerSlide
-            header={resultInfo.Header}
-            winners={resultInfo.Winners}
-            key={`TopWinnerSlide-${i}`}
-          />
-        );
+
+      slides.push(<CategorySlide category={resultInfo.Type} key={`CategorySlide-${i}`} />);
+      slideIndex += 1;
+
+      slides.push(<LapsSlide
+        resultName={resultInfo.Name}
+        detail={resultInfo.Detail}
+        key={`LapsSlide-${i}`} 
+      />);
+      slideIndex += 1;
+
+      slides.push(<WinnerSlide
+        slideIndex={slideIndex}
+        checkIndex={checkIndex}
+        currentIndex={currentIndex}
+        resultName={resultInfo.Name}
+        detail={resultInfo.Detail}
+        key={`WinnerSlide-${i}`} 
+      />);
+      slideIndex += 1;
+
+      slides.push(<TopWinnerSlide
+        slideIndex={slideIndex}
+        checkIndex={checkIndex}
+        currentIndex={currentIndex}
+        name={resultInfo.Name}
+        header={resultInfo.Header}
+        winners={resultInfo.Winners}
+        key={`TopWinnerSlide-${i}`} 
+      />);
+      slideIndex += 1;
+
+      if (ads.length > 0) {
+        const ad = ads[i % ads.length];
+        slides.push(<ImageSlide url={ad} key={`AdSlide-${i}`} />);
+        slideIndex += 1;
       }
     }
 
+    while (i < ads.length) {
+      /*
+      if (resultInfos.length > 0) {
+        const resultInfo = resultInfos[i % resultInfos.length];
+
+        slides.push(<CategorySlide category={resultInfo.Type} key={`CategorySlide-${i}`} />);
+        slides.push(<LapsSlide
+          resultName={resultInfo.Name}
+          detail={resultInfo.Detail}
+          key={`LapsSlide-${i}`}
+        />);
+        slides.push(<WinnerSlide
+          resultName={resultInfo.Name}
+          detail={resultInfo.Detail}
+          key={`WinnerSlide-${i}`}
+        />);
+        slides.push(<TopWinnerSlide
+          name={resultInfo.Name}
+          header={resultInfo.Header}
+          winners={resultInfo.Winners}
+          key={`TopWinnerSlide-${i}`}
+        />);
+      }
+      */
+      const ad = ads[i];
+      slides.push(<ImageSlide url={ad} key={`AdSlide-${i}`} />);
+      slideIndex += 1;
+      i += 1;
+    }
+
     return slides;
-  };
+  }
+
+  handleSlideBeforeChange = (newIndex) => {
+    this.setState({ checkIndex: newIndex });
+  }
+
+  handleSlideAfterChange = (curIndex) => {
+    this.setState({ currentIndex: curIndex });
+  }
 
   render() {
     const settings = {
@@ -81,23 +195,22 @@ class LcdScreen extends Component {
       arrows: false,
       pauseOnHover: false,
       fade: true,
-      lazyLoad: true,
       infinite: true,
       autoplay: true,
-      speed: 500,
-      autoplaySpeed: 3000,
+      speed: Config.SLIDE_FADE_SPEED,
+      autoplaySpeed: Config.AUTO_PLAY_SPEED,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      beforeChange: (oldIndex, newIndex) => this.handleSlideBeforeChange(newIndex),
+      afterChange: currentIndex => this.handleSlideAfterChange(currentIndex),
     };
 
-    const { ads } = this.props;
-    const resultInfoSlides = this.buildResultInfoSlides();
+    const slides = this.buildSlides();
 
     return (
       <div className="LcdScreen">
         <Slider {...settings}>
-          <HomeSlide /> {resultInfoSlides}
-          {ads.map(ad => <ImageSlide url={ad} key={ad} />)}
+          {slides}
         </Slider>
       </div>
     );
@@ -111,4 +224,4 @@ function mapStateToProps(state) {
   return { resultInfos, ads };
 }
 
-export default connect(mapStateToProps)(translate("translations")(LcdScreen));
+export default connect(mapStateToProps)(translate('translations')(LcdScreen));

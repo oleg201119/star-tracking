@@ -45,6 +45,16 @@
   font-size: 30px;
 }
 
-.TopWinnerSlide .TopWinnerTable .BodyRow.Light {
+.TopWinnerSlide .TopWinnerTable .BodyRow .Light {
   background-color: #4b4c61;
+}
+
+th,
+td {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 1px;
+  padding: 5px;
 }

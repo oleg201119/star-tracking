@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fadeInDown, fadeInLeft } from 'react-animations';
+import { fadeInDown } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
 
-import Images from '../../../resource/Images';
-import './HomeSlide.css';
+import './StarTrackingSlide.css';
 
 const styles = {
   fadeInDown: {
@@ -14,13 +13,9 @@ const styles = {
   none: {
     display: 'none',
   },
-  fadeInLeft: {
-    animation: 'x 1.5s',
-    animationName: Radium.keyframes(fadeInLeft, 'fadeInLeft'),
-  },
 };
 
-class HomeSlide extends Component {
+class StarTrackingSlide extends Component {
   static propTypes = {
     slideIndex: PropTypes.number.isRequired,
     checkIndex: PropTypes.number.isRequired,
@@ -46,9 +41,13 @@ class HomeSlide extends Component {
 
     return (
       <StyleRoot>
-        <div className="HomeSlide">
+        <div className="StarTrackingSlide">
           <div className="LogoWrapper">
-            <img src={Images.ic_logo_big} alt="Logo" className="Logo" style={style} />
+            <div className="Logo" style={style}>
+              <div className="Top">Live Coverage & Results</div>
+              <div className="Center">on</div>
+              <div className="Bottom">www.star-tracking.be</div>
+            </div>
           </div>
         </div>
       </StyleRoot>
@@ -56,4 +55,4 @@ class HomeSlide extends Component {
   }
 }
 
-export default HomeSlide;
+export default StarTrackingSlide;

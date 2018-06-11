@@ -5,25 +5,28 @@
   display: flex !important;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 
 .CategorySlide .CategoryWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 60%;
+  height: 80%;
+  margin: auto;
 }
 
 .CategorySlide .CategoryWrapper .CategoryCycling {
-  max-width: 100%;
-}
-
-.CategorySlide .CategoryWrapper .CategoryMountainBike {
-  max-width: 90%;
+  display: block;
+  height: 100%;
+  max-width: 1672px;
+  width: auto;
+  margin: auto;
 }
 
 .CategorySlide .CategoryWrapper .CategoryRunning {
-  max-width: 100%;
+  display: block;
+  height: 100%;
+  max-width: 1940px;
+  width: auto;
+  margin: auto;
 }
 
 .CategorySlide .LogoWrapper {
