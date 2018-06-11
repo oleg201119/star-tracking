@@ -12,6 +12,7 @@ import Organizer from '../Organizer/Organizer';
 import Newevent from '../Newevent/Newevent';
 import Eventdetail from '../Eventdetail/Eventdetail';
 import Policy from '../Policy/Policy';
+import EventResult from '../EventResult/EventResult';
 
 class Layout extends Component {
   render() {
@@ -59,6 +60,10 @@ class Layout extends Component {
           <Route
             path="/policy"
             render={props => <Policy {...props} />}
+          />
+          <Route
+            path="/eventresult"
+            render={props => <EventResult {...props} />}
           />
         </Switch>
         <Footer />

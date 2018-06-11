@@ -10,7 +10,7 @@ class LiveEvents extends Component {
     liveEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
   }
 
-  buildEventCards = events => events.map(event => (<InfoCard key={event.ID} event={event} person={false} />))
+  buildEventCards = events => events.map(event => (<InfoCard key={event.ID} event={event} />))
 
   render() {
     const eventCards = this.buildEventCards(this.props.liveEvents);
