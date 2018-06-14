@@ -35,7 +35,7 @@ class ResultCard extends Component {
                 {t('Door')}: {event.Organizer}
               </div>
               <div className="options">
-                <Link to="eventresult" className="event-option">
+                <Link to={{ pathname:"eventresult",state:{ eventID: event.ID}}} className="event-option">
                   {t('Resultaten')}
                 </Link>
               </div>

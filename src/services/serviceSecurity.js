@@ -114,7 +114,7 @@ export default class ServiceSecurity {
 
     if (!response.ok) {
       if (args.errortype) return false;
-      throw new Error(`Service fetch failed, HTTP status ${response.status}`);
+      throw new Error(`Service ${args.url} fetch failed, HTTP status ${response.status}`);
     }
 
     const data = await response.json();

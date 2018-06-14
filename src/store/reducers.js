@@ -2,8 +2,9 @@ import events from './events/reducer';
 import organizers from './organizers/reducer';
 import auth from './auth/reducer';
 import general from './general/reducer';
-import ads from "./ads/reducer";
-import results from "./results/reducer";
+import ads from './ads/reducer';
+import results from './results/reducer';
+import eventresult from './eventresult/reducer';
 
 export {
   events,
@@ -11,5 +12,6 @@ export {
   auth,
   general,
   ads,
-  results
+  results,
+  eventresult,
 };

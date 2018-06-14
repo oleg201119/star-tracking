@@ -1,0 +1,100 @@
+.result-table {
+  width: 100%;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.dropup {
+  .caret {
+    content: "";
+    border-top: 0;
+    border-bottom: 4px dashed;
+  }
+}
+
+.pagination {
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+  
+  .page-item {
+    .page-link {
+      background-color: #f9f9f9;
+      color: red;
+    }
+
+    &.active {
+      .page-link {
+        background-color: #efefef;
+        border-color: #dee2e6;
+      }
+    }
+  }
+  
+  .page-link {
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+.rc-menu {
+  
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid red;
+
+  .rc-menu-item {
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    &.rc-menu-item-active {
+      border: 1px solid red;
+      background-color: red;
+      color: white;
+    }
+  }
+
+  &.rc-menu-sub {
+    border: 1px solid red;
+  }
+}
+
+.rc-menu-submenu {
+  cursor: pointer;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+
+  &.rc-menu-submenu-vertical {
+    &.rc-menu-submenu-active {
+      border: 1px solid red;
+      background-color: red;
+      color: white;
+  
+      .rc-menu-submenu-title {
+        background-color: red;
+      }
+    }
+  }
+
+  &.rc-menu-submenu-horizontal {
+    &.rc-menu-submenu-active {
+      border: 1px solid red;
+      background-color: #F3F5F7;
+      color: black;
+  
+      .rc-menu-submenu-title {
+        background-color: #F3F5F7;
+      }
+    }
+  }
+}
