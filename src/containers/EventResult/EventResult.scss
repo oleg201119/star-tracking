@@ -1,3 +1,5 @@
+@import "../../styles/Color.scss";
+
 .result-table {
   width: 100%;
 }
@@ -38,8 +40,13 @@
         border-color: #dee2e6;
       }
     }
+    &.disabled {
+      .page-link {
+        background-color: #e6e6e6;
+        color: red;
+      }
+    }
   }
-  
   .page-link {
     &:focus {
       box-shadow: none;
@@ -56,6 +63,10 @@
   .rc-menu-item {
     cursor: pointer;
     border: 1px solid transparent;
+
+    &.rc-menu-item-selected {
+      background-color: #F3F5F7;
+    }
 
     &.rc-menu-item-active {
       border: 1px solid red;
@@ -86,6 +97,10 @@
     }
   }
 
+  &.rc-menu-submenu-selected {
+    background-color: #F3F5F7;
+  }
+
   &.rc-menu-submenu-horizontal {
     &.rc-menu-submenu-active {
       border: 1px solid red;
@@ -96,5 +111,38 @@
         background-color: #F3F5F7;
       }
     }
+  }
+}
+
+.react-bootstrap-table-pagination {
+  .react-bootstrap-table-pagination-list {
+    ul {
+      justify-content: center;
+    }
+  }
+}
+
+.sizerpage {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  color: red;
+
+  span {
+    margin: auto 0;
+  }
+
+  .eventresult-sizerpage {
+    width: 60px;
+    margin: 0 10px;
+
+    .Select-control {
+      border-radius: 12px;
+    }
+  }
+
+  .Select.is-focused:not(.is-open) > .Select-control {
+    border-color: $color_grey_border;
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0 0px rgba(0, 126, 255, 0.1);
   }
 }

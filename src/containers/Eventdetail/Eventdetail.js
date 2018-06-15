@@ -5,8 +5,6 @@ import { translate } from 'react-i18next';
 import * as eventActions from '../../store/events/actions';
 import SimilarEvents from './SimilarEvents';
 import Eventpage from './Eventpage';
-import Tabbar from '../Tabbar/Tabbar';
-import * as authSelectors from '../../store/auth/reducer';
 import '../Homeperson/Homeperson.css';
 import './Eventdetail.css';
 
@@ -47,14 +45,8 @@ class Eventdetail extends Component {
     }
   }
   render() {
-    const { authToken } = this.props;
     return (
       <div className="eventdetail">
-        {authToken !== '' && authToken !== 'error' ?
-          <div className="person-tabbar">
-            <Tabbar />
-          </div> :
-          null }
         <Eventpage />
         <div className="container friend-event d-none d-md-block">
           <SimilarEvents />
@@ -63,11 +55,4 @@ class Eventdetail extends Component {
     );
   }
 }
-function mapStateToProps(state) {
-  const authToken = authSelectors.getLoginAuth(state);
-
-  return {
-    authToken,
-  };
-}
-export default connect(mapStateToProps)(translate('translations')(Eventdetail));
+export default connect()(translate('translations')(Eventdetail));

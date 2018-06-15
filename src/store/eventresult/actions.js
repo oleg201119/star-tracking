@@ -11,25 +11,3 @@ export function fetchMenuResult(eventID, language) {
     }
   };
 }
-
-export function fetchHeaderResult(eventID, categoryID, language) {
-  return async (dispatch) => {
-    try {
-      const eventresult = await EventresultService.getHeaderResult(eventID, categoryID, language);
-      dispatch({ type: types.HEADER_RESULT_FETCHED, eventresult });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-}
-
-export function fetchBdoyResult(eventID, categoryID, page, numberofResults, sortColumn, sortDirection, language) {
-  return async (dispatch) => {
-    try {
-      const eventresult = await EventresultService.getBodyResult(eventID, categoryID, page, numberofResults, sortColumn, sortDirection, language);
-      dispatch({ type: types.BODY_RESULT_FETCHED, eventresult });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-}
