@@ -22,9 +22,11 @@ export default class EventresultService {
     return data;
   }
 
-  static async getBodyResult(eventID, categoryID, page, numberofResults, sortColumn, sortDirection, language) {
-    const url = `${API_ENDPOINT}/App/Results/Results?eventID=${eventID}&categoryID=${categoryID}&page=${page}&numberofResults=${numberofResults}&sortColumn=${sortColumn}&sortDirection=${sortDirection}&language=${language}`;
-
+  static async getBodyResult(eventID, categoryID, page, numberofResults, sortColumn, sortDirection, language, filter) {
+    let url = `${API_ENDPOINT}/App/Results/Results?eventID=${eventID}&categoryID=${categoryID}&page=${page}&numberofResults=${numberofResults}&sortColumn=${sortColumn}&sortDirection=${sortDirection}&language=${language}`;
+    if( filter !== undefined ) {
+      url = `${url}&filter=${filter}`
+    }
     const data = await ServiceSecurity.GetFetch({
       url: url,
       errortype: false,
