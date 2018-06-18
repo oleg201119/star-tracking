@@ -92,7 +92,6 @@ class EventResult extends Component {
       .then(function(value) {
         EventresultService.getBodyResult(eventID, categoryID, page, sizePerPage, sortColumn, sortDirection, language, filter)
         .then(function(body) {
-          console.log(body);
           const headerarray = value;
           const bodyarray = body;
           const totalSize = bodyarray.FilteredRecordCount;
@@ -158,9 +157,6 @@ class EventResult extends Component {
     }
   }
   handleTableChange = (type, { page, sizePerPage, sortField, sortOrder }) => {
-    console.log(type);
-    console.log(sortField);
-    console.log(sortOrder);
     if(type === 'sort') {
       this.setState({ sortColumn: sortField, sortDirection: sortOrder});
       this.showtable(this.state.eventID, this.state.categoryID, 0, sizePerPage, sortField, sortOrder, this.state.currentlanguage);
@@ -274,12 +270,18 @@ class EventResult extends Component {
             </div>
           </div>
           : null }
+        <div className="eventresult-menu">
+          <div className="container">
+            <div className="row">
+              { menuResult.length > 0 ?
+                    <Menu mode="horizontal" onClick={this.menuClick}>
+                      {this.drawmenu(menuResult)}
+                    </Menu> : null }
+              </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
-            { menuResult.length > 0 ?
-              <Menu mode="horizontal" onClick={this.menuClick}>
-                {this.drawmenu(menuResult)}
-              </Menu> : null }
             { this.state.columns.length > 0 ?
               <div>
                 <div className="eventresult-filter">
