@@ -63,6 +63,7 @@ class EventResult extends Component {
     this.filtertable = this.filtertable.bind(this);
   }
   componentDidMount() {
+    window.scrollTo(0,0);
     let currentlanguage = this.props.i18n.language;
     if (this.props.i18n.language.length > 2) {
       currentlanguage = this.props.i18n.language.substring(0, 2);

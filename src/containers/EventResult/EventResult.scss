@@ -66,7 +66,7 @@
   }
   .rc-menu-item {
     cursor: pointer;
-    border: 1px solid transparent;
+    border-width: 0px;
     padding: 7px;
     margin-top: 15px;
     margin-right: 10px;
@@ -77,14 +77,15 @@
     }
 
     &.rc-menu-item-active {
-      border: 1px solid red;
-      background-color: red;
-      color: white;
+      border-width: 0px;
+      background-color: white;
+      color: #666;
     }
   }
 
   &.rc-menu-sub {
-    border: 1px solid red;
+    border: 1px solid #d2cfcc;
+    border-radius: 0px;
   }
 }
 
