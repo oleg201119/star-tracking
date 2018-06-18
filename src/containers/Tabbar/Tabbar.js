@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import { translate } from 'react-i18next';
 import 'react-tabs/style/react-tabs.css';
-import PersonEvents from '../Homeperson/PersonEvents';
+import MySelectedEvents from '../Homeperson/MySelectedEvents';
 import FriendEvents from '../Homeperson/FriendEvents';
 import CategoryEvents from '../Homeperson/CategoryEvents';
+import RegisteredEvents from './RegisteredEvents';
+import MyResultsEvents from './MyResultsEvents';
 import './Tabbar.css';
 import Wizardview from '../Wizardview/Wizardview';
 import Register6 from '../Wizardview/Register6';
@@ -35,7 +37,7 @@ class Tabbar extends Component {
           </div>
           <TabPanel>
             <div className="container">
-              <PersonEvents />
+              <MySelectedEvents />
             </div>
             <div className="container friend-event">
               <FriendEvents />
@@ -44,9 +46,17 @@ class Tabbar extends Component {
               <CategoryEvents />
             </div>
           </TabPanel>
+          <TabPanel>
+            <div className="container">
+              <RegisteredEvents />
+            </div>
+          </TabPanel>
           <TabPanel></TabPanel>
-          <TabPanel></TabPanel>
-          <TabPanel></TabPanel>
+          <TabPanel>
+            <div className="container myresults-event">
+              <MyResultsEvents />
+            </div>
+          </TabPanel>
           <TabPanel>
             {this.props.registered ? <Wizardview /> : <Register6 />}
           </TabPanel>

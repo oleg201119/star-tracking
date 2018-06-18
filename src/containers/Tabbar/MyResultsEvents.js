@@ -4,24 +4,23 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import * as eventsSelectors from '../../store/events/reducer';
 import EventCard from '../../components/EventCard/EventCard';
-import './PersonEvents.css';
 
-class PersonEvents extends Component {
+class MyResultsEvents extends Component {
   static propTypes = {
-    personEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
+    myresultsEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
   }
 
   buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} person={true} />))
 
   render() {
-    const eventCards = this.buildEventCards(this.props.personEvents);
+    const eventCards = this.buildEventCards(this.props.myresultsEvents);
     const { t } = this.props;
 
     return (
-      <div className="person-events">
+      <div className="friend-events">
         {eventCards.length ?
           <div className="section-title">
-            {t('Events geselecteerd voor jou')}
+            {t('My results')}
           </div> : null}
         <div className="row">
           {eventCards}
@@ -32,11 +31,11 @@ class PersonEvents extends Component {
 }
 
 function mapStateToProps(state) {
-  const personEvents = eventsSelectors.getPersonEvents(state);
+  const myresultsEvents = eventsSelectors.getMyResultsEvents(state);
 
   return {
-    personEvents,
+    myresultsEvents,
   };
 }
 
-export default connect(mapStateToProps)(translate('translations')(PersonEvents));
+export default connect(mapStateToProps)(translate('translations')(MyResultsEvents));

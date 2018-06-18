@@ -40,13 +40,13 @@ export function fetchResultEvents(language) {
   };
 }
 
-export function fetchPersonEvents(language) {
+export function fetchMySelectedEvents(language) {
   return async (dispatch, getState) => {
     try {
       const id = getState().events.get('id');
       const maxNumber = getState().events.get('maxNumber');
-      const events = await EventService.getPersonEvents(id, maxNumber, language);
-      dispatch({ type: types.PERSON_EVENTS_FETCHED, events });
+      const events = await EventService.getMySelectedEvents(id, maxNumber, language);
+      dispatch({ type: types.MYSELECTED_EVENTS_FETCHED, events });
     } catch (error) {
       console.error(error);
     }
@@ -60,6 +60,33 @@ export function fetchFriendEvents(language) {
       const maxNumber = getState().events.get('maxNumber');
       const events = await EventService.getFriendEvents(id, maxNumber, language);
       dispatch({ type: types.FRIEND_EVENTS_FETCHED, events });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+
+export function fetchRegisteredEvents(language) {
+  return async (dispatch, getState) => {
+    try {
+      const id = getState().events.get('id');
+      const maxNumber = getState().events.get('maxNumber');
+      const events = await EventService.getRegisteredEvents(id, maxNumber, language);
+      dispatch({ type: types.REGISTERED_EVENTS_FETCHED, events });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+
+export function fetchMyResultsEvents(language) {
+  return async (dispatch, getState) => {
+    try {
+      const id = getState().events.get('id');
+      // const maxNumber = getState().events.get('maxNumber');
+      const maxNumber = 3;
+      const events = await EventService.getMyResultsEvents(id, maxNumber, language);
+      dispatch({ type: types.MYRESULTS_EVENTS_FETCHED, events });
     } catch (error) {
       console.error(error);
     }

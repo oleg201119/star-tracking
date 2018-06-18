@@ -7,10 +7,12 @@ const initialState = Map({
   upcomingEvents: List(),
   liveEvents: List(),
   resultEvents: List(),
-  personEvents: List(),
+  myselectedEvents: List(),
   friendEvents: List(),
   similarEvents: List(),
   eventDetail: List(),
+  registeredEvents: List(),
+  myresultsEvents: List(),
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -27,9 +29,9 @@ export default function reduce(state = initialState, action = {}) {
     return state.merge({
       resultEvents: action.events,
     });
-  case types.PERSON_EVENTS_FETCHED:
+  case types.MYSELECTED_EVENTS_FETCHED:
     return state.merge({
-      personEvents: action.events,
+      myselectedEvents: action.events,
     });
   case types.FRIEND_EVENTS_FETCHED:
     return state.merge({
@@ -42,6 +44,14 @@ export default function reduce(state = initialState, action = {}) {
   case types.EVENT_DETAIL_FETCHED:
     return state.merge({
       eventDetail: action.events,
+    });
+  case types.REGISTERED_EVENTS_FETCHED:
+    return state.merge({
+      registeredEvents: action.events,
+    });
+  case types.MYRESULTS_EVENTS_FETCHED:
+    return state.merge({
+      myresultsEvents: action.events,
     });
   default:
     return state;
@@ -61,8 +71,8 @@ export function getResultEvents(state) {
   return state.events.get('resultEvents').toJS();
 }
 
-export function getPersonEvents(state) {
-  return state.events.get('personEvents').toJS();
+export function getMySelectedEvents(state) {
+  return state.events.get('myselectedEvents').toJS();
 }
 
 export function getFriendEvents(state) {
@@ -75,4 +85,12 @@ export function getSimilarEvents(state) {
 
 export function getEventDetail(state) {
   return state.events.get('eventDetail').toJS();
+}
+
+export function getRegisteredEvents(state) {
+  return state.events.get('registeredEvents').toJS();
+}
+
+export function getMyResultsEvents(state) {
+  return state.events.get('myresultsEvents').toJS();
 }

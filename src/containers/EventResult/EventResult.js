@@ -92,6 +92,7 @@ class EventResult extends Component {
       .then(function(value) {
         EventresultService.getBodyResult(eventID, categoryID, page, sizePerPage, sortColumn, sortDirection, language, filter)
         .then(function(body) {
+          console.log(body);
           const headerarray = value;
           const bodyarray = body;
           const totalSize = bodyarray.FilteredRecordCount;

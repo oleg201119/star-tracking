@@ -6,7 +6,7 @@ import * as eventActions from '../../store/events/actions';
 import HeaderBanner from '../Common/HeaderBanner';
 import FooterBanner from '../Common/FooterBanner';
 import EventSearch from '../Common/EventSearch';
-import PersonEvents from './PersonEvents';
+import MySelectedEvents from './MySelectedEvents';
 import FriendEvents from './FriendEvents';
 import CategoryEvents from './CategoryEvents';
 import PastEvents from './PastEvents';
@@ -18,7 +18,7 @@ class Homeperson extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(eventActions.fetchPersonEvents(this.props.i18n.language));
+    this.props.dispatch(eventActions.fetchMySelectedEvents(this.props.i18n.language));
     this.props.dispatch(eventActions.fetchFriendEvents(this.props.i18n.language));
   }
 
@@ -34,7 +34,7 @@ class Homeperson extends Component {
           </div>
         </div>
         <div className="container">
-          <PersonEvents />
+          <MySelectedEvents />
         </div>
         <div className="container friend-event">
           <FriendEvents />

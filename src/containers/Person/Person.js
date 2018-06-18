@@ -32,8 +32,10 @@ class Person extends Component {
     }
     this.setState({ currentlanguage: currentlanguage });
     window.scrollTo(0, 0);
-    this.props.dispatch(eventActions.fetchPersonEvents(currentlanguage));
+    this.props.dispatch(eventActions.fetchMySelectedEvents(currentlanguage));
     this.props.dispatch(eventActions.fetchFriendEvents(currentlanguage));
+    this.props.dispatch(eventActions.fetchRegisteredEvents(currentlanguage));
+    this.props.dispatch(eventActions.fetchMyResultsEvents(currentlanguage));
   }
   componentWillReceiveProps(nextProps) {
     let nextlanguage = nextProps.i18n.language;
@@ -42,8 +44,10 @@ class Person extends Component {
     }
     if (nextlanguage !== this.state.currentlanguage) {
       this.setState({ currentlanguage: nextlanguage });
-      this.props.dispatch(eventActions.fetchPersonEvents(nextlanguage));
+      this.props.dispatch(eventActions.fetchMySelectedEvents(nextlanguage));
       this.props.dispatch(eventActions.fetchFriendEvents(nextlanguage));
+      this.props.dispatch(eventActions.fetchRegisteredEvents(nextlanguage));
+      this.props.dispatch(eventActions.fetchMyResultsEvents(nextlanguage));
     }
   }
   render() {
