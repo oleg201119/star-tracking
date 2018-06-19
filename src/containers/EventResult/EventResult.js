@@ -7,6 +7,7 @@ import overlayFactory from 'react-bootstrap-table2-overlay';
 import ReactCountryFlag from 'react-country-flag';
 import Menu, { SubMenu, MenuItem } from 'rc-menu';
 import Select from 'react-select';
+import HamburgerMenu from 'react-hamburger-menu';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import './rc-menu.css';
 import paginationFactory from '../react-table-paginator';
@@ -18,7 +19,7 @@ import EventresultService from '../../services/eventresult';
 import * as eventsSelectors from '../../store/events/reducer';
 import './EventResult.css';
 
-const RemotePagination = ({ data, page, sizePerPage, onTableChange, totalSize, columns, loading }) => (
+const RemotePagination = ({ data, page, sizePerPage, onTableChange, totalSize, columns, loading, paginationsize }) => (
   <div className="result-table">
     <BootstrapTable
       remote
@@ -26,7 +27,7 @@ const RemotePagination = ({ data, page, sizePerPage, onTableChange, totalSize, c
       keyField="0"
       data={data}
       columns={columns}
-      pagination={ paginationFactory({ page, sizePerPage, totalSize, nextPageText: 'Next', prePageText: 'Previous', firstPageText: 'First', lastPageText: 'Last', alwaysShowAllBtns: true, hideSizePerPage: true, paginationSize: 5}) }
+      pagination={ paginationFactory({ page, sizePerPage, totalSize, alwaysShowAllBtns: true, hideSizePerPage: true, paginationSize: paginationsize}) }
       onTableChange={ onTableChange }
       striped
       bordered={ false }
@@ -55,6 +56,11 @@ class EventResult extends Component {
       totalSize: 0,
       loading: false,
       filter: '',
+      hiddencolumn: false,
+      paginationsize: 5,
+      hamburgermenu: false,
+      menumode: 'horizontal',
+      selectmenu: ''
     };
     this.drawmenu = this.drawmenu.bind(this);
     this.menuClick = this.menuClick.bind(this);
@@ -72,6 +78,11 @@ class EventResult extends Component {
     this.props.dispatch(eventresultActions.fetchMenuResult(this.state.eventID, currentlanguage));
     this.props.dispatch(eventActions.fetchEventDetail(this.state.eventID, currentlanguage));
     this.props.dispatch(eventActions.fetchSimilarEvents(currentlanguage));
+    this.updateDimensions();
+    window.addEventListener("resize",this.updateDimensions.bind(this));
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
   }
   componentWillReceiveProps(nextProps) {
     let nextlanguage = nextProps.i18n.language;
@@ -84,6 +95,13 @@ class EventResult extends Component {
       this.props.dispatch(eventActions.fetchSimilarEvents(nextlanguage));
       this.props.dispatch(eventActions.fetchEventDetail(this.state.eventID, nextlanguage));
       this.showtable(this.state.eventID, this.state.categoryID, this.state.page-1, this.state.sizePerPage, this.state.sortColumn, this.state.sortDirection, nextlanguage);
+    }
+  }
+  updateDimensions() {
+    if(window.innerWidth <= 768) {
+      this.setState({ hiddencolumn: true, paginationsize: 3, menumode: 'inline' });
+    } else {
+      this.setState({ hiddencolumn: false, paginationsize: 5, menumode: 'horizontal' });
     }
   }
   showtable = (eventID, categoryID, page, sizePerPage, sortColumn, sortDirection, language, filter) => {
@@ -102,13 +120,17 @@ class EventResult extends Component {
           const columns = [];
           for (let i = 0; i <= headerarray.length - 1; i++ ) {
             if( i === bibPosition ) {
-              columns.push({ dataField: `${i}`, text: headerarray[i], sort: true, style: { fontStyle: 'italic'}, headerStyle: {width:80} });
+              columns.push({ dataField: `${i}`, text: headerarray[i], sort: true, style: { fontStyle: 'italic'}, headerStyle: {width:80}, classes: 'hiddenbibcolumn', headerClasses: 'hiddenbibcolumn' });
             } else if( i === namePosition ) {
               columns.push({ dataField: `${i}`, text: headerarray[i], sort: true, formatter: self.priceFormatter });
             } else if( i === 0 ) {
-              columns.push({ dataField: `${i}`, text: headerarray[i], sort: true, headerStyle: {width:80} });
+              columns.push({ dataField: `${i}`, text: headerarray[i], sort: true, headerClasses: 'poscolumn' });
             } else {
-              columns.push({ dataField: `${i}`, text: headerarray[i], sort: true });
+              if ( i === headerarray.length - 1 ) {
+                columns.push({ dataField: `${i}`, text: headerarray[i], sort: true });  
+              } else {
+                columns.push({ dataField: `${i}`, text: headerarray[i], sort: true, classes: 'hiddencolumn', headerClasses: 'hiddencolumn' });
+              }
             }
           }
           const data = [];
@@ -166,7 +188,7 @@ class EventResult extends Component {
     }
   }
   menuClick = (menu) => {
-    this.setState({ categoryID: menu.key });
+    this.setState({ categoryID: menu.key, selectmenu: menu.item.props.longname });
     this.showtable(this.state.eventID, menu.key, this.state.page-1, this.state.sizePerPage, this.state.sortColumn, this.state.sortDirection, this.state.currentlanguage);
   }
   drawmenu(menuarray) {
@@ -181,16 +203,20 @@ class EventResult extends Component {
           )
         } else {
           return (
-            <MenuItem key={menuitem.ID}>{menuitem.Name}</MenuItem>
+            <MenuItem key={menuitem.ID} longname={menuitem.LongName}>{menuitem.Name}</MenuItem>
           )
         }
       })
     );
   }
+  hamburgermenuClick() {
+    this.setState({ hamburgermenu: !this.state.hamburgermenu })
+  }
   render() {
     const { t } = this.props;
     const { menuResult, eventDetail } = this.props;
-    const { data, sizePerPage, page, columns, totalSize, loading } = this.state;
+    const { data, sizePerPage, page, columns, totalSize, loading, paginationsize, hiddencolumn } = this.state;
+    const filterclass = hiddencolumn && !this.state.hamburgermenu ? "eventresult-custom-filter" : null 
     return (
       <div className="eventresult-page">
         {eventDetail.length !== 0 ?
@@ -275,9 +301,26 @@ class EventResult extends Component {
           <div className="container">
             <div className="row">
               { menuResult.length > 0 ?
-                    <Menu mode="horizontal" onClick={this.menuClick}>
+                <div className="hamburgermenu">
+                  { hiddencolumn ?
+                    <div className="hamburgermenu-mark">
+                      <HamburgerMenu
+                      isOpen={this.state.hamburgermenu}
+                      menuClicked={this.hamburgermenuClick.bind(this)}
+                      width={18}
+                      height={15}
+                      strokeWidth={1}
+                      rotate={0}
+                      color='black'
+                      borderRadius={0}
+                      animationDuration={0.5}
+                      /> 
+                    </div>: null }
+                  { !hiddencolumn || this.state.hamburgermenu ?
+                    <Menu mode={ this.state.menumode } onClick={this.menuClick} >
                       {this.drawmenu(menuResult)}
                     </Menu> : null }
+                </div> : null }
               </div>
           </div>
         </div>
@@ -285,8 +328,8 @@ class EventResult extends Component {
           <div className="row">
             { this.state.columns.length > 0 ?
               <div>
-                <div className="eventresult-filter">
-                  <span>{t('Alle resultaten')}</span>
+                <div className={`eventresult-filter ${filterclass}`}>
+                  <span>{this.state.selectmenu}</span>
                   <div className="eventresult-filter-body">
                     <input type="text" placeholder="filter" value={this.state.filter} onChange={e => this.setState({ filter: e.target.value })} className="eventresult-text" />
                     <button type="button" className="btn btn-red btn-eventresult-filter" onClick={this.filtertable}>{t('Zoek')}</button>
@@ -299,6 +342,7 @@ class EventResult extends Component {
                   sizePerPage={ sizePerPage === -1 ? totalSize : sizePerPage }
                   totalSize={ totalSize }
                   columns= { columns}
+                  paginationsize= { paginationsize }
                   onTableChange={ this.handleTableChange }
                 />
                 <div className="sizerpage">
