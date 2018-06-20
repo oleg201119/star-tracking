@@ -4,12 +4,14 @@
 .header-banner {
   position: relative;
   width: 100%;
-  height: 365px;
+  height: 405px;
   margin-bottom: 70px;
   background-image: url(/img/home-banner-top.png);
   background-size: cover;
   background-repeat: no-repeat;
-
+  @media (min-width: 1200px) {
+    height: 365px;
+  }
   .glass-section {
     width: 100%;
     height: 100%;
@@ -20,7 +22,7 @@
     position: absolute;
     left: 0px;
     right: 0px;
-    bottom: 110px;
+    bottom: 90px;
 
     .slogan {
       display: inline-block;

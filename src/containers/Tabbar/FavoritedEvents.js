@@ -5,9 +5,9 @@ import { translate } from "react-i18next";
 import * as eventsSelectors from "../../store/events/reducer";
 import EventCard from "../../components/EventCard/EventCard";
 
-class MyResultsEvents extends Component {
+class FavoritedEvents extends Component {
   static propTypes = {
-    myresultsEvents: PropTypes.arrayOf(PropTypes.any).isRequired
+    registeredEvents: PropTypes.arrayOf(PropTypes.any).isRequired
   };
 
   buildEventCards = events =>
@@ -16,7 +16,7 @@ class MyResultsEvents extends Component {
     ));
 
   render() {
-    const eventCards = this.buildEventCards(this.props.myresultsEvents);
+    const eventCards = this.buildEventCards(this.props.registeredEvents);
     const { t } = this.props;
 
     return (
@@ -26,7 +26,7 @@ class MyResultsEvents extends Component {
             <div className="slogan-section">
               <div className="container">
                 <span className="slogan">
-                  {eventCards.length ? t("My results") : null}
+                  {eventCards.length ? t("Favorited") : null}
                 </span>
               </div>
             </div>
@@ -36,7 +36,7 @@ class MyResultsEvents extends Component {
           <div className="friend-events">
             {eventCards.length ? (
               <div className="section-title mobile-person-title">
-                {t("My results")}
+                {t("Favorited")}
               </div>
             ) : null}
             <div className="row">{eventCards}</div>
@@ -48,13 +48,13 @@ class MyResultsEvents extends Component {
 }
 
 function mapStateToProps(state) {
-  const myresultsEvents = eventsSelectors.getMyResultsEvents(state);
+  const registeredEvents = eventsSelectors.getRegisteredEvents(state);
 
   return {
-    myresultsEvents
+    registeredEvents
   };
 }
 
 export default connect(mapStateToProps)(
-  translate("translations")(MyResultsEvents)
+  translate("translations")(FavoritedEvents)
 );

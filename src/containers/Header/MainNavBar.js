@@ -8,7 +8,8 @@ class MainNavBar extends Component {
   constructor() {
     super();
     this.state = {
-      tokenstate: false
+      tokenstate: false,
+      menuopen: false
     };
   }
   componentDidMount() {
@@ -22,46 +23,94 @@ class MainNavBar extends Component {
     }
     this.setState({ tokenstate: temptoken });
   }
+  handleStateChange(state) {
+    this.setState({ menuOpen: state.isOpen });
+  }
+  closeMenu() {
+    this.setState({ menuOpen: false });
+  }
   render() {
     const { t } = this.props;
     const { tokenstate } = this.state;
     return (
       <div>
-        <Menu>
-          <a id="home" className="menu-item" href="/">
-            Home
+        <div className="mobile-header d-block d-xl-none">
+          <Menu
+            isOpen={this.state.menuOpen}
+            onStateChange={state => this.handleStateChange(state)}
+          >
+            <Link
+              to={tokenstate ? "person" : "homepage"}
+              className="menu-link"
+              onClick={() => {
+                this.closeMenu();
+              }}
+            >
+              {t("Browse all events")}
+            </Link>
+            <Link
+              to="organizer"
+              className="menu-link"
+              onClick={() => {
+                this.closeMenu();
+              }}
+            >
+              {t("For organizers")}
+            </Link>
+            <Link
+              to="about"
+              className="menu-link"
+              onClick={() => {
+                this.closeMenu();
+              }}
+            >
+              {t("About Star Tracking")}
+            </Link>
+            <Link
+              to="contact"
+              className="menu-link"
+              onClick={() => {
+                this.closeMenu();
+              }}
+            >
+              {t("Contact us")}
+            </Link>
+            {!tokenstate ? (
+              <Link
+                to="login"
+                onClick={() => {
+                  this.closeMenu();
+                }}
+              >
+                {t("Sign in")}
+              </Link>
+            ) : null}
+          </Menu>
+          <a href={tokenstate ? "/person" : "/"}>
+            <img
+              className="mobile-logo"
+              alt="ST-logo"
+              src="/img/mobile-logo.png"
+            />
           </a>
-          <a id="about" className="menu-item" href="/about">
-            About
-          </a>
-          <a id="contact" className="menu-item" href="/contact">
-            Contact
-          </a>
-          <a onClick={this.showSettings} className="menu-item--small" href="">
-            Settings
-          </a>
-        </Menu>
-        <nav className="navbar navbar-expand-xl header-menu">
+          {tokenstate ? (
+            <a
+              className="avatar-link d-block d-xl-none header-avatar"
+              href="#/"
+            >
+              <img
+                className="avatar"
+                alt="auth-avatar"
+                src="/img/navbar-avatar.png"
+              />
+            </a>
+          ) : null}
+        </div>
+        <nav className="navbar navbar-expand-xl header-menu d-none d-xl-block">
           <div className="container">
             <a className="logo-link" href={tokenstate ? "/person" : "/"}>
               <img className="logo" alt="ST-logo" src="/img/logo-header.png" />
             </a>
-            <button
-              className="navbar-toggler ml-auto"
-              data-toggle="collapse"
-              data-target="#navbarHeaderMenu"
-            >
-              <i className="fa fa-bars" />
-            </button>
-            {tokenstate ? (
-              <a className="avatar-link d-block d-xl-none" href="#/">
-                <img
-                  className="avatar"
-                  alt="auth-avatar"
-                  src="/img/navbar-avatar.png"
-                />
-              </a>
-            ) : null}
             <div className="collapse navbar-collapse" id="navbarHeaderMenu">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">

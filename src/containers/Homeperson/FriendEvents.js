@@ -1,17 +1,25 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import * as eventsSelectors from '../../store/events/reducer';
-import EventCard from '../../components/EventCard/EventCard';
-import './FriendEvents.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import * as eventsSelectors from "../../store/events/reducer";
+import EventCard from "../../components/EventCard/EventCard";
+import "./FriendEvents.css";
 
 class FriendEvents extends Component {
   static propTypes = {
-    friendEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
-  }
+    friendEvents: PropTypes.arrayOf(PropTypes.any).isRequired
+  };
 
-  buildEventCards = events => events.map(event => (<EventCard key={event.ID} event={event} person={true} />))
+  buildEventCards = events =>
+    events.map(event => (
+      <EventCard
+        key={event.ID}
+        event={event}
+        person={true}
+        mobiletype={false}
+      />
+    ));
 
   render() {
     const eventCards = this.buildEventCards(this.props.friendEvents);
@@ -19,13 +27,12 @@ class FriendEvents extends Component {
 
     return (
       <div className="friend-events">
-        {eventCards.length ?
+        {eventCards.length ? (
           <div className="section-title">
-            {t('Events waar jouw vrienden deelnemen')}
-          </div> : null}
-        <div className="row">
-          {eventCards}
-        </div>
+            {t("Events waar jouw vrienden deelnemen")}
+          </div>
+        ) : null}
+        <div className="row">{eventCards}</div>
       </div>
     );
   }
@@ -35,8 +42,10 @@ function mapStateToProps(state) {
   const friendEvents = eventsSelectors.getFriendEvents(state);
 
   return {
-    friendEvents,
+    friendEvents
   };
 }
 
-export default connect(mapStateToProps)(translate('translations')(FriendEvents));
+export default connect(mapStateToProps)(
+  translate("translations")(FriendEvents)
+);

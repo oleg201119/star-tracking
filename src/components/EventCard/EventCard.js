@@ -1,56 +1,62 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
-import './Card.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { translate } from "react-i18next";
+import "./Card.css";
 
 class EventCard extends Component {
   static propTypes = {
     event: PropTypes.objectOf(PropTypes.any).isRequired,
     person: PropTypes.bool.isRequired,
-  }
+    mobiletype: PropTypes.bool.isRequired
+  };
 
   render() {
-    const { event, person, t } = this.props;
+    const { event, person, t, mobiletype } = this.props;
 
     return (
-      <div className={person ? 'event-card col-12 col-md-6 col-xl-4' : 'event-card col-12 col-md-12 col-xl-6'}>
-        <Link to={{
-          pathname: 'event',
-          state: {eventid: event.ID}}}
-          className="card-banner">
+      <div
+        className={`event-card col-12 ${
+          person ? "col-md-6 col-xl-4" : "col-md-12 col-xl-6"
+        } ${mobiletype ? "mobiletype" : ""}`}
+      >
+        <Link
+          to={{
+            pathname: "event",
+            state: { eventid: event.ID }
+          }}
+          className={`card-banner ${mobiletype ? "mobiletype" : ""}`}
+        >
           <img alt="banner" src="/img/card-banner.png" />
         </Link>
-        <div className="card-glass">
-          <div className="slogan">
-            {event.Name}
-          </div>
+        <div className={`card-glass ${mobiletype ? "mobiletype" : ""}`}>
+          <div className="slogan">{event.Name}</div>
         </div>
-        <div className={`card-star ${event.State}`}>
+        <div
+          className={`card-star ${event.State} ${
+            mobiletype ? "mobiletype" : ""
+          }`}
+        >
           <img alt={`${event.State}`} src={`/img/card-${event.State}.png`} />
         </div>
-        <div className={`event-info ${event.Type}`}>
+        <div
+          className={`event-info ${event.Type} ${
+            mobiletype ? "mobiletype" : ""
+          }`}
+        >
           <div className="event-content">
             <div className="event-time">
-              <div className="day">
-                {event.Day}
-              </div>
-              <div className="month">
-                {event.Month}
-              </div>
-              <div className="time">
-                {event.Time}
-              </div>
+              <div className="day">{event.Day}</div>
+              <div className="month">{event.Month}</div>
+              <div className="time">{event.Time}</div>
             </div>
             <div className="event-description">
-              <div className="title">
-                {event.Description}
-              </div>
+              <div className="title">{event.Description}</div>
               <div className="by-options">
                 <div className="by">
-                  {t('Door')}: {event.Organizer}
+                  {t("Door")}: {event.Organizer}
                 </div>
-                <div className="options">
+                <div className={`options ${mobiletype ? "mobiletype" : ""}`}>
                   <a href="#/" className="event-option">
                     <img alt="down" src="/img/card-calendar-down.png" />
                   </a>
@@ -77,4 +83,4 @@ class EventCard extends Component {
     );
   }
 }
-export default translate('translations')(EventCard);
+export default translate("translations")(EventCard);
