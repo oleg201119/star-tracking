@@ -276,7 +276,7 @@ class Tabbar extends Component {
             <RegisteredEvents />
           </TabPanel>
           <TabPanel>
-            <FavoritedEvents />>
+            <FavoritedEvents />
           </TabPanel>
           <TabPanel>
             <MyResultsEvents />

@@ -80,7 +80,8 @@ class EventResult extends Component {
       paginationsize: 5,
       hamburgermenu: false,
       menumode: "horizontal",
-      selectmenu: ""
+      selectmenu: "",
+      openkeys: []
     };
     this.drawmenu = this.drawmenu.bind(this);
     this.menuClick = this.menuClick.bind(this);
@@ -322,8 +323,10 @@ class EventResult extends Component {
   menuClick = menu => {
     this.setState({
       categoryID: menu.key,
-      selectmenu: menu.item.props.longname
+      selectmenu: menu.item.props.longname,
+      openkeys: []
     });
+
     this.showtable(
       this.state.eventID,
       menu.key,
@@ -333,6 +336,11 @@ class EventResult extends Component {
       this.state.sortDirection,
       this.state.currentlanguage
     );
+  };
+  onOpenChange = openKeys => {
+    this.setState({
+      openkeys: openKeys
+    });
   };
   drawmenu(menuarray) {
     const self = this;
@@ -455,7 +463,12 @@ class EventResult extends Component {
                     </div>
                   ) : null}
                   {!hiddencolumn || this.state.hamburgermenu ? (
-                    <Menu mode={this.state.menumode} onClick={this.menuClick}>
+                    <Menu
+                      mode={this.state.menumode}
+                      onClick={this.menuClick}
+                      onOpenChange={this.onOpenChange}
+                      openKeys={this.state.openkeys}
+                    >
                       {this.drawmenu(menuResult)}
                     </Menu>
                   ) : null}
