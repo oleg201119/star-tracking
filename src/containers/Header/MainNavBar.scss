@@ -34,15 +34,16 @@
 }
 .bm-burger-button {
   position: absolute;
-  width: 36px;
-  height: 32px;
+  width: 26px;
+  height: 25px;
   left: 20px;
-  top: 20px;
+  top: 26px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: white;
+  height: 6% !important;
 }
 
 /* Position and sizing of clickable cross button */
@@ -115,7 +116,7 @@
 
   .header-avatar {
     margin-left: auto;
-    margin-top: 18px;
+    margin-top: 20px;
     margin-right: 20px;
     img {
       width: 40px;

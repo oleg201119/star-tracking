@@ -243,17 +243,18 @@ class EventResult extends Component {
               columns: columns,
               data: data,
               page: page + 1,
-              loading: false
+              loading: false,
+              hamburgermenu: false
             });
           })
           .catch(function(error) {
             console.log(error);
-            self.setState({ loading: false });
+            self.setState({ loading: false, hamburgermenu: false });
           });
       })
       .catch(function(error) {
         console.log(error);
-        self.setState({ loading: false });
+        self.setState({ loading: false, hamburgermenu: false });
       });
   };
   priceFormatter(cell) {
