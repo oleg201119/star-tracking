@@ -1,61 +1,81 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
-import * as eventsSelectors from '../../store/events/reducer';
-import * as authSelectors from '../../store/auth/reducer';
-import './Eventpage.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { Map, GoogleApiWrapper } from "google-maps-react";
+import * as eventsSelectors from "../../store/events/reducer";
+import * as authSelectors from "../../store/auth/reducer";
+import "./Eventpage.css";
 
-const LoadingContainer = (props) => (
-  <div></div>
-)
+const LoadingContainer = props => <div />;
 
 class Eventpage extends Component {
   static propTypes = {
-    eventDetail: PropTypes.any.isRequired,
-  }
+    eventDetail: PropTypes.any.isRequired
+  };
   constructor() {
     super();
     this.state = {
       initialCenter: {
         lat: 37.774929,
-        lng: -122.419416,
+        lng: -122.419416
       },
-      location: '',
+      location: ""
     };
   }
   componentDidMount() {
     const self = this;
-    if (this.props.length !== 0 && this.state.location !== this.props.eventDetail.GoogleAddresss) {
+    if (
+      this.props.length !== 0 &&
+      this.state.location !== this.props.eventDetail.GoogleAddresss
+    ) {
       this.setState({ location: this.props.eventDetail.GoogleAddresss });
       const google = window.google;
       const geocoder = new google.maps.Geocoder();
       if (geocoder) {
-        geocoder.geocode({
-          'address': this.props.eventDetail.GoogleAddresss
-        }, function (results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            self.setState({initialCenter : {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()}});
+        geocoder.geocode(
+          {
+            address: this.props.eventDetail.GoogleAddresss
+          },
+          function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+              self.setState({
+                initialCenter: {
+                  lat: results[0].geometry.location.lat(),
+                  lng: results[0].geometry.location.lng()
+                }
+              });
+            }
           }
-        });
+        );
       }
     }
   }
   componentWillReceiveProps(nextProps) {
     const self = this;
-    if (nextProps.length !== 0 && this.state.location !== nextProps.eventDetail.GoogleAddresss) {
+    if (
+      nextProps.length !== 0 &&
+      this.state.location !== nextProps.eventDetail.GoogleAddresss
+    ) {
       this.setState({ location: nextProps.eventDetail.GoogleAddresss });
       const google = window.google;
       const geocoder = new google.maps.Geocoder();
       if (geocoder) {
-        geocoder.geocode({
-          'address': nextProps.eventDetail.GoogleAddresss
-        }, function (results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            self.setState({initialCenter: {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()}});
+        geocoder.geocode(
+          {
+            address: nextProps.eventDetail.GoogleAddresss
+          },
+          function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+              self.setState({
+                initialCenter: {
+                  lat: results[0].geometry.location.lat(),
+                  lng: results[0].geometry.location.lng()
+                }
+              });
+            }
           }
-        });
+        );
       }
     }
   }
@@ -63,7 +83,7 @@ class Eventpage extends Component {
     const { eventDetail, t, authToken } = this.props;
     return (
       <div>
-        {eventDetail.length !== 0 ?
+        {eventDetail.length !== 0 ? (
           <div>
             <div className="event-page d-none d-md-block">
               <div className="header-banner">
@@ -71,23 +91,15 @@ class Eventpage extends Component {
                   <div className="slogan-section">
                     <div className="container event-header">
                       <div className="event-name">
-                        <span className="eventname">
-                          {eventDetail.Name}
-                        </span>
+                        <span className="eventname">{eventDetail.Name}</span>
                         <span className="event-organizer">
-                          {t('Door')}: {eventDetail.Organizer}
+                          {t("Door")}: {eventDetail.Organizer}
                         </span>
                       </div>
                       <div className="event-time">
-                        <div className="day">
-                          {eventDetail.Day}
-                        </div>
-                        <div className="month">
-                          {eventDetail.Month}
-                        </div>
-                        <div className="time">
-                          {eventDetail.Time}
-                        </div>
+                        <div className="day">{eventDetail.Day}</div>
+                        <div className="month">{eventDetail.Month}</div>
+                        <div className="time">{eventDetail.Time}</div>
                       </div>
                     </div>
                   </div>
@@ -114,7 +126,7 @@ class Eventpage extends Component {
                         type="button"
                         className="btn btn-red btn-takepart"
                       >
-                        {t('Ik neem deel')}
+                        {t("Ik neem deel")}
                       </button>
                     </div>
                   </div>
@@ -123,12 +135,18 @@ class Eventpage extends Component {
                   <div className="row">
                     <div className="col-8">
                       <div className="event-description">
-                        <span className="event-description-detail">{eventDetail.Description}</span>
-                        <span className="event-description-detail">{eventDetail.FullDescription}</span>
+                        <span className="event-description-detail">
+                          {eventDetail.Description}
+                        </span>
+                        <span className="event-description-detail">
+                          {eventDetail.FullDescription}
+                        </span>
                       </div>
-                      {authToken !== '' && authToken !== 'error' ?
+                      {authToken !== "" && authToken !== "error" ? (
                         <div className="participate-friend">
-                          <span className="participate-friend-topic">{t('Deelnemende vrienden')}</span>
+                          <span className="participate-friend-topic">
+                            {t("Deelnemende vrienden")}
+                          </span>
                           <div className="friends">
                             <a href="#/" className="friend-link">
                               <img alt="avatar" src="/img/navbar-avatar.png" />
@@ -146,9 +164,12 @@ class Eventpage extends Component {
                               <img alt="avatar" src="/img/navbar-avatar.png" />
                             </a>
                           </div>
-                        </div> : null }
+                        </div>
+                      ) : null}
                       <div className="share-friend">
-                        <span className="share-friend-topic">{t('Deel met vrienden')}</span>
+                        <span className="share-friend-topic">
+                          {t("Deel met vrienden")}
+                        </span>
                         <div className="social-group-row">
                           <a href="#/" className="link-social">
                             <i className="fa fa-facebook" />
@@ -169,37 +190,46 @@ class Eventpage extends Component {
                       </div>
                       <div className="event-tags">
                         <span className="event-tags-topic">Tags</span>
-                        <span className="event-tags-detail">Loopwedstrijd,  Marathon, Oost-Vlaanderen, Wortegem-Petegem, 10km, 20km, 25km</span>
+                        <span className="event-tags-detail">
+                          Loopwedstrijd, Marathon, Oost-Vlaanderen,
+                          Wortegem-Petegem, 10km, 20km, 25km
+                        </span>
                       </div>
                     </div>
                     <div className="col-4">
                       <div className="event-date-time">
-                        <span className="event-date-time-topic">{t('Date and time')}</span>
+                        <span className="event-date-time-topic">
+                          {t("Date and time")}
+                        </span>
                       </div>
                       <div className="event-date-time-detail">
                         <div className="event-date-time-from">
                           <span>{eventDetail.From}</span>
                         </div>
-                        {eventDetail.To !== null ?
+                        {eventDetail.To !== null ? (
                           <div className="event-date-time-line">
                             <span>&nbsp;-&nbsp;</span>
-                          </div> : null }
-                        {eventDetail.To !== null ?
+                          </div>
+                        ) : null}
+                        {eventDetail.To !== null ? (
                           <div className="event-date-time-to">
                             <span>{eventDetail.To}</span>
-                          </div> : null }
+                          </div>
+                        ) : null}
                       </div>
                       <div className="event-location">
                         <div className="event-location-topic">
-                          <span>{t('Location')}</span>
+                          <span>{t("Location")}</span>
                         </div>
                         <div className="event-location-detail">
-                          {eventDetail.AddressName !== '' ?
+                          {eventDetail.AddressName !== "" ? (
                             <span>{eventDetail.AddressName},</span>
-                            : null }
+                          ) : null}
                           <span>{eventDetail.AddressStreet},</span>
                           <span>{eventDetail.AddressCity}</span>
-                          <a className="event-location-google" href="#/">{t('Route in Google Maps')}</a>
+                          <a className="event-location-google" href="#/">
+                            {t("Route in Google Maps")}
+                          </a>
                         </div>
                       </div>
                       <div className="event-google-map">
@@ -214,17 +244,23 @@ class Eventpage extends Component {
                       </div>
                       <div className="event-organisation">
                         <div className="event-organisation-topic">
-                          <span>{t('Organisatie')}</span>
+                          <span>{t("Organisatie")}</span>
                         </div>
-                        {eventDetail.OrganizerHasLogo ?
+                        {eventDetail.OrganizerHasLogo ? (
                           <div className="event-organisation-logo">
-                            <img src={eventDetail.OrganizerLogo} alt="Organizer-logo" />
-                          </div> : null }
+                            <img
+                              src={eventDetail.OrganizerLogo}
+                              alt="Organizer-logo"
+                            />
+                          </div>
+                        ) : null}
                         <div className="event-organisation-detail">
                           <span>{eventDetail.OrganizerMail}</span>
-                          {eventDetail.OrganizerWeb !== null ?
-                            <a className="event-organisation-web" href="#/">{eventDetail.OrganizerWeb}</a>
-                            : null }
+                          {eventDetail.OrganizerWeb !== null ? (
+                            <a className="event-organisation-web" href="#/">
+                              {eventDetail.OrganizerWeb}
+                            </a>
+                          ) : null}
                         </div>
                       </div>
                     </div>
@@ -238,9 +274,7 @@ class Eventpage extends Component {
                   <img alt="banner" src="/img/card-banner.png" />
                 </div>
                 <div className="card-glass">
-                  <div className="slogan">
-                    {eventDetail.Name}
-                  </div>
+                  <div className="slogan">{eventDetail.Name}</div>
                 </div>
                 <div className="card-star">
                   <img alt="star" src="/img/card-white-star.png" />
@@ -248,23 +282,15 @@ class Eventpage extends Component {
                 <div className={`event-info ${eventDetail.Type}`}>
                   <div className="event-content">
                     <div className="event-time">
-                      <div className="day">
-                        {eventDetail.Day}
-                      </div>
-                      <div className="month">
-                        {eventDetail.Month}
-                      </div>
-                      <div className="time">
-                        {eventDetail.Time}
-                      </div>
+                      <div className="day">{eventDetail.Day}</div>
+                      <div className="month">{eventDetail.Month}</div>
+                      <div className="time">{eventDetail.Time}</div>
                     </div>
                     <div className="event-description">
-                      <div className="title">
-                        {eventDetail.Description}
-                      </div>
+                      <div className="title">{eventDetail.Description}</div>
                       <div className="by-options">
                         <div className="by">
-                          {t('Door')}: {eventDetail.Organizer}
+                          {t("Door")}: {eventDetail.Organizer}
                         </div>
                       </div>
                     </div>
@@ -282,43 +308,61 @@ class Eventpage extends Component {
               <div className="description-block">
                 <div className="container">
                   <div className="event-description">
-                    <span className="event-description-detail">{eventDetail.Description}</span>
-                    <span className="event-description-detail">{eventDetail.FullDescription}</span>
+                    <span className="event-description-detail">
+                      {eventDetail.Description}
+                    </span>
+                    <span className="event-description-detail">
+                      {eventDetail.FullDescription}
+                    </span>
                   </div>
                 </div>
               </div>
               <div className="date-time-block">
                 <div className="container">
                   <div className="event-date-time">
-                    <span className="event-date-time-topic">{t('Date and time')}</span>
+                    <span className="event-date-time-topic">
+                      {t("Date and time")}
+                    </span>
                   </div>
                   <div className="event-date-time-detail">
                     <div className="event-date-time-from">
                       <span>{eventDetail.From}</span>
                     </div>
-                    {eventDetail.To !== null ?
+                    {eventDetail.To !== null ? (
                       <div className="event-date-time-line">
                         <span>&nbsp;-&nbsp;</span>
-                      </div> : null }
-                    {eventDetail.To !== null ?
+                      </div>
+                    ) : null}
+                    {eventDetail.To !== null ? (
                       <div className="event-date-time-to">
                         <span>{eventDetail.To}</span>
-                      </div> : null }
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </div>
               <div className="location-block">
                 <div className="container">
                   <div className="event-location-topic">
-                    <span>{t('Location')}</span>
+                    <span>{t("Location")}</span>
                   </div>
                   <div className="event-location-detail">
-                    {eventDetail.AddressName !== '' ?
-                      <div><span>{eventDetail.AddressName},</span></div>
-                      : null }
-                    <div><span>{eventDetail.AddressStreet},</span></div>
-                    <div><span>{eventDetail.AddressCity}</span></div>
-                    <div><a className="event-location-google" href="#/">{t('Route in Google Maps')}</a></div>
+                    {eventDetail.AddressName !== "" ? (
+                      <div>
+                        <span>{eventDetail.AddressName},</span>
+                      </div>
+                    ) : null}
+                    <div>
+                      <span>{eventDetail.AddressStreet},</span>
+                    </div>
+                    <div>
+                      <span>{eventDetail.AddressCity}</span>
+                    </div>
+                    <div>
+                      <a className="event-location-google" href="#/">
+                        {t("Route in Google Maps")}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -332,10 +376,12 @@ class Eventpage extends Component {
                   />
                 </div>
               </div>
-              {authToken !== '' && authToken !== 'error' ?
+              {authToken !== "" && authToken !== "error" ? (
                 <div className="participate-block">
                   <div className="container">
-                    <span className="participate-friend-topic">{t('Deelnemende vrienden')}</span>
+                    <span className="participate-friend-topic">
+                      {t("Deelnemende vrienden")}
+                    </span>
                     <div className="friends">
                       <a href="#/" className="friend-link">
                         <img alt="avatar" src="/img/navbar-avatar.png" />
@@ -354,11 +400,14 @@ class Eventpage extends Component {
                       </a>
                     </div>
                   </div>
-                </div> : null }
+                </div>
+              ) : null}
               <div className="share-friend-block">
                 <div className="container">
                   <div className="share-friend-text">
-                    <span className="share-friend-topic">{t('Deel met vrienden')}</span>
+                    <span className="share-friend-topic">
+                      {t("Deel met vrienden")}
+                    </span>
                   </div>
                   <div className="social-group-row">
                     <a href="#/" className="link-social">
@@ -382,37 +431,52 @@ class Eventpage extends Component {
               <div className="tags-block">
                 <div className="container">
                   <span className="event-tags-topic">Tags</span>
-                  <span className="event-tags-detail">Loopwedstrijd,  Marathon, Oost-Vlaanderen, Wortegem-Petegem, 10km, 20km, 25km</span>
+                  <span className="event-tags-detail">
+                    Loopwedstrijd, Marathon, Oost-Vlaanderen, Wortegem-Petegem,
+                    10km, 20km, 25km
+                  </span>
                 </div>
               </div>
               <div className="organisation-block">
                 <div className="container">
                   <div className="event-organisation-topic">
-                    <span>{t('Organisatie')}</span>
+                    <span>{t("Organisatie")}</span>
                   </div>
-                  {eventDetail.OrganizerHasLogo ?
+                  {eventDetail.OrganizerHasLogo ? (
                     <div className="event-organisation-logo">
-                      <img src={eventDetail.OrganizerLogo} alt="Organizer-logo" />
-                    </div> : null }
+                      <img
+                        src={eventDetail.OrganizerLogo}
+                        alt="Organizer-logo"
+                      />
+                    </div>
+                  ) : null}
                   <div className="event-organisation-detail">
                     <span>{eventDetail.OrganizerMail}</span>
                   </div>
-                  {eventDetail.OrganizerWeb !== null ?
-                    <div className="event-organisation-detail"><a className="event-organisation-web" href="#/">{eventDetail.OrganizerWeb}</a></div>
-                    : null }
+                  {eventDetail.OrganizerWeb !== null ? (
+                    <div className="event-organisation-detail">
+                      <a className="event-organisation-web" href="#/">
+                        {eventDetail.OrganizerWeb}
+                      </a>
+                    </div>
+                  ) : null}
                 </div>
               </div>
               <div className="button-block">
                 <div className="container">
-                  <div className="event-price"><span>{t('Vanaf')}&nbsp;&euro;{eventDetail.MinimumPrice}</span></div>
+                  <div className="event-price">
+                    <span>
+                      {t("Vanaf")}&nbsp;&euro;{eventDetail.MinimumPrice}
+                    </span>
+                  </div>
                   <button type="button" className="btn btn-red btn-takepart">
-                    {t('Ik neem deel')}
+                    {t("Ik neem deel")}
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          : null }
+        ) : null}
       </div>
     );
   }
@@ -423,11 +487,16 @@ function mapStateToProps(state) {
   const authToken = authSelectors.getLoginAuth(state);
 
   return {
-    eventDetail, authToken,
+    eventDetail,
+    authToken
   };
 }
 
-export default connect(mapStateToProps)(translate('translations')(GoogleApiWrapper({
-  apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo',
-  LoadingContainer: LoadingContainer,
-})(Eventpage)));
+export default connect(mapStateToProps)(
+  translate("translations")(
+    GoogleApiWrapper({
+      apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo",
+      LoadingContainer: LoadingContainer
+    })(Eventpage)
+  )
+);

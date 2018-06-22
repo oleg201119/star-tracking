@@ -23,7 +23,7 @@ class EventCard extends Component {
         <Link
           to={{
             pathname: "event",
-            state: { eventid: event.ID }
+            state: { eventid: event.ID, evnetType: event.Type }
           }}
           className={`card-banner ${mobiletype ? "mobiletype" : ""}`}
         >

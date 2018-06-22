@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
-import './Card.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { translate } from "react-i18next";
+import "./Card.css";
 
 class ResultCard extends Component {
   static propTypes = {
-    event: PropTypes.objectOf(PropTypes.any).isRequired,
-  }
+    event: PropTypes.objectOf(PropTypes.any).isRequired
+  };
 
   render() {
     const { event, t } = this.props;
@@ -16,27 +16,25 @@ class ResultCard extends Component {
       <div className={`event-info mb-2 ${event.Type}`}>
         <div className="event-content">
           <div className="event-time">
-            <div className="day">
-              {event.Day}
-            </div>
-            <div className="month">
-              {event.Month}
-            </div>
-            <div className="time">
-              {event.Time}
-            </div>
+            <div className="day">{event.Day}</div>
+            <div className="month">{event.Month}</div>
+            <div className="time">{event.Time}</div>
           </div>
           <div className="event-description">
-            <div className="title">
-              {event.Description}
-            </div>
+            <div className="title">{event.Description}</div>
             <div className="by-options">
               <div className="by">
-                {t('Door')}: {event.Organizer}
+                {t("Door")}: {event.Organizer}
               </div>
               <div className="options">
-                <Link to={{ pathname:"eventresult",state:{ eventID: event.ID}}} className="event-option">
-                  {t('Resultaten')}
+                <Link
+                  to={{
+                    pathname: "eventresult",
+                    state: { eventID: event.ID, eventType: event.Type }
+                  }}
+                  className="event-option"
+                >
+                  {t("Resultaten")}
                 </Link>
               </div>
             </div>
@@ -57,4 +55,4 @@ class ResultCard extends Component {
     );
   }
 }
-export default translate('translations')(ResultCard);
+export default translate("translations")(ResultCard);

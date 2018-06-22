@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { translate } from "react-i18next";
+import { connect } from "react-redux";
 import { slide as Menu } from "react-burger-menu";
 import "./MainNavBar.css";
 
@@ -13,6 +14,7 @@ class MainNavBar extends Component {
     };
   }
   componentDidMount() {
+    console.log(this.props);
     let temptoken = false;
     const token = sessionStorage.getItem("token");
     if (token) {
@@ -40,7 +42,11 @@ class MainNavBar extends Component {
             onStateChange={state => this.handleStateChange(state)}
           >
             <Link
-              to={tokenstate ? "person" : "homepage"}
+              to={
+                tokenstate
+                  ? { pathname: "person", state: { backstate: false } }
+                  : { pathname: "homepage", state: { backstate: false } }
+              }
               className="menu-link"
               onClick={() => {
                 this.closeMenu();
@@ -49,7 +55,7 @@ class MainNavBar extends Component {
               {t("Browse all events")}
             </Link>
             <Link
-              to="organizer"
+              to={{ pathname: "organizer", state: { backstate: false } }}
               className="menu-link"
               onClick={() => {
                 this.closeMenu();
@@ -58,7 +64,7 @@ class MainNavBar extends Component {
               {t("For organizers")}
             </Link>
             <Link
-              to="about"
+              to={{ pathname: "about", state: { backstate: false } }}
               className="menu-link"
               onClick={() => {
                 this.closeMenu();
@@ -67,7 +73,7 @@ class MainNavBar extends Component {
               {t("About Star Tracking")}
             </Link>
             <Link
-              to="contact"
+              to={{ pathname: "contact", state: { backstate: false } }}
               className="menu-link"
               onClick={() => {
                 this.closeMenu();
@@ -86,6 +92,19 @@ class MainNavBar extends Component {
               </Link>
             ) : null}
           </Menu>
+          {this.props.location.pathname !== "/" ? (
+            this.props.location.state === undefined ||
+            this.props.location.state.backstate === undefined ? (
+              <img
+                className="mobileheader-back"
+                alt="back-arrow"
+                src="/img/white-back.png"
+                onClick={() => {
+                  this.props.history.go(-1);
+                }}
+              />
+            ) : null
+          ) : null}
           <a href={tokenstate ? "/person" : "/"}>
             <img
               className="mobile-logo"
@@ -115,24 +134,37 @@ class MainNavBar extends Component {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link
-                    to={tokenstate ? "person" : "homepage"}
+                    to={
+                      tokenstate
+                        ? { pathname: "person", state: { backstate: false } }
+                        : { pathname: "homepage", state: { backstate: false } }
+                    }
                     className="menu-link"
                   >
                     {t("Browse all events")}
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="organizer" className="menu-link">
+                  <Link
+                    to={{ pathname: "organizer", state: { backstate: false } }}
+                    className="menu-link"
+                  >
                     {t("For organizers")}
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="about" className="menu-link">
+                  <Link
+                    to={{ pathname: "about", state: { backstate: false } }}
+                    className="menu-link"
+                  >
                     {t("About Star Tracking")}
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="contact" className="menu-link">
+                  <Link
+                    to={{ pathname: "contact", state: { backstate: false } }}
+                    className="menu-link"
+                  >
                     {t("Contact us")}
                   </Link>
                 </li>
@@ -160,4 +192,4 @@ class MainNavBar extends Component {
     );
   }
 }
-export default translate("translations")(MainNavBar);
+export default translate("translations")(connect()(MainNavBar));

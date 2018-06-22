@@ -43,7 +43,7 @@
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: white;
-  height: 6% !important;
+  height: 5% !important;
 }
 
 /* Position and sizing of clickable cross button */
@@ -112,6 +112,12 @@
     transform: translateX(-50%);
     position: absolute;
     top: 18px;
+  }
+
+  .mobileheader-back {
+    height: 28px;
+    margin-left: 60px;
+    margin-top: 24px;
   }
 
   .header-avatar {

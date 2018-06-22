@@ -63,7 +63,7 @@
   border-radius: 0;
   @media (min-width: 768px) {
     padding: 0;
-    padding-left: 75px;
+    padding-left: 90px;
   }
   .rc-menu-item {
     cursor: pointer;
@@ -82,7 +82,7 @@
 
     &.rc-menu-item-active {
       border-width: 0px;
-      background-color: red;
+      background-color: #ea1f37;
       color: white;
     }
   }
@@ -106,7 +106,11 @@
   background-color: #f5f5f5;
   
   .rc-menu-submenu-title {
-    padding: 7px 20px 7px 7px !important;
+    padding: 7px 30px 7px 7px !important;
+    min-width: 65px;
+    .rc-menu-submenu-arrow {
+      right: 13px;
+    }
   }
   .rc-menu-item {
     margin: 0px;
@@ -119,7 +123,7 @@
       color: white;
   
       .rc-menu-submenu-title {
-        background-color: red;
+        background-color: #ea1f37;
       }
     }
   }

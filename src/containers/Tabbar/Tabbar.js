@@ -61,7 +61,11 @@ class Tabbar extends Component {
                   onStateChange={state => this.handleStateChange(state)}
                 >
                   <Link
-                    to={tokenstate ? "person" : "homepage"}
+                    to={
+                      tokenstate
+                        ? { pathname: "person", state: { backstate: false } }
+                        : { pathname: "homepage", state: { backstate: false } }
+                    }
                     className="menu-link"
                     onClick={() => {
                       this.closeMenu();
@@ -70,7 +74,7 @@ class Tabbar extends Component {
                     {t("Browse all events")}
                   </Link>
                   <Link
-                    to="organizer"
+                    to={{ pathname: "organizer", state: { backstate: false } }}
                     className="menu-link"
                     onClick={() => {
                       this.closeMenu();
@@ -79,7 +83,7 @@ class Tabbar extends Component {
                     {t("For organizers")}
                   </Link>
                   <Link
-                    to="about"
+                    to={{ pathname: "about", state: { backstate: false } }}
                     className="menu-link"
                     onClick={() => {
                       this.closeMenu();
@@ -88,7 +92,7 @@ class Tabbar extends Component {
                     {t("About Star Tracking")}
                   </Link>
                   <Link
-                    to="contact"
+                    to={{ pathname: "contact", state: { backstate: false } }}
                     className="menu-link"
                     onClick={() => {
                       this.closeMenu();
@@ -200,24 +204,52 @@ class Tabbar extends Component {
                     <ul className="navbar-nav ml-auto">
                       <li className="nav-item">
                         <Link
-                          to={tokenstate ? "person" : "homepage"}
+                          to={
+                            tokenstate
+                              ? {
+                                  pathname: "person",
+                                  state: { backstate: false }
+                                }
+                              : {
+                                  pathname: "homepage",
+                                  state: { backstate: false }
+                                }
+                          }
                           className="menu-link"
                         >
                           {t("Browse all events")}
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link to="organizer" className="menu-link">
+                        <Link
+                          to={{
+                            pathname: "organizer",
+                            state: { backstate: false }
+                          }}
+                          className="menu-link"
+                        >
                           {t("For organizers")}
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link to="about" className="menu-link">
+                        <Link
+                          to={{
+                            pathname: "about",
+                            state: { backstate: false }
+                          }}
+                          className="menu-link"
+                        >
                           {t("About Star Tracking")}
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link to="contact" className="menu-link">
+                        <Link
+                          to={{
+                            pathname: "contact",
+                            state: { backstate: false }
+                          }}
+                          className="menu-link"
+                        >
                           {t("Contact us")}
                         </Link>
                       </li>

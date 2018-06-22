@@ -9,7 +9,7 @@ class Header extends Component {
       <div className="header">
         <div className="page-header">
           <LanguageNavBar />
-          <MainNavBar />
+          <MainNavBar {...this.props} />
         </div>
       </div>
     );

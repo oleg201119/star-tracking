@@ -69,6 +69,7 @@ class EventResult extends Component {
       data: [],
       sizePerPage: 25,
       eventID: this.props.location.state.eventID,
+      eventType: this.props.location.state.eventType,
       categoryID: "",
       columns: [],
       sortColumn: -1,
@@ -102,7 +103,9 @@ class EventResult extends Component {
     this.props.dispatch(
       eventActions.fetchEventDetail(this.state.eventID, currentlanguage)
     );
-    this.props.dispatch(eventActions.fetchSimilarEvents(currentlanguage));
+    this.props.dispatch(
+      eventActions.fetchSimilarEvents(this.state.eventType, currentlanguage)
+    );
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
   }
@@ -119,7 +122,9 @@ class EventResult extends Component {
       this.props.dispatch(
         eventresultActions.fetchMenuResult(this.state.eventID, nextlanguage)
       );
-      this.props.dispatch(eventActions.fetchSimilarEvents(nextlanguage));
+      this.props.dispatch(
+        eventActions.fetchSimilarEvents(this.state.eventType, nextlanguage)
+      );
       this.props.dispatch(
         eventActions.fetchEventDetail(this.state.eventID, nextlanguage)
       );

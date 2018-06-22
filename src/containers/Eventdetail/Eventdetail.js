@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
-import * as eventActions from '../../store/events/actions';
-import SimilarEvents from './SimilarEvents';
-import Eventpage from './Eventpage';
-import '../Homeperson/Homeperson.css';
-import './Eventdetail.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { translate } from "react-i18next";
+import * as eventActions from "../../store/events/actions";
+import SimilarEvents from "./SimilarEvents";
+import Eventpage from "./Eventpage";
+import "../Homeperson/Homeperson.css";
+import "./Eventdetail.css";
 
 class Eventdetail extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-  }
+    dispatch: PropTypes.func.isRequired
+  };
   constructor() {
     super();
     this.state = {
-      currentlanguage: '',
+      currentlanguage: ""
     };
   }
 
@@ -26,10 +26,20 @@ class Eventdetail extends Component {
     }
     this.setState({ currentlanguage: currentlanguage });
     if (this.props.location.state !== undefined) {
-      this.props.dispatch(eventActions.fetchEventDetail(this.props.location.state.eventid, currentlanguage));
+      this.props.dispatch(
+        eventActions.fetchEventDetail(
+          this.props.location.state.eventid,
+          currentlanguage
+        )
+      );
     }
     window.scrollTo(0, 0);
-    this.props.dispatch(eventActions.fetchSimilarEvents(currentlanguage));
+    this.props.dispatch(
+      eventActions.fetchSimilarEvents(
+        this.props.location.state.eventType,
+        currentlanguage
+      )
+    );
   }
   componentWillReceiveProps(nextProps) {
     let nextlanguage = nextProps.i18n.language;
@@ -39,9 +49,19 @@ class Eventdetail extends Component {
     if (nextlanguage !== this.state.currentlanguage) {
       this.setState({ currentlanguage: nextlanguage });
       if (this.props.location.state !== undefined) {
-        this.props.dispatch(eventActions.fetchEventDetail(this.props.location.state.eventid, nextlanguage));
+        this.props.dispatch(
+          eventActions.fetchEventDetail(
+            this.props.location.state.eventid,
+            nextlanguage
+          )
+        );
       }
-      this.props.dispatch(eventActions.fetchSimilarEvents(nextlanguage));
+      this.props.dispatch(
+        eventActions.fetchSimilarEvents(
+          this.props.location.state.eventType,
+          nextlanguage
+        )
+      );
     }
   }
   render() {
@@ -55,4 +75,4 @@ class Eventdetail extends Component {
     );
   }
 }
-export default connect()(translate('translations')(Eventdetail));
+export default connect()(translate("translations")(Eventdetail));
