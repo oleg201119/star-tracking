@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import * as eventsSelectors from "../../store/events/reducer";
 import EventCard from "../../components/EventCard/EventCard";
+import EventLoadingCard from "../Common/EventLoadingCard";
 import "./FriendEvents.css";
 
 class FriendEvents extends Component {
   static propTypes = {
-    friendEvents: PropTypes.arrayOf(PropTypes.any).isRequired
+    friendEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
+    friendEventsFlag: PropTypes.bool.isRequired
   };
 
   buildEventCards = events =>
@@ -26,13 +28,24 @@ class FriendEvents extends Component {
     const { t } = this.props;
 
     return (
-      <div className="friend-events">
-        {eventCards.length ? (
-          <div className="section-title">
-            {t("Events waar jouw vrienden deelnemen")}
+      <div>
+        {this.props.friendEventsFlag ? (
+          <div className="friend-events">
+            <div className="section-title">
+              {t("Events waar jouw vrienden deelnemen")}
+            </div>
+            <EventLoadingCard person={true} />
           </div>
-        ) : null}
-        <div className="row">{eventCards}</div>
+        ) : (
+          <div className="friend-events">
+            {eventCards.length ? (
+              <div className="section-title">
+                {t("Events waar jouw vrienden deelnemen")}
+              </div>
+            ) : null}
+            <div className="row">{eventCards}</div>
+          </div>
+        )}
       </div>
     );
   }
@@ -40,9 +53,11 @@ class FriendEvents extends Component {
 
 function mapStateToProps(state) {
   const friendEvents = eventsSelectors.getFriendEvents(state);
+  const friendEventsFlag = eventsSelectors.getFriendEventsFlag(state);
 
   return {
-    friendEvents
+    friendEvents,
+    friendEventsFlag
   };
 }
 

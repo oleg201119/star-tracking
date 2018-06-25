@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import * as eventsSelectors from "../../store/events/reducer";
 import EventCard from "../../components/EventCard/EventCard";
+import EventLoadingCard from "../Common/EventLoadingCard";
 
 class RegisteredEvents extends Component {
   static propTypes = {
-    registeredEvents: PropTypes.arrayOf(PropTypes.any).isRequired
+    registeredEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
+    registeredEventsFlag: PropTypes.bool.isRequired
   };
 
   buildEventCards = events =>
@@ -26,21 +28,34 @@ class RegisteredEvents extends Component {
             <div className="slogan-section">
               <div className="container">
                 <span className="slogan">
-                  {eventCards.length ? t("My registrations") : null}
+                  {this.props.registeredEventsFlag
+                    ? t("My registrations")
+                    : eventCards.length
+                      ? t("My registrations")
+                      : null}
                 </span>
               </div>
             </div>
           </div>
         </div>
         <div className="container">
-          <div className="friend-events">
-            {eventCards.length ? (
+          {this.props.registeredEventsFlag ? (
+            <div className="friend-events">
               <div className="section-title mobile-person-title">
                 {t("My registrations")}
               </div>
-            ) : null}
-            <div className="row">{eventCards}</div>
-          </div>
+              <EventLoadingCard person={true} />
+            </div>
+          ) : (
+            <div className="friend-events">
+              {eventCards.length ? (
+                <div className="section-title mobile-person-title">
+                  {t("My registrations")}
+                </div>
+              ) : null}
+              <div className="row">{eventCards}</div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -49,9 +64,11 @@ class RegisteredEvents extends Component {
 
 function mapStateToProps(state) {
   const registeredEvents = eventsSelectors.getRegisteredEvents(state);
+  const registeredEventsFlag = eventsSelectors.getRegisteredEventsFlag(state);
 
   return {
-    registeredEvents
+    registeredEvents,
+    registeredEventsFlag
   };
 }
 

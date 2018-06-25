@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import * as eventsSelectors from "../../store/events/reducer";
 import EventCard from "../../components/EventCard/EventCard";
+import EventLoadingCard from "../Common/EventLoadingCard";
 
 class FavoritedEvents extends Component {
   static propTypes = {
-    registeredEvents: PropTypes.arrayOf(PropTypes.any).isRequired
+    favoriteEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
+    favoriteEventsFlag: PropTypes.bool.isRequired
   };
 
   buildEventCards = events =>
@@ -16,7 +18,7 @@ class FavoritedEvents extends Component {
     ));
 
   render() {
-    const eventCards = this.buildEventCards(this.props.registeredEvents);
+    const eventCards = this.buildEventCards(this.props.favoriteEvents);
     const { t } = this.props;
 
     return (
@@ -26,21 +28,34 @@ class FavoritedEvents extends Component {
             <div className="slogan-section">
               <div className="container">
                 <span className="slogan">
-                  {eventCards.length ? t("Favorited") : null}
+                  {this.props.favoriteEventsFlag
+                    ? t("Favorited")
+                    : eventCards.length
+                      ? t("Favorited")
+                      : null}
                 </span>
               </div>
             </div>
           </div>
         </div>
         <div className="container">
-          <div className="friend-events">
-            {eventCards.length ? (
+          {this.props.favoriteEventsFlag ? (
+            <div className="friend-events">
               <div className="section-title mobile-person-title">
                 {t("Favorited")}
               </div>
-            ) : null}
-            <div className="row">{eventCards}</div>
-          </div>
+              <EventLoadingCard person={true} />
+            </div>
+          ) : (
+            <div className="friend-events">
+              {eventCards.length ? (
+                <div className="section-title mobile-person-title">
+                  {t("Favorited")}
+                </div>
+              ) : null}
+              <div className="row">{eventCards}</div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -48,10 +63,12 @@ class FavoritedEvents extends Component {
 }
 
 function mapStateToProps(state) {
-  const registeredEvents = eventsSelectors.getRegisteredEvents(state);
+  const favoriteEvents = eventsSelectors.getFavoriteEvents(state);
+  const favoriteEventsFlag = eventsSelectors.getFavoriteEventsFlag(state);
 
   return {
-    registeredEvents
+    favoriteEvents,
+    favoriteEventsFlag
   };
 }
 

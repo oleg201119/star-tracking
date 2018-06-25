@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import * as eventsSelectors from "../../store/events/reducer";
 import EventCard from "../../components/EventCard/EventCard";
+import EventLoadingCard from "../Common/EventLoadingCard";
 
 class MyResultsEvents extends Component {
   static propTypes = {
-    myresultsEvents: PropTypes.arrayOf(PropTypes.any).isRequired
+    myresultsEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
+    myresultsEventsFlag: PropTypes.bool.isRequired
   };
 
   buildEventCards = events =>
@@ -26,21 +28,34 @@ class MyResultsEvents extends Component {
             <div className="slogan-section">
               <div className="container">
                 <span className="slogan">
-                  {eventCards.length ? t("My results") : null}
+                  {this.props.myresultsEventsFlag
+                    ? t("My results")
+                    : eventCards.length
+                      ? t("My results")
+                      : null}
                 </span>
               </div>
             </div>
           </div>
         </div>
         <div className="container">
-          <div className="friend-events">
-            {eventCards.length ? (
+          {this.props.myresultsEventsFlag ? (
+            <div className="friend-events">
               <div className="section-title mobile-person-title">
                 {t("My results")}
               </div>
-            ) : null}
-            <div className="row">{eventCards}</div>
-          </div>
+              <EventLoadingCard person={true} />
+            </div>
+          ) : (
+            <div className="friend-events">
+              {eventCards.length ? (
+                <div className="section-title mobile-person-title">
+                  {t("My results")}
+                </div>
+              ) : null}
+              <div className="row">{eventCards}</div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -49,9 +64,11 @@ class MyResultsEvents extends Component {
 
 function mapStateToProps(state) {
   const myresultsEvents = eventsSelectors.getMyResultsEvents(state);
+  const myresultsEventsFlag = eventsSelectors.getMyResultsEventsFlag(state);
 
   return {
-    myresultsEvents
+    myresultsEvents,
+    myresultsEventsFlag
   };
 }
 

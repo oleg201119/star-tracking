@@ -1,25 +1,48 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
-import * as eventActions from '../../store/events/actions';
-import HeaderBanner from '../Common/HeaderBanner';
-import FooterBanner from '../Common/FooterBanner';
-import EventSearch from '../Common/EventSearch';
-import MySelectedEvents from './MySelectedEvents';
-import FriendEvents from './FriendEvents';
-import CategoryEvents from './CategoryEvents';
-import PastEvents from './PastEvents';
-import './Homeperson.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { translate } from "react-i18next";
+import * as eventActions from "../../store/events/actions";
+import HeaderBanner from "../Common/HeaderBanner";
+import FooterBanner from "../Common/FooterBanner";
+import EventSearch from "../Common/EventSearch";
+import MySelectedEvents from "./MySelectedEvents";
+import FriendEvents from "./FriendEvents";
+import CategoryEvents from "./CategoryEvents";
+import PastEvents from "./PastEvents";
+import "./Homeperson.css";
 
 class Homeperson extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired
+  };
+  constructor() {
+    super();
+    this.state = {
+      currentlanguage: ""
+    };
   }
 
   componentDidMount() {
-    this.props.dispatch(eventActions.fetchMySelectedEvents(this.props.i18n.language));
-    this.props.dispatch(eventActions.fetchFriendEvents(this.props.i18n.language));
+    let currentlanguage = this.props.i18n.language;
+    if (this.props.i18n.language.length > 2) {
+      currentlanguage = this.props.i18n.language.substring(0, 2);
+    }
+    this.setState({ currentlanguage: currentlanguage });
+    window.scrollTo(0, 0);
+    this.props.dispatch(eventActions.fetchMySelectedEvents(currentlanguage));
+    this.props.dispatch(eventActions.fetchFriendEvents(currentlanguage));
+  }
+  componentWillReceiveProps(nextProps) {
+    let nextlanguage = nextProps.i18n.language;
+    if (nextProps.i18n.language.length > 2) {
+      nextlanguage = nextProps.i18n.language.substring(0, 2);
+    }
+    if (nextlanguage !== this.state.currentlanguage) {
+      this.setState({ currentlanguage: nextlanguage });
+      this.props.dispatch(eventActions.fetchMySelectedEvents(nextlanguage));
+      this.props.dispatch(eventActions.fetchFriendEvents(nextlanguage));
+    }
   }
 
   render() {
@@ -51,4 +74,4 @@ class Homeperson extends Component {
   }
 }
 
-export default connect()(translate('translations')(Homeperson));
+export default connect()(translate("translations")(Homeperson));

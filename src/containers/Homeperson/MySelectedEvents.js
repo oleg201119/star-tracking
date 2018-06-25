@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import * as eventsSelectors from "../../store/events/reducer";
 import EventCard from "../../components/EventCard/EventCard";
+import EventLoadingCard from "../Common/EventLoadingCard";
 import "./MySelectedEvents.css";
 
 class MySelectedEvents extends Component {
   static propTypes = {
-    myselectedEvents: PropTypes.arrayOf(PropTypes.any).isRequired
+    myselectedEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
+    myselectedEventsFlag: PropTypes.bool.isRequired
   };
 
   buildEventCards = events =>
@@ -19,7 +21,6 @@ class MySelectedEvents extends Component {
   render() {
     const eventCards = this.buildEventCards(this.props.myselectedEvents);
     const { t } = this.props;
-
     return (
       <div>
         <div className="header-banner mobile-person-header">
@@ -27,21 +28,34 @@ class MySelectedEvents extends Component {
             <div className="slogan-section">
               <div className="container">
                 <span className="slogan">
-                  {eventCards.length ? t("Events geselecteerd voor jou") : null}
+                  {this.props.myselectedEventsFlag
+                    ? t("Events geselecteerd voor jou")
+                    : eventCards.length
+                      ? t("Events geselecteerd voor jou")
+                      : null}
                 </span>
               </div>
             </div>
           </div>
         </div>
         <div className="container">
-          <div className="person-events">
-            {eventCards.length ? (
+          {this.props.myselectedEventsFlag ? (
+            <div className="person-events">
               <div className="section-title mobile-person-title">
                 {t("Events geselecteerd voor jou")}
               </div>
-            ) : null}
-            <div className="row">{eventCards}</div>
-          </div>
+              <EventLoadingCard person={true} />
+            </div>
+          ) : (
+            <div className="person-events">
+              {eventCards.length ? (
+                <div className="section-title mobile-person-title">
+                  {t("Events geselecteerd voor jou")}
+                </div>
+              ) : null}
+              <div className="row">{eventCards}</div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -50,9 +64,11 @@ class MySelectedEvents extends Component {
 
 function mapStateToProps(state) {
   const myselectedEvents = eventsSelectors.getMySelectedEvents(state);
+  const myselectedEventsFlag = eventsSelectors.getMySelectedEventsFlag(state);
 
   return {
-    myselectedEvents
+    myselectedEvents,
+    myselectedEventsFlag
   };
 }
 

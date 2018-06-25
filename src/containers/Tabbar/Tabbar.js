@@ -26,7 +26,6 @@ class Tabbar extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props);
     let temptoken = false;
     const token = sessionStorage.getItem("token");
     if (token) {

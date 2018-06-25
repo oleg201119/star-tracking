@@ -323,6 +323,7 @@
           letter-spacing: 0.3px;
           color: var(--dark);
           text-decoration: underline;
+          word-wrap: break-word;
         }
       }
     }
@@ -631,7 +632,7 @@
           letter-spacing: 0.3px;
           color: var(--dark);
           text-decoration: underline;
-          
+          word-wrap: break-word;
         }
       }
     }

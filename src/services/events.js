@@ -7,7 +7,7 @@ export default class EventService {
 
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: false
+      errortype: true
     });
     return data;
   }
@@ -16,7 +16,7 @@ export default class EventService {
     const url = `${API_ENDPOINT}/App/Events/LiveEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: false
+      errortype: true
     });
     return data;
   }
@@ -25,7 +25,7 @@ export default class EventService {
     const url = `${API_ENDPOINT}/App/Events/ResultEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: false
+      errortype: true
     });
     return data;
   }
@@ -34,7 +34,7 @@ export default class EventService {
     const url = `${API_ENDPOINT}/App/Events/MySelectedEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: false
+      errortype: true
     });
     return data;
   }
@@ -43,7 +43,7 @@ export default class EventService {
     const url = `${API_ENDPOINT}/App/Events/MyFriendsEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: false
+      errortype: true
     });
     return data;
   }
@@ -52,7 +52,16 @@ export default class EventService {
     const url = `${API_ENDPOINT}/App/Events/RegisteredEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: false
+      errortype: true
+    });
+    return data;
+  }
+
+  static async getFavoriteEvents(id, maxNumber, language) {
+    const url = `${API_ENDPOINT}/App/Events/FavoriteEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
+    const data = await ServiceSecurity.GetFetch({
+      url: url,
+      errortype: true
     });
     return data;
   }
@@ -61,7 +70,7 @@ export default class EventService {
     const url = `${API_ENDPOINT}/App/Events/MyResultEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: false
+      errortype: true
     });
     return data;
   }
@@ -70,7 +79,7 @@ export default class EventService {
     const url = `${API_ENDPOINT}/App/Events/EventsByType/${id}?type=${type}&maxNumber=${maxNumber}&language=${language}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: false
+      errortype: true
     });
     return data;
   }

@@ -37,6 +37,7 @@ class Person extends Component {
     this.props.dispatch(eventActions.fetchFriendEvents(currentlanguage));
     this.props.dispatch(eventActions.fetchRegisteredEvents(currentlanguage));
     this.props.dispatch(eventActions.fetchMyResultsEvents(currentlanguage));
+    this.props.dispatch(eventActions.fetchFavoriteEvents(currentlanguage));
   }
   componentWillReceiveProps(nextProps) {
     let nextlanguage = nextProps.i18n.language;
@@ -49,6 +50,7 @@ class Person extends Component {
       this.props.dispatch(eventActions.fetchFriendEvents(nextlanguage));
       this.props.dispatch(eventActions.fetchRegisteredEvents(nextlanguage));
       this.props.dispatch(eventActions.fetchMyResultsEvents(nextlanguage));
+      this.props.dispatch(eventActions.fetchFavoriteEvents(nextlanguage));
     }
   }
   render() {

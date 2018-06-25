@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import * as eventsSelectors from "../../store/events/reducer";
 import EventCard from "../../components/EventCard/EventCard";
+import EventLoadingCard from "../Common/EventLoadingCard";
 import "./SimilarEvents.css";
 
 class SimilarEvents extends Component {
   static propTypes = {
-    similarEvents: PropTypes.arrayOf(PropTypes.any).isRequired
+    similarEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
+    similarEventsFlag: PropTypes.bool.isRequired
   };
 
   buildEventCards = events =>
@@ -26,11 +28,24 @@ class SimilarEvents extends Component {
     const eventCards = this.buildEventCards(this.props.similarEvents);
 
     return (
-      <div className="similar-events">
-        {eventCards.length ? (
-          <div className="section-title">{t("Gelijkaardige activiteiten")}</div>
-        ) : null}
-        <div className="row">{eventCards}</div>
+      <div>
+        {this.props.similarEventsFlag ? (
+          <div className="similar-events">
+            <div className="section-title">
+              {t("Gelijkaardige activiteiten")}
+            </div>
+            <EventLoadingCard person={true} />
+          </div>
+        ) : (
+          <div className="similar-events">
+            {eventCards.length ? (
+              <div className="section-title">
+                {t("Gelijkaardige activiteiten")}
+              </div>
+            ) : null}
+            <div className="row">{eventCards}</div>
+          </div>
+        )}
       </div>
     );
   }
@@ -38,9 +53,11 @@ class SimilarEvents extends Component {
 
 function mapStateToProps(state) {
   const similarEvents = eventsSelectors.getSimilarEvents(state);
+  const similarEventsFlag = eventsSelectors.getSimilarEventsFlag(state);
 
   return {
-    similarEvents
+    similarEvents,
+    similarEventsFlag
   };
 }
 
