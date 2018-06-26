@@ -7,7 +7,6 @@ const initialState = Map({
   upcomingEvents: List(),
   upcomingEventsFlag: false,
   liveEvents: List(),
-  liveEventsFlag: false,
   resultEvents: List(),
   resultEventsFlag: false,
   myselectedEvents: List(),
@@ -38,10 +37,6 @@ export default function reduce(state = initialState, action = {}) {
     case types.LIVE_EVENTS_FETCHED:
       return state.merge({
         liveEvents: action.events
-      });
-    case types.LIVE_EVENTS_LOADING:
-      return state.merge({
-        liveEventsFlag: action.loading
       });
     case types.RESULT_EVENTS_FETCHED:
       return state.merge({
@@ -119,10 +114,6 @@ export function getUpcomingEventsFlag(state) {
 
 export function getLiveEvents(state) {
   return state.events.get("liveEvents").toJS();
-}
-
-export function getLiveEventsFlag(state) {
-  return state.events.get("liveEventsFlag");
 }
 
 export function getResultEvents(state) {

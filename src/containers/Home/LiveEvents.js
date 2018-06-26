@@ -4,13 +4,11 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import * as eventsSelectors from "../../store/events/reducer";
 import InfoCard from "../../components/EventCard/InfoCard";
-import ResultLoadingCard from "../Common/ResultLoadingCard";
 import "./LiveEvents.css";
 
 class LiveEvents extends Component {
   static propTypes = {
-    liveEvents: PropTypes.arrayOf(PropTypes.any).isRequired,
-    liveEventsFlag: PropTypes.bool.isRequired
+    liveEvents: PropTypes.arrayOf(PropTypes.any).isRequired
   };
 
   buildEventCards = events =>
@@ -21,20 +19,11 @@ class LiveEvents extends Component {
     const { t } = this.props;
 
     return (
-      <div>
-        {this.props.liveEventsFlag ? (
-          <div className="live-events">
-            <div className="section-title">{t("Volg nu live!")}</div>
-            <ResultLoadingCard />
-          </div>
-        ) : (
-          <div className="live-events">
-            {eventCards.length ? (
-              <div className="section-title">{t("Volg nu live!")}</div>
-            ) : null}
-            <div className="row">{eventCards}</div>
-          </div>
-        )}
+      <div className="live-events">
+        {eventCards.length ? (
+          <div className="section-title">{t("Volg nu live!")}</div>
+        ) : null}
+        <div className="row">{eventCards}</div>
       </div>
     );
   }
@@ -42,11 +31,9 @@ class LiveEvents extends Component {
 
 function mapStateToProps(state) {
   const liveEvents = eventsSelectors.getLiveEvents(state);
-  const liveEventsFlag = eventsSelectors.getLiveEventsFlag(state);
 
   return {
-    liveEvents,
-    liveEventsFlag
+    liveEvents
   };
 }
 

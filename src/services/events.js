@@ -16,7 +16,7 @@ export default class EventService {
     const url = `${API_ENDPOINT}/App/Events/LiveEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
     const data = await ServiceSecurity.GetFetch({
       url: url,
-      errortype: true
+      errortype: false
     });
     return data;
   }

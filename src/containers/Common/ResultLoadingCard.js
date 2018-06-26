@@ -6,10 +6,10 @@ class ResultLoadingCard extends Component {
     return (
       <div className="row">
         <div className="mb-2 result-loading-card">
-          <img alt="event-loading-img" src="/img/event-loading-img.png" />
+          <img alt="event-loading-img" src="/img/event-loading-img-small.png" />
         </div>
         <div className="mb-2 result-loading-card">
-          <img alt="event-loading-img" src="/img/event-loading-img.png" />
+          <img alt="event-loading-img" src="/img/event-loading-img-small.png" />
         </div>
       </div>
     );

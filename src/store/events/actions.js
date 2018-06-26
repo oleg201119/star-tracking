@@ -27,16 +27,10 @@ export function fetchUpcomingEvents(language) {
 export function fetchLiveEvents(language) {
   return async (dispatch, getState) => {
     try {
-      let loading = true;
-      dispatch({ type: types.LIVE_EVENTS_LOADING, loading });
       const id = getState().events.get("id");
       const maxNumber = getState().events.get("maxNumber");
       const events = await EventService.getLiveEvents(id, maxNumber, language);
-      if (events !== false) {
-        dispatch({ type: types.LIVE_EVENTS_FETCHED, events });
-      }
-      loading = false;
-      dispatch({ type: types.LIVE_EVENTS_LOADING, loading });
+      dispatch({ type: types.LIVE_EVENTS_FETCHED, events });
     } catch (error) {
       console.error(error);
     }
