@@ -34,12 +34,6 @@ class Eventdetail extends Component {
       );
     }
     window.scrollTo(0, 0);
-    this.props.dispatch(
-      eventActions.fetchSimilarEvents(
-        this.props.location.state.eventType,
-        currentlanguage
-      )
-    );
   }
   componentWillReceiveProps(nextProps) {
     let nextlanguage = nextProps.i18n.language;
@@ -56,12 +50,6 @@ class Eventdetail extends Component {
           )
         );
       }
-      this.props.dispatch(
-        eventActions.fetchSimilarEvents(
-          this.props.location.state.eventType,
-          nextlanguage
-        )
-      );
     }
   }
   render() {

@@ -32,7 +32,7 @@ class Layout extends Component {
           <Route path="/event" render={props => <Eventdetail {...props} />} />
           <Route path="/policy" render={props => <Policy {...props} />} />
           <Route
-            path="/eventresult"
+            path="/eventresult/:id"
             render={props => <EventResult {...props} />}
           />
         </Switch>

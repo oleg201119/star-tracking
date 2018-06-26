@@ -68,8 +68,7 @@ class EventResult extends Component {
       page: 1,
       data: [],
       sizePerPage: 25,
-      eventID: this.props.location.state.eventID,
-      eventType: this.props.location.state.eventType,
+      eventID: this.props.match.params.id,
       categoryID: "",
       columns: [],
       sortColumn: -1,
@@ -103,9 +102,6 @@ class EventResult extends Component {
     this.props.dispatch(
       eventActions.fetchEventDetail(this.state.eventID, currentlanguage)
     );
-    this.props.dispatch(
-      eventActions.fetchSimilarEvents(this.state.eventType, currentlanguage)
-    );
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
   }
@@ -123,20 +119,17 @@ class EventResult extends Component {
         eventresultActions.fetchMenuResult(this.state.eventID, nextlanguage)
       );
       this.props.dispatch(
-        eventActions.fetchSimilarEvents(this.state.eventType, nextlanguage)
-      );
-      this.props.dispatch(
         eventActions.fetchEventDetail(this.state.eventID, nextlanguage)
       );
-      this.showtable(
-        this.state.eventID,
-        this.state.categoryID,
-        this.state.page - 1,
-        this.state.sizePerPage,
-        this.state.sortColumn,
-        this.state.sortDirection,
-        nextlanguage
-      );
+      // this.showtable(
+      //   this.state.eventID,
+      //   this.state.categoryID,
+      //   this.state.page - 1,
+      //   this.state.sizePerPage,
+      //   this.state.sortColumn,
+      //   this.state.sortDirection,
+      //   nextlanguage
+      // );
     }
   }
   updateDimensions() {
