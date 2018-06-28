@@ -81,15 +81,18 @@ class EventResult extends Component {
       hamburgermenu: false,
       menumode: "horizontal",
       selectmenu: "",
-      openkeys: []
+      openkeys: [],
+      leaderboardshow: true
     };
     this.drawmenu = this.drawmenu.bind(this);
     this.menuClick = this.menuClick.bind(this);
     this.showtable = this.showtable.bind(this);
     this.updatepagesize = this.updatepagesize.bind(this);
     this.filtertable = this.filtertable.bind(this);
+    this.drawWinnertable = this.drawWinnertable.bind(this);
+    this.showWinnertablesection = this.showWinnertablesection.bind(this);
   }
-  componentDidMount() {
+  componentWillMount() {
     window.scrollTo(0, 0);
     let currentlanguage = this.props.i18n.language;
     if (this.props.i18n.language.length > 2) {
@@ -97,10 +100,10 @@ class EventResult extends Component {
     }
     this.setState({ currentlanguage: currentlanguage });
     this.props.dispatch(
-      eventresultActions.fetchMenuResult(this.state.eventID, currentlanguage)
+      eventActions.fetchEventDetail(this.state.eventID, currentlanguage)
     );
     this.props.dispatch(
-      eventActions.fetchEventDetail(this.state.eventID, currentlanguage)
+      eventresultActions.fetchMenuResult(this.state.eventID, currentlanguage)
     );
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
@@ -116,10 +119,10 @@ class EventResult extends Component {
     if (nextlanguage !== this.state.currentlanguage) {
       this.setState({ currentlanguage: nextlanguage });
       this.props.dispatch(
-        eventresultActions.fetchMenuResult(this.state.eventID, nextlanguage)
+        eventActions.fetchEventDetail(this.state.eventID, nextlanguage)
       );
       this.props.dispatch(
-        eventActions.fetchEventDetail(this.state.eventID, nextlanguage)
+        eventresultActions.fetchMenuResult(this.state.eventID, nextlanguage)
       );
       // this.showtable(
       //   this.state.eventID,
@@ -320,21 +323,27 @@ class EventResult extends Component {
     }
   };
   menuClick = menu => {
-    this.setState({
-      categoryID: menu.key,
-      selectmenu: menu.item.props.longname,
-      openkeys: []
-    });
+    if (menu.key === "0") {
+      this.setState({ leaderboardshow: true });
+    } else {
+      this.setState({
+        categoryID: menu.key,
+        selectmenu: menu.item.props.longname,
+        openkeys: [],
+        leaderboardshow: false,
+        sizePerPage: 25
+      });
 
-    this.showtable(
-      this.state.eventID,
-      menu.key,
-      this.state.page - 1,
-      this.state.sizePerPage,
-      this.state.sortColumn,
-      this.state.sortDirection,
-      this.state.currentlanguage
-    );
+      this.showtable(
+        this.state.eventID,
+        menu.key,
+        0,
+        25,
+        this.state.sortColumn,
+        this.state.sortDirection,
+        this.state.currentlanguage
+      );
+    }
   };
   onOpenChange = openKeys => {
     this.setState({
@@ -358,6 +367,116 @@ class EventResult extends Component {
         );
       }
     });
+  }
+  drawWinnertable(result, t) {
+    var self = this;
+    return result.map(function(resultitem) {
+      return (
+        <div key={resultitem.ID} className="winner">
+          <div className="winner-title">
+            <span>{resultitem.LongName}</span>
+            <a
+              onClick={() => {
+                self.setState({
+                  categoryID: resultitem.ID,
+                  selectmenu: resultitem.LongName,
+                  openkeys: [],
+                  leaderboardshow: false,
+                  sizePerPage: 25
+                });
+
+                self.showtable(
+                  self.state.eventID,
+                  resultitem.ID,
+                  0,
+                  25,
+                  self.state.sortColumn,
+                  self.state.sortDirection,
+                  self.state.currentlanguage
+                );
+              }}
+            >
+              {t("Alle resultaten")}
+            </a>
+          </div>
+          <div className="result-table">
+            {self.showWinnertablesection(resultitem)}
+          </div>
+        </div>
+      );
+    });
+  }
+  showWinnertablesection(resultitem) {
+    var self = this;
+    const headerarray = resultitem.Header;
+    const bodyarray = resultitem.Winners;
+    const bibPosition = bodyarray.BibPositions[0];
+    const namePosition = bodyarray.NamePositions[0];
+    const resultPosition = bodyarray.ResultPosition;
+    const columns = [];
+    for (let i = 0; i <= headerarray.length - 1; i++) {
+      if (i === bibPosition) {
+        columns.push({
+          dataField: `${i}`,
+          text: headerarray[i],
+          style: { fontStyle: "italic" },
+          headerStyle: { width: 80 },
+          classes: "hiddenbibcolumn",
+          headerClasses: "hiddenbibcolumn"
+        });
+      } else if (i === namePosition) {
+        columns.push({
+          dataField: `${i}`,
+          text: headerarray[i],
+          formatter: self.priceFormatter,
+          headerClasses: "winner-namecolumn"
+        });
+      } else if (i === 0) {
+        columns.push({
+          dataField: `${i}`,
+          text: headerarray[i],
+          headerClasses: "winner-poscolumn"
+        });
+      } else {
+        if (i === resultPosition) {
+          columns.push({
+            dataField: `${i}`,
+            text: headerarray[i]
+          });
+        } else {
+          columns.push({
+            dataField: `${i}`,
+            text: headerarray[i],
+            classes: "hiddencolumn",
+            headerClasses: "hiddencolumn"
+          });
+        }
+      }
+    }
+    const data = [];
+    let country = "";
+    for (let i = 0; i <= bodyarray.Rows.length - 1; i++) {
+      const rowarray = bodyarray.Rows[i];
+      country = rowarray.Countries[0];
+      let row = {};
+      for (let j = 0; j <= rowarray.Values.length - 1; j++) {
+        if (j === namePosition) {
+          row[j] = { country: country, name: rowarray.Values[j] };
+        } else {
+          row[j] = rowarray.Values[j];
+        }
+      }
+      data.push(row);
+    }
+    return (
+      <BootstrapTable
+        keyField="0"
+        data={data}
+        columns={columns}
+        striped
+        bordered={false}
+      />
+    );
   }
   hamburgermenuClick() {
     this.setState({ hamburgermenu: !this.state.hamburgermenu });
@@ -467,6 +586,7 @@ class EventResult extends Component {
                       onClick={this.menuClick}
                       onOpenChange={this.onOpenChange}
                       openKeys={this.state.openkeys}
+                      defaultSelectedKeys={["0"]}
                     >
                       {this.drawmenu(menuResult)}
                     </Menu>
@@ -476,65 +596,77 @@ class EventResult extends Component {
             </div>
           </div>
         </div>
-        <div className="container">
-          <div className="row">
-            {this.state.columns.length > 0 ? (
-              <div>
-                <div className={`eventresult-filter ${filterclass}`}>
-                  <span>{this.state.selectmenu}</span>
-                  <div className="eventresult-filter-body">
-                    <input
-                      type="text"
-                      placeholder="filter"
-                      value={this.state.filter}
-                      onChange={e => this.setState({ filter: e.target.value })}
-                      className="eventresult-text"
+        {this.state.leaderboardshow ? (
+          <div className="container">
+            <div className="row">
+              {this.props.winnerResult.length > 0
+                ? this.drawWinnertable(this.props.winnerResult, t)
+                : null}
+            </div>
+          </div>
+        ) : (
+          <div className="container">
+            <div className="row">
+              {this.state.columns.length > 0 ? (
+                <div>
+                  <div className={`eventresult-filter ${filterclass}`}>
+                    <span>{this.state.selectmenu}</span>
+                    <div className="eventresult-filter-body">
+                      <input
+                        type="text"
+                        placeholder="filter"
+                        value={this.state.filter}
+                        onChange={e =>
+                          this.setState({ filter: e.target.value })
+                        }
+                        className="eventresult-text"
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-red btn-eventresult-filter"
+                        onClick={this.filtertable}
+                      >
+                        {t("Zoek")}
+                      </button>
+                    </div>
+                  </div>
+                  <RemotePagination
+                    data={data}
+                    page={page}
+                    loading={loading}
+                    sizePerPage={sizePerPage === -1 ? totalSize : sizePerPage}
+                    totalSize={totalSize}
+                    columns={columns}
+                    paginationsize={paginationsize}
+                    onTableChange={this.handleTableChange}
+                  />
+                  <div className="sizerpage">
+                    <span>Show</span>
+                    <Select
+                      ref={ref => {
+                        this.select = ref;
+                      }}
+                      options={[
+                        { value: 25, label: 25 },
+                        { value: 50, label: 50 },
+                        { value: 100, label: 100 },
+                        { value: -1, label: "All" }
+                      ]}
+                      simpleValue
+                      placeholder="Status"
+                      value={this.state.sizePerPage}
+                      onChange={this.updatepagesize}
+                      className="eventresult-sizerpage"
+                      searchable={false}
+                      clearable={false}
                     />
-                    <button
-                      type="button"
-                      className="btn btn-red btn-eventresult-filter"
-                      onClick={this.filtertable}
-                    >
-                      {t("Zoek")}
-                    </button>
+                    <span>entries of {totalSize} entries</span>
                   </div>
                 </div>
-                <RemotePagination
-                  data={data}
-                  page={page}
-                  loading={loading}
-                  sizePerPage={sizePerPage === -1 ? totalSize : sizePerPage}
-                  totalSize={totalSize}
-                  columns={columns}
-                  paginationsize={paginationsize}
-                  onTableChange={this.handleTableChange}
-                />
-                <div className="sizerpage">
-                  <span>Show</span>
-                  <Select
-                    ref={ref => {
-                      this.select = ref;
-                    }}
-                    options={[
-                      { value: 25, label: 25 },
-                      { value: 50, label: 50 },
-                      { value: 100, label: 100 },
-                      { value: -1, label: "All" }
-                    ]}
-                    simpleValue
-                    placeholder="Status"
-                    value={this.state.sizePerPage}
-                    onChange={this.updatepagesize}
-                    className="eventresult-sizerpage"
-                    searchable={false}
-                    clearable={false}
-                  />
-                  <span>entries of {totalSize} entries</span>
-                </div>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </div>
-        </div>
+        )}
         {eventDetail.length !== 0 ? (
           <div>
             <div className="event-page">
@@ -580,12 +712,14 @@ class EventResult extends Component {
   }
 }
 function mapStateToProps(state) {
-  const menuResult = eventresultSelectors.getMenuResult(state);
   const eventDetail = eventsSelectors.getEventDetail(state);
+  const menuResult = eventresultSelectors.getMenuResult(state);
+  const winnerResult = eventresultSelectors.getWinnerResult(state);
 
   return {
     menuResult,
-    eventDetail
+    eventDetail,
+    winnerResult
   };
 }
 export default translate("translations")(connect(mapStateToProps)(EventResult));

@@ -70,4 +70,4 @@ class Home extends Component {
   }
 }
 
-export default connect()(translate("translations")(Home));
+export default connect()(translate()(Home));
