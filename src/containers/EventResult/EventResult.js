@@ -599,9 +599,15 @@ class EventResult extends Component {
         {this.state.leaderboardshow ? (
           <div className="container">
             <div className="row">
-              {this.props.winnerResult.length > 0
-                ? this.drawWinnertable(this.props.winnerResult, t)
-                : null}
+              {this.props.winnerResult.length > 0 ? (
+                this.drawWinnertable(this.props.winnerResult, t)
+              ) : this.props.menuResult.length > 0 ? (
+                <img
+                  alt="event-loading-img"
+                  src="/img/event-loading-img.png"
+                  className="winnerresult-placeholder"
+                />
+              ) : null}
             </div>
           </div>
         ) : (
