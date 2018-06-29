@@ -43,8 +43,8 @@ class MainNavBar extends Component {
             <Link
               to={
                 tokenstate
-                  ? { pathname: "person", state: { backstate: false } }
-                  : { pathname: "homepage", state: { backstate: false } }
+                  ? { pathname: "/person", state: { backstate: false } }
+                  : { pathname: "/homepage", state: { backstate: false } }
               }
               className="menu-link"
               onClick={() => {
@@ -54,7 +54,7 @@ class MainNavBar extends Component {
               {t("Browse all events")}
             </Link>
             <Link
-              to={{ pathname: "organizer", state: { backstate: false } }}
+              to={{ pathname: "/organizer", state: { backstate: false } }}
               className="menu-link"
               onClick={() => {
                 this.closeMenu();
@@ -63,7 +63,7 @@ class MainNavBar extends Component {
               {t("For organizers")}
             </Link>
             <Link
-              to={{ pathname: "about", state: { backstate: false } }}
+              to={{ pathname: "/about", state: { backstate: false } }}
               className="menu-link"
               onClick={() => {
                 this.closeMenu();
@@ -72,7 +72,7 @@ class MainNavBar extends Component {
               {t("About Star Tracking")}
             </Link>
             <Link
-              to={{ pathname: "contact", state: { backstate: false } }}
+              to={{ pathname: "/contact", state: { backstate: false } }}
               className="menu-link"
               onClick={() => {
                 this.closeMenu();
@@ -82,7 +82,7 @@ class MainNavBar extends Component {
             </Link>
             {!tokenstate ? (
               <Link
-                to="login"
+                to="/login"
                 onClick={() => {
                   this.closeMenu();
                 }}
@@ -135,8 +135,8 @@ class MainNavBar extends Component {
                   <Link
                     to={
                       tokenstate
-                        ? { pathname: "person", state: { backstate: false } }
-                        : { pathname: "homepage", state: { backstate: false } }
+                        ? { pathname: "/person", state: { backstate: false } }
+                        : { pathname: "/homepage", state: { backstate: false } }
                     }
                     className="menu-link"
                   >
@@ -145,7 +145,7 @@ class MainNavBar extends Component {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to={{ pathname: "organizer", state: { backstate: false } }}
+                    to={{ pathname: "/organizer", state: { backstate: false } }}
                     className="menu-link"
                   >
                     {t("For organizers")}
@@ -153,7 +153,7 @@ class MainNavBar extends Component {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to={{ pathname: "about", state: { backstate: false } }}
+                    to={{ pathname: "/about", state: { backstate: false } }}
                     className="menu-link"
                   >
                     {t("About Star Tracking")}
@@ -161,7 +161,7 @@ class MainNavBar extends Component {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to={{ pathname: "contact", state: { backstate: false } }}
+                    to={{ pathname: "/contact", state: { backstate: false } }}
                     className="menu-link"
                   >
                     {t("Contact us")}
@@ -169,7 +169,7 @@ class MainNavBar extends Component {
                 </li>
               </ul>
               {!tokenstate ? (
-                <Link to="login">
+                <Link to="/login">
                   <button type="button" className="btn btn-red btn-login">
                     {t("Sign in")}
                   </button>

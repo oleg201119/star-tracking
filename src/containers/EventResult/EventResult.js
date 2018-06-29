@@ -67,7 +67,7 @@ class EventResult extends Component {
       currentlanguage: "",
       page: 1,
       data: [],
-      sizePerPage: 25,
+      sizePerPage: 100,
       eventID: this.props.match.params.id,
       categoryID: "",
       columns: [],
@@ -189,9 +189,7 @@ class EventResult extends Component {
                   text: headerarray[i],
                   sort: true,
                   style: { fontStyle: "italic" },
-                  headerStyle: { width: 80 },
-                  classes: "hiddenbibcolumn",
-                  headerClasses: "hiddenbibcolumn"
+                  headerClasses: "poscolumn"
                 });
               } else if (i === namePosition) {
                 columns.push({
@@ -324,21 +322,25 @@ class EventResult extends Component {
   };
   menuClick = menu => {
     if (menu.key === "0") {
-      this.setState({ leaderboardshow: true });
+      this.setState({
+        leaderboardshow: true,
+        openkeys: [],
+        hamburgermenu: false
+      });
     } else {
       this.setState({
         categoryID: menu.key,
         selectmenu: menu.item.props.longname,
         openkeys: [],
         leaderboardshow: false,
-        sizePerPage: 25
+        sizePerPage: 100
       });
 
       this.showtable(
         this.state.eventID,
         menu.key,
         0,
-        25,
+        100,
         this.state.sortColumn,
         this.state.sortDirection,
         this.state.currentlanguage
@@ -382,14 +384,14 @@ class EventResult extends Component {
                   selectmenu: resultitem.LongName,
                   openkeys: [],
                   leaderboardshow: false,
-                  sizePerPage: 25
+                  sizePerPage: 100
                 });
 
                 self.showtable(
                   self.state.eventID,
                   resultitem.ID,
                   0,
-                  25,
+                  100,
                   self.state.sortColumn,
                   self.state.sortDirection,
                   self.state.currentlanguage
@@ -420,9 +422,7 @@ class EventResult extends Component {
           dataField: `${i}`,
           text: headerarray[i],
           style: { fontStyle: "italic" },
-          headerStyle: { width: 80 },
-          classes: "hiddenbibcolumn",
-          headerClasses: "hiddenbibcolumn"
+          headerClasses: "winner-poscolumn"
         });
       } else if (i === namePosition) {
         columns.push({
@@ -604,7 +604,7 @@ class EventResult extends Component {
               ) : this.props.menuResult.length > 0 ? (
                 <img
                   alt="event-loading-img"
-                  src="/img/event-loading-img.png"
+                  src="/img/table-loading-img.png"
                   className="winnerresult-placeholder"
                 />
               ) : null}

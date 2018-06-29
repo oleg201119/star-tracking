@@ -123,17 +123,16 @@
     margin: 0px;
   }
 
-  &.rc-menu-submenu-vertical {
-    &.rc-menu-submenu-active {
-      border-width: 0px;
-      background-color: white;
-      color: white;
-  
-      .rc-menu-submenu-title {
-        background-color: #ea1f37;
-      }
+  &.rc-menu-submenu-active {
+    border-width: 0px;
+    background-color: white;
+    color: white;
+
+    .rc-menu-submenu-title {
+      background-color: #ea1f37;
     }
   }
+
 
   &.rc-menu-submenu-selected {
     background-color: white;
@@ -209,6 +208,9 @@
       line-height: 1;
       letter-spacing: 0.5px;
       color: #1d1d26;
+      @media (max-width: 767px) {
+        font-size: 16px;
+      }
     }
 
     .eventresult-filter-body {
@@ -231,7 +233,7 @@
       }
       @media (min-width: 768px) {
         margin-left: auto;
-        margin-top: 0px;
+        margin-top: -11px;
       }
     }
     @media (min-width: 768px) {
@@ -295,12 +297,6 @@
   }
 }
 
-.hiddenbibcolumn{
-  display: none;
-  @media (min-width: 576px) {
-    display: table-cell;
-  }
-}
 
 .poscolumn {
   width: 60px;
@@ -309,14 +305,9 @@
   }
 }
 .winner-poscolumn {
-  width: 50px;
+  width: 55px;
   @media (min-width: 576px) {
     width: 80px;
-  }
-}
-.winner-namecolumn {
-  @media (max-width: 575px) {
-    width: 170px;
   }
 }
 .winner {
@@ -332,8 +323,8 @@
       line-height: 1;
       letter-spacing: 0.5px;
       color: #1d1d26;
-      @media (max-width: 575px) {
-        display: flex;
+      @media (max-width: 767px) {
+        font-size: 16px;
       }
     }
     a {
@@ -343,6 +334,9 @@
       float: right;
       cursor: pointer;
       padding-right: 15px;
+      @media (max-width: 767px) {
+        font-size: 16px;
+      }
     }
   }
   
