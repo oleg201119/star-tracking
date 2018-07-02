@@ -23,7 +23,7 @@ class SiteMap extends Component {
                   <li className="link-group-item">
                     <Link
                       to={{
-                        pathname: "homepage",
+                        pathname: "/homepage",
                         state: { selectEvent: "Running", backstate: false }
                       }}
                       className="site-map-link"
@@ -36,7 +36,7 @@ class SiteMap extends Component {
                   <li className="link-group-item">
                     <Link
                       to={{
-                        pathname: "homepage",
+                        pathname: "/homepage",
                         state: { selectEvent: "TrialRun", backstate: false }
                       }}
                       className="site-map-link"
@@ -49,7 +49,7 @@ class SiteMap extends Component {
                   <li className="link-group-item">
                     <Link
                       to={{
-                        pathname: "homepage",
+                        pathname: "/homepage",
                         state: { selectEvent: "Roadbike", backstate: false }
                       }}
                       className="site-map-link"
@@ -62,7 +62,7 @@ class SiteMap extends Component {
                   <li className="link-group-item">
                     <Link
                       to={{
-                        pathname: "homepage",
+                        pathname: "/homepage",
                         state: { selectEvent: "Mountainbike", backstate: false }
                       }}
                       className="site-map-link"
@@ -75,7 +75,7 @@ class SiteMap extends Component {
                   <li className="link-group-item">
                     <Link
                       to={{
-                        pathname: "homepage",
+                        pathname: "/homepage",
                         state: { selectEvent: "MultiSport", backstate: false }
                       }}
                       className="site-map-link"
@@ -88,7 +88,7 @@ class SiteMap extends Component {
                   <li className="link-group-item">
                     <Link
                       to={{
-                        pathname: "homepage",
+                        pathname: "/homepage",
                         state: { selectEvent: "Other", backstate: false }
                       }}
                       className="site-map-link"
@@ -103,7 +103,7 @@ class SiteMap extends Component {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                   <li className="link-group-item">
                     <Link
-                      to={{ pathname: "person", state: { backstate: false } }}
+                      to={{ pathname: "/person", state: { backstate: false } }}
                       className="site-map-link"
                     >
                       {t("Running")}
@@ -113,7 +113,7 @@ class SiteMap extends Component {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                   <li className="link-group-item">
                     <Link
-                      to={{ pathname: "person", state: { backstate: false } }}
+                      to={{ pathname: "/person", state: { backstate: false } }}
                       className="site-map-link"
                     >
                       {t("TrialRun")}
@@ -123,7 +123,7 @@ class SiteMap extends Component {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                   <li className="link-group-item">
                     <Link
-                      to={{ pathname: "person", state: { backstate: false } }}
+                      to={{ pathname: "/person", state: { backstate: false } }}
                       className="site-map-link"
                     >
                       {t("Roadbike")}
@@ -133,7 +133,7 @@ class SiteMap extends Component {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                   <li className="link-group-item">
                     <Link
-                      to={{ pathname: "person", state: { backstate: false } }}
+                      to={{ pathname: "/person", state: { backstate: false } }}
                       className="site-map-link"
                     >
                       {t("Mountainbike")}
@@ -143,7 +143,7 @@ class SiteMap extends Component {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                   <li className="link-group-item">
                     <Link
-                      to={{ pathname: "person", state: { backstate: false } }}
+                      to={{ pathname: "/person", state: { backstate: false } }}
                       className="site-map-link"
                     >
                       {t("MultiSport")}
@@ -153,7 +153,7 @@ class SiteMap extends Component {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                   <li className="link-group-item">
                     <Link
-                      to={{ pathname: "person", state: { backstate: false } }}
+                      to={{ pathname: "/person", state: { backstate: false } }}
                       className="site-map-link"
                     >
                       {t("Other")}

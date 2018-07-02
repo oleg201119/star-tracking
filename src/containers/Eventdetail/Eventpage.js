@@ -86,8 +86,20 @@ class Eventpage extends Component {
         {eventDetail.length !== 0 ? (
           <div>
             <div className="event-page d-none d-md-block">
-              <div className="header-banner">
+              <div
+                className="header-banner"
+                style={
+                  eventDetail.HasBigBackground
+                    ? { backgroundImage: `url(${eventDetail.BigBackground})` }
+                    : null
+                }
+              >
                 <div className="glass-section">
+                  {eventDetail.HasTopBanner ? (
+                    <div className="container event-top-banner">
+                      <img alt="event-top-banner" src={eventDetail.TopBanner} />>
+                    </div>
+                  ) : null}
                   <div className="slogan-section">
                     <div className="container event-header">
                       <div className="event-name">
@@ -271,7 +283,14 @@ class Eventpage extends Component {
             <div className="event-page-mobile d-md-none">
               <div className="event-card">
                 <div className="card-banner">
-                  <img alt="banner" src="/img/card-banner.png" />
+                  <img
+                    alt="banner"
+                    src={
+                      eventDetail.HasSmallBackground
+                        ? eventDetail.SmallBackground
+                        : "/img/card-banner.png"
+                    }
+                  />
                 </div>
                 <div className="card-glass">
                   <div className="slogan">{eventDetail.Name}</div>
@@ -439,6 +458,13 @@ class Eventpage extends Component {
               </div>
               <div className="organisation-block">
                 <div className="container">
+                  {eventDetail.HasBottomBanner ? (
+                    <img
+                      alt="event-bottom-banner"
+                      src={eventDetail.BottomBanner}
+                      className="d-md-none event-bottom-banner"
+                    />
+                  ) : null}
                   <div className="event-organisation-topic">
                     <span>{t("Organisatie")}</span>
                   </div>

@@ -22,7 +22,9 @@ class FooterBanner extends Component {
           </div>
           <div className="button-section">
             <div className="container">
-              <Link to={{ pathname: "organizer", state: { backstate: false } }}>
+              <Link
+                to={{ pathname: "/organizer", state: { backstate: false } }}
+              >
                 <button type="button" className="btn btn-red btn-footer">
                   {t("Leer meer over de Star Tracking tijdsregistratie")}
                 </button>

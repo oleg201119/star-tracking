@@ -47,6 +47,7 @@ const RemotePagination = ({
       onTableChange={onTableChange}
       striped
       bordered={false}
+      rowClasses={"row-class"}
       defaultSortDirection={"asc"}
       overlay={overlayFactory({
         spinner: true,
@@ -56,7 +57,6 @@ const RemotePagination = ({
     />
   </div>
 );
-
 class EventResult extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired
@@ -136,7 +136,7 @@ class EventResult extends Component {
     }
   }
   updateDimensions() {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth < 768) {
       this.setState({
         hiddencolumn: true,
         paginationsize: 3,
@@ -475,9 +475,15 @@ class EventResult extends Component {
         columns={columns}
         striped
         bordered={false}
+        rowClasses={"row-class"}
       />
     );
   }
+  handlefilterKeyPress = e => {
+    if (e.key === "Enter") {
+      this.filtertable();
+    }
+  };
   hamburgermenuClick() {
     this.setState({ hamburgermenu: !this.state.hamburgermenu });
   }
@@ -503,8 +509,20 @@ class EventResult extends Component {
         {eventDetail.length !== 0 ? (
           <div>
             <div className="event-page d-none d-md-block">
-              <div className="header-banner">
+              <div
+                className="header-banner"
+                style={
+                  eventDetail.HasBigBackground
+                    ? { backgroundImage: `url(${eventDetail.BigBackground})` }
+                    : null
+                }
+              >
                 <div className="glass-section">
+                  {eventDetail.HasTopBanner ? (
+                    <div className="container event-top-banner">
+                      <img alt="event-top-banner" src={eventDetail.TopBanner} />>
+                    </div>
+                  ) : null}
                   <div className="slogan-section">
                     <div className="container event-header">
                       <div className="event-name">
@@ -531,7 +549,14 @@ class EventResult extends Component {
             <div className="event-page-mobile d-md-none">
               <div className="event-card">
                 <div className="card-banner">
-                  <img alt="banner" src="/img/card-banner.png" />
+                  <img
+                    alt="banner"
+                    src={
+                      eventDetail.HasSmallBackground
+                        ? eventDetail.SmallBackground
+                        : "/img/card-banner.png"
+                    }
+                  />
                 </div>
                 <div className="card-glass">
                   <div className="slogan">{eventDetail.Name}</div>
@@ -625,6 +650,7 @@ class EventResult extends Component {
                         onChange={e =>
                           this.setState({ filter: e.target.value })
                         }
+                        onKeyPress={this.handlefilterKeyPress}
                         className="eventresult-text"
                       />
                       <button
@@ -679,6 +705,13 @@ class EventResult extends Component {
               <div className="container">
                 <div className="event-detail">
                   <div className="row">
+                    {eventDetail.HasBottomBanner ? (
+                      <img
+                        alt="event-bottom-banner"
+                        src={eventDetail.BottomBanner}
+                        className="d-md-none event-bottom-banner"
+                      />
+                    ) : null}
                     <div className="col-12">
                       <div className="event-organisation">
                         <div className="event-organisation-topic">

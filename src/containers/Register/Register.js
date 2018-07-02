@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import * as authActions from '../../store/auth/actions';
-import * as authSelectors from '../../store/auth/reducer';
-import './Register.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { Link } from "react-router-dom";
+import * as authActions from "../../store/auth/actions";
+import * as authSelectors from "../../store/auth/reducer";
+import "./Register.css";
 
 class Register extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    authToken: PropTypes.string.isRequired,
+    authToken: PropTypes.string.isRequired
   };
   constructor() {
     super();
     this.state = {
       accept_policy: false,
-      username: '',
-      password: '',
-      loginstate: '',
-      confirmpassword: '',
+      username: "",
+      password: "",
+      loginstate: "",
+      confirmpassword: ""
     };
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
@@ -29,12 +29,12 @@ class Register extends Component {
     window.scrollTo(0, 0);
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.authToken === 'error') {
+    if (nextProps.authToken === "error") {
       this.props.dispatch(authActions.fetchLoginStateFormat());
-      this.setState({ loginstate: 'error' });
+      this.setState({ loginstate: "error" });
     }
-    if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
-      this.props.history.push('/person', { registered: true });
+    if (nextProps.authToken !== "" && nextProps.authToken !== "error") {
+      this.props.history.push("/person", { registered: true });
     }
   }
   changeUsername(e) {
@@ -97,11 +97,11 @@ class Register extends Component {
                 value={this.state.password}
                 onChange={this.changePassword}
               />
-              {this.state.password !== '' ? (
+              {this.state.password !== "" ? (
                 <button
                   type="button"
                   className="btn btn-clear"
-                  onClick={() => this.setState({ password: '' })}
+                  onClick={() => this.setState({ password: "" })}
                 >
                   x
                 </button>
@@ -120,11 +120,11 @@ class Register extends Component {
                 value={this.state.confirmpassword}
                 onChange={this.changeConfirmPassword}
               />
-              {this.state.confirmpassword !== '' ? (
+              {this.state.confirmpassword !== "" ? (
                 <button
                   type="button"
                   className="btn btn-clear"
-                  onClick={() => this.setState({ confirmpassword: '' })}
+                  onClick={() => this.setState({ confirmpassword: "" })}
                 >
                   x
                 </button>
@@ -146,30 +146,42 @@ class Register extends Component {
                   : this.setState({ accept_policy: true })
               }
             />
-            <Link to="policy"><span>I accept the terms of use and the privacy policy</span></Link>
+            <Link to="/policy">
+              <span>I accept the terms of use and the privacy policy</span>
+            </Link>
           </div>
           <button
             type="button"
             className="btn btn-red signin"
             onClick={() => {
-              this.setState({ loginstate: '' });
-              this.props.dispatch(authActions.fetchRegisterAuth(
-                this.state.username,
-                this.state.password,
-              ));
+              this.setState({ loginstate: "" });
+              this.props.dispatch(
+                authActions.fetchRegisterAuth(
+                  this.state.username,
+                  this.state.password
+                )
+              );
             }}
           >
             Register
           </button>
           <div className="error-text">
-            {this.state.loginstate === 'error' ?
-              <span>{t('Ongeldige gebruikersnaam of paswoord!')}</span>
-              : <span />
-            }
+            {this.state.loginstate === "error" ? (
+              <span>{t("Ongeldige gebruikersnaam of paswoord!")}</span>
+            ) : (
+              <span />
+            )}
           </div>
           <div className="create-forgot">
-            <span className="create-forgot-text">Already have an account?&nbsp;</span>
-            <span className="create-forgot-text sign-in" onClick={()=>{this.props.history.go(-1);}}>
+            <span className="create-forgot-text">
+              Already have an account?&nbsp;
+            </span>
+            <span
+              className="create-forgot-text sign-in"
+              onClick={() => {
+                this.props.history.go(-1);
+              }}
+            >
               Sign In
             </span>
           </div>
@@ -191,8 +203,8 @@ class Register extends Component {
 function mapStateToProps(state) {
   const authToken = authSelectors.getLoginAuth(state);
   return {
-    authToken,
+    authToken
   };
 }
 
-export default connect(mapStateToProps)(translate('translations')(Register));
+export default connect(mapStateToProps)(translate("translations")(Register));

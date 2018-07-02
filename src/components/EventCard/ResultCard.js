@@ -29,7 +29,7 @@ class ResultCard extends Component {
               <div className="options">
                 <Link
                   to={{
-                    pathname: `eventresult/${event.ID}`
+                    pathname: `/eventresult/${event.ID}`
                   }}
                   className="event-option"
                 >

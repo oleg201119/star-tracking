@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { translate } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import Withwork from '../Footer/Withwork';
-import './About.css';
+import React, { Component } from "react";
+import { translate } from "react-i18next";
+import { Link } from "react-router-dom";
+import Withwork from "../Footer/Withwork";
+import "./About.css";
 
 class About extends Component {
   render() {
@@ -16,7 +16,7 @@ class About extends Component {
               <div className="container">
                 <div className="about-banner-text">
                   <span className="slogan">
-                    {t('Making organizing sports events a breeze in the park!')}
+                    {t("Making organizing sports events a breeze in the park!")}
                   </span>
                 </div>
               </div>
@@ -27,20 +27,31 @@ class About extends Component {
           <div className="row">
             <div className="col-12 col-md-10 col-xl-8 about-body-container">
               <div className="about-body-topic">
-                <span>{t('Star Tracking wil sport organisatoren het leven makkelijker maken, en sporters connecteren tijdens sport events.')}</span>
+                <span>
+                  {t(
+                    "Star Tracking wil sport organisatoren het leven makkelijker maken, en sporters connecteren tijdens sport events."
+                  )}
+                </span>
               </div>
               <div className="about-body-text">
-                <span>{t('about-text-1')}
-                  <br /><br />
-                  {t('about-text-2')}
-                  <br /><br />
-                  {t('about-text-3')}
+                <span>
+                  {t("about-text-1")}
+                  <br />
+                  <br />
+                  {t("about-text-2")}
+                  <br />
+                  <br />
+                  {t("about-text-3")}
                 </span>
               </div>
               <div className="about-body-end">
-                <span>{t('Zelf jouw event makkelijk organiseren')}?</span>
+                <span>{t("Zelf jouw event makkelijk organiseren")}?</span>
               </div>
-              <Link to="newevent"><button type="button" className="btn btn-red btn-create-event">{t('Maak nu jouw event aan')}</button></Link>
+              <Link to="/newevent">
+                <button type="button" className="btn btn-red btn-create-event">
+                  {t("Maak nu jouw event aan")}
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -49,4 +60,4 @@ class About extends Component {
     );
   }
 }
-export default translate('translations')(About);
+export default translate("translations")(About);

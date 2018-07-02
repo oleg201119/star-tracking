@@ -7,6 +7,16 @@
     background-image: url(/img/event-banner-top.png);
     z-index: -1;
 
+    .event-top-banner {
+      padding-top: 80px;
+      @media (min-width:1200px) {
+        padding-top: 40px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+
     .slogan-section {
       bottom: 60px;
 
@@ -328,8 +338,18 @@
       }
     }
   }
+
+  .event-bottom-banner {
+    width: 100%;
+    padding: 0 15px;
+  }
 }
 .event-page-mobile {
+  .event-bottom-banner {
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 20px;
+  }
   .event-card {
     margin-bottom: 0;
 

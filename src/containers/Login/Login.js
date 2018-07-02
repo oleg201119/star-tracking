@@ -1,41 +1,43 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
-import * as authActions from '../../store/auth/actions';
-import * as authSelectors from '../../store/auth/reducer';
-import './Login.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { translate } from "react-i18next";
+import * as authActions from "../../store/auth/actions";
+import * as authSelectors from "../../store/auth/reducer";
+import "./Login.css";
 
 class Login extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    authToken: PropTypes.string.isRequired,
+    authToken: PropTypes.string.isRequired
   };
   constructor() {
     super();
     this.state = {
       stay_signin: false,
-      username: '',
-      password: '',
-      loginstate: '',
+      username: "",
+      password: "",
+      loginstate: ""
     };
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
   }
   componentDidMount() {
-    if (window.sessionStorage.getItem('token') !== null) {
-      this.props.dispatch(authActions.fetchToken(window.sessionStorage.getItem('token')));
+    if (window.sessionStorage.getItem("token") !== null) {
+      this.props.dispatch(
+        authActions.fetchToken(window.sessionStorage.getItem("token"))
+      );
     }
     window.scrollTo(0, 0);
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.authToken === 'error') {
+    if (nextProps.authToken === "error") {
       this.props.dispatch(authActions.fetchLoginStateFormat());
-      this.setState({ loginstate: 'error' });
+      this.setState({ loginstate: "error" });
     }
-    if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
-      this.props.history.push('/person');
+    if (nextProps.authToken !== "" && nextProps.authToken !== "error") {
+      this.props.history.push("/person");
     }
   }
   changeUsername(e) {
@@ -95,11 +97,11 @@ class Login extends Component {
                 value={this.state.password}
                 onChange={this.changePassword}
               />
-              {this.state.password !== '' ? (
+              {this.state.password !== "" ? (
                 <button
                   type="button"
                   className="btn btn-clear"
-                  onClick={() => this.setState({ password: '' })}
+                  onClick={() => this.setState({ password: "" })}
                 >
                   x
                 </button>
@@ -110,20 +112,23 @@ class Login extends Component {
             type="button"
             className="btn btn-red signin"
             onClick={() => {
-              this.setState({ loginstate: '' });
-              this.props.dispatch(authActions.fetchLoginAuth(
-                this.state.username,
-                this.state.password,
-              ));
+              this.setState({ loginstate: "" });
+              this.props.dispatch(
+                authActions.fetchLoginAuth(
+                  this.state.username,
+                  this.state.password
+                )
+              );
             }}
           >
             Sign In
           </button>
           <div className="error-text">
-            {this.state.loginstate === 'error' ?
-              <span>{t('Ongeldige gebruikersnaam of paswoord!')}</span>
-              : <span />
-            }
+            {this.state.loginstate === "error" ? (
+              <span>{t("Ongeldige gebruikersnaam of paswoord!")}</span>
+            ) : (
+              <span />
+            )}
           </div>
           <div className="stay-signin">
             <img
@@ -143,10 +148,10 @@ class Login extends Component {
             <span>Stay signed in</span>
           </div>
           <div className="create-forgot">
-            <Link to="register" className="create-forgot-text">
+            <Link to="/register" className="create-forgot-text">
               Create your free account
             </Link>
-            <Link to="resetpwd" className="create-forgot-text">
+            <Link to="/resetpwd" className="create-forgot-text">
               Forgot Password
             </Link>
           </div>
@@ -168,8 +173,8 @@ class Login extends Component {
 function mapStateToProps(state) {
   const authToken = authSelectors.getLoginAuth(state);
   return {
-    authToken,
+    authToken
   };
 }
 
-export default connect(mapStateToProps)(translate('translations')(Login));
+export default connect(mapStateToProps)(translate("translations")(Login));

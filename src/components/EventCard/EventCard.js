@@ -22,12 +22,19 @@ class EventCard extends Component {
       >
         <Link
           to={{
-            pathname: "event",
+            pathname: "/event",
             state: { eventid: event.ID }
           }}
           className={`card-banner ${mobiletype ? "mobiletype" : ""}`}
         >
-          <img alt="banner" src="/img/card-banner.png" />
+          <img
+            alt="banner"
+            src={
+              event.HasSmallBackground
+                ? event.SmallBackground
+                : "/img/card-banner.png"
+            }
+          />
         </Link>
         <div className={`card-glass ${mobiletype ? "mobiletype" : ""}`}>
           <div className="slogan">{event.Name}</div>

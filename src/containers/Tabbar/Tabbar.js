@@ -62,8 +62,8 @@ class Tabbar extends Component {
                   <Link
                     to={
                       tokenstate
-                        ? { pathname: "person", state: { backstate: false } }
-                        : { pathname: "homepage", state: { backstate: false } }
+                        ? { pathname: "/person", state: { backstate: false } }
+                        : { pathname: "/homepage", state: { backstate: false } }
                     }
                     className="menu-link"
                     onClick={() => {
@@ -73,7 +73,7 @@ class Tabbar extends Component {
                     {t("Browse all events")}
                   </Link>
                   <Link
-                    to={{ pathname: "organizer", state: { backstate: false } }}
+                    to={{ pathname: "/organizer", state: { backstate: false } }}
                     className="menu-link"
                     onClick={() => {
                       this.closeMenu();
@@ -82,7 +82,7 @@ class Tabbar extends Component {
                     {t("For organizers")}
                   </Link>
                   <Link
-                    to={{ pathname: "about", state: { backstate: false } }}
+                    to={{ pathname: "/about", state: { backstate: false } }}
                     className="menu-link"
                     onClick={() => {
                       this.closeMenu();
@@ -91,7 +91,7 @@ class Tabbar extends Component {
                     {t("About Star Tracking")}
                   </Link>
                   <Link
-                    to={{ pathname: "contact", state: { backstate: false } }}
+                    to={{ pathname: "/contact", state: { backstate: false } }}
                     className="menu-link"
                     onClick={() => {
                       this.closeMenu();
@@ -101,7 +101,7 @@ class Tabbar extends Component {
                   </Link>
                   {!tokenstate ? (
                     <Link
-                      to="login"
+                      to="/login"
                       onClick={() => {
                         this.closeMenu();
                       }}
@@ -206,11 +206,11 @@ class Tabbar extends Component {
                           to={
                             tokenstate
                               ? {
-                                  pathname: "person",
+                                  pathname: "/person",
                                   state: { backstate: false }
                                 }
                               : {
-                                  pathname: "homepage",
+                                  pathname: "/homepage",
                                   state: { backstate: false }
                                 }
                           }
@@ -222,7 +222,7 @@ class Tabbar extends Component {
                       <li className="nav-item">
                         <Link
                           to={{
-                            pathname: "organizer",
+                            pathname: "/organizer",
                             state: { backstate: false }
                           }}
                           className="menu-link"
@@ -233,7 +233,7 @@ class Tabbar extends Component {
                       <li className="nav-item">
                         <Link
                           to={{
-                            pathname: "about",
+                            pathname: "/about",
                             state: { backstate: false }
                           }}
                           className="menu-link"
@@ -244,7 +244,7 @@ class Tabbar extends Component {
                       <li className="nav-item">
                         <Link
                           to={{
-                            pathname: "contact",
+                            pathname: "/contact",
                             state: { backstate: false }
                           }}
                           className="menu-link"
@@ -254,7 +254,7 @@ class Tabbar extends Component {
                       </li>
                     </ul>
                     {!tokenstate ? (
-                      <Link to="login">
+                      <Link to="/login">
                         <button type="button" className="btn btn-red btn-login">
                           {t("Sign in")}
                         </button>
