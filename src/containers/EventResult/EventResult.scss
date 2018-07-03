@@ -11,6 +11,15 @@
     &:hover {
       background-color: #ea1f37;
       color: white;
+      cursor: pointer;
+    }
+  }
+
+  .react-bootstrap-table {
+    @media (max-width: 767px) {
+      th, td {
+        padding: 12px 6px;
+      }
     }
   }
 }
@@ -306,15 +315,20 @@
 
 
 .poscolumn {
-  width: 60px;
+  width: 50px;
   @media (min-width: 576px) {
     width: 80px;
   }
 }
 .winner-poscolumn {
-  width: 55px;
+  width: 40px;
   @media (min-width: 576px) {
     width: 80px;
+  }
+}
+.result-poscolumn {
+  @media (max-width: 575px) {
+    width: 90px;
   }
 }
 .winner {

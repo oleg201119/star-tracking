@@ -458,10 +458,10 @@ class Eventpage extends Component {
               </div>
               <div className="organisation-block">
                 <div className="container">
-                  {eventDetail.HasBottomBanner ? (
+                  {eventDetail.HasSmallBottomBanner ? (
                     <img
                       alt="event-bottom-banner"
-                      src={eventDetail.BottomBanner}
+                      src={eventDetail.SmallBottomBanner}
                       className="d-md-none event-bottom-banner"
                     />
                   ) : null}

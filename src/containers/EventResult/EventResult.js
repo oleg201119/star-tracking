@@ -180,6 +180,7 @@ class EventResult extends Component {
             const totalSize = bodyarray.FilteredRecordCount;
             const bibPosition = bodyarray.BibPositions[0];
             const namePosition = bodyarray.NamePositions[0];
+            const resultPosition = bodyarray.ResultPosition;
             self.setState({ totalSize: totalSize });
             const columns = [];
             for (let i = 0; i <= headerarray.length - 1; i++) {
@@ -206,11 +207,12 @@ class EventResult extends Component {
                   headerClasses: "poscolumn"
                 });
               } else {
-                if (i === headerarray.length - 1) {
+                if (i === resultPosition) {
                   columns.push({
                     dataField: `${i}`,
                     text: headerarray[i],
-                    sort: true
+                    sort: true,
+                    headerClasses: "result-poscolumn"
                   });
                 } else {
                   columns.push({
@@ -357,7 +359,7 @@ class EventResult extends Component {
     return menuarray.map(function(menuitem, i) {
       if (menuitem.ChildCategories !== null) {
         return (
-          <SubMenu title={menuitem.Name} key={i}>
+          <SubMenu title={<span>{menuitem.Name}</span>} key={i}>
             {self.drawmenu(menuitem.ChildCategories)}
           </SubMenu>
         );
@@ -441,7 +443,8 @@ class EventResult extends Component {
         if (i === resultPosition) {
           columns.push({
             dataField: `${i}`,
-            text: headerarray[i]
+            text: headerarray[i],
+            headerClasses: "result-poscolumn"
           });
         } else {
           columns.push({
@@ -705,15 +708,15 @@ class EventResult extends Component {
               <div className="container">
                 <div className="event-detail">
                   <div className="row">
-                    {eventDetail.HasBottomBanner ? (
-                      <img
-                        alt="event-bottom-banner"
-                        src={eventDetail.BottomBanner}
-                        className="d-md-none event-bottom-banner"
-                      />
-                    ) : null}
                     <div className="col-12">
                       <div className="event-organisation">
+                        {eventDetail.HasSmallBottomBanner ? (
+                          <img
+                            alt="event-bottom-banner"
+                            src={eventDetail.SmallBottomBanner}
+                            className="d-md-none event-bottom-banner"
+                          />
+                        ) : null}
                         <div className="event-organisation-topic">
                           <span>{t("Organisatie")}</span>
                         </div>
