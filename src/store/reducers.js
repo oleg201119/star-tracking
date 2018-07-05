@@ -5,13 +5,6 @@ import general from './general/reducer';
 import ads from './ads/reducer';
 import results from './results/reducer';
 import eventresult from './eventresult/reducer';
+import challengeresult from './challengeresult/reducer';
 
-export {
-  events,
-  organizers,
-  auth,
-  general,
-  ads,
-  results,
-  eventresult,
-};
+export { events, organizers, auth, general, ads, results, eventresult, challengeresult };
