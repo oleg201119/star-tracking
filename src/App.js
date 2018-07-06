@@ -20,7 +20,7 @@ class App extends Component {
 				<Route path="/register" render={(props) => <Register {...props} />} />
 				<Route path="/Account/ResetPassword" render={(props) => <Sendpwd {...props} />} />
 				<Route path="/person" render={(props) => <Person {...props} />} />
-				<Route path="/challengeresult/:id" render={(props) => <ChallengeResult {...props} />} />
+				<Route path="/challenge/:id" render={(props) => <ChallengeResult {...props} />} />
 				<Route path="/" render={(props) => <Layout {...props} />} />
 			</Switch>
 		);
