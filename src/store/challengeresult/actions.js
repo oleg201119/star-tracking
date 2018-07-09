@@ -10,7 +10,6 @@ export function fetchMenuResult(eventID, language) {
 			dispatch({ type: types.MENU_CHALLENGE_FETCHED, eventresult });
 			if (eventresult[0].ID === 0 && eventresult[0].ChildCategories === null) {
 				const results = await ChallengeService.getWinnerResult(eventID, language);
-				console.log(results);
 				const fetchPromises = [];
 				for (let i = 0; i < results.length; i += 1) {
 					fetchPromises.push(

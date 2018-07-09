@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { slide as Menu } from 'react-burger-menu';
+import AuthService from '../../services/auth';
 import './MainNavBar.css';
 
 class MainNavBar extends Component {
@@ -30,13 +31,27 @@ class MainNavBar extends Component {
 	closeMenu() {
 		this.setState({ menuOpen: false });
 	}
+	logout() {
+		this.setState({ menuOpen: false });
+		var self = this;
+		AuthService.Logout().then(function(value) {
+			if (value === 'success') {
+				self.setState({ tokenstate: false });
+				self.props.history.push('/');
+			}
+		});
+	}
 	render() {
 		const { t } = this.props;
 		const { tokenstate } = this.state;
 		return (
 			<div>
 				<div className="mobile-header d-block d-xl-none">
-					<Menu isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
+					<Menu
+						isOpen={this.state.menuOpen}
+						onStateChange={(state) => this.handleStateChange(state)}
+						className={tokenstate ? 'black-menu' : null}
+					>
 						<Link
 							to={
 								tokenstate ? (
@@ -88,6 +103,16 @@ class MainNavBar extends Component {
 							>
 								{t('Sign in')}
 							</Link>
+						) : null}
+						{tokenstate ? (
+							<a
+								className="logout-link"
+								onClick={() => {
+									this.logout();
+								}}
+							>
+								Log out
+							</a>
 						) : null}
 					</Menu>
 					{this.props.location.pathname !== '/' ? this.props.location.state === undefined ||

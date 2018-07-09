@@ -55,12 +55,11 @@ class Person extends Component {
 	}
 	render() {
 		const { authToken } = this.props;
-		const registered = this.props.location.state !== undefined ? this.props.location.state.registered : '';
 		if (authToken === '' || authToken === 'error') return <Redirect to="/login" />;
 		return (
 			<div className="home-person">
 				<div className="person-tabbar">
-					<Tabbar {...{ registered: registered }} />
+					<Tabbar {...this.props} />
 				</div>
 				<Footer />
 			</div>

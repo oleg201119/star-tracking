@@ -1,73 +1,71 @@
 .tabbar {
-  background-color: #e9e9e9;
-  @media (max-width: 1199px) {
-    display: none;
-  }
+	background-color: #e9e9e9;
+	@media (max-width: 1199px) {
+		display: none;
+	}
 }
 .react-tabs {
-  
-  .react-tabs__tab-list {
-    border: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
+	.react-tabs__tab-list {
+		border: none;
+		margin: 0;
+		padding: 0;
+		height: 100%;
 
-    .react-tabs__tab {
-      display: inline-block;
-      border: none;
-      bottom: 0;
-      padding: 11px 14px;
-      height: 100%;
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--charcoal-grey-two);
-      background-color: #f5f5f5;
-      margin-right: 10px;
-      margin-top: 13px;
-    }
+		.react-tabs__tab {
+			display: inline-block;
+			border: none;
+			bottom: 0;
+			padding: 11px 14px;
+			height: 100%;
+			font-size: 14px;
+			font-weight: 300;
+			color: var(--charcoal-grey-two);
+			background-color: #f5f5f5;
+			margin-right: 10px;
+			margin-top: 13px;
+		}
 
-    .react-tabs__tab--selected {
-      background: #fff;
-      border-color: #aaa;
-      color: black;
-      border-radius: 0;
-    }
+		.react-tabs__tab--selected {
+			background: #fff;
+			border-color: #aaa;
+			color: black;
+			border-radius: 0;
+		}
 
-    .account-tab {
-      @media (min-width: 768px) {
-        float: right;
-        margin-right: 0;
-      }
-      @media (min-width: 992px) {
-        float: right;
-        margin-right: 0;
-      }
-    }
-  }
+		.account-tab {
+			@media (min-width: 768px) {
+				float: right;
+				margin-right: 0;
+			}
+			@media (min-width: 992px) {
+				float: right;
+				margin-right: 0;
+			}
+		}
+	}
 
-  .react-tabs__tab-panel {
-    @media (min-width: 1200px) {
-      margin-top: 50px;
-    }
-  }
+	.react-tabs__tab-panel {
+		@media (min-width: 1200px) {
+			margin-top: 50px;
+		}
+	}
 }
 .mobile-tab {
-  background-color: #f5f5f5;
-  margin-top: 20px;
-  cursor: pointer;
-  border-top: 1px solid black;
-  .mobile-tab-item {
-    display: block;
-    padding: 10px 0px 10px 0px;
-    margin-right: 25px;
-    color: #1d1d26;
+	background-color: black;
+	margin-top: 20px;
+	cursor: pointer;
+	border-top: 1px solid black;
+	.mobile-tab-item {
+		display: block;
+		padding: 10px 0px 10px 0px;
+		margin-right: 25px;
+		color: rgba(255, 255, 255, 0.5);
 
-    &.selected {
-      background-color: white;
-    }
-
-    &:hover {
-      background-color: white;
-    }
-  }
+		&.selected {
+			color: white;
+		}
+	}
+	&:hover {
+		color: rgba(255, 255, 255, 0.5) !important;
+	}
 }

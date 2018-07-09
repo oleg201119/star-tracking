@@ -144,12 +144,10 @@ class ChallengeResult extends Component {
 		}
 		if (this.state.columns.length > 0) {
 			const thwidth = hiddencolumn
-				? (windowwidth - 80) / 3
-				: (windowwidth - 160) / (this.state.columns.length - 1);
-			console.log(windowwidth);
-			console.log(thwidth);
+				? (windowwidth - 85) / 3
+				: (windowwidth - 85) / (this.state.columns.length - 1);
 			let temp = [ ...this.state.columns ];
-			temp[2] = { ...temp[2], headerStyle: { width: thwidth * 2 } };
+			temp[1] = { ...temp[1], headerStyle: { width: thwidth * 2 } };
 			let newtemp = temp.map((col) => {
 				return { ...col, sort: !hiddencolumn };
 			});
@@ -175,24 +173,15 @@ class ChallengeResult extends Component {
 						const headerarray = value;
 						const bodyarray = body;
 						const totalSize = bodyarray.FilteredRecordCount;
-						const bibPosition = bodyarray.BibPositions[0];
-						const namePosition = bodyarray.NamePositions[0];
-						const resultPosition = bodyarray.ResultPosition;
+						const namePosition = 1;
+						const resultPosition = headerarray.length - 1;
 						self.setState({ totalSize: totalSize });
 						const columns = [];
 						const thwidth = self.state.hiddencolumn
-							? (self.state.windowwidth - 80) / 3
-							: (self.state.windowwidth - 160) / (headerarray.length - 1);
+							? (self.state.windowwidth - 85) / 3
+							: (self.state.windowwidth - 85) / (headerarray.length - 1);
 						for (let i = 0; i <= headerarray.length - 1; i++) {
-							if (i === bibPosition) {
-								columns.push({
-									dataField: `${i}`,
-									text: headerarray[i],
-									sort: !self.state.hiddencolumn,
-									style: { fontStyle: 'italic' },
-									headerClasses: 'poscolumn'
-								});
-							} else if (i === namePosition) {
+							if (i === namePosition) {
 								columns.push({
 									dataField: `${i}`,
 									text: headerarray[i],
@@ -205,7 +194,7 @@ class ChallengeResult extends Component {
 									dataField: `${i}`,
 									text: headerarray[i],
 									sort: !self.state.hiddencolumn,
-									headerClasses: 'poscolumn'
+									headerClasses: 'challenge-poscolumn'
 								});
 							} else {
 								if (i === resultPosition) {
@@ -412,22 +401,14 @@ class ChallengeResult extends Component {
 		var self = this;
 		const headerarray = resultitem.Header;
 		const bodyarray = resultitem.Winners;
-		const bibPosition = bodyarray.BibPositions[0];
-		const namePosition = bodyarray.NamePositions[0];
-		const resultPosition = bodyarray.ResultPosition;
+		const namePosition = 1;
+		const resultPosition = headerarray.length - 1;
 		const columns = [];
 		const thwidth = this.state.hiddencolumn
-			? (this.state.windowwidth - 80) / 3
-			: (this.state.windowwidth - 160) / (headerarray.length - 1);
+			? (this.state.windowwidth - 85) / 3
+			: (this.state.windowwidth - 85) / (headerarray.length - 1);
 		for (let i = 0; i <= headerarray.length - 1; i++) {
-			if (i === bibPosition) {
-				columns.push({
-					dataField: `${i}`,
-					text: headerarray[i],
-					style: { fontStyle: 'italic' },
-					headerClasses: 'poscolumn'
-				});
-			} else if (i === namePosition) {
+			if (i === namePosition) {
 				columns.push({
 					dataField: `${i}`,
 					text: headerarray[i],
@@ -438,7 +419,7 @@ class ChallengeResult extends Component {
 				columns.push({
 					dataField: `${i}`,
 					text: headerarray[i],
-					headerClasses: 'poscolumn'
+					headerClasses: 'challenge-poscolumn'
 				});
 			} else {
 				if (i === resultPosition) {

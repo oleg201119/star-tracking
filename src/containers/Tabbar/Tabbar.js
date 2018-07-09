@@ -14,12 +14,12 @@ import './Tabbar.css';
 import Wizardview from '../Wizardview/Wizardview';
 import Register6 from '../Wizardview/Register6';
 import FavoritedEvents from './FavoritedEvents';
+import AuthService from '../../services/auth';
 
 class Tabbar extends Component {
 	constructor() {
 		super();
 		this.state = {
-			registered: false,
 			tokenstate: false,
 			menuopen: false,
 			tabindex: 0
@@ -35,7 +35,8 @@ class Tabbar extends Component {
 			if (refreshToken) temptoken = true;
 		}
 		this.setState({ tokenstate: temptoken });
-		if (this.props.registered) {
+		const registered = this.props.location.state !== undefined ? this.props.location.state.registered : '';
+		if (registered) {
 			this.setState({ tabindex: 4 });
 		}
 	}
@@ -45,9 +46,19 @@ class Tabbar extends Component {
 	closeMenu() {
 		this.setState({ menuOpen: false });
 	}
+	logout() {
+		this.setState({ menuOpen: false });
+		var self = this;
+		AuthService.Logout().then(function(value) {
+			if (value === 'success') {
+				self.props.history.push('/');
+			}
+		});
+	}
 	render() {
 		const { t } = this.props;
 		const { tokenstate, tabindex } = this.state;
+		const registered = this.props.location.state !== undefined ? this.props.location.state.registered : '';
 		return (
 			<div>
 				<div className="header">
@@ -58,6 +69,7 @@ class Tabbar extends Component {
 								<Menu
 									isOpen={this.state.menuOpen}
 									onStateChange={(state) => this.handleStateChange(state)}
+									className={'black-menu'}
 								>
 									<Link
 										to={
@@ -110,6 +122,16 @@ class Tabbar extends Component {
 										>
 											{t('Sign in')}
 										</Link>
+									) : null}
+									{tokenstate ? (
+										<a
+											className="logout-link"
+											onClick={() => {
+												this.logout();
+											}}
+										>
+											Log out
+										</a>
 									) : null}
 									<div className="mobile-tab">
 										<a
@@ -277,7 +299,7 @@ class Tabbar extends Component {
 					<TabPanel>
 						<MyResultsEvents />
 					</TabPanel>
-					<TabPanel>{this.props.registered ? <Wizardview /> : <Register6 />}</TabPanel>
+					<TabPanel>{registered ? <Wizardview /> : <Register6 />}</TabPanel>
 				</Tabs>
 			</div>
 		);

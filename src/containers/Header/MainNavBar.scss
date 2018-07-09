@@ -2,130 +2,151 @@
 
 // Main menu
 .navbar.header-menu {
-  padding-top: 0px;
+	padding-top: 0px;
 
-  .logo-link {
-    padding: 10px 0px;
+	.logo-link {
+		padding: 10px 0px;
 
-    .logo {
-      width: 200px;
-    }
-  }
+		.logo {
+			width: 200px;
+		}
+	}
 
-  .nav-item {    
-    padding: 0.5rem 1rem;    
-  }
+	.nav-item {
+		padding: 0.5rem 1rem;
+	}
 
-  .menu-link {
-    font-size: 16px;
-    font-weight: 300;
-    color: $color_menu;
-  }
+	.menu-link {
+		font-size: 16px;
+		font-weight: 300;
+		color: $color_menu;
+	}
 
-  .btn-login {
-    margin: 0.5rem 1rem;    
-  }
+	.btn-login {
+		margin: 0.5rem 1rem;
+	}
 }
 .avatar-link {
-  margin-left: 20px;
-  .avatar {
-    width: 60px;
-  }
+	margin-left: 20px;
+	.avatar {
+		width: 60px;
+	}
 }
 .bm-burger-button {
-  position: absolute;
-  width: 26px;
-  height: 25px;
-  left: 20px;
-  top: 26px;
+	position: absolute;
+	width: 26px;
+	height: 25px;
+	left: 20px;
+	top: 26px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: white;
-  height: 5% !important;
+	background: white;
+	height: 5% !important;
 }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
-  left: 8px;
+	height: 24px;
+	width: 24px;
+	left: 8px;
 }
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
-  height: 20px !important;
+	background: #bdc3c7;
+	height: 20px !important;
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background: white;
-  padding: 2.5em 0 0;
-  font-size: 1.15em;
+	background: white;
+	padding: 2.5em 0 0;
+	font-size: 1.15em;
 }
 
 .bm-menu-wrap {
-  width: 250px !important;
+	width: 250px !important;
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-  fill: #373a47;
+	fill: #373a47;
 }
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: #b8b7ad;
-  // padding: 0.8em;
+	color: #b8b7ad;
+	// padding: 0.8em;
 }
 
 /* Individual item */
 .bm-item {
-  display: inline-block;
-  padding: 10px 0px 10px 25px;
-  color: rgb(29, 29, 38);
-  &:hover {
-    background-color: rgba(29, 29, 38, 0.03);
-  }
+	display: inline-block;
+	padding: 10px 0px 10px 25px;
+	color: rgb(29, 29, 38);
+	&:hover {
+		background-color: rgba(29, 29, 38, 0.03);
+	}
 }
 
 /* Styling of overlay */
 .bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+	background: rgba(0, 0, 0, 0.3);
 }
 
 .mobile-header {
-  display: flex !important;
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  @media (min-width: 1200px) {
-    display: none !important;
-  }
+	display: flex !important;
+	position: absolute;
+	z-index: 100;
+	width: 100%;
+	@media (min-width: 1200px) {
+		display: none !important;
+	}
 
-  .mobile-logo {
-    width: 44px;
-    height: 41px;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    top: 18px;
-  }
+	.mobile-logo {
+		width: 44px;
+		height: 41px;
+		left: 50%;
+		transform: translateX(-50%);
+		position: absolute;
+		top: 18px;
+	}
 
-  .mobileheader-back {
-    height: 28px;
-    margin-left: 60px;
-    margin-top: 24px;
-  }
+	.mobileheader-back {
+		height: 28px;
+		margin-left: 60px;
+		margin-top: 24px;
+	}
 
-  .header-avatar {
-    margin-left: auto;
-    margin-top: 20px;
-    margin-right: 20px;
-    img {
-      width: 40px;
-    }
-  }
+	.header-avatar {
+		margin-left: auto;
+		margin-top: 20px;
+		margin-right: 20px;
+		img {
+			width: 40px;
+		}
+	}
+}
+
+.black-menu {
+	width: 100% !important;
+	.bm-menu {
+		background: black;
+	}
+	.bm-item {
+		padding: 10px;
+		color: rgba(255, 255, 255, 0.5);
+		text-align: center;
+		&:hover {
+			color: white;
+		}
+	}
+	.logout-link {
+		cursor: pointer;
+		&:hover {
+			color: white !important;
+		}
+	}
 }

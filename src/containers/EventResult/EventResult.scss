@@ -16,6 +16,10 @@
 	}
 
 	.react-bootstrap-table {
+		th {
+			vertical-align: middle;
+			white-space: normal;
+		}
 		@media (max-width: 767px) {
 			th,
 			td {
@@ -319,6 +323,14 @@
 		width: 80px;
 	}
 }
+
+.challenge-poscolumn {
+	width: 85px;
+	@media (min-width: 768px) {
+		width: 110px;
+	}
+}
+
 .winner {
 	width: 100%;
 	margin-bottom: 40px;
