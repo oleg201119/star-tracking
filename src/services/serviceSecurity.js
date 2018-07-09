@@ -15,10 +15,9 @@ export default class ServiceSecurity {
 
 		// set client and user identification
 		const authorizationBasic = window.btoa(clientId + ':' + clientSecret);
-		const loginData = {
-			grant_type: 'refresh_token',
-			refresh_token: refreshToken
-		};
+		const loginData = `${encodeURIComponent('grant_type')}=${encodeURIComponent(
+			'refresh_token'
+		)}&${encodeURIComponent('refresh_token')}=${encodeURIComponent(refreshToken)}`;
 
 		const response = await fetch(`${baseUrl}/Token`, {
 			method: 'POST',
@@ -29,16 +28,17 @@ export default class ServiceSecurity {
 			},
 			body: loginData
 		});
-		console.log(response);
+
 		if (!response.ok) {
 			return false;
 		}
+		const data = await response.json();
 
 		// this means the api call suceeded, so cache the access token in session storage.
-		sessionStorage.setItem(accessTokenKey, response.access_token);
+		sessionStorage.setItem(accessTokenKey, data.access_token);
 
 		// also store refresh token
-		localStorage.StarTrackingRefreshToken = response.refresh_token;
+		localStorage.StarTrackingRefreshToken = data.refresh_token;
 
 		// resolve
 		return true;

@@ -73,7 +73,7 @@ class ChallengeResult extends Component {
 			openkeys: [],
 			leaderboardshow: true,
 			windowwidth: 0,
-			chrome: false
+			chrome: true
 		};
 		this.drawmenu = this.drawmenu.bind(this);
 		this.menuClick = this.menuClick.bind(this);
@@ -86,8 +86,8 @@ class ChallengeResult extends Component {
 	componentWillMount() {
 		const parsed = queryString.parse(this.props.location.search);
 		const chrome = parsed.chrome;
-		if (chrome === 'on') {
-			this.setState({ chrome });
+		if (chrome === 'off') {
+			this.setState({ chrome: false });
 		}
 		window.scrollTo(0, 0);
 		let currentlanguage = this.props.i18n.language;
@@ -715,10 +715,40 @@ class ChallengeResult extends Component {
 													</div>
 												) : null}
 												<div className="event-organisation-detail">
-													<span>{challengeDetail.OrganizerMail}</span>
+													<address>
+														{challengeDetail.OrganizerMail !== null ? (
+															<a
+																className="event-organisation-web"
+																href={`mailto:${challengeDetail.OrganizerMail}`}
+															>
+																{challengeDetail.OrganizerMail}
+															</a>
+														) : null}
+													</address>
 													{challengeDetail.OrganizerWeb !== null ? (
-														<a className="event-organisation-web" href="#/">
+														<a
+															className="event-organisation-web"
+															href={`https://${challengeDetail.OrganizerWeb}`}
+															target="_blank"
+														>
 															{challengeDetail.OrganizerWeb}
+														</a>
+													) : null}
+													{challengeDetail.OrganizerPhone !== null ? (
+														<a
+															className="event-organisation-web"
+															href={`tel:${challengeDetail.OrganizerPhone}`}
+														>
+															{challengeDetail.OrganizerPhone}
+														</a>
+													) : null}
+													{challengeDetail.OrganizerFacebook !== null ? (
+														<a
+															className="event-organisation-web"
+															href={`https://${challengeDetail.OrganizerFacebook}`}
+															target="_blank"
+														>
+															{challengeDetail.OrganizerFacebook}
 														</a>
 													) : null}
 												</div>

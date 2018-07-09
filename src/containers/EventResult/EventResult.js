@@ -719,10 +719,40 @@ class EventResult extends Component {
 													</div>
 												) : null}
 												<div className="event-organisation-detail">
-													<span>{eventDetail.OrganizerMail}</span>
+													<address>
+														{eventDetail.OrganizerMail !== null ? (
+															<a
+																className="event-organisation-web"
+																href={`mailto:${eventDetail.OrganizerMail}`}
+															>
+																{eventDetail.OrganizerMail}
+															</a>
+														) : null}
+													</address>
 													{eventDetail.OrganizerWeb !== null ? (
-														<a className="event-organisation-web" href="#/">
+														<a
+															className="event-organisation-web"
+															href={`https://${eventDetail.OrganizerWeb}`}
+															target="_blank"
+														>
 															{eventDetail.OrganizerWeb}
+														</a>
+													) : null}
+													{eventDetail.OrganizerPhone !== null ? (
+														<a
+															className="event-organisation-web"
+															href={`tel:${eventDetail.OrganizerPhone}`}
+														>
+															{eventDetail.OrganizerPhone}
+														</a>
+													) : null}
+													{eventDetail.OrganizerFacebook !== null ? (
+														<a
+															className="event-organisation-web"
+															href={`https://${eventDetail.OrganizerFacebook}`}
+															target="_blank"
+														>
+															{eventDetail.OrganizerFacebook}
 														</a>
 													) : null}
 												</div>
