@@ -157,7 +157,7 @@ class ChallengeResult extends Component {
 	showtable = (eventID, categoryID, page, sizePerPage, sortColumn, sortDirection, language, filter) => {
 		const self = this;
 		if (this.state.totalSize > 0) self.setState({ loading: true });
-		ChallengeresultService.getHeaderResult(eventID, categoryID, language)
+		ChallengeresultService.getHeaderResult(eventID, language)
 			.then(function(value) {
 				ChallengeresultService.getBodyResult(
 					eventID,

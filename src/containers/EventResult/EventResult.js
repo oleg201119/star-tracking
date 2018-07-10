@@ -151,8 +151,6 @@ class EventResult extends Component {
 			const thwidth = hiddencolumn
 				? (windowwidth - 80) / 3
 				: (windowwidth - 160) / (this.state.columns.length - 1);
-			console.log(windowwidth);
-			console.log(thwidth);
 			let temp = [ ...this.state.columns ];
 			temp[2] = { ...temp[2], headerStyle: { width: thwidth * 2 } };
 			let newtemp = temp.map((col) => {

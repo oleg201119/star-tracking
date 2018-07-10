@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import moment from 'moment';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+import AddToCalendarHOC from 'react-add-to-calendar-hoc';
 import * as eventsSelectors from '../../store/events/reducer';
 import * as authSelectors from '../../store/auth/reducer';
+import Button from '../Common/CalendarButton';
+import Modal from '../Common/CalendarModal';
 import './Eventpage.css';
 
 const LoadingContainer = (props) => <div />;
+const AddToCalendar = AddToCalendarHOC(Button, Modal);
 
 class Eventpage extends Component {
 	static propTypes = {
@@ -75,6 +80,8 @@ class Eventpage extends Component {
 	}
 	render() {
 		const { eventDetail, t, authToken } = this.props;
+		const startDatetime = moment(eventDetail.AgendaFrom).utc().format('YYYYMMDDTHHmmssZ');
+		const endDatetime = moment(eventDetail.AgendaTo).utc().format('YYYYMMDDTHHmmssZ');
 		return (
 			<div>
 				{eventDetail.length !== 0 ? (
@@ -119,9 +126,16 @@ class Eventpage extends Component {
 									<div className="row">
 										<div className="col-8">
 											<div className="options">
-												<a href="#/" className="event-option">
-													<img alt="down" src="/img/card-calendar-down.png" />
-												</a>
+												<AddToCalendar
+													className="add-calendar"
+													event={{
+														description: eventDetail.AgendaDescription,
+														endDatetime,
+														location: eventDetail.AgendaLocation,
+														startDatetime,
+														title: eventDetail.AgendaTitle
+													}}
+												/>
 												<a href="#/" className="event-option">
 													<img alt="logout" src="/img/card-logout.png" />
 												</a>
@@ -141,9 +155,10 @@ class Eventpage extends Component {
 												<span className="event-description-detail">
 													{eventDetail.Description}
 												</span>
-												<span className="event-description-detail">
-													{eventDetail.FullDescription}
-												</span>
+												<div
+													className="event-full-description-detail"
+													dangerouslySetInnerHTML={{ __html: eventDetail.FullDescription }}
+												/>
 											</div>
 											{authToken !== '' && authToken !== 'error' ? (
 												<div className="participate-friend">
@@ -330,9 +345,16 @@ class Eventpage extends Component {
 											</div>
 										</div>
 										<div className="options">
-											<a href="#/" className="event-option">
-												<img alt="down" src="/img/card-calendar-down.png" />
-											</a>
+											<AddToCalendar
+												className="event-option"
+												event={{
+													description: eventDetail.AgendaDescription,
+													endDatetime,
+													location: eventDetail.AgendaLocation,
+													startDatetime,
+													title: eventDetail.AgendaTitle
+												}}
+											/>
 											<a href="#/" className="event-option">
 												<img alt="logout" src="/img/card-logout.png" />
 											</a>
@@ -344,7 +366,10 @@ class Eventpage extends Component {
 								<div className="container">
 									<div className="event-description">
 										<span className="event-description-detail">{eventDetail.Description}</span>
-										<span className="event-description-detail">{eventDetail.FullDescription}</span>
+										<div
+											className="event-full-description-detail"
+											dangerouslySetInnerHTML={{ __html: eventDetail.FullDescription }}
+										/>
 									</div>
 								</div>
 							</div>

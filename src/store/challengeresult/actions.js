@@ -39,7 +39,7 @@ export function fetchMenuResult(eventID, language) {
 export async function fetchWinnerInfo(eventId, categoryId, showNbWinners, language) {
 	try {
 		const fetchPromises = [
-			ChallengeService.getHeaderResult(eventId, categoryId, language),
+			ChallengeService.getHeaderResult(eventId, language),
 			ChallengeService.getBodyResult(eventId, categoryId, 0, showNbWinners, -1, 'ASC', language)
 		];
 

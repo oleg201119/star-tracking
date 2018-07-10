@@ -22,7 +22,7 @@ export default class EventresultService {
 		return data;
 	}
 
-	static async getHeaderResult(eventID, categoryID, language) {
+	static async getHeaderResult(eventID, language) {
 		const url = `${API_ENDPOINT}/App/Challenge/GetHeader/${eventID}?language=${language}`;
 
 		const data = await ServiceSecurity.GetFetch({
