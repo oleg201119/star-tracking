@@ -96,6 +96,10 @@
 				color: $color_red;
 				text-decoration: underline;
 
+				&.event-option-share {
+					cursor: pointer;
+				}
+
 				img {
 					height: 32px;
 				}
@@ -417,6 +421,9 @@
 					.event-option {
 						padding: 0 10px;
 						display: inline-block;
+						&.event-option-share {
+							cursor: pointer;
+						}
 						img {
 							width: 35px;
 							cursor: pointer;
@@ -735,5 +742,23 @@
 
 	span {
 		cursor: pointer;
+	}
+
+	.link-social {
+		.link-social-icon {
+			cursor: pointer;
+			circle {
+				fill: $color_charcoal_grey;
+			}
+
+			&:hover {
+				circle {
+					fill: darken($color_charcoal_grey, 7.5%);
+				}
+				path {
+					fill: darken($color_white, 7.5%);
+				}
+			}
+		}
 	}
 }

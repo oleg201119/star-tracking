@@ -5,6 +5,7 @@ import { translate } from 'react-i18next';
 import moment from 'moment';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import AddToCalendarHOC from 'react-add-to-calendar-hoc';
+import ReactModal from 'react-modal';
 import {
 	FacebookShareButton,
 	TwitterShareButton,
@@ -35,7 +36,8 @@ class Eventpage extends Component {
 				lat: 37.774929,
 				lng: -122.419416
 			},
-			location: ''
+			location: '',
+			showsharemodal: false
 		};
 	}
 	componentDidMount() {
@@ -148,9 +150,14 @@ class Eventpage extends Component {
 														title: eventDetail.AgendaTitle
 													}}
 												/>
-												<a href="#/" className="event-option">
+												<div
+													className="event-option event-option-share"
+													onClick={() => {
+														this.setState({ showsharemodal: true });
+													}}
+												>
 													<img alt="share" src="/img/card-logout.png" />
-												</a>
+												</div>
 											</div>
 										</div>
 										<div className="col-4">
@@ -213,14 +220,6 @@ class Eventpage extends Component {
 													>
 														<TwitterIcon size={32} round className="link-social-icon" />
 													</TwitterShareButton>
-													<WhatsappShareButton
-														url={shareUrl}
-														title={title}
-														separator=":: "
-														className="link-social"
-													>
-														<WhatsappIcon size={32} round className="link-social-icon" />
-													</WhatsappShareButton>
 													<EmailShareButton
 														url={shareUrl}
 														subject={title}
@@ -229,6 +228,14 @@ class Eventpage extends Component {
 													>
 														<EmailIcon size={32} round className="link-social-icon" />
 													</EmailShareButton>
+													<WhatsappShareButton
+														url={shareUrl}
+														title={title}
+														separator=":: "
+														className="link-social"
+													>
+														<WhatsappIcon size={32} round className="link-social-icon" />
+													</WhatsappShareButton>
 												</div>
 											</div>
 											<div className="event-tags">
@@ -373,9 +380,14 @@ class Eventpage extends Component {
 													title: eventDetail.AgendaTitle
 												}}
 											/>
-											<a href="#/" className="event-option">
+											<div
+												className="event-option event-option-share"
+												onClick={() => {
+													this.setState({ showsharemodal: true });
+												}}
+											>
 												<img alt="share" src="/img/card-logout.png" />
-											</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -477,14 +489,6 @@ class Eventpage extends Component {
 										<TwitterShareButton url={shareUrl} title={title} className="link-social">
 											<TwitterIcon size={32} round className="link-social-icon" />
 										</TwitterShareButton>
-										<WhatsappShareButton
-											url={shareUrl}
-											title={title}
-											separator=":: "
-											className="link-social"
-										>
-											<WhatsappIcon size={32} round className="link-social-icon" />
-										</WhatsappShareButton>
 										<EmailShareButton
 											url={shareUrl}
 											subject={title}
@@ -493,6 +497,14 @@ class Eventpage extends Component {
 										>
 											<EmailIcon size={32} round className="link-social-icon" />
 										</EmailShareButton>
+										<WhatsappShareButton
+											url={shareUrl}
+											title={title}
+											separator=":: "
+											className="link-social"
+										>
+											<WhatsappIcon size={32} round className="link-social-icon" />
+										</WhatsappShareButton>
 									</div>
 								</div>
 							</div>
@@ -578,6 +590,40 @@ class Eventpage extends Component {
 						</div>
 					</div>
 				) : null}
+				<ReactModal
+					isOpen={this.state.showsharemodal}
+					className="calendar-modal"
+					onRequestClose={() => {
+						this.setState({ showsharemodal: false });
+					}}
+					shouldCloseOnOverlayClick={true}
+				>
+					<h2>Share the event</h2>
+					<FacebookShareButton url={shareUrl} quote={title} className="link-social">
+						<FacebookIcon size={32} round className="link-social-icon" />
+					</FacebookShareButton>
+					<TwitterShareButton url={shareUrl} title={title} className="link-social">
+						<TwitterIcon size={32} round className="link-social-icon" />
+					</TwitterShareButton>
+					<EmailShareButton
+						url={shareUrl}
+						subject={title}
+						// body="body"
+						className="link-social"
+					>
+						<EmailIcon size={32} round className="link-social-icon" />
+					</EmailShareButton>
+					<WhatsappShareButton url={shareUrl} title={title} separator=":: " className="link-social">
+						<WhatsappIcon size={32} round className="link-social-icon" />
+					</WhatsappShareButton>
+					<div
+						onClick={() => {
+							this.setState({ showsharemodal: false });
+						}}
+					>
+						<span>Cancel</span>
+					</div>
+				</ReactModal>
 			</div>
 		);
 	}
