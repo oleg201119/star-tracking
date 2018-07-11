@@ -6,7 +6,6 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import overlayFactory from 'react-bootstrap-table2-overlay';
 import ReactCountryFlag from 'react-country-flag';
 import Menu, { SubMenu, MenuItem } from 'rc-menu';
-import queryString from 'query-string';
 import Select from 'react-select';
 import HamburgerMenu from 'react-hamburger-menu';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
@@ -84,9 +83,8 @@ class ChallengeResult extends Component {
 		this.showWinnertablesection = this.showWinnertablesection.bind(this);
 	}
 	componentWillMount() {
-		const parsed = queryString.parse(this.props.location.search);
-		const chrome = parsed.chrome;
-		if (chrome === 'off') {
+		const chrome = this.props.location.search;
+		if (chrome === '?chrome=off') {
 			this.setState({ chrome: false });
 		}
 		window.scrollTo(0, 0);
