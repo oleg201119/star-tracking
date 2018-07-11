@@ -1,52 +1,54 @@
 @import "../../styles/Color.scss";
 
 .register-wizard {
+	@media (max-width: 575px) {
+		margin-top: 70px;
+	}
+	.register-wizard-state {
+		margin-left: 20px;
+		margin-right: 20px;
+		font-size: 22px;
+		font-weight: bold;
 
-  .register-wizard-state {
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 22px;
-    font-weight: bold;
+		.register-step {
+			float: right;
+		}
+	}
 
-    .register-step {
-      float: right;
-    }
-  }
+	.about-body-topic {
+		background-color: #e9e9e9;
+		line-height: normal;
+		padding: 20px;
+		margin-top: 50px;
+	}
 
-  .about-body-topic {
-    background-color: #e9e9e9;
-    line-height: normal;
-    padding: 20px;
-    margin-top: 50px;
-  }
+	.contact-body {
+		margin-left: 20px;
+		margin-right: 20px;
 
-  .contact-body {
-    margin-left: 20px;
-    margin-right: 20px;
+		.Select-control {
+			height: 48px;
+			border-color: $color_grey_border;
+			border-radius: 8px;
+			background-color: $color_white;
+		}
+		.Select.is-focused:not(.is-open) > .Select-control {
+			border-color: $color_grey_border;
+			box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0 0px rgba(0, 126, 255, 0.1);
+		}
+		.Select-value {
+			margin-top: 7px;
+		}
+		.Select-placeholder {
+			margin-top: 7px;
+		}
+		.sent-state {
+			justify-content: center;
 
-    .Select-control {
-      height: 48px;
-      border-color: $color_grey_border;
-      border-radius: 8px;
-      background-color: $color_white;
-    }
-    .Select.is-focused:not(.is-open) > .Select-control {
-      border-color: $color_grey_border;
-      box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0 0px rgba(0, 126, 255, 0.1);
-    }
-    .Select-value {
-      margin-top: 7px;
-    }
-    .Select-placeholder {
-      margin-top: 7px;
-    }
-    .sent-state {
-      justify-content: center;
-      
-      .btn-register-next {
-        width: 400px;
-        height: 50px;
-      }
-    }
-  }
+			.btn-register-next {
+				width: 400px;
+				height: 50px;
+			}
+		}
+	}
 }

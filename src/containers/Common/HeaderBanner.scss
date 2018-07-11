@@ -32,6 +32,10 @@
 			color: #ffffff;
 			font-size: 38px;
 			text-align: left;
+
+			@media (max-width: 575px) {
+				font-size: 30px;
+			}
 		}
 	}
 }

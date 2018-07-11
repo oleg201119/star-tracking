@@ -111,13 +111,13 @@ class MainNavBar extends Component {
 										alt="settings"
 										src="/img/settings.png"
 										onClick={() => {
-											this.logout();
+											this.props.history.push('/person', { profiletab: true });
 										}}
 									/>
 									<a
 										className="logout-link"
 										onClick={() => {
-											this.logout();
+											this.props.history.push('/person', { profiletab: true });
 										}}
 									>
 										SETTINGS

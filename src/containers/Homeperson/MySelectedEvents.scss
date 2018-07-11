@@ -1,19 +1,22 @@
 .person-events {
-  .event-gallery {
-    width: 100%;
-  }
+	.event-gallery {
+		width: 100%;
+	}
 }
 .mobile-person-header {
-  height: 300px;
-  background-image: url(/img/event-banner-top.png);
-  @media (min-width: 1200px) {
-    display: none;
-  }
+	height: 300px;
+	background-image: url(/img/event-banner-top.png);
+	@media (min-width: 1200px) {
+		display: none;
+	}
+	@media (max-width: 575px) {
+		margin-bottom: 0;
+	}
 }
 .section-title {
-  &.mobile-person-title {
-    @media (max-width: 1199px) {
-      display: none;
-    } 
-  }
+	&.mobile-person-title {
+		@media (max-width: 1199px) {
+			display: none;
+		}
+	}
 }

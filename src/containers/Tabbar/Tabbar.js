@@ -36,7 +36,8 @@ class Tabbar extends Component {
 		}
 		this.setState({ tokenstate: temptoken });
 		const registered = this.props.location.state !== undefined ? this.props.location.state.registered : '';
-		if (registered) {
+		const profiletab = this.props.location.state !== undefined ? this.props.location.state.profiletab : '';
+		if (registered || profiletab) {
 			this.setState({ tabindex: 4 });
 		}
 	}
@@ -162,13 +163,15 @@ class Tabbar extends Component {
 													alt="settings"
 													src="/img/settings.png"
 													onClick={() => {
-														this.logout();
+														this.setState({ tabindex: 4 });
+														this.closeMenu();
 													}}
 												/>
 												<a
 													className="logout-link"
 													onClick={() => {
-														this.logout();
+														this.setState({ tabindex: 4 });
+														this.closeMenu();
 													}}
 												>
 													SETTINGS

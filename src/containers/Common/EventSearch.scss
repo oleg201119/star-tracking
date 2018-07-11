@@ -1,66 +1,73 @@
 @import "../../styles/Color.scss";
 
 .search-main {
-  background-color: $color_bright_grey;
-  border-radius: 1rem;
-  margin-bottom: 66px;
+	background-color: $color_bright_grey;
+	border-radius: 1rem;
+	margin-bottom: 66px;
 
-  .search-title {
-    padding-top: 49px;
-    text-align: center;
-    padding-bottom: 35px;
+	.search-title {
+		padding-top: 49px;
+		text-align: center;
+		padding-bottom: 35px;
 
-    .title-context {
-      font-size: 35px;
-      line-height: 1;
-      font-weight: 300;
-      color: var(--charcoal-grey); 
-    }
-  }
+		.title-context {
+			font-size: 35px;
+			line-height: 1;
+			font-weight: 300;
+			color: var(--charcoal-grey);
 
-  .search-bar-main {
-    justify-content: center;
-    padding-bottom: 45px;
+			@media (max-width: 575px) {
+				font-size: 30px;
+			}
+		}
+	}
 
-    .search-element {
-      padding: 0;
-    }
-    .Select-control {
-      height: 48px;
-      border-radius: 8px 0px 0px 8px;
-      border-width: 0;
-      border-color: $color_grey_border;
-      border-radius: 8px;
-      border-top-width: 1px;
-      border-bottom-width: 1px;
-      background-color: $color_white;
-    }
-    .Select.is-focused:not(.is-open) > .Select-control {
-      border-color: $color_grey_border;
-      box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0 0px rgba(0, 126, 255, 0.1);
-    }
-    .Select-value {
-      margin-top: 7px;
-    }
-    .Select-placeholder {
-      margin-top: 7px;
-    }
-    .search-event {
-      .Select-control {
-        border-radius: 8px 0px 0px 8px;
-        border-left-width: 1px;
-      }
-    }
-    .search-status {
-      .Select-control {
-        border-radius: 0;
-      }
-    }
-    .btn-search {
-      width: 100%;
-      border-radius: 0px 8px 8px 0px;
-      height: 48px;
-      padding: 0;
-    }
-  }
+	.search-bar-main {
+		justify-content: center;
+		padding-bottom: 45px;
+
+		.search-element {
+			padding: 0;
+		}
+		.Select-control {
+			height: 48px;
+			border-radius: 8px 0px 0px 8px;
+			border-width: 0;
+			border-color: $color_grey_border;
+			border-radius: 8px;
+			border-top-width: 1px;
+			border-bottom-width: 1px;
+			background-color: $color_white;
+			@media (max-width: 575px) {
+				font-size: 13px;
+			}
+		}
+		.Select.is-focused:not(.is-open) > .Select-control {
+			border-color: $color_grey_border;
+			box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0 0px rgba(0, 126, 255, 0.1);
+		}
+		.Select-value {
+			margin-top: 7px;
+		}
+		.Select-placeholder {
+			margin-top: 7px;
+		}
+		.search-event {
+			.Select-control {
+				border-radius: 8px 0px 0px 8px;
+				border-left-width: 1px;
+			}
+		}
+		.search-status {
+			.Select-control {
+				border-radius: 0;
+			}
+		}
+		.btn-search {
+			width: 100%;
+			border-radius: 0px 8px 8px 0px;
+			height: 48px;
+			padding: 0;
+		}
+	}
 }
