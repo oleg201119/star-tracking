@@ -5,6 +5,16 @@ import { translate } from 'react-i18next';
 import moment from 'moment';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import AddToCalendarHOC from 'react-add-to-calendar-hoc';
+import {
+	FacebookShareButton,
+	TwitterShareButton,
+	WhatsappShareButton,
+	EmailShareButton,
+	FacebookIcon,
+	TwitterIcon,
+	WhatsappIcon,
+	EmailIcon
+} from 'react-share';
 import * as eventsSelectors from '../../store/events/reducer';
 import * as authSelectors from '../../store/auth/reducer';
 import Button from '../Common/CalendarButton';
@@ -82,6 +92,8 @@ class Eventpage extends Component {
 		const { eventDetail, t, authToken } = this.props;
 		const startDatetime = moment(eventDetail.AgendaFrom).utc().format('YYYYMMDDTHHmmssZ');
 		const endDatetime = moment(eventDetail.AgendaTo).utc().format('YYYYMMDDTHHmmssZ');
+		const shareUrl = window.location.href;
+		const title = 'star-tracking';
 		return (
 			<div>
 				{eventDetail.length !== 0 ? (
@@ -137,7 +149,7 @@ class Eventpage extends Component {
 													}}
 												/>
 												<a href="#/" className="event-option">
-													<img alt="logout" src="/img/card-logout.png" />
+													<img alt="share" src="/img/card-logout.png" />
 												</a>
 											</div>
 										</div>
@@ -187,21 +199,36 @@ class Eventpage extends Component {
 											<div className="share-friend">
 												<span className="share-friend-topic">{t('Deel met vrienden')}</span>
 												<div className="social-group-row">
-													<a href="#/" className="link-social">
-														<i className="fa fa-facebook" />
-													</a>
-													<a href="#/" className="link-social ">
-														<i className="fa fa-twitter" />
-													</a>
-													<a href="#/" className="link-social ">
-														<i className="fa fa-linkedin" />
-													</a>
-													<a href="#/" className="link-social ">
-														<i className="fa fa-envelope-o" />
-													</a>
-													<a href="#/" className="link-social ">
-														<i className="fa fa-whatsapp" />
-													</a>
+													<FacebookShareButton
+														url={shareUrl}
+														quote={title}
+														className="link-social"
+													>
+														<FacebookIcon size={32} round className="link-social-icon" />
+													</FacebookShareButton>
+													<TwitterShareButton
+														url={shareUrl}
+														title={title}
+														className="link-social"
+													>
+														<TwitterIcon size={32} round className="link-social-icon" />
+													</TwitterShareButton>
+													<WhatsappShareButton
+														url={shareUrl}
+														title={title}
+														separator=":: "
+														className="link-social"
+													>
+														<WhatsappIcon size={32} round className="link-social-icon" />
+													</WhatsappShareButton>
+													<EmailShareButton
+														url={shareUrl}
+														subject={title}
+														// body="body"
+														className="link-social"
+													>
+														<EmailIcon size={32} round className="link-social-icon" />
+													</EmailShareButton>
 												</div>
 											</div>
 											<div className="event-tags">
@@ -218,18 +245,11 @@ class Eventpage extends Component {
 											</div>
 											<div className="event-date-time-detail">
 												<div className="event-date-time-from">
-													<span>{eventDetail.From}</span>
+													<span>{eventDetail.EventTime1}</span>
 												</div>
-												{eventDetail.To !== null ? (
-													<div className="event-date-time-line">
-														<span>&nbsp;-&nbsp;</span>
-													</div>
-												) : null}
-												{eventDetail.To !== null ? (
-													<div className="event-date-time-to">
-														<span>{eventDetail.To}</span>
-													</div>
-												) : null}
+												<div className="event-date-time-to">
+													<span>{eventDetail.EventTime2}</span>
+												</div>
 											</div>
 											<div className="event-location">
 												<div className="event-location-topic">
@@ -286,21 +306,19 @@ class Eventpage extends Component {
 														</a>
 													) : null}
 													{eventDetail.OrganizerPhone !== null ? (
-														<a
-															className="event-organisation-web"
-															href={`tel:${eventDetail.OrganizerPhone}`}
-														>
-															{eventDetail.OrganizerPhone}
-														</a>
+														<span>{eventDetail.OrganizerPhone}</span>
 													) : null}
 													{eventDetail.OrganizerFacebook !== null ? (
-														<a
-															className="event-organisation-web"
-															href={eventDetail.OrganizerFacebook}
-															target="_blank"
-														>
-															{eventDetail.OrganizerFacebook}
-														</a>
+														<div className="event-organisation-facebook">
+															<i className="fa fa-facebook" />&nbsp;
+															<a
+																className="event-organisation-web"
+																href={`https://${eventDetail.OrganizerFacebook}`}
+																target="_blank"
+															>
+																{eventDetail.OrganizerFacebook}
+															</a>
+														</div>
 													) : null}
 												</div>
 											</div>
@@ -356,7 +374,7 @@ class Eventpage extends Component {
 												}}
 											/>
 											<a href="#/" className="event-option">
-												<img alt="logout" src="/img/card-logout.png" />
+												<img alt="share" src="/img/card-logout.png" />
 											</a>
 										</div>
 									</div>
@@ -380,18 +398,11 @@ class Eventpage extends Component {
 									</div>
 									<div className="event-date-time-detail">
 										<div className="event-date-time-from">
-											<span>{eventDetail.From}</span>
+											<span>{eventDetail.EventTime1}</span>
 										</div>
-										{eventDetail.To !== null ? (
-											<div className="event-date-time-line">
-												<span>&nbsp;-&nbsp;</span>
-											</div>
-										) : null}
-										{eventDetail.To !== null ? (
-											<div className="event-date-time-to">
-												<span>{eventDetail.To}</span>
-											</div>
-										) : null}
+										<div className="event-date-time-to">
+											<span>{eventDetail.EventTime2}</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -460,21 +471,28 @@ class Eventpage extends Component {
 										<span className="share-friend-topic">{t('Deel met vrienden')}</span>
 									</div>
 									<div className="social-group-row">
-										<a href="#/" className="link-social">
-											<i className="fa fa-facebook" />
-										</a>
-										<a href="#/" className="link-social ">
-											<i className="fa fa-twitter" />
-										</a>
-										<a href="#/" className="link-social ">
-											<i className="fa fa-linkedin" />
-										</a>
-										<a href="#/" className="link-social ">
-											<i className="fa fa-envelope-o" />
-										</a>
-										<a href="#/" className="link-social ">
-											<i className="fa fa-whatsapp" />
-										</a>
+										<FacebookShareButton url={shareUrl} quote={title} className="link-social">
+											<FacebookIcon size={32} round className="link-social-icon" />
+										</FacebookShareButton>
+										<TwitterShareButton url={shareUrl} title={title} className="link-social">
+											<TwitterIcon size={32} round className="link-social-icon" />
+										</TwitterShareButton>
+										<WhatsappShareButton
+											url={shareUrl}
+											title={title}
+											separator=":: "
+											className="link-social"
+										>
+											<WhatsappIcon size={32} round className="link-social-icon" />
+										</WhatsappShareButton>
+										<EmailShareButton
+											url={shareUrl}
+											subject={title}
+											// body="body"
+											className="link-social"
+										>
+											<EmailIcon size={32} round className="link-social-icon" />
+										</EmailShareButton>
 									</div>
 								</div>
 							</div>
@@ -528,22 +546,20 @@ class Eventpage extends Component {
 									) : null}
 									{eventDetail.OrganizerPhone !== null ? (
 										<div className="event-organisation-detail">
-											<a
-												className="event-organisation-web"
-												href={`tel:${eventDetail.OrganizerPhone}`}
-											>
-												{eventDetail.OrganizerPhone}
-											</a>
+											<span>{eventDetail.OrganizerPhone}</span>
 										</div>
 									) : null}
 									{eventDetail.OrganizerFacebook !== null ? (
-										<a
-											className="event-organisation-web"
-											href={`https://${eventDetail.OrganizerFacebook}`}
-											target="_blank"
-										>
-											{eventDetail.OrganizerFacebook}
-										</a>
+										<div className="event-organisation-detail">
+											<i className="fa fa-facebook" />&nbsp;
+											<a
+												className="event-organisation-web"
+												href={`https://${eventDetail.OrganizerFacebook}`}
+												target="_blank"
+											>
+												{eventDetail.OrganizerFacebook}
+											</a>
+										</div>
 									) : null}
 								</div>
 							</div>

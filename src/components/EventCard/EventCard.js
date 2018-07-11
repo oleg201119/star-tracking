@@ -30,8 +30,7 @@ class EventCard extends Component {
 			>
 				<Link
 					to={{
-						pathname: '/event',
-						state: { eventid: event.ID }
+						pathname: `/event/${event.ID}`
 					}}
 					className={`card-banner ${mobiletype ? 'mobiletype' : ''}`}
 				>
@@ -68,7 +67,7 @@ class EventCard extends Component {
 										}}
 									/>
 									<a href="#/" className="event-option">
-										<img alt="logout" src="/img/card-logout.png" />
+										<img alt="share" src="/img/card-logout.png" />
 									</a>
 								</div>
 							</div>

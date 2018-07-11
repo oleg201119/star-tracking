@@ -71,68 +71,6 @@ class Tabbar extends Component {
 									onStateChange={(state) => this.handleStateChange(state)}
 									className={'black-menu'}
 								>
-									<Link
-										to={
-											tokenstate ? (
-												{ pathname: '/person', state: { backstate: false } }
-											) : (
-												{ pathname: '/homepage', state: { backstate: false } }
-											)
-										}
-										className="menu-link"
-										onClick={() => {
-											this.closeMenu();
-										}}
-									>
-										{t('Browse all events')}
-									</Link>
-									<Link
-										to={{ pathname: '/organizer', state: { backstate: false } }}
-										className="menu-link"
-										onClick={() => {
-											this.closeMenu();
-										}}
-									>
-										{t('For organizers')}
-									</Link>
-									<Link
-										to={{ pathname: '/about', state: { backstate: false } }}
-										className="menu-link"
-										onClick={() => {
-											this.closeMenu();
-										}}
-									>
-										{t('About Star Tracking')}
-									</Link>
-									<Link
-										to={{ pathname: '/contact', state: { backstate: false } }}
-										className="menu-link"
-										onClick={() => {
-											this.closeMenu();
-										}}
-									>
-										{t('Contact us')}
-									</Link>
-									{!tokenstate ? (
-										<Link
-											to="/login"
-											onClick={() => {
-												this.closeMenu();
-											}}
-										>
-											{t('Sign in')}
-										</Link>
-									) : null}
-									{tokenstate ? (
-										<a
-											className="logout-link"
-											onClick={() => {
-												this.logout();
-											}}
-										>
-											Log out
-										</a>
-									) : null}
 									<div className="mobile-tab">
 										<a
 											className={`mobile-tab-item ${tabindex === 0 ? 'selected' : ''}`}
@@ -180,6 +118,81 @@ class Tabbar extends Component {
 											{t('My account')}
 										</a>
 									</div>
+									<Link
+										to={{ pathname: '/organizer', state: { backstate: false } }}
+										className="menu-link"
+										onClick={() => {
+											this.closeMenu();
+										}}
+									>
+										{t('For organizers')}
+									</Link>
+									<Link
+										to={{ pathname: '/about', state: { backstate: false } }}
+										className="menu-link"
+										onClick={() => {
+											this.closeMenu();
+										}}
+									>
+										{t('About Star Tracking')}
+									</Link>
+									<Link
+										to={{ pathname: '/contact', state: { backstate: false } }}
+										className="menu-link"
+										onClick={() => {
+											this.closeMenu();
+										}}
+									>
+										{t('Contact us')}
+									</Link>
+									{!tokenstate ? (
+										<Link
+											to="/login"
+											onClick={() => {
+												this.closeMenu();
+											}}
+										>
+											{t('Sign in')}
+										</Link>
+									) : null}
+									{tokenstate ? (
+										<div className="menu-logout">
+											<div className="menu-logout-setting">
+												<img
+													alt="settings"
+													src="/img/settings.png"
+													onClick={() => {
+														this.logout();
+													}}
+												/>
+												<a
+													className="logout-link"
+													onClick={() => {
+														this.logout();
+													}}
+												>
+													SETTINGS
+												</a>
+											</div>
+											<div className="menu-logout-logout">
+												<img
+													alt="logout"
+													src="/img/logout.png"
+													onClick={() => {
+														this.logout();
+													}}
+												/>
+												<a
+													className="logout-link"
+													onClick={() => {
+														this.logout();
+													}}
+												>
+													LOG OUT
+												</a>
+											</div>
+										</div>
+									) : null}
 								</Menu>
 								<a href={tokenstate ? '/person' : '/'}>
 									<img className="mobile-logo" alt="ST-logo" src="/img/mobile-logo.png" />

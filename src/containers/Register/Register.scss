@@ -3,29 +3,27 @@
 
 // login
 .register {
+	.login-other {
+		height: 170px !important;
+	}
 
-  .login-other {
-    height: 170px !important;
-  }
+	.stay-signin {
+		display: flex !important;
+		margin-top: 20px !important;
 
-  .stay-signin {
-    display: flex !important;
-    margin-top: 20px !important;
+		.stay-signin-check {
+			margin-top: 0 !important;
+		}
+	}
 
-    .stay-signin-check {
-      margin-top: 0 !important;
-    }
-  }
+	.create-forgot {
+		display: inline-block !important;
+		margin-top: 0 !important;
+		width: 100%;
+		text-align: center;
 
-  .create-forgot {
-    display: inline-block !important;
-    margin-top: 0 !important;
-    width: 100%;
-    text-align: center;
-
-    .sign-in {
-      cursor: pointer;
-      color: black !important;
-    }
-  }
+		.sign-in {
+			cursor: pointer;
+		}
+	}
 }

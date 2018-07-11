@@ -51,16 +51,17 @@
 	}
 }
 .mobile-tab {
-	background-color: black;
-	margin-top: 20px;
 	cursor: pointer;
-	border-top: 1px solid black;
+	padding: 0 !important;
+
 	.mobile-tab-item {
 		display: block;
-		padding: 10px 0px 10px 0px;
-		margin-right: 25px;
+		padding: 10px;
 		color: rgba(255, 255, 255, 0.5);
 
+		&:hover {
+			color: white !important;
+		}
 		&.selected {
 			color: white;
 		}

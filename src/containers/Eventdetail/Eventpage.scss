@@ -190,27 +190,22 @@
 				margin-top: 20px;
 
 				.link-social {
-					border-radius: 50%;
-					width: 35px;
-					height: 35px;
-					background-color: $color_charcoal_grey;
-					color: $color_white;
 					display: inline-block;
-					text-align: center;
-					text-decoration: none;
 					margin-right: 10px;
 
-					&:hover {
-						background-color: darken($color_charcoal_grey, 7.5%);
-						color: darken($color_white, 7.5%);
-					}
+					.link-social-icon {
+						cursor: pointer;
+						circle {
+							fill: $color_charcoal_grey;
+						}
 
-					.fa {
-						line-height: 35px;
-						font-size: 18px;
-
-						&.fa-linkedin {
-							color: $color_charcoal_grey;
+						&:hover {
+							circle {
+								fill: darken($color_charcoal_grey, 7.5%);
+							}
+							path {
+								fill: darken($color_white, 7.5%);
+							}
 						}
 					}
 				}
@@ -254,13 +249,7 @@
 		}
 
 		.event-date-time-detail {
-			display: flex;
-			justify-content: flex-end;
 			margin-top: 25px;
-
-			.event-date-time-to {
-				text-align: right;
-			}
 		}
 
 		.event-location {
@@ -343,8 +332,19 @@
 					display: flex;
 				}
 
+				address {
+					margin-bottom: 0;
+				}
+
+				.event-organisation-facebook {
+					display: flex;
+
+					i {
+						margin: auto 0;
+					}
+				}
+
 				.event-organisation-web {
-					margin-top: 15px;
 					font-family: 'Roboto', sans-serif;
 					font-size: 16px;
 					line-height: 1.5;
@@ -468,14 +468,8 @@
 		}
 
 		.event-date-time-detail {
-			display: flex;
-			justify-content: flex-end;
 			margin-top: 25px;
 			margin-bottom: 25px;
-
-			.event-date-time-to {
-				text-align: right;
-			}
 		}
 	}
 
@@ -579,27 +573,22 @@
 			margin-left: auto;
 
 			.link-social {
-				border-radius: 50%;
-				width: 35px;
-				height: 35px;
-				background-color: $color_charcoal_grey;
-				color: $color_white;
 				display: inline-block;
-				text-align: center;
-				text-decoration: none;
 				margin-right: 10px;
 
-				&:hover {
-					background-color: darken($color_charcoal_grey, 7.5%);
-					color: darken($color_white, 7.5%);
-				}
+				.link-social-icon {
+					cursor: pointer;
+					circle {
+						fill: $color_charcoal_grey;
+					}
 
-				.fa {
-					line-height: 35px;
-					font-size: 18px;
-
-					&.fa-linkedin {
-						color: $color_charcoal_grey;
+					&:hover {
+						circle {
+							fill: darken($color_charcoal_grey, 7.5%);
+						}
+						path {
+							fill: darken($color_white, 7.5%);
+						}
 					}
 				}
 			}
@@ -673,6 +662,18 @@
 
 				span {
 					margin-left: auto;
+				}
+
+				address {
+					margin-bottom: 0;
+				}
+
+				.event-organisation-facebook {
+					display: flex;
+
+					i {
+						margin: auto 0;
+					}
 				}
 
 				.event-organisation-web {

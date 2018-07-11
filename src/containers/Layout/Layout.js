@@ -26,7 +26,7 @@ class Layout extends Component {
 					<Route path="/contact" render={(props) => <Contact {...props} />} />
 					<Route path="/organizer" render={(props) => <Organizer {...props} />} />
 					<Route path="/newevent" render={(props) => <Newevent {...props} />} />
-					<Route path="/event" render={(props) => <Eventdetail {...props} />} />
+					<Route path="/event/:id" render={(props) => <Eventdetail {...props} />} />
 					<Route path="/policy" render={(props) => <Policy {...props} />} />
 					<Route path="/eventresult/:id" render={(props) => <EventResult {...props} />} />
 				</Switch>

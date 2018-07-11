@@ -737,21 +737,19 @@ class EventResult extends Component {
 														</a>
 													) : null}
 													{eventDetail.OrganizerPhone !== null ? (
-														<a
-															className="event-organisation-web"
-															href={`tel:${eventDetail.OrganizerPhone}`}
-														>
-															{eventDetail.OrganizerPhone}
-														</a>
+														<span>{eventDetail.OrganizerPhone}</span>
 													) : null}
 													{eventDetail.OrganizerFacebook !== null ? (
-														<a
-															className="event-organisation-web"
-															href={`https://${eventDetail.OrganizerFacebook}`}
-															target="_blank"
-														>
-															{eventDetail.OrganizerFacebook}
-														</a>
+														<div className="event-organisation-facebook">
+															<i className="fa fa-facebook" />&nbsp;
+															<a
+																className="event-organisation-web"
+																href={`https://${eventDetail.OrganizerFacebook}`}
+																target="_blank"
+															>
+																{eventDetail.OrganizerFacebook}
+															</a>
+														</div>
 													) : null}
 												</div>
 											</div>

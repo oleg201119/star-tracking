@@ -716,21 +716,19 @@ class ChallengeResult extends Component {
 														</a>
 													) : null}
 													{challengeDetail.OrganizerPhone !== null ? (
-														<a
-															className="event-organisation-web"
-															href={`tel:${challengeDetail.OrganizerPhone}`}
-														>
-															{challengeDetail.OrganizerPhone}
-														</a>
+														<span>{challengeDetail.OrganizerPhone}</span>
 													) : null}
 													{challengeDetail.OrganizerFacebook !== null ? (
-														<a
-															className="event-organisation-web"
-															href={`https://${challengeDetail.OrganizerFacebook}`}
-															target="_blank"
-														>
-															{challengeDetail.OrganizerFacebook}
-														</a>
+														<div className="event-organisation-facebook">
+															<i className="fa fa-facebook" />&nbsp;
+															<a
+																className="event-organisation-web"
+																href={`https://${challengeDetail.OrganizerFacebook}`}
+																target="_blank"
+															>
+																{challengeDetail.OrganizerFacebook}
+															</a>
+														</div>
 													) : null}
 												</div>
 											</div>

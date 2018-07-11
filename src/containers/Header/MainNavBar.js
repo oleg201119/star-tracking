@@ -50,7 +50,7 @@ class MainNavBar extends Component {
 					<Menu
 						isOpen={this.state.menuOpen}
 						onStateChange={(state) => this.handleStateChange(state)}
-						className={tokenstate ? 'black-menu' : null}
+						className="black-menu"
 					>
 						<Link
 							to={
@@ -105,14 +105,42 @@ class MainNavBar extends Component {
 							</Link>
 						) : null}
 						{tokenstate ? (
-							<a
-								className="logout-link"
-								onClick={() => {
-									this.logout();
-								}}
-							>
-								Log out
-							</a>
+							<div className="menu-logout">
+								<div className="menu-logout-setting">
+									<img
+										alt="settings"
+										src="/img/settings.png"
+										onClick={() => {
+											this.logout();
+										}}
+									/>
+									<a
+										className="logout-link"
+										onClick={() => {
+											this.logout();
+										}}
+									>
+										SETTINGS
+									</a>
+								</div>
+								<div className="menu-logout-logout">
+									<img
+										alt="logout"
+										src="/img/logout.png"
+										onClick={() => {
+											this.logout();
+										}}
+									/>
+									<a
+										className="logout-link"
+										onClick={() => {
+											this.logout();
+										}}
+									>
+										LOG OUT
+									</a>
+								</div>
+							</div>
 						) : null}
 					</Menu>
 					{this.props.location.pathname !== '/' ? this.props.location.state === undefined ||
