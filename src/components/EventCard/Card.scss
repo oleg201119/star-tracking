@@ -33,7 +33,7 @@
 
 	.card-glass {
 		position: absolute;
-		top: 105px;
+		top: 90px;
 		left: 35px;
 		background-color: transparent;
 
@@ -61,6 +61,7 @@
 		background-color: $color_red;
 		border-radius: 50%;
 		text-align: center;
+		z-index: 1;
 
 		&.registered {
 			background-color: rgb(149, 204, 208);
@@ -98,6 +99,8 @@
 	border-left: none;
 	background-color: $color_event_other;
 	color: $color_dark;
+	cursor: pointer;
+
 	&.Running {
 		background-color: $color_event_running;
 	}
@@ -159,6 +162,12 @@
 			// max-height: 45px;
 			min-height: 28px;
 		}
+		.event-smalldescription {
+			font-size: 14.5px;
+			opacity: 0.5;
+			margin-top: 10px;
+			padding-right: 20px;
+		}
 
 		.by-options {
 			position: relative;
@@ -167,6 +176,12 @@
 				opacity: 0.5;
 				font-size: 14px;
 				padding-right: 100px;
+			}
+
+			.type-city {
+				opacity: 0.5;
+				font-size: 13.5px;
+				padding-right: 20px;
 			}
 
 			.options {

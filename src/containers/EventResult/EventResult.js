@@ -8,6 +8,7 @@ import ReactCountryFlag from 'react-country-flag';
 import Menu, { SubMenu, MenuItem } from 'rc-menu';
 import Select from 'react-select';
 import HamburgerMenu from 'react-hamburger-menu';
+import { Link } from 'react-router-dom';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import './rc-menu.css';
 import paginationFactory from '../react-table-paginator';
@@ -761,6 +762,9 @@ class EventResult extends Component {
 					</div>
 				) : null}
 				<div className="container">
+					<Link to={`/event/${eventDetail.ID}`} className="event-detail-link">
+						{t('Details Event')}
+					</Link>
 					<div className="friend-event">
 						<SimilarEvents />
 					</div>

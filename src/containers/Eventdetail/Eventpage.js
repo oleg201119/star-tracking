@@ -6,6 +6,7 @@ import moment from 'moment';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import AddToCalendarHOC from 'react-add-to-calendar-hoc';
 import ReactModal from 'react-modal';
+import HTMLEllipsis from 'react-lines-ellipsis/lib/html';
 import {
 	FacebookShareButton,
 	TwitterShareButton,
@@ -37,8 +38,10 @@ class Eventpage extends Component {
 				lng: -122.419416
 			},
 			location: '',
-			showsharemodal: false
+			showsharemodal: false,
+			fullread: false
 		};
+		this.fullref = <HTMLEllipsis />;
 	}
 	componentDidMount() {
 		const self = this;
@@ -174,10 +177,36 @@ class Eventpage extends Component {
 												<span className="event-description-detail">
 													{eventDetail.Description}
 												</span>
-												<div
-													className="event-full-description-detail"
-													dangerouslySetInnerHTML={{ __html: eventDetail.FullDescription }}
-												/>
+												{this.state.fullread ? (
+													<div
+														className="event-full-description-detail"
+														dangerouslySetInnerHTML={{
+															__html: eventDetail.FullDescription
+														}}
+													/>
+												) : (
+													<div className="event-full-description-detail">
+														<HTMLEllipsis
+															ref={(ref) => {
+																this.fullref = ref;
+															}}
+															unsafeHTML={eventDetail.FullDescription}
+															maxLine="4"
+															ellipsis="..."
+															basedOn="letters"
+														/>
+														{this.fullref.clamped ? (
+															<span
+																className="read-more"
+																onClick={() => {
+																	this.setState({ fullread: true });
+																}}
+															>
+																{t('read more')}
+															</span>
+														) : null}
+													</div>
+												)}
 											</div>
 											{authToken !== '' && authToken !== 'error' ? (
 												<div className="participate-friend">
@@ -396,10 +425,36 @@ class Eventpage extends Component {
 								<div className="container">
 									<div className="event-description">
 										<span className="event-description-detail">{eventDetail.Description}</span>
-										<div
-											className="event-full-description-detail"
-											dangerouslySetInnerHTML={{ __html: eventDetail.FullDescription }}
-										/>
+										{this.state.fullread ? (
+											<div
+												className="event-full-description-detail"
+												dangerouslySetInnerHTML={{
+													__html: eventDetail.FullDescription
+												}}
+											/>
+										) : (
+											<div className="event-full-description-detail">
+												<HTMLEllipsis
+													ref={(ref) => {
+														this.fullref = ref;
+													}}
+													unsafeHTML={eventDetail.FullDescription}
+													maxLine="4"
+													ellipsis="..."
+													basedOn="letters"
+												/>
+												{this.fullref.clamped ? (
+													<span
+														className="read-more"
+														onClick={() => {
+															this.setState({ fullread: true });
+														}}
+													>
+														{t('read more')}
+													</span>
+												) : null}
+											</div>
+										)}
 									</div>
 								</div>
 							</div>

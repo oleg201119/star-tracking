@@ -400,6 +400,7 @@
 			right: 50px;
 			@media (max-width: 575px) {
 				top: 133px;
+				right: 20px;
 			}
 		}
 
@@ -776,4 +777,10 @@
 			}
 		}
 	}
+}
+
+.read-more {
+	cursor: pointer;
+	color: black;
+	text-decoration: underline;
 }

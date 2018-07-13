@@ -367,3 +367,15 @@
 	width: 100%;
 	height: 300px;
 }
+
+.event-detail-link {
+	color: #ea1f37;
+	margin-top: 20px;
+	display: flex;
+	text-decoration: underline;
+
+	&:hover {
+		opacity: 0.5;
+		color: #ea1f37;
+	}
+}
