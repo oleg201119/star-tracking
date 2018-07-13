@@ -2,111 +2,113 @@
 @import "../../styles/Button.scss";
 // Header banner
 .contact-banner {
-  background-image: url(/img/contact-banner.jpg);
+	background-image: url(/img/contact-banner.jpg);
 
-  .small-slogan {
-    font-size: 28px !important;
-    text-align: center !important;
-    line-height: 1.39 !important;
-  }
+	.small-slogan {
+		font-size: 28px !important;
+		text-align: center !important;
+		line-height: 1.39 !important;
+		@media (max-width: 575px) {
+			font-size: 22px !important;
+		}
+	}
 
-  .about-banner-text {
-    display: flex;
-    justify-content: center;
-  }
+	.about-banner-text {
+		display: flex;
+		justify-content: center;
+	}
 }
 .contact-body-text {
-  margin-top: 10px;
+	margin-top: 10px;
 }
 .about-body-end {
-  margin-top: 25px;
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 1.77;
-  text-align: center;
-  color: var(--charcoal-grey);
-  margin-bottom: 30px;
+	margin-top: 25px;
+	font-size: 22px;
+	font-weight: 300;
+	line-height: 1.77;
+	text-align: center;
+	color: var(--charcoal-grey);
+	margin-bottom: 30px;
 }
 .btn-create-event {
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  margin-bottom: 125px;
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	margin-bottom: 125px;
 }
 
 .contact-body {
-  margin-top: 40px;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  line-height: 2.25;
-  color: $color_grey_font;
-  margin-bottom: 70px;
-  @media (min-width: 576px) {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  @media (min-width: 768px) {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  @media (min-width: 992px) {
-    margin-left: 80px;
-    margin-right: 80px;
-  }
-  .contact-body-input {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    line-height: 2.25;
-    color: $color_grey_font;
-    width: 100%;
-    height: 45px;
-    padding-left: 10px;
-    padding-right: 10px;
-    opacity: 0.9;
-    border-radius: 8px;
-    border: solid 1px #e2e1e1;
-    &:focus{
-      outline: none;
-    }
-  }
+	margin-top: 40px;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	line-height: 2.25;
+	color: $color_grey_font;
+	margin-bottom: 70px;
+	@media (min-width: 576px) {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	@media (min-width: 768px) {
+		margin-left: 50px;
+		margin-right: 50px;
+	}
+	@media (min-width: 992px) {
+		margin-left: 80px;
+		margin-right: 80px;
+	}
+	.contact-body-input {
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+		line-height: 2.25;
+		color: $color_grey_font;
+		width: 100%;
+		height: 45px;
+		padding-left: 10px;
+		padding-right: 10px;
+		opacity: 0.9;
+		border-radius: 8px;
+		border: solid 1px #e2e1e1;
+		&:focus {
+			outline: none;
+		}
+	}
 
-  .contact-body-multiinput {
-    height: 150px;
-  }
-  .btn-contact-send {
-    border-radius: 8px;
-    min-width: 140px;
-  }
-  .pb-container {
-    height: 40px;
-    .pb-button {
-      line-height: 1.5;
-      @include btn-variant($color_red, $color_white);
-      padding: 2px 6px;
-      border-radius: 8px;
-      span {
-        font-size: 1rem;
-        
-      }
-    }
-    &.loading {
-      .pb-button{
-        border-radius: 20px;
-        color: currentColor;
-        // border-color: #ddd;
-      }
-    }
-  }
-  .error-text {
-    margin-left: 10px;
-  }
+	.contact-body-multiinput {
+		height: 150px;
+	}
+	.btn-contact-send {
+		border-radius: 8px;
+		min-width: 140px;
+	}
+	.pb-container {
+		height: 40px;
+		.pb-button {
+			line-height: 1.5;
+			@include btn-variant($color_red, $color_white);
+			padding: 2px 6px;
+			border-radius: 8px;
+			span {
+				font-size: 1rem;
+			}
+		}
+		&.loading {
+			.pb-button {
+				border-radius: 20px;
+				color: currentColor;
+				// border-color: #ddd;
+			}
+		}
+	}
+	.error-text {
+		margin-left: 10px;
+	}
 
-  .sent-state {
-    margin-top: 30px;
-    display: flex;
-    font-size: 18px;
-  }
+	.sent-state {
+		margin-top: 30px;
+		display: flex;
+		font-size: 18px;
+	}
 }

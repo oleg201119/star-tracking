@@ -15,7 +15,7 @@ class Login extends Component {
 	constructor() {
 		super();
 		this.state = {
-			stay_signin: false,
+			stay_signin: true,
 			username: '',
 			password: '',
 			loginstate: ''
@@ -57,15 +57,15 @@ class Login extends Component {
 				<div className="login-main">
 					<button type="button" className="btn btn-login btn-facebook">
 						<i className="fa fa-facebook" aria-hidden="true" />
-						<span>Login using Facebook Connect</span>
+						<span>{t('Login using Facebook Connect')}</span>
 					</button>
 					<button type="button" className="btn btn-login btn-twitter">
 						<i className="fa fa-twitter" />
-						<span>Login using Twitter</span>
+						<span>{t('Login using Twitter')}</span>
 					</button>
 					<div className="login-border">
 						<div className="login-border-line" />
-						<div className="login-border-text">OR</div>
+						<div className="login-border-text">{t('OR')}</div>
 						<div className="login-border-line" />
 					</div>
 					<div className="login-other">
@@ -110,7 +110,7 @@ class Login extends Component {
 							this.props.dispatch(authActions.fetchLoginAuth(this.state.username, this.state.password));
 						}}
 					>
-						Sign In
+						{t('Sign in')}
 					</button>
 					<div className="error-text">
 						{this.state.loginstate === 'error' ? (
@@ -129,14 +129,14 @@ class Login extends Component {
 									? this.setState({ stay_signin: false })
 									: this.setState({ stay_signin: true })}
 						/>
-						<span>Stay signed in</span>
+						<span>{t('Stay signed in')}</span>
 					</div>
 					<div className="create-forgot">
 						<Link to="/register" className="create-forgot-text">
-							Create your free account
+							{t('Create your free account')}
 						</Link>
 						<Link to="/resetpwd" className="create-forgot-text forgotpassword">
-							Forgot Password
+							{t('Forgot Password')}
 						</Link>
 					</div>
 				</div>

@@ -59,15 +59,15 @@ class Register extends Component {
 				<div className="login-main">
 					<button type="button" className="btn btn-login btn-facebook">
 						<i className="fa fa-facebook" aria-hidden="true" />
-						<span>Register using Facebook Connect</span>
+						<span>{t('Register using Facebook Connect')}</span>
 					</button>
 					<button type="button" className="btn btn-login btn-twitter">
 						<i className="fa fa-twitter" />
-						<span>Register using Twitter</span>
+						<span>{t('Register using Twitter')}</span>
 					</button>
 					<div className="login-border">
 						<div className="login-border-line" />
-						<div className="login-border-text">OR</div>
+						<div className="login-border-text">{t('OR')}</div>
 						<div className="login-border-line" />
 					</div>
 					<div className="login-other">
@@ -138,7 +138,7 @@ class Register extends Component {
 									: this.setState({ accept_policy: true })}
 						/>
 						<Link to="/policy">
-							<span>I accept the terms of use and the privacy policy</span>
+							<span>{t('I accept the terms of use and the privacy policy')}</span>
 						</Link>
 					</div>
 					<button
@@ -151,7 +151,7 @@ class Register extends Component {
 							);
 						}}
 					>
-						Register
+						{t('Register')}
 					</button>
 					<div className="error-text">
 						{this.state.loginstate === 'error' ? (
@@ -167,7 +167,7 @@ class Register extends Component {
 								this.props.history.go(-1);
 							}}
 						>
-							Already have an account?&nbsp;
+							{t('Already have an account?')}&nbsp;
 						</span>
 						<span
 							className="create-forgot-text sign-in"
@@ -175,7 +175,7 @@ class Register extends Component {
 								this.props.history.go(-1);
 							}}
 						>
-							Sign In
+							{t('Sign in')}
 						</span>
 					</div>
 				</div>

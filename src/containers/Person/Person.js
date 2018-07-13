@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 import * as eventActions from '../../store/events/actions';
 import Tabbar from '../Tabbar/Tabbar';
 import * as authSelectors from '../../store/auth/reducer';
-import '../Homeperson/Homeperson.css';
+import '../Homepage/Homepage.css';
 import './Person.css';
 
 class Person extends Component {

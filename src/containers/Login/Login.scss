@@ -118,6 +118,10 @@
 				height: 23.5px;
 				margin-left: 19.5px;
 
+				@media (max-width: 575px) {
+					height: 20px;
+				}
+
 				&.login-other-icon-password {
 					margin-left: 23px;
 				}
@@ -179,12 +183,12 @@
 				padding-bottom: 70px;
 			}
 			.create-forgot-text {
-				font-family: 'Roboto', sans-serif;
+				font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 				color: $color_white;
 				line-height: 1.5;
 				letter-spacing: 0.3px;
 				text-align: center;
-				font-size: 15px;
+				font-size: 13px;
 
 				&.forgotpassword {
 					margin-left: auto;

@@ -8,7 +8,7 @@ import FooterBanner from '../Common/FooterBanner';
 import EventSearch from '../Common/EventSearch';
 import NextEvents from './NextEvents';
 import PastEvents from '../Homeperson/PastEvents';
-import '../Homeperson/Homeperson.css';
+import './Homepage.css';
 
 class Homepage extends Component {
 	static propTypes = {

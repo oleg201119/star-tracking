@@ -52,6 +52,16 @@ class MainNavBar extends Component {
 						onStateChange={(state) => this.handleStateChange(state)}
 						className="black-menu"
 					>
+						{!tokenstate ? (
+							<Link
+								to="/"
+								onClick={() => {
+									this.closeMenu();
+								}}
+							>
+								{t('Home')}
+							</Link>
+						) : null}
 						<Link
 							to={
 								tokenstate ? (

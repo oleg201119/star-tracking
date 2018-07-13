@@ -214,15 +214,12 @@ class SiteMap extends Component {
             </ul>
           </div>
           <div className="col-12 col-sm-12 col-md-12 col-xl-2">
-            <div className="social-group-row d-xl-flex justify-content-xl-between">
-              <a href="#/" className="link-social">
+            <div className="social-group-row">
+              <a href="https://www.facebook.com/#!/startrackingBE" target="_blank" className="link-social" rel="noopener noreferrer">
                 <i className="fa fa-facebook" />
               </a>
-              <a href="#/" className="link-social ">
+              <a href="https://twitter.com/StarTrackingBE" className="link-social" target="_blank" rel="noopener noreferrer">
                 <i className="fa fa-twitter" />
-              </a>
-              <a href="#/" className="link-social ">
-                <i className="fa fa-linkedin" />
               </a>
             </div>
           </div>

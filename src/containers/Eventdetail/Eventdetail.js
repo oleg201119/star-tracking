@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import * as eventActions from '../../store/events/actions';
 import SimilarEvents from './SimilarEvents';
 import Eventpage from './Eventpage';
-import '../Homeperson/Homeperson.css';
+import '../Homepage/Homepage.css';
 import './Eventdetail.css';
 
 class Eventdetail extends Component {
