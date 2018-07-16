@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import Select from "react-select";
 import Switch from "react-switch";
 import moment from "moment";
+import AuthService from '../../services/auth';
 import "./Register6.css";
 
 class Register6 extends Component {
@@ -42,6 +43,14 @@ class Register6 extends Component {
   handleEmailCheckChange() {
     this.setState({ emailcheck: !this.state.emailcheck });
   }
+  logout() {
+		var self = this;
+		AuthService.Logout().then(function(value) {
+			if (value === 'success') {
+				self.props.history.push('/',{tokenstate:false});
+			}
+		});
+	}
   render() {
     const { t } = this.props;
     return (
@@ -229,6 +238,16 @@ class Register6 extends Component {
                     className="btn btn-red btn-register-next"
                   >
                     Save
+                  </button>
+                </div>
+                <div className="sent-state">
+                  <button
+                    onClick={() => { 
+                      this.logout();
+                    }}
+                    className="btn btn-red btn-register-next"
+                  >
+                    Log out
                   </button>
                 </div>
               </div>

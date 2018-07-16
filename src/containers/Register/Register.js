@@ -34,7 +34,7 @@ class Register extends Component {
 			this.setState({ loginstate: 'error' });
 		}
 		if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
-			this.props.history.push('/person', { registered: true });
+			this.props.history.push('/person', { registered: true, backstate: false });
 		}
 	}
 	changeUsername(e) {

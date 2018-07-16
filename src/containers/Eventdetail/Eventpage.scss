@@ -116,7 +116,7 @@
 
 		.btn-takepart {
 			width: 100%;
-			border-radius: 8px;
+			border-radius: 5px;
 			height: 53px;
 		}
 	}
@@ -257,7 +257,7 @@
 		}
 
 		.event-location {
-			margin-top: 50px;
+			margin-top: 30px;
 
 			.event-location-topic {
 				font-size: 18px;
@@ -420,7 +420,7 @@
 					}
 
 					.by {
-						padding-right: unset;
+						padding-right: 50px;
 					}
 				}
 
@@ -429,6 +429,14 @@
 					margin-top: 20px;
 					@media (max-width: 575px) {
 						min-width: 100px;
+					}
+
+					&.result-share {
+						min-width: unset;
+						margin-top: unset;
+						img {
+							height: unset;
+						}
 					}
 					.event-option {
 						padding: 0 10px;
@@ -490,8 +498,8 @@
 		}
 
 		.event-date-time-detail {
-			margin-top: 25px;
-			margin-bottom: 25px;
+			margin-top: 15px;
+			margin-bottom: 15px;
 			font-size: 15px;
 		}
 	}
@@ -724,7 +732,7 @@
 			margin-top: 10px;
 			width: 100%;
 			margin-bottom: 30px;
-			border-radius: 8px;
+			border-radius: 5px;
 			height: 53px;
 		}
 	}

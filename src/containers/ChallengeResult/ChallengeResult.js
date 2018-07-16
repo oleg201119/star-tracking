@@ -8,6 +8,17 @@ import ReactCountryFlag from 'react-country-flag';
 import Menu, { SubMenu, MenuItem } from 'rc-menu';
 import Select from 'react-select';
 import HamburgerMenu from 'react-hamburger-menu';
+import {
+	FacebookShareButton,
+	TwitterShareButton,
+	WhatsappShareButton,
+	EmailShareButton,
+	FacebookIcon,
+	TwitterIcon,
+	WhatsappIcon,
+	EmailIcon
+} from 'react-share';
+import ReactModal from 'react-modal';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -72,7 +83,8 @@ class ChallengeResult extends Component {
 			openkeys: [],
 			leaderboardshow: true,
 			windowwidth: 0,
-			chrome: true
+			chrome: true,
+			showsharemodal: false
 		};
 		this.drawmenu = this.drawmenu.bind(this);
 		this.menuClick = this.menuClick.bind(this);
@@ -474,6 +486,8 @@ class ChallengeResult extends Component {
 		const { menuResult, challengeDetail } = this.props;
 		const { data, sizePerPage, page, columns, totalSize, loading, paginationsize, hiddencolumn } = this.state;
 		const filterclass = hiddencolumn && !this.state.hamburgermenu ? 'eventresult-custom-filter' : null;
+		const shareUrl = window.location.href;
+		const title = 'star-tracking';
 		return (
 			<div className="eventresult-page">
 				{this.state.chrome ? <Header {...this.props} /> : null}
@@ -549,6 +563,16 @@ class ChallengeResult extends Component {
 											<div className="by-options">
 												<div className="by">
 													{t('Door')}: {challengeDetail.Organizer}
+												</div>
+												<div className="options result-share">
+													<div
+														className="event-option event-option-share"
+														onClick={() => {
+															this.setState({ showsharemodal: true });
+														}}
+													>
+														<img alt="share" src="/img/card-logout.png" />
+													</div>
 												</div>
 											</div>
 										</div>
@@ -738,6 +762,40 @@ class ChallengeResult extends Component {
 					</div>
 				) : null}
 				{this.state.chrome ? <Footer /> : null}
+				<ReactModal
+					isOpen={this.state.showsharemodal}
+					className="calendar-modal"
+					onRequestClose={() => {
+						this.setState({ showsharemodal: false });
+					}}
+					shouldCloseOnOverlayClick={true}
+				>
+					<h2>Share the event</h2>
+					<FacebookShareButton url={shareUrl} quote={title} className="link-social">
+						<FacebookIcon size={32} round className="link-social-icon" />
+					</FacebookShareButton>
+					<TwitterShareButton url={shareUrl} title={title} className="link-social">
+						<TwitterIcon size={32} round className="link-social-icon" />
+					</TwitterShareButton>
+					<EmailShareButton
+						url={shareUrl}
+						subject={title}
+						// body="body"
+						className="link-social"
+					>
+						<EmailIcon size={32} round className="link-social-icon" />
+					</EmailShareButton>
+					<WhatsappShareButton url={shareUrl} title={title} separator=":: " className="link-social">
+						<WhatsappIcon size={32} round className="link-social-icon" />
+					</WhatsappShareButton>
+					<div
+						onClick={() => {
+							this.setState({ showsharemodal: false });
+						}}
+					>
+						<span>Cancel</span>
+					</div>
+				</ReactModal>
 			</div>
 		);
 	}

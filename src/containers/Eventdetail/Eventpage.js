@@ -39,7 +39,8 @@ class Eventpage extends Component {
 			},
 			location: '',
 			showsharemodal: false,
-			fullread: false
+			fullread: false,
+			showfull: false
 		};
 		this.fullref = <HTMLEllipsis />;
 	}
@@ -143,16 +144,18 @@ class Eventpage extends Component {
 									<div className="row">
 										<div className="col-8">
 											<div className="options">
-												<AddToCalendar
-													className="add-calendar"
-													event={{
-														description: eventDetail.AgendaDescription,
-														endDatetime,
-														location: eventDetail.AgendaLocation,
-														startDatetime,
-														title: eventDetail.AgendaTitle
-													}}
-												/>
+												{eventDetail.DisplayAddToCalendar ? (
+													<AddToCalendar
+														className="add-calendar"
+														event={{
+															description: eventDetail.AgendaDescription,
+															endDatetime,
+															location: eventDetail.AgendaLocation,
+															startDatetime,
+															title: eventDetail.AgendaTitle
+														}}
+													/>
+												) : null}
 												<div
 													className="event-option event-option-share"
 													onClick={() => {
@@ -177,36 +180,12 @@ class Eventpage extends Component {
 												<span className="event-description-detail">
 													{eventDetail.Description}
 												</span>
-												{this.state.fullread ? (
-													<div
-														className="event-full-description-detail"
-														dangerouslySetInnerHTML={{
-															__html: eventDetail.FullDescription
-														}}
-													/>
-												) : (
-													<div className="event-full-description-detail">
-														<HTMLEllipsis
-															ref={(ref) => {
-																this.fullref = ref;
-															}}
-															unsafeHTML={eventDetail.FullDescription}
-															maxLine="4"
-															ellipsis="..."
-															basedOn="letters"
-														/>
-														{this.fullref.clamped ? (
-															<span
-																className="read-more"
-																onClick={() => {
-																	this.setState({ fullread: true });
-																}}
-															>
-																{t('read more')}
-															</span>
-														) : null}
-													</div>
-												)}
+												<div
+													className="event-full-description-detail"
+													dangerouslySetInnerHTML={{
+														__html: eventDetail.FullDescription
+													}}
+												/>
 											</div>
 											{authToken !== '' && authToken !== 'error' ? (
 												<div className="participate-friend">
@@ -399,16 +378,20 @@ class Eventpage extends Component {
 											</div>
 										</div>
 										<div className="options">
-											<AddToCalendar
-												className="event-option"
-												event={{
-													description: eventDetail.AgendaDescription,
-													endDatetime,
-													location: eventDetail.AgendaLocation,
-													startDatetime,
-													title: eventDetail.AgendaTitle
-												}}
-											/>
+											{eventDetail.DisplayAddToCalendar ? (
+												<AddToCalendar
+													className="event-option"
+													event={{
+														description: eventDetail.AgendaDescription,
+														endDatetime,
+														location: eventDetail.AgendaLocation,
+														startDatetime,
+														title: eventDetail.AgendaTitle
+													}}
+												/>
+											) : (
+												<div className="event-option event-option-share" />
+											)}
 											<div
 												className="event-option event-option-share"
 												onClick={() => {
@@ -426,12 +409,25 @@ class Eventpage extends Component {
 									<div className="event-description">
 										<span className="event-description-detail">{eventDetail.Description}</span>
 										{this.state.fullread ? (
-											<div
-												className="event-full-description-detail"
-												dangerouslySetInnerHTML={{
-													__html: eventDetail.FullDescription
-												}}
-											/>
+											<div>
+												<div
+													className="event-full-description-detail"
+													dangerouslySetInnerHTML={{
+														__html: eventDetail.FullDescription
+													}}
+												/>
+												{this.fullref.clamped ? (
+													<span
+														className="read-more"
+														onClick={() => {
+															this.setState({ fullread: false, showfull: true });
+															window.scrollTo(0, 0);
+														}}
+													>
+														{t('Hide details')}
+													</span>
+												) : null}
+											</div>
 										) : (
 											<div className="event-full-description-detail">
 												<HTMLEllipsis
@@ -443,11 +439,11 @@ class Eventpage extends Component {
 													ellipsis="..."
 													basedOn="letters"
 												/>
-												{this.fullref.clamped ? (
+												{(this.fullref && this.fullref.clamped) || this.state.showfull ? (
 													<span
 														className="read-more"
 														onClick={() => {
-															this.setState({ fullread: true });
+															this.setState({ fullread: true, showfull: false });
 														}}
 													>
 														{t('read more')}

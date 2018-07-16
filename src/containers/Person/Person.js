@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
-import Footer from '../Footer/Footer';
 import Tabbar from '../Tabbar/Tabbar';
 import * as authSelectors from '../../store/auth/reducer';
 import '../Homepage/Homepage.css';
@@ -30,7 +29,6 @@ class Person extends Component {
 				<div className="person-tabbar">
 					<Tabbar {...this.props} />
 				</div>
-				<Footer />
 			</div>
 		);
 	}

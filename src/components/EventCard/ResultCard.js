@@ -27,7 +27,7 @@ class ResultCard extends Component {
 								{t('Door')}: {event.Organizer}
 							</div>
 							<div className="type-city">
-								{event.Type}&nbsp; {event.City}
+								{event.Type}&nbsp;@&nbsp;{event.City}
 							</div>
 							<div className="options">
 								<Link

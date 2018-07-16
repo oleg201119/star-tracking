@@ -28,6 +28,7 @@ class Home extends Component {
 				self.props.history.push('/person');
 			}
 		});
+		window.scrollTo(0, 0);
 		let currentlanguage = this.props.i18n.language;
 		if (this.props.i18n.language.length > 2) {
 			currentlanguage = this.props.i18n.language.substring(0, 2);

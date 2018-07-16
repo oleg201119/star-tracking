@@ -30,13 +30,6 @@
 	color: var(--charcoal-grey);
 	margin-bottom: 30px;
 }
-.btn-create-event {
-	border-radius: 8px;
-	display: flex;
-	justify-content: center;
-	margin: 0 auto;
-	margin-bottom: 125px;
-}
 
 .contact-body {
 	margin-top: 40px;
@@ -80,7 +73,7 @@
 		height: 150px;
 	}
 	.btn-contact-send {
-		border-radius: 8px;
+		border-radius: 4px;
 		min-width: 140px;
 	}
 	.pb-container {
@@ -89,7 +82,7 @@
 			line-height: 1.5;
 			@include btn-variant($color_red, $color_white);
 			padding: 2px 6px;
-			border-radius: 8px;
+			border-radius: 4px;
 			span {
 				font-size: 1rem;
 			}

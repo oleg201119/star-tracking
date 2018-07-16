@@ -84,22 +84,24 @@ class EventCard extends Component {
 									{t('Door')}: {event.Organizer}
 								</div>
 								<div className="type-city">
-									{event.Type}&nbsp; {event.City}
+									{event.Type}&nbsp;@&nbsp;{event.City}
 								</div>
 								<div
 									className={`options ${mobiletype ? 'mobiletype' : ''}`}
 									onClick={(e) => e.stopPropagation()}
 								>
-									<AddToCalendar
-										className="event-option"
-										event={{
-											description: event.AgendaDescription,
-											endDatetime,
-											location: event.AgendaLocation,
-											startDatetime,
-											title: event.AgendaTitle
-										}}
-									/>
+									{event.DisplayAddToCalendar ? (
+										<AddToCalendar
+											className="event-option"
+											event={{
+												description: event.AgendaDescription,
+												endDatetime,
+												location: event.AgendaLocation,
+												startDatetime,
+												title: event.AgendaTitle
+											}}
+										/>
+									) : null}
 									<div
 										className="event-option event-option-share"
 										onClick={(e) => {

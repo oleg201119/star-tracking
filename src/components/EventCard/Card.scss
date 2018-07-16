@@ -61,7 +61,6 @@
 		background-color: $color_red;
 		border-radius: 50%;
 		text-align: center;
-		z-index: 1;
 
 		&.registered {
 			background-color: rgb(149, 204, 208);
@@ -79,6 +78,7 @@
 			width: 27px;
 			height: 25px;
 			margin-top: 25%;
+			cursor: pointer;
 		}
 		&.mobiletype {
 			@media (max-width: 1199px) {

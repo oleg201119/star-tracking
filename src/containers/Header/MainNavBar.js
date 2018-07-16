@@ -25,6 +25,12 @@ class MainNavBar extends Component {
 		}
 		this.setState({ tokenstate: temptoken });
 	}
+	componentWillReceiveProps = (nextProps) => {
+		if (nextProps.location.state !== undefined && nextProps.location.state.tokenstate === false) {
+			this.setState({ tokenstate: false });
+		}
+	};
+
 	handleStateChange(state) {
 		this.setState({ menuOpen: state.isOpen });
 	}
@@ -59,24 +65,69 @@ class MainNavBar extends Component {
 									this.closeMenu();
 								}}
 							>
-								{t('Home')}
+								Home
 							</Link>
 						) : null}
-						<Link
-							to={
-								tokenstate ? (
-									{ pathname: '/person', state: { backstate: false } }
-								) : (
-									{ pathname: '/homepage', state: { backstate: false } }
-								)
-							}
-							className="menu-link"
-							onClick={() => {
-								this.closeMenu();
-							}}
-						>
-							{t('Browse all events')}
-						</Link>
+						{!tokenstate ? (
+							<Link
+								to={{ pathname: '/homepage', state: { backstate: false } }}
+								className="menu-link"
+								onClick={() => {
+									this.closeMenu();
+								}}
+							>
+								{t('Browse all events')}
+							</Link>
+						) : null}
+						{tokenstate ? (
+							<div className="mobile-tab">
+								<a
+									className={`mobile-tab-item`}
+									onClick={() => {
+										this.closeMenu();
+										this.props.history.push('/person', { tabindex: 0, backstate: false });
+									}}
+								>
+									{t('Discover')}
+								</a>
+								<a
+									className={`mobile-tab-item`}
+									onClick={() => {
+										this.closeMenu();
+										this.props.history.push('/person', { tabindex: 1, backstate: false });
+									}}
+								>
+									{t('My registrations')}
+								</a>
+								<a
+									className={`mobile-tab-item`}
+									onClick={() => {
+										this.closeMenu();
+										this.props.history.push('/person', { tabindex: 2, backstate: false });
+									}}
+								>
+									{t('Favorited')}
+								</a>
+								<a
+									className={`mobile-tab-item`}
+									onClick={() => {
+										this.closeMenu();
+										this.props.history.push('/person', { tabindex: 3, backstate: false });
+									}}
+								>
+									{t('My results')}
+								</a>
+								<a
+									className={`mobile-tab-item`}
+									onClick={() => {
+										this.closeMenu();
+										this.props.history.push('/person', { tabindex: 4, backstate: false });
+									}}
+								>
+									{t('My account')}
+								</a>
+							</div>
+						) : null}
 						<Link
 							to={{ pathname: '/organizer', state: { backstate: false } }}
 							className="menu-link"
@@ -121,13 +172,15 @@ class MainNavBar extends Component {
 										alt="settings"
 										src="/img/settings.png"
 										onClick={() => {
-											this.props.history.push('/person', { profiletab: true });
+											this.closeMenu();
+											this.props.history.push('/person', { tabindex: 4, backstate: false });
 										}}
 									/>
 									<a
 										className="logout-link"
 										onClick={() => {
-											this.props.history.push('/person', { profiletab: true });
+											this.closeMenu();
+											this.props.history.push('/person', { tabindex: 4, backstate: false });
 										}}
 									>
 										SETTINGS

@@ -194,7 +194,7 @@
 		margin: 0 10px;
 
 		.Select-control {
-			border-radius: 12px;
+			border-radius: 5px;
 		}
 	}
 
@@ -240,7 +240,7 @@
 
 			.eventresult-text {
 				height: 40px;
-				border-radius: 8px 0px 0px 8px;
+				border-radius: 4px 0px 0px 4px;
 				border: solid 1px #d2cfcc;
 				padding-left: 5px;
 				&:focus {
@@ -250,7 +250,7 @@
 
 			.btn-eventresult-filter {
 				height: 40px;
-				border-radius: 0px 8px 8px 0px;
+				border-radius: 0px 4px 4px 0px;
 			}
 			@media (min-width: 768px) {
 				margin-left: auto;

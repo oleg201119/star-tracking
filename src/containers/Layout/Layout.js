@@ -11,6 +11,7 @@ import Newevent from '../Newevent/Newevent';
 import Eventdetail from '../Eventdetail/Eventdetail';
 import Policy from '../Policy/Policy';
 import EventResult from '../EventResult/EventResult';
+import Person from '../Person/Person';
 
 class Layout extends Component {
 	render() {
@@ -27,6 +28,7 @@ class Layout extends Component {
 					<Route path="/event/:id" render={(props) => <Eventdetail {...props} />} />
 					<Route path="/policy" render={(props) => <Policy {...props} />} />
 					<Route path="/eventresult/:id" render={(props) => <EventResult {...props} />} />
+					<Route path="/person" render={(props) => <Person {...props} />} />
 				</Switch>
 				<Footer />
 			</div>
