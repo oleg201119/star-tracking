@@ -135,7 +135,6 @@ export default class ServiceSecurity {
 			headers: headers,
 			body: args.bodydata
 		});
-
 		if (!response.ok) {
 			return false;
 		}

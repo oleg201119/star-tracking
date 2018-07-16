@@ -15,10 +15,19 @@ export default class AuthService {
 		return data;
 	}
 
-	static async getRegisterAuth(username, pwd) {
-		const data = await ServiceSecurity.login({
-			login: username,
-			password: pwd
+	static async getRegisterAuth(username, password, confirmpassword, language) {
+		const bodydata = {
+			username: username,
+			email: username,
+			password: password,
+			confirmpassword: confirmpassword,
+			language: language,
+			timerid: 1
+		};
+		const url = `${API_ENDPOINT}/App/Account/Register`;
+		const data = await ServiceSecurity.PostFetch({
+			url: url,
+			bodydata: JSON.stringify(bodydata)
 		});
 		return data;
 	}

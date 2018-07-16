@@ -19,7 +19,8 @@ class Register extends Component {
 			username: '',
 			password: '',
 			loginstate: '',
-			confirmpassword: ''
+			confirmpassword: '',
+			currentlanguage: ''
 		};
 		this.changeUsername = this.changeUsername.bind(this);
 		this.changePassword = this.changePassword.bind(this);
@@ -28,6 +29,14 @@ class Register extends Component {
 	componentDidMount() {
 		window.scrollTo(0, 0);
 	}
+	componentDidMount = () => {
+		let currentlanguage = this.props.i18n.language;
+		if (this.props.i18n.language.length > 2) {
+			currentlanguage = this.props.i18n.language.substring(0, 2);
+		}
+		this.setState({ currentlanguage: currentlanguage });
+	};
+
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.authToken === 'error') {
 			this.props.dispatch(authActions.fetchLoginStateFormat());
@@ -147,7 +156,12 @@ class Register extends Component {
 						onClick={() => {
 							this.setState({ loginstate: '' });
 							this.props.dispatch(
-								authActions.fetchRegisterAuth(this.state.username, this.state.password)
+								authActions.fetchRegisterAuth(
+									this.state.username,
+									this.state.password,
+									this.state.confirmpassword,
+									this.state.currentlanguage
+								)
 							);
 						}}
 					>
