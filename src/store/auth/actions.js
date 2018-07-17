@@ -16,9 +16,12 @@ export function fetchRegisterAuth(username, password, confirmpassword, language)
 	return async (dispatch) => {
 		try {
 			const register = await AuthService.getRegisterAuth(username, password, confirmpassword, language);
-			console.log(register);
+
 			if (register !== false) {
 				const auth = await AuthService.getLoginAuth(username, password);
+				dispatch({ type: types.LOGIN_AUTH_FETCHED, auth });
+			} else {
+				const auth = 'error';
 				dispatch({ type: types.LOGIN_AUTH_FETCHED, auth });
 			}
 		} catch (error) {

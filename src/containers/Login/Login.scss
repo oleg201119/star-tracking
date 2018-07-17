@@ -111,11 +111,11 @@
 			.login-other-line {
 				height: 1px;
 				opacity: 0.05;
-				border: solid 1px var(--dark);
+				border-bottom: solid 1px var(--dark);
 			}
 
 			img {
-				height: 20px;
+				height: 18px;
 				margin-left: 19.5px;
 
 				&.login-other-icon-password {

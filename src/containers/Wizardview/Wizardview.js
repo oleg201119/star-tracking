@@ -10,19 +10,19 @@ import Register5 from './Register5';
 import Register6 from './Register6';
 
 class Wizardview extends Component {
-  render() {
-    // const { t } = this.props;
+	render() {
+		// const { t } = this.props;
 
-    return (
-      <WizardForm>
-        <Register1 />
-        <Register2 />
-        <Register3 />
-        <Register4 />
-        <Register5 />
-        <Register6 />
-      </WizardForm>
-    );
-  }
+		return (
+			<WizardForm>
+				<Register1 {...this.props} />
+				<Register2 {...this.props} />
+				<Register3 {...this.props} />
+				<Register4 {...this.props} />
+				<Register5 {...this.props} />
+				<Register6 {...this.props} />
+			</WizardForm>
+		);
+	}
 }
 export default translate('translations')(Wizardview);

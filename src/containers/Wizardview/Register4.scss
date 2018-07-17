@@ -1,21 +1,46 @@
-.register-wizard {
-  .select-body {
-    .register-wizard-select {
-      margin-top: 30px;
-      
-      .register-wizard-select-item {
-        padding: 10px 20px;
+@import "../../styles/Color.scss";
 
-        img {
-          width: 30px;
-          height: 30px;
-          cursor: pointer;
-        }
-        span {
-          margin-left: 20px;
-          font-size: 16px;
-        }
-      }
-    }
-  }
+.register-wizard {
+	.select-body {
+		.register-wizard-select {
+			margin-top: 30px;
+
+			.register-wizard-select-item {
+				padding: 15px 20px;
+				border-left: 2px solid transparent;
+				cursor: pointer;
+
+				&.selected {
+					background-color: #e9e9e9;
+					border-left: 2px solid rgb(149, 204, 208);
+				}
+
+				img {
+					width: 30px;
+					height: 30px;
+				}
+				span {
+					margin-left: 20px;
+					font-size: 16px;
+					vertical-align: middle;
+				}
+
+				.radius-select {
+					display: inline-block;
+					margin-left: 20px;
+					font-size: 16px;
+					vertical-align: middle;
+
+					.select-radius {
+						display: inline-flex;
+					}
+
+					.Select.is-focused:not(.is-open) > .Select-control {
+						border-color: $color_grey_border;
+						box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0 0px rgba(0, 126, 255, 0.1);
+					}
+				}
+			}
+		}
+	}
 }

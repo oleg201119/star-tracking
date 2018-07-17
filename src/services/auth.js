@@ -25,9 +25,9 @@ export default class AuthService {
 			timerid: 1
 		};
 		const url = `${API_ENDPOINT}/App/Account/Register`;
-		const data = await ServiceSecurity.PostFetch({
+		const data = await ServiceSecurity.register({
 			url: url,
-			bodydata: JSON.stringify(bodydata)
+			bodydata: bodydata
 		});
 		return data;
 	}

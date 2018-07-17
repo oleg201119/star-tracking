@@ -102,6 +102,31 @@ export default class ServiceSecurity {
 		return 'success';
 	}
 
+	static async register(args) {
+		let headers = { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' };
+
+		const loginData = `${encodeURIComponent('username')}=${encodeURIComponent(
+			args.bodydata.username
+		)}&${encodeURIComponent('email')}=${encodeURIComponent(args.bodydata.email)}&${encodeURIComponent(
+			'password'
+		)}=${encodeURIComponent(args.bodydata.password)}&${encodeURIComponent('confirmpassword')}=${encodeURIComponent(
+			args.bodydata.confirmpassword
+		)}&${encodeURIComponent('language')}=${encodeURIComponent(args.bodydata.language)}&${encodeURIComponent(
+			'timerid'
+		)}=${encodeURIComponent(args.bodydata.timerid)}`;
+
+		const response = await fetch(args.url, {
+			method: 'POST',
+			headers: headers,
+			body: loginData
+		});
+		if (!response.ok) {
+			return false;
+		}
+		//const data = await response.json();
+		return true;
+	}
+
 	static async GetFetch(args) {
 		const token = sessionStorage.getItem(accessTokenKey);
 		let headers = { Accept: 'application/json' };
@@ -129,7 +154,6 @@ export default class ServiceSecurity {
 		if (token) {
 			headers.Authorization = 'Bearer ' + token;
 		}
-
 		const response = await fetch(args.url, {
 			method: 'POST',
 			headers: headers,
@@ -138,7 +162,6 @@ export default class ServiceSecurity {
 		if (!response.ok) {
 			return false;
 		}
-
 		const data = await response.json();
 		return data;
 	}

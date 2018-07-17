@@ -8,9 +8,16 @@
 
 .friend-event {
 	margin-top: 82px;
+	@media (max-width: 575px) {
+		margin-top: 20px;
+	}
 }
 
 .category-event {
 	margin-top: 102px;
 	margin-bottom: 140px;
+	@media (max-width: 575px) {
+		margin-bottom: 0;
+		margin-top: 20px;
+	}
 }

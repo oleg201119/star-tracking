@@ -87,14 +87,16 @@
 
 		.options {
 			margin-left: 80px;
+			opacity: 0.9;
 
 			.event-option {
 				display: inline-block;
 				padding: 0px 10px;
-				font-size: 18px;
-				line-height: 1.67;
-				color: $color_red;
-				text-decoration: underline;
+				// font-size: 18px;
+				// line-height: 1.67;
+				// color: $color_red;
+				// text-decoration: underline;
+				margin-left: 24px;
 
 				&.event-option-share {
 					cursor: pointer;
@@ -420,7 +422,7 @@
 					}
 
 					.by {
-						padding-right: 50px;
+						padding-right: 0px;
 					}
 				}
 

@@ -2,46 +2,56 @@
 @import "../../styles/Button.scss";
 
 .register-wizard {
-  .contact-body {
-    .register-btn {
-      justify-content: center;
-      display: flex;
-      margin: 0 auto;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      font-size: 15px;
-      height: 52px;
+	.contact-body {
+		.register-btn {
+			justify-content: center;
+			display: flex;
+			margin: 0 auto;
+			margin-bottom: 20px;
+			border-radius: 4px;
+			height: 52px;
+			margin-top: 20px;
+			@media (max-width: 767px) {
+				margin-left: 20px;
+				margin-right: 20px;
+				button {
+					font-size: 14px;
+				}
+			}
+			&.register-btn-misfit {
+				margin-top: 0;
+			}
 
-      .btn-facebook {
-        width: 400px;
+			.btn-facebook {
+				width: 400px;
 
-        @include btn-variant($color_btn_facebook, $color_white);
-        .fa {
-          font-size: 23px;
-          padding-right: 15px;
-          vertical-align: middle;
-        }
-        
-        span {
-          line-height: 2;
-        }
-      }
+				@include btn-variant($color_btn_facebook, $color_white);
+				.fa {
+					font-size: 23px;
+					padding-right: 15px;
+					vertical-align: middle;
+				}
 
-      .btn-strava {
-        width: 400px;
-        @include btn-variant(rgb(252, 76, 1), $color_white);
-        span {
-          line-height: 2;
-        }
-      }
+				span {
+					line-height: 2;
+				}
+			}
 
-      .btn-misfit {
-        width: 400px;
-        @include btn-variant(rgb(204, 204, 204), $color_white);
-        span {
-          line-height: 2;
-        }
-      }
-    }
-  }
+			.btn-strava {
+				width: 400px;
+				@include btn-variant(rgb(252, 76, 1), $color_white);
+				span {
+					line-height: 2;
+				}
+			}
+
+			.btn-misfit {
+				width: 400px;
+				@include btn-variant(rgb(204, 204, 204), $color_white);
+				span {
+					line-height: 2;
+				}
+			}
+		}
+	}
 }

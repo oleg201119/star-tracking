@@ -1,15 +1,14 @@
 .register-wizard {
-  .contact-body {
-    .register-notification {
-      display: flex;
+	.contact-body {
+		.register-notification {
+			display: flex;
 
-      span {
-        font-size: 18px;
-      }
-      .register-switch {
-        margin-left: auto;
-        margin-top: 4px;
-      }
-    }
-  }
+			span {
+				font-size: 18px;
+			}
+			.register-switch {
+				margin-left: auto;
+			}
+		}
+	}
 }
