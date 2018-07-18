@@ -43,7 +43,7 @@ class Register extends Component {
 			this.setState({ loginstate: 'error' });
 		}
 		if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
-			this.props.history.push('/person', { registered: true, backstate: false });
+			this.props.history.push('/registerexplanation', { backstate: false });
 		}
 	}
 	changeUsername(e) {
@@ -163,6 +163,7 @@ class Register extends Component {
 									this.state.currentlanguage
 								)
 							);
+							// this.props.history.push('/registerexplanation', { backstate: false });
 						}}
 					>
 						{t('Register')}

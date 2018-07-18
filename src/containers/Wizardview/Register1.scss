@@ -105,4 +105,14 @@
 			}
 		}
 	}
+	.welcome-register {
+		span {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+			font-size: 18px;
+			color: #43445b;
+			margin-bottom: 30px;
+		}
+	}
 }

@@ -12,6 +12,7 @@ import Eventdetail from '../Eventdetail/Eventdetail';
 import Policy from '../Policy/Policy';
 import EventResult from '../EventResult/EventResult';
 import Person from '../Person/Person';
+import RegisterExplanation from '../Register/RegisterExplanation';
 
 class Layout extends Component {
 	render() {
@@ -29,6 +30,7 @@ class Layout extends Component {
 					<Route path="/policy" render={(props) => <Policy {...props} />} />
 					<Route path="/eventresult/:id" render={(props) => <EventResult {...props} />} />
 					<Route path="/person" render={(props) => <Person {...props} />} />
+					<Route path="/registerexplanation" render={(props) => <RegisterExplanation {...props} />} />
 				</Switch>
 				<Footer />
 			</div>

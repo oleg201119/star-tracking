@@ -120,6 +120,7 @@ export default class ServiceSecurity {
 			headers: headers,
 			body: loginData
 		});
+
 		if (!response.ok) {
 			return false;
 		}

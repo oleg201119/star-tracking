@@ -18,6 +18,9 @@ class Person extends Component {
 			if (self.props.history.location.pathname === '/login') {
 				self.props.history.push('/person');
 			}
+			if (self.props.history.location.pathname === '/registerexplanation') {
+				self.props.history.push('/person');
+			}
 		};
 		window.scrollTo(0, 0);
 	}

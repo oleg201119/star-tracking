@@ -27,6 +27,9 @@ class Register1 extends Component {
 	}
 	render() {
 		// const { t } = this.props;
+		console.log(this.props);
+		const mobileregister =
+			this.props.location.state !== undefined && this.props.location.state.mobileregister ? true : false;
 		return (
 			<div>
 				<div className="header-banner mobile-person-header">
@@ -41,6 +44,11 @@ class Register1 extends Component {
 				<div className="container register-wizard">
 					<div className="row">
 						<div className="col-12 col-md-10 col-xl-8 about-body-container">
+							{mobileregister ? (
+								<div className="welcome-register">
+									<span>Thank you for registering! Let's quickly finetune your account</span>
+								</div>
+							) : null}
 							<div className="register-wizard-state">
 								<span>Add more info</span>
 								<span className="register-step">1 / 5</span>

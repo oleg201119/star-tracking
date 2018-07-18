@@ -1,0 +1,48 @@
+.slick-center {
+	margin-bottom: 50px;
+	.explan-body {
+		transform: scale(1.1);
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.explan-slider {
+	margin-top: 85px;
+	margin-bottom: 150px;
+	padding: 0;
+
+	.explan-body {
+		width: 100%;
+		padding: 20px;
+
+		.explan-img {
+			width: 100%;
+			background-color: rgb(67, 68, 91);
+
+			&.first {
+				background-color: rgb(192, 188, 181);
+			}
+			&.third {
+				background-color: rgb(74, 108, 111);
+			}
+
+			img {
+				width: 100%;
+				padding: 50px;
+			}
+		}
+		.explan-border {
+			border: 1px solid #eceae8;
+			border-top: none;
+
+			.explan-text {
+				padding-top: 26px;
+				padding-bottom: 22px;
+				display: flex;
+				text-align: center;
+				justify-content: center;
+			}
+		}
+	}
+}
