@@ -68,14 +68,14 @@ class Register6 extends Component {
 					<div className="row">
 						<div className="col-12 col-md-10 col-xl-8 about-body-container">
 							<div className="register-wizard-state">
-								<span>Summary</span>
+								<span>{t('Summary')}</span>
 							</div>
 							<div className="about-body-topic">
-								<span>General</span>
+								<span>{t('General')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
-									<div className="field-topic">Name</div>
+									<div className="field-topic">{t('Name')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -102,11 +102,11 @@ class Register6 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Birthday</div>
+									<div className="field-topic">{t('Birthday')}</div>
 									<DatePicker selected={this.state.startDate} onChange={this.handleChange} />
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Gender</div>
+									<div className="field-topic">{t('Gender')}</div>
 									<Select
 										ref={(ref) => {
 											this.select = ref;
@@ -121,7 +121,7 @@ class Register6 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Language</div>
+									<div className="field-topic">{t('Language')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -131,11 +131,11 @@ class Register6 extends Component {
 								</div>
 							</div>
 							<div className="about-body-topic">
-								<span>Billing Information</span>
+								<span>{t('Billing Information')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
-									<div className="field-topic">Street</div>
+									<div className="field-topic">{t('Street')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -144,7 +144,7 @@ class Register6 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">No.</div>
+									<div className="field-topic">{t('Number')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -153,7 +153,7 @@ class Register6 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Postal Code</div>
+									<div className="field-topic">{t('ZipCode')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -162,7 +162,7 @@ class Register6 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Township</div>
+									<div className="field-topic">{t('City')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -171,7 +171,7 @@ class Register6 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Country</div>
+									<div className="field-topic">{t('Country')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -181,11 +181,11 @@ class Register6 extends Component {
 								</div>
 							</div>
 							<div className="about-body-topic">
-								<span>CONTACT</span>
+								<span>{t('Contact')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
-									<div className="field-topic">Mobile</div>
+									<div className="field-topic">{t('Mobile Phone')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -194,7 +194,7 @@ class Register6 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Fixed line</div>
+									<div className="field-topic">{t('Fix Phone')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -204,13 +204,13 @@ class Register6 extends Component {
 								</div>
 							</div>
 							<div className="about-body-topic">
-								<span>Social</span>
+								<span>{t('Social')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="register-btn">
 									<button type="button" className="btn btn-facebook">
 										<i className="fa fa-facebook" aria-hidden="true" />
-										<span>Connect with your friends</span>
+										<span>{t('Connect with your friends')}</span>
 									</button>
 								</div>
 								<div className="contact-body-field">
@@ -233,12 +233,12 @@ class Register6 extends Component {
 								</div>
 							</div>
 							<div className="about-body-topic">
-								<span>Notifications</span>
+								<span>{t('Notifications')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="register-notification contact-body-field">
 									{/* <div className="contact-body-field"> */}
-									<span className="field-topic">Email Notifications</span>
+									<span className="field-topic">Email {t('Notifications')}</span>
 									<div className="register-switch">
 										<Switch
 											checked={this.state.emailcheck}
@@ -259,7 +259,9 @@ class Register6 extends Component {
 									{/* </div> */}
 								</div>
 								<div className="sent-state">
-									<button className="btn btn-red btn-register-next">Save</button>
+									<button className="btn btn-red btn-register-next">
+										{t('Save your preferences')}
+									</button>
 								</div>
 								<div className="sent-state">
 									<button
@@ -268,7 +270,7 @@ class Register6 extends Component {
 										}}
 										className="btn btn-red btn-register-next"
 									>
-										Log out
+										LOG OUT
 									</button>
 								</div>
 							</div>

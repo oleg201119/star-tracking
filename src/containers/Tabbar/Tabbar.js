@@ -71,7 +71,7 @@ class Tabbar extends Component {
 				<TabPanel>
 					<MyResultsEvents />
 				</TabPanel>
-				<TabPanel>{!registered ? <Wizardview {...this.props} /> : <Register6 {...this.props} />}</TabPanel>
+				<TabPanel>{registered ? <Wizardview {...this.props} /> : <Register6 {...this.props} />}</TabPanel>
 			</Tabs>
 		);
 	}

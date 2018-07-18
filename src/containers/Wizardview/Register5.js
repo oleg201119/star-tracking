@@ -16,14 +16,14 @@ class Register5 extends Component {
 		window.scrollTo(0, 0);
 	}
 	render() {
-		// const { t } = this.props;
+		const { t } = this.props;
 		return (
 			<div>
 				<div className="header-banner mobile-person-header">
 					<div className="glass-section">
 						<div className="slogan-section">
 							<div className="container">
-								<span className="slogan">Register</span>
+								<span className="slogan">{t('Register')}</span>
 							</div>
 						</div>
 					</div>
@@ -32,17 +32,17 @@ class Register5 extends Component {
 					<div className="row">
 						<div className="col-12 col-md-10 col-xl-8 about-body-container">
 							<div className="register-wizard-state">
-								<span>Add more info</span>
+								<span>{t('Add more info')}</span>
 								<span className="register-step">5 / 5</span>
 							</div>
 							<div className="about-body-topic">
-								<span>Social</span>
+								<span>{t('Social')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="register-btn">
 									<button type="button" className="btn btn-facebook">
 										<i className="fa fa-facebook" aria-hidden="true" />
-										<span>Connect with your friends</span>
+										<span>{t('Connect with your friends')}</span>
 									</button>
 								</div>
 								<div className="contact-body-field">
@@ -74,17 +74,17 @@ class Register5 extends Component {
 								</div>
 							</div>
 							<div className="about-body-topic">
-								<span>Connect with services</span>
+								<span>{t('Connect with services')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="register-btn">
 									<button type="button" className="btn btn-strava">
-										<span>Connect with Strava</span>
+										<span>{t('Connect with Strava')}</span>
 									</button>
 								</div>
 								<div className="register-btn register-btn-misfit">
 									<button type="button" className="btn btn-misfit">
-										<span>Connect with Misfit</span>
+										<span>{t('Connect with Misfit')}</span>
 									</button>
 								</div>
 								<div className="sent-state">
@@ -94,7 +94,7 @@ class Register5 extends Component {
 										}}
 										className="btn btn-red btn-register-next"
 									>
-										Save your preferences
+										{t('Save your preferences')}
 									</button>
 								</div>
 							</div>

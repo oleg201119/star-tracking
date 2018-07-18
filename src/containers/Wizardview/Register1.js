@@ -26,8 +26,7 @@ class Register1 extends Component {
 		this.setState({ gender: e });
 	}
 	render() {
-		// const { t } = this.props;
-		console.log(this.props);
+		const { t } = this.props;
 		const mobileregister =
 			this.props.location.state !== undefined && this.props.location.state.mobileregister ? true : false;
 		return (
@@ -36,7 +35,7 @@ class Register1 extends Component {
 					<div className="glass-section">
 						<div className="slogan-section">
 							<div className="container">
-								<span className="slogan">Register</span>
+								<span className="slogan">{t('Register')}</span>
 							</div>
 						</div>
 					</div>
@@ -46,22 +45,24 @@ class Register1 extends Component {
 						<div className="col-12 col-md-10 col-xl-8 about-body-container">
 							{mobileregister ? (
 								<div className="welcome-register">
-									<span>Thank you for registering! Let's quickly finetune your account</span>
+									<span>
+										{t('Thank you for registering!')} {t("Let's quickly fine tune your account")}
+									</span>
 								</div>
 							) : null}
 							<div className="register-wizard-state">
-								<span>Add more info</span>
+								<span>{t('Add more info')}</span>
 								<span className="register-step">1 / 5</span>
 							</div>
 							{/* <div className="register-avatar">
               <img src="/img/register-avatar" alt="avatar" />
             </div> */}
 							<div className="about-body-topic">
-								<span>General</span>
+								<span>{t('General')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
-									<div className="field-topic">Name</div>
+									<div className="field-topic">{t('Name')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -70,11 +71,11 @@ class Register1 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Birthday</div>
+									<div className="field-topic">{t('Birthday')}</div>
 									<DatePicker selected={this.state.startDate} onChange={this.handleChange} />
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Gender</div>
+									<div className="field-topic">{t('Gender')}</div>
 									<Select
 										ref={(ref) => {
 											this.select = ref;
@@ -89,7 +90,7 @@ class Register1 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Language</div>
+									<div className="field-topic">{t('Language')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -104,7 +105,7 @@ class Register1 extends Component {
 										}}
 										className="btn btn-red btn-register-next"
 									>
-										Save your preferences
+										{t('Save your preferences')}
 									</button>
 								</div>
 							</div>

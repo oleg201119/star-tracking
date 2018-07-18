@@ -15,14 +15,14 @@ class Register3 extends Component {
 		window.scrollTo(0, 0);
 	}
 	render() {
-		// const { t } = this.props;
+		const { t } = this.props;
 		return (
 			<div>
 				<div className="header-banner mobile-person-header">
 					<div className="glass-section">
 						<div className="slogan-section">
 							<div className="container">
-								<span className="slogan">Register</span>
+								<span className="slogan">{t('Register')}</span>
 							</div>
 						</div>
 					</div>
@@ -31,15 +31,15 @@ class Register3 extends Component {
 					<div className="row">
 						<div className="col-12 col-md-10 col-xl-8 about-body-container">
 							<div className="register-wizard-state">
-								<span>Add more info</span>
+								<span>{t('Add more info')}</span>
 								<span className="register-step">3 / 5</span>
 							</div>
 							<div className="about-body-topic">
-								<span className="field-topic">CONTACT (FOR PROBLEMS)</span>
+								<span className="field-topic">{t('CONTACT (FOR PROBLEMS)')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
-									<div className="field-topic">MobilePhone</div>
+									<div className="field-topic">{t('Mobile Phone')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -48,7 +48,7 @@ class Register3 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">FixPhone</div>
+									<div className="field-topic">{t('Fix Phone')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -58,11 +58,11 @@ class Register3 extends Component {
 								</div>
 							</div>
 							<div className="about-body-topic">
-								<span>CONTACT IN CASE OF EMERGENCY (during a race)</span>
+								<span>{t('CONTACT IN CASE OF EMERGENCY (during a race)')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
-									<div className="field-topic">Number (family member / friend)</div>
+									<div className="field-topic">{t('Number (family member / friend)')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -77,7 +77,7 @@ class Register3 extends Component {
 										}}
 										className="btn btn-red btn-register-next"
 									>
-										Save your preferences
+										{t('Save your preferences')}
 									</button>
 								</div>
 							</div>

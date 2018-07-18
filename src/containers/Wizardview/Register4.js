@@ -41,14 +41,14 @@ class Register4 extends Component {
 		this.setState({ radius: e });
 	}
 	render() {
-		// const { t } = this.props;
+		const { t } = this.props;
 		return (
 			<div>
 				<div className="header-banner mobile-person-header">
 					<div className="glass-section">
 						<div className="slogan-section">
 							<div className="container">
-								<span className="slogan">Register</span>
+								<span className="slogan">{t('Register')}</span>
 							</div>
 						</div>
 					</div>
@@ -57,11 +57,11 @@ class Register4 extends Component {
 					<div className="row">
 						<div className="col-12 col-md-10 col-xl-8 about-body-container">
 							<div className="register-wizard-state">
-								<span>Add more info</span>
+								<span>{t('Add more info')}</span>
 								<span className="register-step">4 / 5</span>
 							</div>
 							<div className="about-body-topic">
-								<span>YOUR SPORT PREFERENCES</span>
+								<span>{t('YOUR SPORT PREFERENCES')}</span>
 							</div>
 							<div className="select-body">
 								<div className="register-wizard-select">
@@ -75,7 +75,7 @@ class Register4 extends Component {
 											src={this.state.sport1 ? '/img/register-done.png' : '/img/register-do.png'}
 											alt="Running"
 										/>
-										<span>Running</span>
+										<span>{t('Running')}</span>
 									</div>
 									<div
 										className={`register-wizard-select-item ${this.state.sport2
@@ -87,7 +87,7 @@ class Register4 extends Component {
 											src={this.state.sport2 ? '/img/register-done.png' : '/img/register-do.png'}
 											alt="Roadbike"
 										/>
-										<span>Roadbike</span>
+										<span>{t('Roadbike')}</span>
 									</div>
 									<div
 										className={`register-wizard-select-item ${this.state.sport3
@@ -99,7 +99,7 @@ class Register4 extends Component {
 											src={this.state.sport3 ? '/img/register-done.png' : '/img/register-do.png'}
 											alt="Multisport"
 										/>
-										<span>Multisport</span>
+										<span>{t('Multisport')}</span>
 									</div>
 									<div
 										className={`register-wizard-select-item ${this.state.sport4
@@ -111,7 +111,7 @@ class Register4 extends Component {
 											src={this.state.sport4 ? '/img/register-done.png' : '/img/register-do.png'}
 											alt="TrialRun"
 										/>
-										<span>TrialRun</span>
+										<span>{t('TrialRun')}</span>
 									</div>
 									<div
 										className={`register-wizard-select-item ${this.state.sport5
@@ -123,7 +123,7 @@ class Register4 extends Component {
 											src={this.state.sport5 ? '/img/register-done.png' : '/img/register-do.png'}
 											alt="Mountainbike"
 										/>
-										<span>Mountainbike</span>
+										<span>{t('Mountainbike')}</span>
 									</div>
 									<div
 										className={`register-wizard-select-item ${this.state.sport6
@@ -135,12 +135,12 @@ class Register4 extends Component {
 											src={this.state.sport6 ? '/img/register-done.png' : '/img/register-do.png'}
 											alt="Other"
 										/>
-										<span>Other</span>
+										<span>{t('Other')}</span>
 									</div>
 								</div>
 							</div>
 							<div className="about-body-topic">
-								<span>YOUR LOCATION PREFERENCES</span>
+								<span>{t('YOUR LOCATION PREFERENCES')}</span>
 							</div>
 							<div className="select-body">
 								<div className="register-wizard-select">
@@ -157,7 +157,7 @@ class Register4 extends Component {
 											alt="Marathons"
 										/>
 										<div className="radius-select">
-											In a radius of&nbsp;&nbsp;
+											{t('In a radius of')}&nbsp;&nbsp;
 											<div className="select-radius" onClick={(e) => e.stopPropagation()}>
 												<Select
 													ref={(ref) => {
@@ -193,7 +193,7 @@ class Register4 extends Component {
 											}
 											alt="Triathlons"
 										/>
-										<span>National</span>
+										<span>{t('National')}</span>
 									</div>
 									<div
 										className={`register-wizard-select-item ${this.state.location3
@@ -207,7 +207,7 @@ class Register4 extends Component {
 											}
 											alt="Baanfietsen"
 										/>
-										<span>International</span>
+										<span>{t('International')}</span>
 									</div>
 								</div>
 							</div>
@@ -219,7 +219,7 @@ class Register4 extends Component {
 										}}
 										className="btn btn-red btn-register-next"
 									>
-										Save your preferences
+										{t('Save your preferences')}
 									</button>
 								</div>
 							</div>

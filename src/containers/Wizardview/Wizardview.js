@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
 import WizardForm from 'react-wizard-form';
 import './Wizardview.css';
 import Register1 from './Register1';
@@ -11,8 +10,6 @@ import Register6 from './Register6';
 
 class Wizardview extends Component {
 	render() {
-		// const { t } = this.props;
-
 		return (
 			<WizardForm>
 				<Register1 {...this.props} />
@@ -25,4 +22,4 @@ class Wizardview extends Component {
 		);
 	}
 }
-export default translate('translations')(Wizardview);
+export default Wizardview;
