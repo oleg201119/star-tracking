@@ -5,7 +5,8 @@ const initialState = Map({
 	authToken: '',
 	resetPwd: '',
 	sendPwd: '',
-	logout: ''
+	logout: '',
+	registerError: ''
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -38,6 +39,14 @@ export default function reduce(state = initialState, action = {}) {
 			return state.merge({
 				authToken: action.auth
 			});
+		case types.REGISTER_ERROR_FETCHED:
+			return state.merge({
+				registerError: action.auth
+			});
+		case types.REGISTER_ERROR_FORMAT:
+			return state.merge({
+				registerError: action.auth
+			});
 		default:
 			return state;
 	}
@@ -53,4 +62,7 @@ export function getResetPwd(state) {
 }
 export function getSendPwd(state) {
 	return state.auth.get('sendPwd');
+}
+export function getRegisterError(state) {
+	return state.auth.get('registerError');
 }

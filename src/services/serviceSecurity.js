@@ -114,14 +114,15 @@ export default class ServiceSecurity {
 		)}&${encodeURIComponent('language')}=${encodeURIComponent(args.bodydata.language)}&${encodeURIComponent(
 			'timerid'
 		)}=${encodeURIComponent(args.bodydata.timerid)}`;
-		console.log('ss');
+
 		const response = await fetch(args.url, {
 			method: 'POST',
 			headers: headers,
 			body: loginData
 		});
 		if (!response.ok) {
-			return false;
+			const error = response.json();
+			return error;
 		}
 		return true;
 	}

@@ -16,13 +16,12 @@ export function fetchRegisterAuth(username, password, confirmpassword, language)
 	return async (dispatch) => {
 		try {
 			const register = await AuthService.getRegisterAuth(username, password, confirmpassword, language);
-
-			if (register !== false) {
+			if (register === true) {
 				const auth = await AuthService.getLoginAuth(username, password);
 				dispatch({ type: types.LOGIN_AUTH_FETCHED, auth });
 			} else {
-				const auth = 'error';
-				dispatch({ type: types.LOGIN_AUTH_FETCHED, auth });
+				const auth = register;
+				dispatch({ type: types.REGISTER_ERROR_FETCHED, auth });
 			}
 		} catch (error) {
 			console.error(error);
@@ -35,6 +34,17 @@ export function fetchLoginStateFormat() {
 		try {
 			const auth = '';
 			dispatch({ type: types.LOGINSTATE_FORMAT_FETCHED, auth });
+		} catch (error) {
+			console.error(error);
+		}
+	};
+}
+
+export function fetchRegisterStateFormat() {
+	return async (dispatch) => {
+		try {
+			const auth = '';
+			dispatch({ type: types.REGISTER_ERROR_FORMAT, auth });
 		} catch (error) {
 			console.error(error);
 		}

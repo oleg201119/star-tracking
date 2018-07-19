@@ -29,7 +29,9 @@ export default class AuthService {
 			url: url,
 			bodydata: bodydata
 		});
-		return data;
+		if (data === true) {
+			return true;
+		} else return data.Message;
 	}
 
 	static async getResetPwd(email) {

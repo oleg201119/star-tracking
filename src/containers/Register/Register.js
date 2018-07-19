@@ -10,7 +10,8 @@ import './Register.css';
 class Register extends Component {
 	static propTypes = {
 		dispatch: PropTypes.func.isRequired,
-		authToken: PropTypes.string.isRequired
+		authToken: PropTypes.string.isRequired,
+		registerError: PropTypes.string.isRequired
 	};
 	constructor() {
 		super();
@@ -20,7 +21,8 @@ class Register extends Component {
 			password: '',
 			loginstate: '',
 			confirmpassword: '',
-			currentlanguage: ''
+			currentlanguage: '',
+			errorMessage: ''
 		};
 		this.changeUsername = this.changeUsername.bind(this);
 		this.changePassword = this.changePassword.bind(this);
@@ -40,7 +42,11 @@ class Register extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.authToken === 'error') {
 			this.props.dispatch(authActions.fetchLoginStateFormat());
-			this.setState({ loginstate: 'error' });
+			this.setState({ loginstate: 'error', errorMessage: 'Register success! Login fail.' });
+		}
+		if (nextProps.registerError !== '') {
+			this.props.dispatch(authActions.fetchRegisterStateFormat());
+			this.setState({ loginstate: 'error', errorMessage: nextProps.registerError });
 		}
 		if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
 			this.props.history.push('/registerexplanation', { backstate: false });
@@ -163,17 +169,12 @@ class Register extends Component {
 									this.state.currentlanguage
 								)
 							);
-							// this.props.history.push('/registerexplanation', { backstate: false });
 						}}
 					>
 						{t('Register')}
 					</button>
 					<div className="error-text">
-						{this.state.loginstate === 'error' ? (
-							<span>{t('Ongeldige gebruikersnaam of paswoord!')}</span>
-						) : (
-							<span />
-						)}
+						{this.state.loginstate === 'error' ? <span>{this.state.errorMessage}</span> : <span />}
 					</div>
 					<div className="create-forgot">
 						<span
@@ -210,8 +211,10 @@ class Register extends Component {
 }
 function mapStateToProps(state) {
 	const authToken = authSelectors.getLoginAuth(state);
+	const registerError = authSelectors.getRegisterError(state);
 	return {
-		authToken
+		authToken,
+		registerError
 	};
 }
 
