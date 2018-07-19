@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+import countries from 'i18n-iso-countries';
+import Select from 'react-select';
 import './Register2.css';
 
 class Register2 extends Component {
@@ -10,11 +12,38 @@ class Register2 extends Component {
 			postcode: '',
 			no: '',
 			township: '',
-			country: ''
+			country: 'BE',
+			currentlanguage: '',
+			countryarray: []
 		};
 	}
 	componentDidMount() {
 		window.scrollTo(0, 0);
+		countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
+		countries.registerLocale(require('i18n-iso-countries/langs/fr.json'));
+		countries.registerLocale(require('i18n-iso-countries/langs/nl.json'));
+		let currentlanguage = this.props.i18n.language;
+		if (this.props.i18n.language.length > 2) {
+			currentlanguage = this.props.i18n.language.substring(0, 2);
+		}
+		const defaultarray = countries.getNames(currentlanguage);
+		const temparray = Object.entries(defaultarray).map((temp) => {
+			return { value: temp[0], label: temp[1] };
+		});
+		this.setState({ currentlanguage: currentlanguage, countryarray: temparray });
+	}
+	componentWillReceiveProps(nextProps) {
+		let nextlanguage = nextProps.i18n.language;
+		if (nextProps.i18n.language.length > 2) {
+			nextlanguage = nextProps.i18n.language.substring(0, 2);
+		}
+		if (nextlanguage !== this.state.currentlanguage) {
+			const defaultarray = countries.getNames(nextlanguage);
+			const temparray = Object.entries(defaultarray).map((temp) => {
+				return { value: temp[0], label: temp[1] };
+			});
+			this.setState({ currentlanguage: nextlanguage, countryarray: temparray });
+		}
 	}
 	render() {
 		const { t } = this.props;
@@ -78,11 +107,15 @@ class Register2 extends Component {
 								</div>
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Country')}</div>
-									<input
-										type="text"
-										className="contact-body-input"
+									<Select
+										options={this.state.countryarray}
+										simpleValue
+										// placeholder="Select language"
 										value={this.state.country}
-										onChange={(e) => this.setState({ country: e.target.value })}
+										onChange={(e) => {
+											this.setState({ country: e });
+										}}
+										className="search-event"
 									/>
 								</div>
 								<div className="sent-state">

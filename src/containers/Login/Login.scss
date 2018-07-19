@@ -142,7 +142,7 @@
 			height: 53px;
 			border-radius: 5px;
 			line-height: 1.88;
-			margin-top: 15px;
+			margin-top: 10px;
 		}
 
 		.stay-signin {
@@ -207,7 +207,14 @@
 	.error-text {
 		text-align: center;
 		font-size: 14px;
-		color: #f70027;
+		color: #ffc5bc;
 		height: 28px;
+		margin-top: 5px;
+		&.no-error {
+			color: white;
+		}
+		span {
+			cursor: pointer;
+		}
 	}
 }

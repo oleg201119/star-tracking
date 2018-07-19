@@ -102,6 +102,13 @@ class Login extends Component {
 							) : null}
 						</div>
 					</div>
+					<div className="error-text">
+						{this.state.loginstate === 'error' ? (
+							<span>{t('Ongeldige gebruikersnaam of paswoord!')}</span>
+						) : (
+							<span />
+						)}
+					</div>
 					<button
 						type="button"
 						className="btn btn-red signin"
@@ -112,13 +119,6 @@ class Login extends Component {
 					>
 						{t('Sign in')}
 					</button>
-					<div className="error-text">
-						{this.state.loginstate === 'error' ? (
-							<span>{t('Ongeldige gebruikersnaam of paswoord!')}</span>
-						) : (
-							<span />
-						)}
-					</div>
 					<div className="stay-signin">
 						<img
 							className="stay-signin-check"

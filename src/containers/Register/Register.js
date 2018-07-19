@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import ReactModal from 'react-modal';
 import * as authActions from '../../store/auth/actions';
 import * as authSelectors from '../../store/auth/reducer';
 import './Register.css';
@@ -22,7 +23,8 @@ class Register extends Component {
 			loginstate: '',
 			confirmpassword: '',
 			currentlanguage: '',
-			errorMessage: ''
+			errorMessage: '',
+			showsharemodal: false
 		};
 		this.changeUsername = this.changeUsername.bind(this);
 		this.changePassword = this.changePassword.bind(this);
@@ -142,6 +144,18 @@ class Register extends Component {
 							) : null}
 						</div>
 					</div>
+					<div
+						className={`error-text ${this.state.loginstate !== 'error' ? 'no-error' : null}`}
+						onClick={() => {
+							this.setState({ showsharemodal: true });
+						}}
+					>
+						{this.state.loginstate === 'error' ? (
+							<span>{this.state.errorMessage}</span>
+						) : (
+							<span>{t('Check out the email & password rules')}</span>
+						)}
+					</div>
 					<div className="stay-signin">
 						<img
 							className="stay-signin-check"
@@ -153,7 +167,7 @@ class Register extends Component {
 									: this.setState({ accept_policy: true })}
 						/>
 						<Link to="/policy">
-							<span>{t('I accept the terms of use and the privacy policy')}</span>
+							<span className="policy-text">{t('I accept the terms of use and the privacy policy')}</span>
 						</Link>
 					</div>
 					<button
@@ -173,9 +187,6 @@ class Register extends Component {
 					>
 						{t('Register')}
 					</button>
-					<div className="error-text">
-						{this.state.loginstate === 'error' ? <span>{this.state.errorMessage}</span> : <span />}
-					</div>
 					<div className="create-forgot">
 						<span
 							className="create-forgot-text sign-in"
@@ -205,6 +216,24 @@ class Register extends Component {
 						clear
 					</i>
 				</div>
+				<ReactModal
+					isOpen={this.state.showsharemodal}
+					className="calendar-modal rule-modal"
+					onRequestClose={() => {
+						this.setState({ showsharemodal: false });
+					}}
+					shouldCloseOnOverlayClick={true}
+				>
+					<span>{t('password-rule')}</span>
+					<span>{t('email-rule')}</span>
+					<div
+						onClick={() => {
+							this.setState({ showsharemodal: false });
+						}}
+					>
+						<span>OK</span>
+					</div>
+				</ReactModal>
 			</div>
 		);
 	}

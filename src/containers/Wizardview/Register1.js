@@ -9,13 +9,22 @@ class Register1 extends Component {
 	constructor() {
 		super();
 		this.state = {
-			name: '',
+			firstname: '',
+			lastname: '',
 			language: '',
 			gender: '',
 			startDate: moment()
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.updateselectgender = this.updateselectgender.bind(this);
+		this.updateselectlanguage = this.updateselectlanguage.bind(this);
+	}
+	componentDidMount() {
+		let language = this.props.i18n.language;
+		if (this.props.i18n.language.length > 2) {
+			language = this.props.i18n.language.substring(0, 2);
+		}
+		this.setState({ language });
 	}
 	handleChange(date) {
 		this.setState({
@@ -24,6 +33,9 @@ class Register1 extends Component {
 	}
 	updateselectgender(e) {
 		this.setState({ gender: e });
+	}
+	updateselectlanguage(e) {
+		this.setState({ language: e });
 	}
 	render() {
 		const { t } = this.props;
@@ -62,12 +74,21 @@ class Register1 extends Component {
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
-									<div className="field-topic">{t('Name')}</div>
+									<div className="field-topic">{t('First Name')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
-										value={this.state.name}
-										onChange={(e) => this.setState({ name: e.target.value })}
+										value={this.state.firstname}
+										onChange={(e) => this.setState({ firstname: e.target.value })}
+									/>
+								</div>
+								<div className="contact-body-field">
+									<div className="field-topic">{t('Last Name')}</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.lastname}
+										onChange={(e) => this.setState({ lastname: e.target.value })}
 									/>
 								</div>
 								<div className="contact-body-field">
@@ -77,9 +98,6 @@ class Register1 extends Component {
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Gender')}</div>
 									<Select
-										ref={(ref) => {
-											this.select = ref;
-										}}
 										options={[ { value: 'Man', label: 'Man' }, { value: 'Woman', label: 'Woman' } ]}
 										simpleValue
 										placeholder="Select gender"
@@ -91,11 +109,18 @@ class Register1 extends Component {
 								</div>
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Language')}</div>
-									<input
-										type="text"
-										className="contact-body-input"
+									<Select
+										options={[
+											{ value: 'nl', label: 'nl' },
+											{ value: 'fr', label: 'fr' },
+											{ value: 'en', label: 'en' }
+										]}
+										simpleValue
+										placeholder="Select language"
 										value={this.state.language}
-										onChange={(e) => this.setState({ language: e.target.value })}
+										onChange={this.updateselectlanguage}
+										className="search-event"
+										searchable={false}
 									/>
 								</div>
 								<div className="sent-state">

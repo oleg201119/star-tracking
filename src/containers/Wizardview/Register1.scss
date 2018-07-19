@@ -90,6 +90,11 @@
 				padding-left: 0;
 			}
 		}
+		.Select-input {
+			@media (max-width: 767px) {
+				padding-left: 0;
+			}
+		}
 		.sent-state {
 			justify-content: center;
 			@media (max-width: 767px) {

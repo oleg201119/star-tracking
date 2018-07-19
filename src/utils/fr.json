@@ -137,7 +137,8 @@
 	"read more": "Lire la suite",
 	"Details Event": "Détails Event",
 	"Hide details": "Cachez les détails",
-	"Name": "Nom",
+	"First Name": "Prénom",
+	"Last Name": "Nom de famille",
 	"Birthday": "Anniversaire",
 	"Gender": "Sexe",
 	"Language": "Langue",
@@ -173,5 +174,8 @@
 	"Connect with Misfit": "Connectez-vous avec Misfit",
 	"Summary": "Résumé",
 	"Billing Information": "détails de facturation",
-	"Notifications": "Notifications"
+	"Notifications": "Notifications",
+	"Check out the email & password rules": "Consultez les règles d'e-mail et de mot de passe",
+	"password-rule": "Votre mot de passe doit contenir au minium 6 caractères et au moins 1 minuscule [a-z], au moins 1 majuscule [A-Z], au moins 1 ciffre [0-9] et au moins 1 caractère spéciale [~`!@#$%^&*()-_+={}[]|\\;:\"<>,./?].",
+	"email-rule": "L'adresse mail que vous utiliserez pour votre compte sera également être utilisée pour toute la communication StarTracking!"
 }

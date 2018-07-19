@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import Switch from 'react-switch';
 import moment from 'moment';
+import countries from 'i18n-iso-countries';
 import AuthService from '../../services/auth';
 import './Register6.css';
 
@@ -11,7 +12,8 @@ class Register6 extends Component {
 	constructor() {
 		super();
 		this.state = {
-			name: '',
+			firstname: '',
+			lastname: '',
 			language: '',
 			gender: '',
 			email: '',
@@ -26,11 +28,40 @@ class Register6 extends Component {
 			facebook: '',
 			twitter: '',
 			emailcheck: false,
-			startDate: moment()
+			startDate: moment(),
+			currentlanguage: '',
+			countryarray: []
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.updateselectgender = this.updateselectgender.bind(this);
 		this.handleEmailCheckChange = this.handleEmailCheckChange.bind(this);
+	}
+	componentDidMount() {
+		countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
+		countries.registerLocale(require('i18n-iso-countries/langs/fr.json'));
+		countries.registerLocale(require('i18n-iso-countries/langs/nl.json'));
+		let currentlanguage = this.props.i18n.language;
+		if (this.props.i18n.language.length > 2) {
+			currentlanguage = this.props.i18n.language.substring(0, 2);
+		}
+		const defaultarray = countries.getNames(currentlanguage);
+		const temparray = Object.entries(defaultarray).map((temp) => {
+			return { value: temp[0], label: temp[1] };
+		});
+		this.setState({ currentlanguage: currentlanguage, countryarray: temparray });
+	}
+	componentWillReceiveProps(nextProps) {
+		let nextlanguage = nextProps.i18n.language;
+		if (nextProps.i18n.language.length > 2) {
+			nextlanguage = nextProps.i18n.language.substring(0, 2);
+		}
+		if (nextlanguage !== this.state.currentlanguage) {
+			const defaultarray = countries.getNames(nextlanguage);
+			const temparray = Object.entries(defaultarray).map((temp) => {
+				return { value: temp[0], label: temp[1] };
+			});
+			this.setState({ currentlanguage: nextlanguage, countryarray: temparray });
+		}
 	}
 	handleChange(date) {
 		this.setState({
@@ -75,12 +106,21 @@ class Register6 extends Component {
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
-									<div className="field-topic">{t('Name')}</div>
+									<div className="field-topic">{t('First Name')}</div>
 									<input
 										type="text"
 										className="contact-body-input"
-										value={this.state.name}
-										onChange={(e) => this.setState({ name: e.target.value })}
+										value={this.state.firstname}
+										onChange={(e) => this.setState({ firstname: e.target.value })}
+									/>
+								</div>
+								<div className="contact-body-field">
+									<div className="field-topic">{t('Last Name')}</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.lastname}
+										onChange={(e) => this.setState({ lastname: e.target.value })}
 									/>
 								</div>
 								<div className="contact-body-field">
@@ -122,11 +162,20 @@ class Register6 extends Component {
 								</div>
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Language')}</div>
-									<input
-										type="text"
-										className="contact-body-input"
+									<Select
+										options={[
+											{ value: 'nl', label: 'nl' },
+											{ value: 'fr', label: 'fr' },
+											{ value: 'en', label: 'en' }
+										]}
+										simpleValue
+										placeholder="Select language"
 										value={this.state.language}
-										onChange={(e) => this.setState({ language: e.target.value })}
+										onChange={(e) => {
+											this.setState({ language: e });
+										}}
+										className="search-event"
+										searchable={false}
 									/>
 								</div>
 							</div>
@@ -172,11 +221,15 @@ class Register6 extends Component {
 								</div>
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Country')}</div>
-									<input
-										type="text"
-										className="contact-body-input"
+									<Select
+										options={this.state.countryarray}
+										simpleValue
+										// placeholder="Select language"
 										value={this.state.country}
-										onChange={(e) => this.setState({ country: e.target.value })}
+										onChange={(e) => {
+											this.setState({ country: e });
+										}}
+										className="search-event"
 									/>
 								</div>
 							</div>
@@ -237,7 +290,6 @@ class Register6 extends Component {
 							</div>
 							<div className="contact-body">
 								<div className="register-notification contact-body-field">
-									{/* <div className="contact-body-field"> */}
 									<span className="field-topic">Email {t('Notifications')}</span>
 									<div className="register-switch">
 										<Switch
@@ -256,7 +308,6 @@ class Register6 extends Component {
 											id="material-switch"
 										/>
 									</div>
-									{/* </div> */}
 								</div>
 								<div className="sent-state">
 									<button className="btn btn-red btn-register-next">
