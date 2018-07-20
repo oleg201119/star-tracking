@@ -140,8 +140,14 @@ export function formatRegister() {
 export function fetchGetProfile() {
 	return async (dispatch) => {
 		try {
+			let loading = true;
+			dispatch({ type: types.GET_PROFILE_LOADING, loading });
 			const register = await RegisterService.getProfile();
-			dispatch({ type: types.GET_PROFILE_FETCHED, register });
+			if (register !== false) {
+				dispatch({ type: types.GET_PROFILE_FETCHED, register });
+			}
+			loading = false;
+			dispatch({ type: types.GET_PROFILE_LOADING, loading });
 		} catch (error) {
 			console.error(error);
 		}

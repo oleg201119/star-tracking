@@ -112,7 +112,7 @@ export default class RegisterService {
 		const url = `${API_ENDPOINT}/App/Register/Profile`;
 		const data = await ServiceSecurity.GetFetch({
 			url: url,
-			errortype: false
+			errortype: true
 		});
 		console.log(data);
 		return data;

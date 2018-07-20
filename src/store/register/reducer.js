@@ -7,7 +7,8 @@ const initialState = Map({
 	register3: '',
 	register4: '',
 	registser: '',
-	profile: List()
+	profile: List(),
+	profileFlag: false
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -56,6 +57,10 @@ export default function reduce(state = initialState, action = {}) {
 			return state.merge({
 				profile: action.register
 			});
+		case types.GET_PROFILE_LOADING:
+			return state.merge({
+				profileFlag: action.loading
+			});
 		default:
 			return state;
 	}
@@ -85,4 +90,8 @@ export function getRegister(state) {
 
 export function getProfile(state) {
 	return state.register.get('profile').toJS();
+}
+
+export function getProfileFlag(state) {
+	return state.register.get('profileFlag');
 }

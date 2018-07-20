@@ -60,7 +60,11 @@ class Register6 extends Component {
 		const temparray = Object.entries(defaultarray).map((temp) => {
 			return { value: temp[0], label: temp[1] };
 		});
-		this.setState({ currentlanguage: currentlanguage, countryarray: temparray, language: currentlanguage });
+		this.setState({
+			currentlanguage: currentlanguage,
+			countryarray: temparray,
+			language: currentlanguage
+		});
 	}
 	componentWillReceiveProps(nextProps) {
 		let nextlanguage = nextProps.i18n.language;
@@ -84,7 +88,25 @@ class Register6 extends Component {
 			this.props.dispatch(registerActions.formatRegister());
 			this.setState({ buttonstate: '', loading: false });
 		}
-		// if(nextProps.profile)
+		if (nextProps.profileFlag !== this.props.profileFlag) {
+			if (nextProps.profileFlag === false && nextProps.profile.length > 0) {
+				const profile = nextProps.profile;
+				this.setState({
+					firstname: profile.FirstName,
+					lastname: profile.LastName,
+					startDate: moment(profile.DateOfBirth, 'DD/MM/YYYY'),
+					gender: profile.Gender,
+					language: profile.Language,
+					street: profile.Street,
+					no: profile.Number,
+					postcode: profile.ZipCode,
+					township: profile.City,
+					country: profile.Country,
+					mobile: profile.MobilePhone,
+					fixedline: profile.FixPhone
+				});
+			}
+		}
 	}
 	handleClick() {
 		if (this.state.buttonstate === '') {
@@ -93,7 +115,7 @@ class Register6 extends Component {
 				registerActions.fetchRegister(
 					this.state.firstname,
 					this.state.lastname,
-					moment(this.state.birthday).format('DD/MM/YYYY'),
+					moment(this.state.startDate).format('DD/MM/YYYY'),
 					this.state.gender,
 					this.state.language,
 					this.state.street,
@@ -400,10 +422,12 @@ class Register6 extends Component {
 function mapStateToProps(state) {
 	const profile = registerSelectors.getProfile(state);
 	const registerresult = registerSelectors.getRegister(state);
+	const profileFlag = registerSelectors.getProfileFlag(state);
 
 	return {
 		profile,
-		registerresult
+		registerresult,
+		profileFlag
 	};
 }
 export default translate('translations')(connect(mapStateToProps)(Register6));
