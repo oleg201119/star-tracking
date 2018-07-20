@@ -48,7 +48,7 @@ export function formatRegister2() {
 export function fetchRegister3(MobilePhone, FixPhone, FriendPhone) {
 	return async (dispatch) => {
 		try {
-			const register = await RegisterService.getRegister2(MobilePhone, FixPhone, FriendPhone);
+			const register = await RegisterService.getRegister3(MobilePhone, FixPhone, FriendPhone);
 			dispatch({ type: types.REGISTER_STEP3_FETCHED, register });
 		} catch (error) {
 			console.error(error);
@@ -70,7 +70,7 @@ export function formatRegister3() {
 export function fetchRegister4(PreferredEventTypes, LocationPreference, RangeInKm) {
 	return async (dispatch) => {
 		try {
-			const register = await RegisterService.getRegister2(PreferredEventTypes, LocationPreference, RangeInKm);
+			const register = await RegisterService.getRegister4(PreferredEventTypes, LocationPreference, RangeInKm);
 			dispatch({ type: types.REGISTER_STEP4_FETCHED, register });
 		} catch (error) {
 			console.error(error);

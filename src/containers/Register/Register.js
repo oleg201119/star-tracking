@@ -173,16 +173,19 @@ class Register extends Component {
 					<button
 						type="button"
 						className="btn btn-red signin"
+						disabled={!this.state.accept_policy}
 						onClick={() => {
-							this.setState({ loginstate: '' });
-							this.props.dispatch(
-								authActions.fetchRegisterAuth(
-									this.state.username,
-									this.state.password,
-									this.state.confirmpassword,
-									this.state.currentlanguage
-								)
-							);
+							if (this.state.accept_policy) {
+								this.setState({ loginstate: '' });
+								this.props.dispatch(
+									authActions.fetchRegisterAuth(
+										this.state.username,
+										this.state.password,
+										this.state.confirmpassword,
+										this.state.currentlanguage
+									)
+								);
+							}
 						}}
 					>
 						{t('Register')}

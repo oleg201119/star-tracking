@@ -180,5 +180,7 @@
 	"email-rule": "Het emailadres dat u voor uw account gebruikt is ook het email adres dat zal gebruikt worden voor alle StarTracking communicatie!",
 	"Email": "E-mail",
 	"Password": "Paswoord",
-	"Confirm password": "Bevestig paswoord"
+	"Confirm password": "Bevestig paswoord",
+	"Man": "Man",
+	"Woman": "Vrouw"
 }

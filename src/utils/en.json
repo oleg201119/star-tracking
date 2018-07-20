@@ -180,5 +180,7 @@
 	"email-rule": "The email address you will use for your account is also the email address that will be used for all StarTracking communication!",
 	"Email": "Email",
 	"Password": "Password",
-	"Confirm password": "Confirm password"
+	"Confirm password": "Confirm password",
+	"Man": "Man",
+	"Woman": "Woman"
 }

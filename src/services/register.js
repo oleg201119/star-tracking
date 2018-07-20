@@ -114,7 +114,6 @@ export default class RegisterService {
 			url: url,
 			errortype: true
 		});
-		console.log(data);
 		return data;
 	}
 }

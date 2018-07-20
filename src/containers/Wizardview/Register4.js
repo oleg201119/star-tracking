@@ -74,7 +74,11 @@ class Register4 extends Component {
 		} else if (this.state.buttonstate === '') {
 			this.setState({ buttonstate: 'loading', loading: true });
 			this.props.dispatch(
-				registerActions.fetchRegister4(this.state.mobile, this.state.LocationPreference, this.state.radius)
+				registerActions.fetchRegister4(
+					this.state.PreferredEventTypes,
+					this.state.LocationPreference,
+					this.state.radius
+				)
 			);
 		}
 	}

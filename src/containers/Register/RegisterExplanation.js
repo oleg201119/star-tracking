@@ -23,6 +23,7 @@ class RegisterExplanation extends Component {
 		}
 	}
 	render() {
+		const { t } = this.props;
 		const self = this;
 		const settings = {
 			dots: true,
@@ -55,7 +56,11 @@ class RegisterExplanation extends Component {
 								</div>
 								<div className="explan-border">
 									<span className="explan-text">
-										Thank you for registering!<br />Let's quickly finetune<br />your account
+										{t('Thank you for registering!')}
+										<br />
+										{t('Let’s quickly fine tune')}
+										<br />
+										{t('your account')}
 									</span>
 								</div>
 							</div>
@@ -71,7 +76,11 @@ class RegisterExplanation extends Component {
 								</div>
 								<div className="explan-border">
 									<span className="explan-text">
-										Thank you for registering!<br />Let's quickly finetune<br />your account
+										{t('Thank you for registering!')}
+										<br />
+										{t('Let’s quickly fine tune')}
+										<br />
+										{t('your account')}
 									</span>
 								</div>
 							</div>
@@ -87,7 +96,11 @@ class RegisterExplanation extends Component {
 								</div>
 								<div className="explan-border">
 									<span className="explan-text">
-										Thank you for registering!<br />Let's quickly finetune<br />your account
+										{t('Thank you for registering!')}
+										<br />
+										{t('Let’s quickly fine tune')}
+										<br />
+										{t('your account')}
 									</span>
 								</div>
 							</div>

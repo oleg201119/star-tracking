@@ -21,7 +21,7 @@ class Register1 extends Component {
 			lastname: '',
 			language: '',
 			gender: '',
-			birthday: moment(),
+			birthday: null,
 			buttonstate: '',
 			loading: false
 		};
@@ -105,7 +105,7 @@ class Register1 extends Component {
 							{mobileregister ? (
 								<div className="welcome-register">
 									<span>
-										{t('Thank you for registering!')} {t("Let's quickly fine tune your account")}
+										{t('Thank you for registering!')} {t('Let’s quickly fine tune your account')}
 									</span>
 								</div>
 							) : null}
@@ -141,6 +141,7 @@ class Register1 extends Component {
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Birthday')}</div>
 									<DatePicker
+										openToDate={moment('1985-01-01')}
 										selected={this.state.birthday}
 										dateFormat="DD/MM/YYYY"
 										onChange={this.handleChange}
@@ -149,7 +150,10 @@ class Register1 extends Component {
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Gender')}</div>
 									<Select
-										options={[ { value: 'Man', label: 'Man' }, { value: 'Woman', label: 'Woman' } ]}
+										options={[
+											{ value: 'Man', label: t('Man') },
+											{ value: 'Woman', label: t('Woman') }
+										]}
 										simpleValue
 										placeholder="Select gender"
 										value={this.state.gender}

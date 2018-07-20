@@ -36,7 +36,7 @@ class Register6 extends Component {
 			facebook: '',
 			twitter: '',
 			emailcheck: false,
-			startDate: moment(),
+			startDate: null,
 			currentlanguage: '',
 			countryarray: [],
 			buttonstate: '',
@@ -89,7 +89,7 @@ class Register6 extends Component {
 			this.setState({ buttonstate: '', loading: false });
 		}
 		if (nextProps.profileFlag !== this.props.profileFlag) {
-			if (nextProps.profileFlag === false && nextProps.profile.length > 0) {
+			if (nextProps.profileFlag === false && nextProps.profile.length !== 0) {
 				const profile = nextProps.profile;
 				this.setState({
 					firstname: profile.FirstName,
@@ -216,6 +216,7 @@ class Register6 extends Component {
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Birthday')}</div>
 									<DatePicker
+										openToDate={moment('1985-01-01')}
 										selected={this.state.startDate}
 										dateFormat="DD/MM/YYYY"
 										onChange={this.handleChange}
@@ -227,7 +228,10 @@ class Register6 extends Component {
 										ref={(ref) => {
 											this.select = ref;
 										}}
-										options={[ { value: 'Man', label: 'Man' }, { value: 'Woman', label: 'Woman' } ]}
+										options={[
+											{ value: 'Man', label: t('Man') },
+											{ value: 'Woman', label: t('Woman') }
+										]}
 										simpleValue
 										placeholder="Select gender"
 										value={this.state.gender}
