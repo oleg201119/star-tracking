@@ -6,5 +6,6 @@ import ads from './ads/reducer';
 import results from './results/reducer';
 import eventresult from './eventresult/reducer';
 import challengeresult from './challengeresult/reducer';
+import register from './register/reducer';
 
-export { events, organizers, auth, general, ads, results, eventresult, challengeresult };
+export { events, organizers, auth, general, ads, results, eventresult, challengeresult, register };

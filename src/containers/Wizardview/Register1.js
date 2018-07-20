@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import Button from 'react-bootstrap-button-loader';
+import * as registerActions from '../../store/register/actions';
+import * as registerSelectors from '../../store/register/reducer';
 import './Register1.css';
 
 class Register1 extends Component {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired
+	};
 	constructor() {
 		super();
 		this.state = {
@@ -13,11 +21,14 @@ class Register1 extends Component {
 			lastname: '',
 			language: '',
 			gender: '',
-			startDate: moment()
+			birthday: moment(),
+			buttonstate: '',
+			loading: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.updateselectgender = this.updateselectgender.bind(this);
 		this.updateselectlanguage = this.updateselectlanguage.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 	componentDidMount() {
 		let language = this.props.i18n.language;
@@ -26,9 +37,21 @@ class Register1 extends Component {
 		}
 		this.setState({ language });
 	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.registerresult === true) {
+			this.props.dispatch(registerActions.formatRegister1());
+			this.setState({ buttonstate: 'success', loading: false });
+			setTimeout(() => {
+				this.setState({ buttonstate: 'next' });
+			}, 2000);
+		} else if (nextProps.registerresult === false) {
+			this.props.dispatch(registerActions.formatRegister1());
+			this.setState({ buttonstate: '', loading: false });
+		}
+	}
 	handleChange(date) {
 		this.setState({
-			startDate: date
+			birthday: date
 		});
 	}
 	updateselectgender(e) {
@@ -37,10 +60,34 @@ class Register1 extends Component {
 	updateselectlanguage(e) {
 		this.setState({ language: e });
 	}
+	handleClick() {
+		if (this.state.buttonstate === 'next') {
+			this.props.nextStep();
+		} else if (this.state.buttonstate === '') {
+			this.setState({ buttonstate: 'loading', loading: true });
+			this.props.dispatch(
+				registerActions.fetchRegister1(
+					this.state.firstname,
+					this.state.lastname,
+					moment(this.state.birthday).format('DD/MM/YYYY'),
+					this.state.gender,
+					this.state.language
+				)
+			);
+		}
+	}
 	render() {
 		const { t } = this.props;
 		const mobileregister =
 			this.props.location.state !== undefined && this.props.location.state.mobileregister ? true : false;
+		let buttontext = '';
+		if (this.state.buttonstate === 'success') {
+			buttontext = t('Saved !');
+		} else if (this.state.buttonstate === 'next') {
+			buttontext = t('Next') + ' (2/5)';
+		} else {
+			buttontext = t('Save your preferences');
+		}
 		return (
 			<div>
 				<div className="header-banner mobile-person-header">
@@ -93,7 +140,11 @@ class Register1 extends Component {
 								</div>
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Birthday')}</div>
-									<DatePicker selected={this.state.startDate} onChange={this.handleChange} />
+									<DatePicker
+										selected={this.state.birthday}
+										dateFormat="DD/MM/YYYY"
+										onChange={this.handleChange}
+									/>
 								</div>
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Gender')}</div>
@@ -124,14 +175,20 @@ class Register1 extends Component {
 									/>
 								</div>
 								<div className="sent-state">
-									<button
-										onClick={() => {
-											this.props.nextStep();
-										}}
-										className="btn btn-red btn-register-next"
+									<Button
+										loading={this.state.loading}
+										onClick={this.handleClick}
+										className={`btn btn-red btn-register-next ${this.state.buttonstate}`}
 									>
-										{t('Save your preferences')}
-									</button>
+										{this.state.buttonstate === 'success' ? (
+											<img
+												className="button-checkmark"
+												alt="checkmark"
+												src="/img/checkmark.png"
+											/>
+										) : null}
+										{buttontext}
+									</Button>
 								</div>
 							</div>
 						</div>
@@ -141,4 +198,11 @@ class Register1 extends Component {
 		);
 	}
 }
-export default translate('translations')(Register1);
+function mapStateToProps(state) {
+	const registerresult = registerSelectors.getRegister1(state);
+
+	return {
+		registerresult
+	};
+}
+export default translate('translations')(connect(mapStateToProps)(Register1));

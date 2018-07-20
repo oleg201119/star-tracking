@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Button from 'react-bootstrap-button-loader';
+import * as registerActions from '../../store/register/actions';
+import * as registerSelectors from '../../store/register/reducer';
 import './Register4.css';
 
 class Register4 extends Component {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired
+	};
 	constructor() {
 		super();
 		this.state = {
@@ -16,8 +24,13 @@ class Register4 extends Component {
 			location1: false,
 			location2: false,
 			location3: false,
-			radius: 15
+			PreferredEventTypes: [],
+			LocationPreference: 0,
+			radius: 15,
+			buttonstate: '',
+			loading: false
 		};
+		this.handleClick = this.handleClick.bind(this);
 		this.selectsport = this.selectsport.bind(this);
 		this.selectlocation = this.selectlocation.bind(this);
 		this.updateradius = this.updateradius.bind(this);
@@ -26,15 +39,43 @@ class Register4 extends Component {
 	componentDidMount() {
 		window.scrollTo(0, 0);
 	}
-	selectsport(i) {
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.registerresult === true) {
+			this.props.dispatch(registerActions.formatRegister4());
+			this.setState({ buttonstate: 'success', loading: false });
+			setTimeout(() => {
+				this.setState({ buttonstate: 'next' });
+			}, 2000);
+		} else if (nextProps.registerresult === false) {
+			this.props.dispatch(registerActions.formatRegister4());
+			this.setState({ buttonstate: '', loading: false });
+		}
+	}
+	selectsport(i, event) {
 		const temp = !this.state[`sport${i}`];
-		this.setState({ [`sport${i}`]: temp });
+		let eventarray = this.state.PreferredEventTypes;
+		if (temp) eventarray.push(event);
+		else {
+			const index = eventarray.indexOf(event);
+			eventarray.splice(index, 1);
+		}
+		this.setState({ [`sport${i}`]: temp, PreferredEventTypes: eventarray });
 	}
 	selectlocation(i) {
 		const temp = !this.state[`location${i}`];
 		for (let j = 1; j <= 3; j++) {
-			if (j === i) this.setState({ [`location${j}`]: temp });
+			if (j === i) this.setState({ [`location${j}`]: temp, LocationPreference: i });
 			else this.setState({ [`location${j}`]: false });
+		}
+	}
+	handleClick() {
+		if (this.state.buttonstate === 'next') {
+			this.props.nextStep();
+		} else if (this.state.buttonstate === '') {
+			this.setState({ buttonstate: 'loading', loading: true });
+			this.props.dispatch(
+				registerActions.fetchRegister4(this.state.mobile, this.state.LocationPreference, this.state.radius)
+			);
 		}
 	}
 	updateradius(e) {
@@ -42,6 +83,14 @@ class Register4 extends Component {
 	}
 	render() {
 		const { t } = this.props;
+		let buttontext = '';
+		if (this.state.buttonstate === 'success') {
+			buttontext = t('Saved !');
+		} else if (this.state.buttonstate === 'next') {
+			buttontext = t('Next') + ' (5/5)';
+		} else {
+			buttontext = t('Save your preferences');
+		}
 		return (
 			<div>
 				<div className="header-banner mobile-person-header">
@@ -69,7 +118,7 @@ class Register4 extends Component {
 										className={`register-wizard-select-item ${this.state.sport1
 											? 'selected'
 											: null}`}
-										onClick={() => this.selectsport(1)}
+										onClick={() => this.selectsport(1, 'Running')}
 									>
 										<img
 											src={this.state.sport1 ? '/img/register-done.png' : '/img/register-do.png'}
@@ -81,7 +130,7 @@ class Register4 extends Component {
 										className={`register-wizard-select-item ${this.state.sport2
 											? 'selected'
 											: null}`}
-										onClick={() => this.selectsport(2)}
+										onClick={() => this.selectsport(2, 'Roadbike')}
 									>
 										<img
 											src={this.state.sport2 ? '/img/register-done.png' : '/img/register-do.png'}
@@ -93,19 +142,19 @@ class Register4 extends Component {
 										className={`register-wizard-select-item ${this.state.sport3
 											? 'selected'
 											: null}`}
-										onClick={() => this.selectsport(3)}
+										onClick={() => this.selectsport(3, 'Multisport')}
 									>
 										<img
 											src={this.state.sport3 ? '/img/register-done.png' : '/img/register-do.png'}
 											alt="Multisport"
 										/>
-										<span>{t('Multisport')}</span>
+										<span>{t('MultiSport')}</span>
 									</div>
 									<div
 										className={`register-wizard-select-item ${this.state.sport4
 											? 'selected'
 											: null}`}
-										onClick={() => this.selectsport(4)}
+										onClick={() => this.selectsport(4, 'TrialRun')}
 									>
 										<img
 											src={this.state.sport4 ? '/img/register-done.png' : '/img/register-do.png'}
@@ -117,7 +166,7 @@ class Register4 extends Component {
 										className={`register-wizard-select-item ${this.state.sport5
 											? 'selected'
 											: null}`}
-										onClick={() => this.selectsport(5)}
+										onClick={() => this.selectsport(5, 'Mountainbike')}
 									>
 										<img
 											src={this.state.sport5 ? '/img/register-done.png' : '/img/register-do.png'}
@@ -129,7 +178,7 @@ class Register4 extends Component {
 										className={`register-wizard-select-item ${this.state.sport6
 											? 'selected'
 											: null}`}
-										onClick={() => this.selectsport(6)}
+										onClick={() => this.selectsport(6, 'Other')}
 									>
 										<img
 											src={this.state.sport6 ? '/img/register-done.png' : '/img/register-do.png'}
@@ -213,14 +262,20 @@ class Register4 extends Component {
 							</div>
 							<div className="contact-body">
 								<div className="sent-state">
-									<button
-										onClick={() => {
-											this.props.nextStep();
-										}}
-										className="btn btn-red btn-register-next"
+									<Button
+										loading={this.state.loading}
+										onClick={this.handleClick}
+										className={`btn btn-red btn-register-next ${this.state.buttonstate}`}
 									>
-										{t('Save your preferences')}
-									</button>
+										{this.state.buttonstate === 'success' ? (
+											<img
+												className="button-checkmark"
+												alt="checkmark"
+												src="/img/checkmark.png"
+											/>
+										) : null}
+										{buttontext}
+									</Button>
 								</div>
 							</div>
 						</div>
@@ -230,4 +285,11 @@ class Register4 extends Component {
 		);
 	}
 }
-export default translate('translations')(Register4);
+function mapStateToProps(state) {
+	const registerresult = registerSelectors.getRegister4(state);
+
+	return {
+		registerresult
+	};
+}
+export default translate('translations')(connect(mapStateToProps)(Register4));

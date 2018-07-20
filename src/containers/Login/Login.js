@@ -72,8 +72,8 @@ class Login extends Component {
 						<div className="login-other-input">
 							<img className="login-other-icon" alt="ST-icon" src="/img/login-icon-username.png" />
 							<input
-								type="text"
-								placeholder="Username"
+								type="email"
+								placeholder={t('Email')}
 								value={this.state.username}
 								onChange={this.changeUsername}
 							/>
@@ -87,7 +87,7 @@ class Login extends Component {
 							/>
 							<input
 								type="password"
-								placeholder="Password"
+								placeholder={t('Password')}
 								value={this.state.password}
 								onChange={this.changePassword}
 							/>
@@ -109,16 +109,6 @@ class Login extends Component {
 							<span />
 						)}
 					</div>
-					<button
-						type="button"
-						className="btn btn-red signin"
-						onClick={() => {
-							this.setState({ loginstate: '' });
-							this.props.dispatch(authActions.fetchLoginAuth(this.state.username, this.state.password));
-						}}
-					>
-						{t('Sign in')}
-					</button>
 					<div className="stay-signin">
 						<img
 							className="stay-signin-check"
@@ -131,8 +121,18 @@ class Login extends Component {
 						/>
 						<span>{t('Stay signed in')}</span>
 					</div>
+					<button
+						type="button"
+						className="btn btn-red signin"
+						onClick={() => {
+							this.setState({ loginstate: '' });
+							this.props.dispatch(authActions.fetchLoginAuth(this.state.username, this.state.password));
+						}}
+					>
+						{t('Sign in')}
+					</button>
 					<div className="create-forgot">
-						<Link to="/register" className="create-forgot-text">
+						<Link to="/register" className="create-forgot-text createaccount">
 							{t('Create your free account')}
 						</Link>
 						<Link to="/resetpwd" className="create-forgot-text forgotpassword">

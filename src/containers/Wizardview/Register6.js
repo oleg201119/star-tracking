@@ -4,11 +4,19 @@ import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import Switch from 'react-switch';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Button from 'react-bootstrap-button-loader';
+import * as registerActions from '../../store/register/actions';
+import * as registerSelectors from '../../store/register/reducer';
 import countries from 'i18n-iso-countries';
 import AuthService from '../../services/auth';
 import './Register6.css';
 
 class Register6 extends Component {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired
+	};
 	constructor() {
 		super();
 		this.state = {
@@ -22,7 +30,7 @@ class Register6 extends Component {
 			postcode: '',
 			no: '',
 			township: '',
-			country: '',
+			country: 'BE',
 			mobile: '',
 			fixedline: '',
 			facebook: '',
@@ -30,16 +38,20 @@ class Register6 extends Component {
 			emailcheck: false,
 			startDate: moment(),
 			currentlanguage: '',
-			countryarray: []
+			countryarray: [],
+			buttonstate: '',
+			loading: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.updateselectgender = this.updateselectgender.bind(this);
 		this.handleEmailCheckChange = this.handleEmailCheckChange.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 	componentDidMount() {
 		countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
 		countries.registerLocale(require('i18n-iso-countries/langs/fr.json'));
 		countries.registerLocale(require('i18n-iso-countries/langs/nl.json'));
+		this.props.dispatch(registerActions.fetchGetProfile());
 		let currentlanguage = this.props.i18n.language;
 		if (this.props.i18n.language.length > 2) {
 			currentlanguage = this.props.i18n.language.substring(0, 2);
@@ -48,7 +60,7 @@ class Register6 extends Component {
 		const temparray = Object.entries(defaultarray).map((temp) => {
 			return { value: temp[0], label: temp[1] };
 		});
-		this.setState({ currentlanguage: currentlanguage, countryarray: temparray });
+		this.setState({ currentlanguage: currentlanguage, countryarray: temparray, language: currentlanguage });
 	}
 	componentWillReceiveProps(nextProps) {
 		let nextlanguage = nextProps.i18n.language;
@@ -61,6 +73,38 @@ class Register6 extends Component {
 				return { value: temp[0], label: temp[1] };
 			});
 			this.setState({ currentlanguage: nextlanguage, countryarray: temparray });
+		}
+		if (nextProps.registerresult === true) {
+			this.props.dispatch(registerActions.formatRegister());
+			this.setState({ buttonstate: 'success', loading: false });
+			setTimeout(() => {
+				this.setState({ buttonstate: '' });
+			}, 2000);
+		} else if (nextProps.registerresult === false) {
+			this.props.dispatch(registerActions.formatRegister());
+			this.setState({ buttonstate: '', loading: false });
+		}
+		// if(nextProps.profile)
+	}
+	handleClick() {
+		if (this.state.buttonstate === '') {
+			this.setState({ buttonstate: 'loading', loading: true });
+			this.props.dispatch(
+				registerActions.fetchRegister(
+					this.state.firstname,
+					this.state.lastname,
+					moment(this.state.birthday).format('DD/MM/YYYY'),
+					this.state.gender,
+					this.state.language,
+					this.state.street,
+					this.state.no,
+					this.state.postcode,
+					this.state.township,
+					this.state.country,
+					this.state.mobile,
+					this.state.fixedline
+				)
+			);
 		}
 	}
 	handleChange(date) {
@@ -84,6 +128,12 @@ class Register6 extends Component {
 	}
 	render() {
 		const { t } = this.props;
+		let buttontext = '';
+		if (this.state.buttonstate === 'success') {
+			buttontext = t('Saved !');
+		} else {
+			buttontext = t('Save your preferences');
+		}
 		return (
 			<div>
 				<div className="header-banner mobile-person-header">
@@ -124,16 +174,16 @@ class Register6 extends Component {
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Email</div>
+									<div className="field-topic">{t('Email')}</div>
 									<input
-										type="text"
+										type="email"
 										className="contact-body-input"
 										value={this.state.email}
 										onChange={(e) => this.setState({ email: e.target.value })}
 									/>
 								</div>
 								<div className="contact-body-field">
-									<div className="field-topic">Password</div>
+									<div className="field-topic">{t('Password')}</div>
 									<input
 										type="password"
 										className="contact-body-input"
@@ -143,7 +193,11 @@ class Register6 extends Component {
 								</div>
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Birthday')}</div>
-									<DatePicker selected={this.state.startDate} onChange={this.handleChange} />
+									<DatePicker
+										selected={this.state.startDate}
+										dateFormat="DD/MM/YYYY"
+										onChange={this.handleChange}
+									/>
 								</div>
 								<div className="contact-body-field">
 									<div className="field-topic">{t('Gender')}</div>
@@ -310,9 +364,20 @@ class Register6 extends Component {
 									</div>
 								</div>
 								<div className="sent-state">
-									<button className="btn btn-red btn-register-next">
-										{t('Save your preferences')}
-									</button>
+									<Button
+										loading={this.state.loading}
+										onClick={this.handleClick}
+										className={`btn btn-red btn-register-next ${this.state.buttonstate}`}
+									>
+										{this.state.buttonstate === 'success' ? (
+											<img
+												className="button-checkmark"
+												alt="checkmark"
+												src="/img/checkmark.png"
+											/>
+										) : null}
+										{buttontext}
+									</Button>
 								</div>
 								<div className="sent-state">
 									<button
@@ -332,4 +397,13 @@ class Register6 extends Component {
 		);
 	}
 }
-export default translate('translations')(Register6);
+function mapStateToProps(state) {
+	const profile = registerSelectors.getProfile(state);
+	const registerresult = registerSelectors.getRegister(state);
+
+	return {
+		profile,
+		registerresult
+	};
+}
+export default translate('translations')(connect(mapStateToProps)(Register6));

@@ -154,11 +154,13 @@ export default class ServiceSecurity {
 		if (token) {
 			headers.Authorization = 'Bearer ' + token;
 		}
+
 		const response = await fetch(args.url, {
 			method: 'POST',
 			headers: headers,
 			body: args.bodydata
 		});
+
 		if (!response.ok) {
 			return false;
 		}

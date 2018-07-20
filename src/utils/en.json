@@ -177,5 +177,8 @@
 	"Notifications": "Notifications",
 	"Check out the email & password rules": "Check out the email & password rules",
 	"password-rule": "Your password should at least be 6 characters long, and contain a minimum of 1 lower case letter [a-z], a minimum of 1 upper case letter [A-Z], a minimum of 1 numeric character [0-9] and a minimum of 1 special character [~`!@#$%^&*()-_+={}[]|\\;:\"<>,./?] ",
-	"email-rule": "The email address you will use for your account is also the email address that will be used for all StarTracking communication!"
+	"email-rule": "The email address you will use for your account is also the email address that will be used for all StarTracking communication!",
+	"Email": "Email",
+	"Password": "Password",
+	"Confirm password": "Confirm password"
 }

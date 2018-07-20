@@ -91,8 +91,8 @@ class Register extends Component {
 						<div className="login-other-input">
 							<img className="login-other-icon" alt="ST-icon" src="/img/login-icon-username.png" />
 							<input
-								type="text"
-								placeholder="Username"
+								type="email"
+								placeholder={t('Email')}
 								value={this.state.username}
 								onChange={this.changeUsername}
 							/>
@@ -106,7 +106,7 @@ class Register extends Component {
 							/>
 							<input
 								type="password"
-								placeholder="Password"
+								placeholder={t('Password')}
 								value={this.state.password}
 								onChange={this.changePassword}
 							/>
@@ -129,7 +129,7 @@ class Register extends Component {
 							/>
 							<input
 								type="password"
-								placeholder="Confirm password"
+								placeholder={t('Confirm password')}
 								value={this.state.confirmpassword}
 								onChange={this.changeConfirmPassword}
 							/>

@@ -158,6 +158,7 @@
 			span {
 				color: $color_white;
 				line-height: 1.88;
+				font-size: 14px;
 			}
 		}
 
@@ -189,6 +190,10 @@
 				&.forgotpassword {
 					margin-left: auto;
 				}
+
+				&.createaccount {
+					margin-right: 5px;
+				}
 			}
 		}
 	}
@@ -206,15 +211,19 @@
 
 	.error-text {
 		text-align: center;
-		font-size: 14px;
 		color: #ffc5bc;
 		height: 28px;
 		margin-top: 5px;
+
 		&.no-error {
-			color: white;
+			color: #ffffff;
 		}
 		span {
 			cursor: pointer;
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			line-height: 1.5;
+			letter-spacing: 0.3px;
+			font-size: 13px;
 		}
 	}
 }

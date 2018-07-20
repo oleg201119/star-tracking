@@ -127,7 +127,7 @@
 	"Login using Twitter": "Inloggen met Twitter",
 	"OR": "OF",
 	"Stay signed in": "Blijf ingelogd",
-	"Create your free account": "Maak je gratis account aan",
+	"Create your free account": "Maak gratis account aan",
 	"Forgot Password": "Wachtwoord vergeten",
 	"Already have an account?": "Heb je al een account?",
 	"Register": "Registreren",
@@ -177,5 +177,8 @@
 	"Notifications": "Kennisgeving",
 	"Check out the email & password rules": "Bekijk de regels voor e-mail en wachtwoord",
 	"password-rule": "Uw paswoord moet minimaal 6 karakters lang zijn, en minimaal 1 kleine letter [a-z], minimaal 1 hoofdletter [A-Z], minimaal 1 cijfer [0-9] en minimaal 1 speciaal karakter [~`!@#$%^&*()-_+={}[]|\\;:\"<>,./?] bevatten.",
-	"email-rule": "Het emailadres dat u voor uw account gebruikt is ook het email adres dat zal gebruikt worden voor alle StarTracking communicatie!"
+	"email-rule": "Het emailadres dat u voor uw account gebruikt is ook het email adres dat zal gebruikt worden voor alle StarTracking communicatie!",
+	"Email": "E-mail",
+	"Password": "Paswoord",
+	"Confirm password": "Bevestig paswoord"
 }

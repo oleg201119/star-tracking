@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import countries from 'i18n-iso-countries';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Button from 'react-bootstrap-button-loader';
+import * as registerActions from '../../store/register/actions';
+import * as registerSelectors from '../../store/register/reducer';
 import './Register2.css';
 
 class Register2 extends Component {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired
+	};
 	constructor() {
 		super();
 		this.state = {
@@ -14,8 +22,11 @@ class Register2 extends Component {
 			township: '',
 			country: 'BE',
 			currentlanguage: '',
-			countryarray: []
+			countryarray: [],
+			buttonstate: '',
+			loading: false
 		};
+		this.handleClick = this.handleClick.bind(this);
 	}
 	componentDidMount() {
 		window.scrollTo(0, 0);
@@ -44,9 +55,43 @@ class Register2 extends Component {
 			});
 			this.setState({ currentlanguage: nextlanguage, countryarray: temparray });
 		}
+		if (nextProps.registerresult === true) {
+			this.props.dispatch(registerActions.formatRegister2());
+			this.setState({ buttonstate: 'success', loading: false });
+			setTimeout(() => {
+				this.setState({ buttonstate: 'next' });
+			}, 2000);
+		} else if (nextProps.registerresult === false) {
+			this.props.dispatch(registerActions.formatRegister2());
+			this.setState({ buttonstate: '', loading: false });
+		}
+	}
+	handleClick() {
+		if (this.state.buttonstate === 'next') {
+			this.props.nextStep();
+		} else if (this.state.buttonstate === '') {
+			this.setState({ buttonstate: 'loading', loading: true });
+			this.props.dispatch(
+				registerActions.fetchRegister2(
+					this.state.street,
+					this.state.no,
+					this.state.postcode,
+					this.state.township,
+					this.state.country
+				)
+			);
+		}
 	}
 	render() {
 		const { t } = this.props;
+		let buttontext = '';
+		if (this.state.buttonstate === 'success') {
+			buttontext = t('Saved !');
+		} else if (this.state.buttonstate === 'next') {
+			buttontext = t('Next') + ' (3/5)';
+		} else {
+			buttontext = t('Save your preferences');
+		}
 		return (
 			<div>
 				<div className="header-banner mobile-person-header">
@@ -119,14 +164,20 @@ class Register2 extends Component {
 									/>
 								</div>
 								<div className="sent-state">
-									<button
-										onClick={() => {
-											this.props.nextStep();
-										}}
-										className="btn btn-red btn-register-next"
+									<Button
+										loading={this.state.loading}
+										onClick={this.handleClick}
+										className={`btn btn-red btn-register-next ${this.state.buttonstate}`}
 									>
-										{t('Save your preferences')}
-									</button>
+										{this.state.buttonstate === 'success' ? (
+											<img
+												className="button-checkmark"
+												alt="checkmark"
+												src="/img/checkmark.png"
+											/>
+										) : null}
+										{buttontext}
+									</Button>
 								</div>
 							</div>
 						</div>
@@ -136,4 +187,11 @@ class Register2 extends Component {
 		);
 	}
 }
-export default translate('translations')(Register2);
+function mapStateToProps(state) {
+	const registerresult = registerSelectors.getRegister2(state);
+
+	return {
+		registerresult
+	};
+}
+export default translate('translations')(connect(mapStateToProps)(Register2));
