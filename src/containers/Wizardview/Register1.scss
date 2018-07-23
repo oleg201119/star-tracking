@@ -131,4 +131,12 @@
 		margin-bottom: 3px;
 		margin-right: 10px;
 	}
+
+	.react-datepicker-wrapper {
+		width: 100%;
+
+		.react-datepicker__input-container {
+			width: 100%;
+		}
+	}
 }

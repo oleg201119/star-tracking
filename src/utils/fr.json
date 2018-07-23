@@ -173,7 +173,6 @@
 	"Connect with Strava": "Connectez-vous avec Strava",
 	"Connect with Misfit": "Connectez-vous avec Misfit",
 	"Summary": "Résumé",
-	"Billing Information": "détails de facturation",
 	"Notifications": "Notifications",
 	"Check out the email & password rules": "Consultez les règles d'e-mail et de mot de passe",
 	"password-rule": "Votre mot de passe doit contenir au minium 6 caractères et au moins 1 minuscule [a-z], au moins 1 majuscule [A-Z], au moins 1 ciffre [0-9] et au moins 1 caractère spéciale [~`!@#$%^&*()-_+={}[]|\\;:\"<>,./?].",
@@ -182,5 +181,7 @@
 	"Password": "Mot de passe",
 	"Confirm password": "Confirmer le mot",
 	"Man": "Homme",
-	"Woman": "Femme"
+	"Woman": "Femme",
+	"Select gender": "Sélectionnez le sexe",
+	"Address": "Adresse"
 }

@@ -155,7 +155,7 @@ class Register1 extends Component {
 											{ value: 'Woman', label: t('Woman') }
 										]}
 										simpleValue
-										placeholder="Select gender"
+										placeholder={t('Select gender')}
 										value={this.state.gender}
 										onChange={this.updateselectgender}
 										className="search-event"

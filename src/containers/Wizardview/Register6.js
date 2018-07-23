@@ -33,19 +33,35 @@ class Register6 extends Component {
 			country: 'BE',
 			mobile: '',
 			fixedline: '',
+			friendphone: '',
+			loading: false,
+			sport1: false,
+			sport2: false,
+			sport3: false,
+			sport4: false,
+			sport5: false,
+			sport6: false,
+			location1: false,
+			location2: false,
+			location3: false,
+			PreferredEventTypes: [],
+			LocationPreference: 0,
+			radius: 15,
 			facebook: '',
 			twitter: '',
 			emailcheck: false,
 			startDate: null,
 			currentlanguage: '',
 			countryarray: [],
-			buttonstate: '',
-			loading: false
+			buttonstate: ''
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.updateselectgender = this.updateselectgender.bind(this);
 		this.handleEmailCheckChange = this.handleEmailCheckChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
+		this.selectsport = this.selectsport.bind(this);
+		this.selectlocation = this.selectlocation.bind(this);
+		this.updateradius = this.updateradius.bind(this);
 	}
 	componentDidMount() {
 		countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
@@ -91,6 +107,7 @@ class Register6 extends Component {
 		if (nextProps.profileFlag !== this.props.profileFlag) {
 			if (nextProps.profileFlag === false && nextProps.profile.length !== 0) {
 				const profile = nextProps.profile;
+				console.log(profile);
 				this.setState({
 					firstname: profile.FirstName,
 					lastname: profile.LastName,
@@ -103,8 +120,13 @@ class Register6 extends Component {
 					township: profile.City,
 					country: profile.Country,
 					mobile: profile.MobilePhone,
-					fixedline: profile.FixPhone
+					fixedline: profile.FixPhone,
+					friendphone: profile.FriendPhone,
+					radius: profile.RangeInKm
 				});
+				if (profile.LocationPreference !== 0) {
+					this.setState({ [`location${profile.LocationPreference}`]: true });
+				}
 			}
 		}
 	}
@@ -139,6 +161,26 @@ class Register6 extends Component {
 	}
 	handleEmailCheckChange() {
 		this.setState({ emailcheck: !this.state.emailcheck });
+	}
+	selectsport(i, event) {
+		const temp = !this.state[`sport${i}`];
+		let eventarray = this.state.PreferredEventTypes;
+		if (temp) eventarray.push(event);
+		else {
+			const index = eventarray.indexOf(event);
+			eventarray.splice(index, 1);
+		}
+		this.setState({ [`sport${i}`]: temp, PreferredEventTypes: eventarray });
+	}
+	selectlocation(i) {
+		const temp = !this.state[`location${i}`];
+		for (let j = 1; j <= 3; j++) {
+			if (j === i) this.setState({ [`location${j}`]: temp, LocationPreference: i });
+			else this.setState({ [`location${j}`]: false });
+		}
+	}
+	updateradius(e) {
+		this.setState({ radius: e });
 	}
 	logout() {
 		var self = this;
@@ -233,7 +275,7 @@ class Register6 extends Component {
 											{ value: 'Woman', label: t('Woman') }
 										]}
 										simpleValue
-										placeholder="Select gender"
+										placeholder={t('Select gender')}
 										value={this.state.gender}
 										onChange={this.updateselectgender}
 										className="search-event"
@@ -260,7 +302,7 @@ class Register6 extends Component {
 								</div>
 							</div>
 							<div className="about-body-topic">
-								<span>{t('Billing Information')}</span>
+								<span>{t('Address')}</span>
 							</div>
 							<div className="contact-body">
 								<div className="contact-body-field">
@@ -334,6 +376,166 @@ class Register6 extends Component {
 										value={this.state.fixedline}
 										onChange={(e) => this.setState({ fixedline: e.target.value })}
 									/>
+								</div>
+								<div className="contact-body-field">
+									<div className="field-topic">{t('Number (family member / friend)')}</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.friendphone}
+										onChange={(e) => this.setState({ friendphone: e.target.value })}
+									/>
+								</div>
+							</div>
+							<div className="about-body-topic">
+								<span>{t('YOUR SPORT PREFERENCES')}</span>
+							</div>
+							<div className="select-body">
+								<div className="register-wizard-select">
+									<div
+										className={`register-wizard-select-item ${this.state.sport1
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectsport(1, 'Running')}
+									>
+										<img
+											src={this.state.sport1 ? '/img/register-done.png' : '/img/register-do.png'}
+											alt="Running"
+										/>
+										<span>{t('Running')}</span>
+									</div>
+									<div
+										className={`register-wizard-select-item ${this.state.sport2
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectsport(2, 'Roadbike')}
+									>
+										<img
+											src={this.state.sport2 ? '/img/register-done.png' : '/img/register-do.png'}
+											alt="Roadbike"
+										/>
+										<span>{t('Roadbike')}</span>
+									</div>
+									<div
+										className={`register-wizard-select-item ${this.state.sport3
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectsport(3, 'Multisport')}
+									>
+										<img
+											src={this.state.sport3 ? '/img/register-done.png' : '/img/register-do.png'}
+											alt="Multisport"
+										/>
+										<span>{t('MultiSport')}</span>
+									</div>
+									<div
+										className={`register-wizard-select-item ${this.state.sport4
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectsport(4, 'TrialRun')}
+									>
+										<img
+											src={this.state.sport4 ? '/img/register-done.png' : '/img/register-do.png'}
+											alt="TrialRun"
+										/>
+										<span>{t('TrialRun')}</span>
+									</div>
+									<div
+										className={`register-wizard-select-item ${this.state.sport5
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectsport(5, 'Mountainbike')}
+									>
+										<img
+											src={this.state.sport5 ? '/img/register-done.png' : '/img/register-do.png'}
+											alt="Mountainbike"
+										/>
+										<span>{t('Mountainbike')}</span>
+									</div>
+									<div
+										className={`register-wizard-select-item ${this.state.sport6
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectsport(6, 'Other')}
+									>
+										<img
+											src={this.state.sport6 ? '/img/register-done.png' : '/img/register-do.png'}
+											alt="Other"
+										/>
+										<span>{t('Other')}</span>
+									</div>
+								</div>
+							</div>
+							<div className="about-body-topic">
+								<span>{t('YOUR LOCATION PREFERENCES')}</span>
+							</div>
+							<div className="select-body">
+								<div className="register-wizard-select">
+									<div
+										className={`register-wizard-select-item ${this.state.location1
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectlocation(1)}
+									>
+										<img
+											src={
+												this.state.location1 ? '/img/register-done.png' : '/img/register-do.png'
+											}
+											alt="Marathons"
+										/>
+										<div className="radius-select">
+											{t('In a radius of')}&nbsp;&nbsp;
+											<div className="select-radius" onClick={(e) => e.stopPropagation()}>
+												<Select
+													ref={(ref) => {
+														this.select = ref;
+													}}
+													options={[
+														{ value: 15, label: 15 },
+														{ value: 25, label: 25 },
+														{ value: 50, label: 50 },
+														{ value: 100, label: 100 },
+														{ value: 150, label: 150 }
+													]}
+													simpleValue
+													value={this.state.radius}
+													onChange={this.updateradius}
+													className="select-radius"
+													searchable={false}
+													clearable={false}
+												/>
+											</div>
+											&nbsp;&nbsp;km
+										</div>
+									</div>
+									<div
+										className={`register-wizard-select-item ${this.state.location2
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectlocation(2)}
+									>
+										<img
+											src={
+												this.state.location2 ? '/img/register-done.png' : '/img/register-do.png'
+											}
+											alt="Triathlons"
+										/>
+										<span>{t('National')}</span>
+									</div>
+									<div
+										className={`register-wizard-select-item ${this.state.location3
+											? 'selected'
+											: null}`}
+										onClick={() => this.selectlocation(3)}
+									>
+										<img
+											src={
+												this.state.location3 ? '/img/register-done.png' : '/img/register-do.png'
+											}
+											alt="Baanfietsen"
+										/>
+										<span>{t('International')}</span>
+									</div>
 								</div>
 							</div>
 							<div className="about-body-topic">

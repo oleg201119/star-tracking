@@ -173,7 +173,6 @@
 	"Connect with Strava": "Maak contact met Strava",
 	"Connect with Misfit": "Contact maken met Misfit",
 	"Summary": "Overzicht",
-	"Billing Information": "Facturatiegegevens",
 	"Notifications": "Kennisgeving",
 	"Check out the email & password rules": "Bekijk de regels voor e-mail en wachtwoord",
 	"password-rule": "Uw paswoord moet minimaal 6 karakters lang zijn, en minimaal 1 kleine letter [a-z], minimaal 1 hoofdletter [A-Z], minimaal 1 cijfer [0-9] en minimaal 1 speciaal karakter [~`!@#$%^&*()-_+={}[]|\\;:\"<>,./?] bevatten.",
@@ -182,5 +181,7 @@
 	"Password": "Paswoord",
 	"Confirm password": "Bevestig paswoord",
 	"Man": "Man",
-	"Woman": "Vrouw"
+	"Woman": "Vrouw",
+	"Select gender": "Selecteer geslacht",
+	"Address": "Adres"
 }
