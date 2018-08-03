@@ -165,7 +165,7 @@ class EventResult extends Component {
 				? (windowwidth - 80) / 3
 				: (windowwidth - 160) / (this.state.columns.length - 1);
 			let temp = [ ...this.state.columns ];
-			temp[2] = { ...temp[2], headerStyle: { width: thwidth * 2 } };
+			temp[2] = { ...temp[2], headerStyle: { width: thwidth * 2,minWidth: thwidth * 2 } };
 			let newtemp = temp.map((col) => {
 				return { ...col, sort: !hiddencolumn };
 			});
@@ -214,7 +214,7 @@ class EventResult extends Component {
 									text: headerarray[i],
 									sort: !self.state.hiddencolumn,
 									formatter: self.priceFormatter,
-									headerStyle: { width: thwidth * 2 }
+									headerStyle: { width: thwidth * 2, minWidth: thwidth * 2 }
 								});
 							} else if (i === 0) {
 								columns.push({
@@ -448,7 +448,7 @@ class EventResult extends Component {
 					dataField: `${i}`,
 					text: headerarray[i],
 					formatter: self.priceFormatter,
-					headerStyle: { width: thwidth * 2 }
+					headerStyle: { width: thwidth * 2, minWidth: thwidth * 2 }
 				});
 			} else if (i === 0) {
 				columns.push({
@@ -537,7 +537,7 @@ class EventResult extends Component {
 											<div className="event-name">
 												<span className="eventname">{eventDetail.Name}</span>
 												<span className="event-organizer">
-													{t('Door')}: {eventDetail.Organizer}
+													{eventDetail.OrganizerName? `${t('Door')} : ${eventDetail.OrganizerName}` : null}
 												</span>
 											</div>
 											<div className="event-time">
@@ -586,7 +586,7 @@ class EventResult extends Component {
 											<div className="title">{eventDetail.Description}</div>
 											<div className="by-options">
 												<div className="by">
-													{t('Door')}: {eventDetail.Organizer}
+													{eventDetail.OrganizerName? `${t('Door')} : ${eventDetail.OrganizerName}` : null}
 												</div>
 												<div className="options result-share">
 													<div

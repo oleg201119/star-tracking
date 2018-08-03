@@ -124,7 +124,7 @@ class Eventpage extends Component {
 											<div className="event-name">
 												<span className="eventname">{eventDetail.Name}</span>
 												<span className="event-organizer">
-													{t('Door')}: {eventDetail.Organizer}
+													{t('Door')}: {eventDetail.OrganizerName}
 												</span>
 											</div>
 											<div className="event-time">
@@ -167,9 +167,10 @@ class Eventpage extends Component {
 											</div>
 										</div>
 										<div className="col-4">
+											{eventDetail.IsOpenForRegistration || eventDetail.HasResults ?
 											<button type="button" className="btn btn-red btn-takepart">
-												{t('Ik neem deel')}
-											</button>
+												{eventDetail.IsOpenForRegistration ? t('Ik neem deel'): t('Show results')}
+											</button>: <div className="btn-takepart"></div>}
 										</div>
 									</div>
 								</div>
@@ -376,7 +377,7 @@ class Eventpage extends Component {
 											<div className="title">{eventDetail.Description}</div>
 											<div className="by-options">
 												<div className="by">
-													{t('Door')}: {eventDetail.Organizer}
+													{t('Door')}: {eventDetail.OrganizerName}
 												</div>
 											</div>
 										</div>
@@ -641,9 +642,10 @@ class Eventpage extends Component {
 											{t('Vanaf')}&nbsp;&euro;{eventDetail.MinimumPrice}
 										</span>
 									</div>
+									{eventDetail.IsOpenForRegistration || eventDetail.HasResults ?
 									<button type="button" className="btn btn-red btn-takepart">
-										{t('Ik neem deel')}
-									</button>
+										{eventDetail.IsOpenForRegistration ? t('Ik neem deel'): t('Show results')}
+									</button>: <div className="btn-takepart"></div>}
 								</div>
 							</div>
 						</div>

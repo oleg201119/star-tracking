@@ -157,7 +157,7 @@ class ChallengeResult extends Component {
 				? (windowwidth - 85) / 3
 				: (windowwidth - 85) / (this.state.columns.length - 1);
 			let temp = [ ...this.state.columns ];
-			temp[1] = { ...temp[1], headerStyle: { width: thwidth * 2 } };
+			temp[1] = { ...temp[1], headerStyle: { width: thwidth * 2,minWidth: thwidth * 2 } };
 			let newtemp = temp.map((col) => {
 				return { ...col, sort: !hiddencolumn };
 			});
@@ -197,7 +197,7 @@ class ChallengeResult extends Component {
 									text: headerarray[i],
 									sort: !self.state.hiddencolumn,
 									formatter: self.priceFormatter,
-									headerStyle: { width: thwidth * 2 }
+									headerStyle: { width: thwidth * 2,minWidth: thwidth * 2 }
 								});
 							} else if (i === 0) {
 								columns.push({
@@ -423,7 +423,7 @@ class ChallengeResult extends Component {
 					dataField: `${i}`,
 					text: headerarray[i],
 					formatter: self.priceFormatter,
-					headerStyle: { width: thwidth * 2 }
+					headerStyle: { width: thwidth * 2,minWidth: thwidth * 2 }
 				});
 			} else if (i === 0) {
 				columns.push({
@@ -513,7 +513,7 @@ class ChallengeResult extends Component {
 											<div className="event-name">
 												<span className="eventname">{challengeDetail.Name}</span>
 												<span className="event-organizer">
-													{t('Door')}: {challengeDetail.Organizer}
+													{challengeDetail.OrganizerName? `${t('Door')} : ${challengeDetail.OrganizerName}` : null}
 												</span>
 											</div>
 											<div className="event-time">
@@ -562,7 +562,7 @@ class ChallengeResult extends Component {
 											<div className="title">{challengeDetail.Description}</div>
 											<div className="by-options">
 												<div className="by">
-													{t('Door')}: {challengeDetail.Organizer}
+													{challengeDetail.OrganizerName? `${t('Door')} : ${challengeDetail.OrganizerName}` : null}
 												</div>
 												<div className="options result-share">
 													<div

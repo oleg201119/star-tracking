@@ -81,13 +81,14 @@
 	}
 
 	.event-buttons {
-		border-bottom: 1px solid#979797;
+		border-bottom: 1px solid rgba(52, 58, 48, 0.24);
 		margin-top: -15px;
-		padding-bottom: 20px;
+		padding-bottom: 12px;
 
 		.options {
 			margin-left: 80px;
 			opacity: 0.9;
+			margin-top: 9.5px;
 
 			.event-option {
 				display: inline-block;
@@ -309,6 +310,7 @@
 
 		.event-organisation {
 			margin-top: 50px;
+			margin-bottom: 15px;
 
 			.event-organisation-topic {
 				font-size: 18px;

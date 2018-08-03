@@ -327,9 +327,7 @@
 
 .challenge-poscolumn {
 	width: 85px;
-	@media (min-width: 768px) {
-		width: 110px;
-	}
+	min-width: 85px;
 }
 
 .winner {
