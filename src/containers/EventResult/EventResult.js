@@ -742,6 +742,9 @@ class EventResult extends Component {
 													</div>
 												) : null}
 												<div className="event-organisation-detail">
+													{eventDetail.OrganizerName !== null ? (
+														<span>{eventDetail.OrganizerName}</span>
+													) : null}
 													<address>
 														{eventDetail.OrganizerMail !== null ? (
 															<a

@@ -60,7 +60,7 @@ export default class RegisterService {
 			LocationPreference: LocationPreference,
 			RangeInKm: RangeInKm
 		};
-
+		console.log(bodydata);
 		const url = `${API_ENDPOINT}/App/Register/Step6`;
 		const data = await ServiceSecurity.PostFetch({
 			url: url,

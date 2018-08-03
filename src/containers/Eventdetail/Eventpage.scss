@@ -463,6 +463,9 @@
 
 		.event-description {
 			margin-top: 10px;
+			&.event-description-less {
+				margin-bottom: 15px;
+			}
 
 			.event-description-detail {
 				display: flex;

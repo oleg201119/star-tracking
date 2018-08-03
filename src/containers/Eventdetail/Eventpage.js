@@ -301,6 +301,9 @@ class Eventpage extends Component {
 													</div>
 												) : null}
 												<div className="event-organisation-detail">
+													{eventDetail.OrganizerName !== null ? (
+														<span>{eventDetail.OrganizerName}</span>
+													) : null}
 													<address>
 														{eventDetail.OrganizerMail !== null ? (
 															<a
@@ -406,7 +409,7 @@ class Eventpage extends Component {
 							</div>
 							<div className="description-block">
 								<div className="container">
-									<div className="event-description">
+									<div className="event-description event-description-less">
 										<span className="event-description-detail">{eventDetail.Description}</span>
 										{this.state.fullread ? (
 											<div>
@@ -582,6 +585,11 @@ class Eventpage extends Component {
 									{eventDetail.OrganizerHasLogo ? (
 										<div className="event-organisation-logo">
 											<img src={eventDetail.OrganizerLogo} alt="Organizer-logo" />
+										</div>
+									) : null}
+									{eventDetail.OrganizerName !== null ? (
+										<div className="event-organisation-detail">
+											<span>{eventDetail.OrganizerName}</span>
 										</div>
 									) : null}
 									<div className="event-organisation-detail">

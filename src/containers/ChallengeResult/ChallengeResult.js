@@ -718,6 +718,9 @@ class ChallengeResult extends Component {
 													</div>
 												) : null}
 												<div className="event-organisation-detail">
+													{challengeDetail.OrganizerName !== null ? (
+														<span>{challengeDetail.OrganizerName}</span>
+													) : null}
 													<address>
 														{challengeDetail.OrganizerMail !== null ? (
 															<a
