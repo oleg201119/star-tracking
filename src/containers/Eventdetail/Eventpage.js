@@ -168,7 +168,11 @@ class Eventpage extends Component {
 										</div>
 										<div className="col-4">
 											{eventDetail.IsOpenForRegistration || eventDetail.HasResults ?
-											<button type="button" className="btn btn-red btn-takepart">
+											<button type="button" className="btn btn-red btn-takepart" onClick={()=>{
+												if(eventDetail.HasResults){
+													this.props.history.push(`/eventresult/${eventDetail.ID}`);
+												}
+											}}>
 												{eventDetail.IsOpenForRegistration ? t('Ik neem deel'): t('Show results')}
 											</button>: <div className="btn-takepart"></div>}
 										</div>
@@ -643,7 +647,11 @@ class Eventpage extends Component {
 										</span>
 									</div>
 									{eventDetail.IsOpenForRegistration || eventDetail.HasResults ?
-									<button type="button" className="btn btn-red btn-takepart">
+									<button type="button" className="btn btn-red btn-takepart" onClick={()=>{
+										if(eventDetail.HasResults){
+											this.props.history.push(`/eventresult/${eventDetail.ID}`);
+										}
+									}}>
 										{eventDetail.IsOpenForRegistration ? t('Ik neem deel'): t('Show results')}
 									</button>: <div className="btn-takepart"></div>}
 								</div>

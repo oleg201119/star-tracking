@@ -551,7 +551,7 @@ class EventResult extends Component {
 							</div>
 							<div className="container">
 								<div className="card-star">
-									<img alt="star" src="/img/card-white-star.png" />
+									<img alt="star" src={`/img/card-${eventDetail.State}.png`} />
 								</div>
 							</div>
 						</div>
@@ -573,7 +573,7 @@ class EventResult extends Component {
 									<div className="slogan">{eventDetail.Name}</div>
 								</div>
 								<div className="card-star">
-									<img alt="star" src="/img/card-white-star.png" />
+									<img alt="star" src={`/img/card-${eventDetail.State}.png`} />
 								</div>
 								<div className={`event-info ${eventDetail.Type}`}>
 									<div className="event-content">
