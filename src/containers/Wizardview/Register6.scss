@@ -12,3 +12,18 @@
 		}
 	}
 }
+
+.dropzone-base {
+	width: 150px;
+	height: 150px;
+	margin: auto;
+
+	.dropzone-image {
+		width: 100%;
+		cursor: pointer;
+	}
+
+	input {
+		width: 100%;
+	}
+}

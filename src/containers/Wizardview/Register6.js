@@ -7,10 +7,12 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap-button-loader';
+import Dropzone from 'react-dropzone';
 import * as registerActions from '../../store/register/actions';
 import * as registerSelectors from '../../store/register/reducer';
 import countries from 'i18n-iso-countries';
 import AuthService from '../../services/auth';
+import RegisterService from '../../services/register';
 import './Register6.css';
 
 class Register6 extends Component {
@@ -190,6 +192,21 @@ class Register6 extends Component {
 			}
 		});
 	}
+	onDrop(files) {
+		console.log(files);
+		const reader = new FileReader();
+		reader.onload = () => {
+			const fileAsBinaryString = reader.result;
+			RegisterService.savePicture(files[0].size, files[0].name, fileAsBinaryString, files[0]).then(function(
+				value
+			) {
+				console.log(value);
+			});
+		};
+		reader.onabort = () => console.log('file reading was aborted');
+		reader.onerror = () => console.log('file reading has failed');
+		reader.readAsBinaryString(files[0]);
+	}
 	render() {
 		const { t } = this.props;
 		let buttontext = '';
@@ -214,6 +231,16 @@ class Register6 extends Component {
 						<div className="col-12 col-md-10 col-xl-8 about-body-container">
 							<div className="register-wizard-state">
 								<span>{t('Summary')}</span>
+							</div>
+							<div className="dropzone">
+								<Dropzone
+									onDropAccepted={this.onDrop.bind(this)}
+									accept="image/jpeg, image/png"
+									multiple={false}
+									className="dropzone-base"
+								>
+									<img alt="profile" src="/img/add-photo.png" className="dropzone-image" />
+								</Dropzone>
 							</div>
 							<div className="about-body-topic">
 								<span>{t('General')}</span>

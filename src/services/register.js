@@ -116,4 +116,17 @@ export default class RegisterService {
 		});
 		return data;
 	}
+
+	static async savePicture(ContentLength, FileName, InputStream, file) {
+		const url = `${API_ENDPOINT}/App/Register/Picture`;
+		const data = await ServiceSecurity.SavePicture({
+			url: url,
+			ContentLength: ContentLength,
+			FileName: FileName,
+			InputStream: InputStream,
+			File: file
+		});
+		console.log(data);
+		return data;
+	}
 }

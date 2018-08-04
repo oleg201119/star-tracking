@@ -167,4 +167,23 @@ export default class ServiceSecurity {
 		const data = await response.json();
 		return data;
 	}
+
+	static async SavePicture(args) {
+		const token = sessionStorage.getItem(accessTokenKey);
+		let headers = { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' };
+		if (token) {
+			headers.Authorization = 'Bearer ' + token;
+		}
+		const response = await fetch(args.url, {
+			method: 'POST',
+			headers: headers,
+			body: args.InputStream
+		});
+		console.log(response);
+		if (!response.ok) {
+			return false;
+		}
+		const data = await response.json();
+		return data;
+	}
 }

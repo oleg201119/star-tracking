@@ -28,6 +28,7 @@
     "react-country-flag": "^0.2.0",
     "react-datepicker": "^1.4.1",
     "react-dom": "^16.3.1",
+    "react-dropzone": "^4.2.13",
     "react-hamburger-menu": "^1.1.1",
     "react-i18next": "^7.6.1",
     "react-lines-ellipsis": "^0.13.0",
