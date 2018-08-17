@@ -13,7 +13,12 @@ class ResultCard extends Component {
 		const { event, t } = this.props;
 
 		return (
-			<div className={`event-info mb-2 ${event.Type}`}>
+			<div
+				className={`event-info mb-2 ${event.Type}`}
+				onClick={(e) => {
+					window.location = `/eventresult/${event.ID}`;
+				}}
+			>
 				<div className="event-content">
 					<div className="event-time">
 						<div className="day">{event.Day}</div>
@@ -29,10 +34,15 @@ class ResultCard extends Component {
 							<div className="type-city">
 								{event.Type}&nbsp;@&nbsp;{event.City}
 							</div>
-							<div className="options">
+							<div
+								className="options"
+								onClick={(e) => {
+									e.stopPropagation();
+								}}
+							>
 								<Link
 									to={{
-										pathname: `/eventresult/${event.ID}`
+										// pathname: `/eventresult/${event.ID}`
 									}}
 									className="event-option"
 								>

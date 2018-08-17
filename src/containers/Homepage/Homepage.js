@@ -7,7 +7,6 @@ import HeaderBanner from '../Common/HeaderBanner';
 import FooterBanner from '../Common/FooterBanner';
 import EventSearch from '../Common/EventSearch';
 import NextEvents from './NextEvents';
-import PastEvents from '../Homeperson/PastEvents';
 import './Homepage.css';
 
 class Homepage extends Component {
@@ -55,9 +54,6 @@ class Homepage extends Component {
 					<NextEvents />
 				</div>
 				<FooterBanner />
-				<div className="container">
-					<PastEvents />
-				</div>
 			</div>
 		);
 	}

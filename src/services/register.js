@@ -118,13 +118,14 @@ export default class RegisterService {
 	}
 
 	static async savePicture(ContentLength, FileName, InputStream, file) {
+		console.log(file);
 		const url = `${API_ENDPOINT}/App/Register/Picture`;
 		const data = await ServiceSecurity.SavePicture({
 			url: url,
 			ContentLength: ContentLength,
 			FileName: FileName,
 			InputStream: InputStream,
-			File: file
+			file: file
 		});
 		console.log(data);
 		return data;

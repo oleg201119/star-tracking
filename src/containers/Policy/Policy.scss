@@ -16,27 +16,22 @@
 .about-body-container {
 	margin: 0 auto;
 }
-.about-body-topic {
-	margin-top: 60px;
-	font-size: 22px;
-	font-weight: 300;
-	line-height: 1.77;
-	color: var(--charcoal-grey);
+
+.policy-banner {
+	.slogan-section {
+		top: 50%;
+		bottom: unset;
+	}
 }
-.about-body-text {
-	margin-top: 30px;
-	font-family: 'Roboto', sans-serif;
-	font-size: 18px;
-	font-weight: 300;
-	line-height: 1.67;
-	color: var(--charcoal-grey);
-}
-.about-body-end {
-	margin-top: 25px;
-	font-size: 22px;
-	font-weight: 300;
-	line-height: 1.77;
-	text-align: center;
-	color: var(--charcoal-grey);
-	margin-bottom: 30px;
+
+.policy {
+	ul {
+		list-style: unset;
+		margin: unset;
+		padding-left: 40px;
+	}
+
+	.policy-end-text {
+		margin-bottom: 60px;
+	}
 }

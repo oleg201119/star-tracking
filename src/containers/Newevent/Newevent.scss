@@ -41,3 +41,39 @@
 		}
 	}
 }
+
+.custom-input-body {
+	margin-bottom: 10px;
+	@media (max-width: 767px) {
+		border-bottom: solid 1px #e2e1e1;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-left: -25px;
+		margin-right: -25px;
+	}
+
+	.contact-body-input {
+		@media (max-width: 767px) {
+			padding: 0;
+			border: unset;
+			height: unset;
+			line-height: normal;
+		}
+		&.contact-body-multiinput {
+			@media (max-width: 767px) {
+				height: 150px;
+			}
+		}
+	}
+
+	.react-datepicker-wrapper {
+		input {
+			@media (max-width: 767px) {
+				padding: 0;
+				border: unset;
+				height: unset;
+				line-height: normal;
+			}
+		}
+	}
+}

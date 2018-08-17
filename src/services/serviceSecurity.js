@@ -170,14 +170,20 @@ export default class ServiceSecurity {
 
 	static async SavePicture(args) {
 		const token = sessionStorage.getItem(accessTokenKey);
-		let headers = { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' };
+		// let headers = { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' };
+		let headers = {};
 		if (token) {
 			headers.Authorization = 'Bearer ' + token;
 		}
+		console.log(args.file);
+		const datas = new FormData();
+		datas.append('file', args.file);
+		datas.append('filename', args.FileName);
+
 		const response = await fetch(args.url, {
 			method: 'POST',
 			headers: headers,
-			body: args.InputStream
+			body: datas
 		});
 		console.log(response);
 		if (!response.ok) {

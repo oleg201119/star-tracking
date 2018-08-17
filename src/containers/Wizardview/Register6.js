@@ -193,7 +193,6 @@ class Register6 extends Component {
 		});
 	}
 	onDrop(files) {
-		console.log(files);
 		const reader = new FileReader();
 		reader.onload = () => {
 			const fileAsBinaryString = reader.result;
@@ -235,8 +234,9 @@ class Register6 extends Component {
 							<div className="dropzone">
 								<Dropzone
 									onDropAccepted={this.onDrop.bind(this)}
-									accept="image/jpeg, image/png"
+									accept="image/*"
 									multiple={false}
+									disablePreview
 									className="dropzone-base"
 								>
 									<img alt="profile" src="/img/add-photo.png" className="dropzone-image" />

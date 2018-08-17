@@ -94,53 +94,62 @@ class Contact extends Component {
 								</span>
 							</div>
 							<div className="about-body-text contact-body-text">
-								<span>
-									{t('Bel ons op')} +32 473 19 19 70,{' '}
-									{t('Mail naar info@star-tracking.be of vul onderstaand formulier in')}{' '}
-								</span>
+								<span>{t('Mail naar info@star-tracking.be of vul onderstaand formulier in')} </span>
 							</div>
 							<div className="contact-body">
-								<div>{t('Jouw naam')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.name}
-									onChange={(e) => this.setState({ name: e.target.value })}
-								/>
-								<div>{t('Jouw organisatie')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.organization}
-									onChange={(e) => this.setState({ organization: e.target.value })}
-								/>
-								<div>{t('Jouw email adress')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.email}
-									onChange={(e) => this.setState({ email: e.target.value })}
-								/>
-								<div>{t('Jouw telefoon')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.phone}
-									onChange={(e) => this.setState({ phone: e.target.value })}
-								/>
-								<div>{t('Sport event')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.event}
-									onChange={(e) => this.setState({ event: e.target.value })}
-								/>
-								<div>{t('Jouw vraag')}:</div>
-								<textarea
-									className="contact-body-input contact-body-multiinput"
-									value={this.state.message}
-									onChange={(e) => this.setState({ message: e.target.value })}
-								/>
+								<div className="custom-input-body">
+									<div>{t('Jouw naam')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.name}
+										onChange={(e) => this.setState({ name: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Jouw organisatie')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.organization}
+										onChange={(e) => this.setState({ organization: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Jouw email adress')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.email}
+										onChange={(e) => this.setState({ email: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Jouw telefoon')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.phone}
+										onChange={(e) => this.setState({ phone: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Sport event')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.event}
+										onChange={(e) => this.setState({ event: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Jouw vraag')}:</div>
+									<textarea
+										className="contact-body-input contact-body-multiinput"
+										value={this.state.message}
+										onChange={(e) => this.setState({ message: e.target.value })}
+									/>
+								</div>
 								<div className="sent-state">
 									<ProgressButton
 										onClick={this.handleClick}

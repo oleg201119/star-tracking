@@ -167,14 +167,25 @@ class Eventpage extends Component {
 											</div>
 										</div>
 										<div className="col-4">
-											{eventDetail.IsOpenForRegistration || eventDetail.HasResults ?
-											<button type="button" className="btn btn-red btn-takepart" onClick={()=>{
-												if(eventDetail.HasResults){
-													this.props.history.push(`/eventresult/${eventDetail.ID}`);
-												}
-											}}>
-												{eventDetail.IsOpenForRegistration ? t('Ik neem deel'): t('Show results')}
-											</button>: <div className="btn-takepart"></div>}
+											{eventDetail.IsOpenForRegistration || eventDetail.HasResults ? (
+												<button
+													type="button"
+													className="btn btn-red btn-takepart"
+													onClick={() => {
+														if (eventDetail.HasResults) {
+															this.props.history.push(`/eventresult/${eventDetail.ID}`);
+														}
+													}}
+												>
+													{eventDetail.IsOpenForRegistration ? (
+														t('Ik neem deel')
+													) : (
+														t('Show results')
+													)}
+												</button>
+											) : (
+												<div className="btn-takepart" />
+											)}
 										</div>
 									</div>
 								</div>
@@ -646,14 +657,21 @@ class Eventpage extends Component {
 											{t('Vanaf')}&nbsp;&euro;{eventDetail.MinimumPrice}
 										</span>
 									</div>
-									{eventDetail.IsOpenForRegistration || eventDetail.HasResults ?
-									<button type="button" className="btn btn-red btn-takepart" onClick={()=>{
-										if(eventDetail.HasResults){
-											this.props.history.push(`/eventresult/${eventDetail.ID}`);
-										}
-									}}>
-										{eventDetail.IsOpenForRegistration ? t('Ik neem deel'): t('Show results')}
-									</button>: <div className="btn-takepart"></div>}
+									{eventDetail.IsOpenForRegistration || eventDetail.HasResults ? (
+										<button
+											type="button"
+											className="btn btn-red btn-takepart"
+											onClick={() => {
+												if (eventDetail.HasResults) {
+													this.props.history.push(`/eventresult/${eventDetail.ID}`);
+												}
+											}}
+										>
+											{eventDetail.IsOpenForRegistration ? t('Ik neem deel') : t('Show results')}
+										</button>
+									) : (
+										<div className="btn-takepart" />
+									)}
 								</div>
 							</div>
 						</div>
@@ -711,7 +729,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(
 	translate('translations')(
 		GoogleApiWrapper({
-			apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo',
+			apiKey: 'AIzaSyDkHOejXgy09HKVOR0tAXjyswfAfTVo5h0',
 			LoadingContainer: LoadingContainer
 		})(Eventpage)
 	)

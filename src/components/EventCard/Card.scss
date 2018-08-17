@@ -6,6 +6,8 @@
 	word-wrap: break-word;
 	background-color: $color_white;
 	margin-bottom: 30px;
+	cursor: pointer;
+
 	&.mobiletype {
 		@media (max-width: 767px) {
 			margin-bottom: 0;
@@ -181,7 +183,7 @@
 			.type-city {
 				opacity: 0.5;
 				font-size: 13.5px;
-				padding-right: 20px;
+				padding-right: 70px;
 			}
 
 			.options {

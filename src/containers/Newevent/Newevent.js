@@ -105,49 +105,63 @@ class Newevent extends Component {
 								</span>
 							</div>
 							<div className="contact-body">
-								<div>{t('Jouw naam')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.name}
-									onChange={(e) => this.setState({ name: e.target.value })}
-								/>
-								<div>{t('Jouw organisatie')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.organization}
-									onChange={(e) => this.setState({ organization: e.target.value })}
-								/>
-								<div>{t('Jouw email adress')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.email}
-									onChange={(e) => this.setState({ email: e.target.value })}
-								/>
-								<div>{t('Type sport')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.type}
-									onChange={(e) => this.setState({ type: e.target.value })}
-								/>
-								<div>{t('Stad')}:</div>
-								<input
-									type="text"
-									className="contact-body-input"
-									value={this.state.city}
-									onChange={(e) => this.setState({ city: e.target.value })}
-								/>
-								<div>{t('Datum')}:</div>
-								<DatePicker selected={this.state.startDate} onChange={this.handleChange} />
-								<div>{t('Meer informatie')}:</div>
-								<textarea
-									className="contact-body-input contact-body-multiinput"
-									value={this.state.extraInfo}
-									onChange={(e) => this.setState({ extraInfo: e.target.value })}
-								/>
+								<div className="custom-input-body">
+									<div>{t('Jouw naam')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.name}
+										onChange={(e) => this.setState({ name: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Jouw organisatie')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.organization}
+										onChange={(e) => this.setState({ organization: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Jouw email adress')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.email}
+										onChange={(e) => this.setState({ email: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Type sport')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.type}
+										onChange={(e) => this.setState({ type: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Stad')}:</div>
+									<input
+										type="text"
+										className="contact-body-input"
+										value={this.state.city}
+										onChange={(e) => this.setState({ city: e.target.value })}
+									/>
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Datum')}:</div>
+									<DatePicker selected={this.state.startDate} onChange={this.handleChange} />
+								</div>
+								<div className="custom-input-body">
+									<div>{t('Meer informatie')}:</div>
+									<textarea
+										className="contact-body-input contact-body-multiinput"
+										value={this.state.extraInfo}
+										onChange={(e) => this.setState({ extraInfo: e.target.value })}
+									/>
+								</div>
 								<div className="sent-state">
 									<ProgressButton
 										onClick={this.handleClick}

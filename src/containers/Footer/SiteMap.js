@@ -167,24 +167,20 @@ class SiteMap extends Component {
             <div className="link-title">{t("Organiseer events")}</div>
             <ul className="link-group">
               <li className="link-group-item">
-                <a className="site-map-link" href="#/">
-                  {t("Leer meer over onze")}
-                </a>
+                <Link
+                  to={{ pathname: '/organizer', state: { backstate: false } }}
+                  className="site-map-link"
+                >
+                  {t("Meer info")}
+                </Link>
               </li>
               <li className="link-group-item">
-                <a className="site-map-link" href="#/">
-                  {t("software")}
-                </a>
-              </li>
-              <li className="link-group-item">
-                <a className="site-map-link" href="#/">
-                  {t("Hoe werkt het")}
-                </a>
-              </li>
-              <li className="link-group-item">
-                <a className="site-map-link" href="#/">
-                  {t("Wat klanten zeggen")}
-                </a>
+                <Link
+									to="/newevent"
+									className="site-map-link"
+								>
+                  {t("Nieuw event")}
+                </Link>
               </li>
             </ul>
           </div>
@@ -192,24 +188,20 @@ class SiteMap extends Component {
             <div className="link-title">{t("Over ons")}</div>
             <ul className="link-group">
               <li className="link-group-item">
-                <a className="site-map-link" href="#/">
+                <Link
+                  to={{ pathname: '/about', state: { backstate: false } }}
+                  className="site-map-link"
+                >
                   {t("Missie")}
-                </a>
+                </Link>
               </li>
               <li className="link-group-item">
-                <a className="site-map-link" href="#/">
-                  {t("Team")}
-                </a>
-              </li>
-              <li className="link-group-item">
-                <a className="site-map-link" href="#/">
-                  {t("Careers")}
-                </a>
-              </li>
-              <li className="link-group-item">
-                <a className="site-map-link" href="#/">
+                <Link
+                  to={{ pathname: '/contact', state: { backstate: false } }}
+                  className="site-map-link"
+                >
                   {t("Contact")}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

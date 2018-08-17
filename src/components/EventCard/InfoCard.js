@@ -12,7 +12,12 @@ class InfoCard extends Component {
 		const { event, t } = this.props;
 
 		return (
-			<div className={`event-info mb-4 ${event.Type}`}>
+			<div
+				className={`event-info mb-4 ${event.Type}`}
+				onClick={(e) => {
+					window.location = `/eventresult/${event.ID}`;
+				}}
+			>
 				<div className="event-content">
 					<div className="event-time">
 						<div className="day">{event.Day}</div>
