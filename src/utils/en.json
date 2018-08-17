@@ -51,7 +51,6 @@
 	"Favorited": "Favorited",
 	"My results": "My results",
 	"My account": "My account",
-	"Making organizing sports events a breeze in the park!": "Making organizing sports events a breeze in the park!",
 	"Star Tracking Privacy Policy": "Star Tracking Privacy Policy",
 	"Maak nu jouw event aan": "Create your event now",
 	"Zij werkten al met ons": "They worked with us",
@@ -176,5 +175,10 @@
 	"Select gender": "Select gender",
 	"Address": "Address",
 	"Show results": "Show results",
-	"Accept the terms of use and privacy policy": "Accept the terms of use and privacy policy"
+	"Accept the terms of use and privacy policy": "Accept the terms of use and privacy policy",
+	"Making organizing sports events a breeze in the park!": "Making organizing sports events a breeze in the park!",
+	"Star Tracking wil sport organisatoren het leven makkelijker maken, en sporters connecteren tijdens sport events.": "Star Tracking wants to make the life of sports organisers life easier, and connect athletes during sporting events.",
+	"about-text-1": "Star-Tracking was born out of frustration about how complex sports events were. Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.",
+	"about-text-2": "Star-Tracking now has more than 16,000 members and provides a robust online platform for sports organizers so that the organizer can quickly and easily create an online registration system.",
+	"about-text-3": " All Star-Tracking members on the other hand are informed about the sport events, can register, manage their events, consult their times, and exchange information with friends."
 }

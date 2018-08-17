@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import Withwork from '../Footer/Withwork';
 import './Policy.css';
 
@@ -483,11 +482,6 @@ class Policy extends Component {
 								Neem gerust contact met ons op als je vragen hebt over dit Privacybeleid of onze
 								informatiepraktijken. Je kunt ons mailen via http://www.startracking.be/contact.
 							</p>
-							<Link to="/newevent">
-								<button type="button" className="btn btn-red btn-create-event">
-									{t('Maak nu jouw event aan')}
-								</button>
-							</Link>
 						</div>
 					</div>
 				</div>

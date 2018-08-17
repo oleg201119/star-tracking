@@ -609,7 +609,20 @@ class EventResult extends Component {
 							</div>
 						</div>
 					</div>
-				) : null}
+				) : (
+					<div>
+						<div className="event-page d-none d-md-block">
+							<div className="header-banner" />
+						</div>
+						<div className="event-page-mobile d-md-none">
+							<div className="event-card">
+								<div className="card-banner">
+									<img alt="banner" src="/img/card-banner.png" />
+								</div>
+							</div>
+						</div>
+					</div>
+				)}
 				<div className="eventresult-menu">
 					<div className="container">
 						<div className="row">
@@ -642,7 +655,11 @@ class EventResult extends Component {
 										</Menu>
 									) : null}
 								</div>
-							) : null}
+							) : (
+								<div className="hamburgermenu">
+									<div className="menu-empty" />
+								</div>
+							)}
 						</div>
 					</div>
 				</div>

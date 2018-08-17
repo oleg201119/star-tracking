@@ -51,7 +51,12 @@
 		margin-left: -25px;
 		margin-right: -25px;
 	}
-
+	span {
+		font-size: 14px;
+		@media (max-width: 767px) {
+			opacity: 0.5;
+		}
+	}
 	.contact-body-input {
 		@media (max-width: 767px) {
 			padding: 0;

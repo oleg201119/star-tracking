@@ -51,7 +51,6 @@
 	"Favorited": "Favoris",
 	"My results": "Mes résultats",
 	"My account": "Mon compte",
-	"Making organizing sports events a breeze in the park!": "Faire organiser des événements sportifs un jeu d'enfant dans le parc!",
 	"Star Tracking Privacy Policy": "Politique de confidentialité de Star Tracking",
 	"Maak nu jouw event aan": "Créez votre événement dès maintenant",
 	"Zij werkten al met ons": "Ils ont travaillé avec nous",
@@ -176,5 +175,10 @@
 	"Select gender": "Sélectionnez le sexe",
 	"Address": "Adresse",
 	"Show results": "Montrer les résultats",
-	"Accept the terms of use and privacy policy": "Accepter les conditions d'utilisation et la politique de confidentialité"
+	"Accept the terms of use and privacy policy": "Accepter les conditions d'utilisation et la politique de confidentialité",
+	"Making organizing sports events a breeze in the park!": "Faire organiser des événements sportifs un jeu d'enfant dans le parc!",
+	"Star Tracking wil sport organisatoren het leven makkelijker maken, en sporters connecteren tijdens sport events.": "Star Tracking veut faciliter la vie des organisateurs d'événements sportifs, et connecter les athlètes pendant ces événements.",
+	"about-text-1": "Star-Tracking est né de la frustration à propos de la complexité des événements sportifs. Vestibulum id ligula porta felis euismod sempre. Donec ullamcorper nulla non metus auctor fringilla. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat portula ligula, eget lacinia odio sem nec elit.",
+	"about-text-2": "Star-Tracking compte maintenant plus de 16 000 membres et fournit une plateforme en ligne robuste pour les organisateurs de sports afin que l'organisateur puisse créer rapidement et facilement un système d'inscription en ligne.",
+	"about-text-3": "D'autre part, tous les membres de Star-Tracking sont informés des événements sportifs, peuvent s'inscrire, gérer leurs événements, consulter leurs horaires et échanger des informations avec leurs amis."
 }

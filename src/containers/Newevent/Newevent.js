@@ -85,11 +85,13 @@ class Newevent extends Component {
 			<div className="about">
 				<div className="header-banner newevent-banner">
 					<div className="glass-section">
-						<div className="container">
-							<div className="about-banner-text">
-								<span className="slogan">
-									{t('Organiseer je zelf een event en wil je professionele ondersteuning?')}
-								</span>
+						<div className="slogan-section">
+							<div className="container">
+								<div className="about-banner-text">
+									<span className="slogan">
+										{t('Organiseer je zelf een event en wil je professionele ondersteuning?')}
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -106,7 +108,7 @@ class Newevent extends Component {
 							</div>
 							<div className="contact-body">
 								<div className="custom-input-body">
-									<div>{t('Jouw naam')}:</div>
+									<span>{t('Jouw naam')}:</span>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -115,7 +117,7 @@ class Newevent extends Component {
 									/>
 								</div>
 								<div className="custom-input-body">
-									<div>{t('Jouw organisatie')}:</div>
+									<span>{t('Jouw organisatie')}:</span>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -124,7 +126,7 @@ class Newevent extends Component {
 									/>
 								</div>
 								<div className="custom-input-body">
-									<div>{t('Jouw email adress')}:</div>
+									<span>{t('Jouw email adress')}:</span>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -133,7 +135,7 @@ class Newevent extends Component {
 									/>
 								</div>
 								<div className="custom-input-body">
-									<div>{t('Type sport')}:</div>
+									<span>{t('Type sport')}:</span>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -142,7 +144,7 @@ class Newevent extends Component {
 									/>
 								</div>
 								<div className="custom-input-body">
-									<div>{t('Stad')}:</div>
+									<span>{t('Stad')}:</span>
 									<input
 										type="text"
 										className="contact-body-input"
@@ -151,11 +153,11 @@ class Newevent extends Component {
 									/>
 								</div>
 								<div className="custom-input-body">
-									<div>{t('Datum')}:</div>
+									<span>{t('Datum')}:</span>
 									<DatePicker selected={this.state.startDate} onChange={this.handleChange} />
 								</div>
 								<div className="custom-input-body">
-									<div>{t('Meer informatie')}:</div>
+									<span>{t('Meer informatie')}:</span>
 									<textarea
 										className="contact-body-input contact-body-multiinput"
 										value={this.state.extraInfo}
