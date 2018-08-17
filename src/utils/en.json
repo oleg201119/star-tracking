@@ -106,7 +106,7 @@
 	"Gelijkaardige activiteiten": "Similar activities",
 	"Ik neem deel": "I take part",
 	"Beschrijving": "Description",
-	"Deelnemende vrienden": "Participating friends",
+	"Deelnemers": "Attendees",
 	"Deel met vrienden": "Share with friends",
 	"Date and time": "Date and time",
 	"Location": "Location",
@@ -175,5 +175,6 @@
 	"Woman": "Woman",
 	"Select gender": "Select gender",
 	"Address": "Address",
-	"Show results": "Show results"
+	"Show results": "Show results",
+	"Accept the terms of use and privacy policy": "Accept the terms of use and privacy policy"
 }

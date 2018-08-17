@@ -157,10 +157,9 @@ export function fetchEventDetail(eventid, language) {
 			let events = await EventService.getEventDetail(eventid, language);
 			dispatch({ type: types.EVENT_DETAIL_FETCHED, events });
 
-			const id = getState().events.get('id');
 			// const maxNumber = getState().events.get('maxNumber');
 			const maxNumber = 3;
-			events = await EventService.getSimilarEvents(id, events.Type, maxNumber, language);
+			events = await EventService.getSimilarEvents(eventid, maxNumber, language);
 			if (events !== false) {
 				dispatch({ type: types.SIMILAR_EVENTS_FETCHED, events });
 			}

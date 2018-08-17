@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
+import Button from 'react-bootstrap-button-loader';
 import * as authActions from '../../store/auth/actions';
 import * as authSelectors from '../../store/auth/reducer';
 import './Register.css';
@@ -24,16 +25,17 @@ class Register extends Component {
 			confirmpassword: '',
 			currentlanguage: '',
 			errorMessage: '',
-			showsharemodal: false
+			showsharemodal: false,
+			policystate: false,
+			loading: false
 		};
 		this.changeUsername = this.changeUsername.bind(this);
 		this.changePassword = this.changePassword.bind(this);
 		this.changeConfirmPassword = this.changeConfirmPassword.bind(this);
 	}
-	componentDidMount() {
-		window.scrollTo(0, 0);
-	}
 	componentDidMount = () => {
+		this.setState({ username: this.props.location.state.selectEmail });
+		window.scrollTo(0, 0);
 		let currentlanguage = this.props.i18n.language;
 		if (this.props.i18n.language.length > 2) {
 			currentlanguage = this.props.i18n.language.substring(0, 2);
@@ -44,11 +46,11 @@ class Register extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.authToken === 'error') {
 			this.props.dispatch(authActions.fetchLoginStateFormat());
-			this.setState({ loginstate: 'error', errorMessage: 'Register success! Login fail.' });
+			this.setState({ loginstate: 'error', errorMessage: 'Register success! Login fail.', loading: false });
 		}
 		if (nextProps.registerError !== '') {
 			this.props.dispatch(authActions.fetchRegisterStateFormat());
-			this.setState({ loginstate: 'error', errorMessage: nextProps.registerError });
+			this.setState({ loginstate: 'error', errorMessage: nextProps.registerError, loading: false });
 		}
 		if (nextProps.authToken !== '' && nextProps.authToken !== 'error') {
 			this.props.history.push('/registerexplanation', { backstate: false });
@@ -144,18 +146,24 @@ class Register extends Component {
 							) : null}
 						</div>
 					</div>
-					<div
-						className={`error-text ${this.state.loginstate !== 'error' ? 'no-error' : null}`}
-						onClick={() => {
-							this.setState({ showsharemodal: true });
-						}}
-					>
-						{this.state.loginstate === 'error' ? (
-							<span>{this.state.errorMessage}</span>
-						) : (
-							<span>{t('Check out the email & password rules')}</span>
-						)}
-					</div>
+					{this.state.policystate ? (
+						<div className="error-text">
+							<span>{t('Accept the terms of use and privacy policy')}</span>
+						</div>
+					) : (
+						<div
+							className={`error-text ${this.state.loginstate !== 'error' ? 'no-error' : null}`}
+							onClick={() => {
+								this.setState({ showsharemodal: true });
+							}}
+						>
+							{this.state.loginstate === 'error' ? (
+								<span>{this.state.errorMessage}</span>
+							) : (
+								<span>{t('Check out the email & password rules')}</span>
+							)}
+						</div>
+					)}
 					<div className="stay-signin">
 						<img
 							className="stay-signin-check"
@@ -170,13 +178,12 @@ class Register extends Component {
 							<span className="policy-text">{t('I accept the terms of use and the privacy policy')}</span>
 						</Link>
 					</div>
-					<button
-						type="button"
+					<Button
+						loading={this.state.loading}
 						className="btn btn-red signin"
-						disabled={!this.state.accept_policy}
 						onClick={() => {
 							if (this.state.accept_policy) {
-								this.setState({ loginstate: '' });
+								this.setState({ loginstate: '', policystate: false, loading: true });
 								this.props.dispatch(
 									authActions.fetchRegisterAuth(
 										this.state.username,
@@ -185,11 +192,13 @@ class Register extends Component {
 										this.state.currentlanguage
 									)
 								);
+							} else {
+								this.setState({ policystate: true });
 							}
 						}}
 					>
 						{t('Register')}
-					</button>
+					</Button>
 					<div className="create-forgot">
 						<span
 							className="create-forgot-text sign-in"

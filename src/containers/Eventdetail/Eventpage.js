@@ -18,7 +18,6 @@ import {
 	EmailIcon
 } from 'react-share';
 import * as eventsSelectors from '../../store/events/reducer';
-import * as authSelectors from '../../store/auth/reducer';
 import Button from '../Common/CalendarButton';
 import Modal from '../Common/CalendarModal';
 import './Eventpage.css';
@@ -95,11 +94,12 @@ class Eventpage extends Component {
 		}
 	}
 	render() {
-		const { eventDetail, t, authToken } = this.props;
+		const { eventDetail, t } = this.props;
 		const startDatetime = moment(eventDetail.AgendaFrom).utc().format('YYYYMMDDTHHmmssZ');
 		const endDatetime = moment(eventDetail.AgendaTo).utc().format('YYYYMMDDTHHmmssZ');
 		const shareUrl = window.location.href;
-		const title = 'star-tracking';
+		const title = eventDetail.ShareTitle;
+		// const authToken = window.sessionStorage.getItem('token');
 		return (
 			<div>
 				{eventDetail.length !== 0 ? (
@@ -137,7 +137,7 @@ class Eventpage extends Component {
 								</div>
 							</div>
 							<div className="container">
-								<div className="card-star">
+								<div className={`card-star ${eventDetail.State}`}>
 									<img alt="star" src={`/img/card-${eventDetail.State}.png`} />
 								</div>
 								<div className="event-buttons">
@@ -203,26 +203,70 @@ class Eventpage extends Component {
 													}}
 												/>
 											</div>
-											{authToken !== '' && authToken !== 'error' ? (
+											{/* {authToken !== '' && authToken !== 'error' ? ( */}
+											{eventDetail.DisplayParticipantList ? (
 												<div className="participate-friend">
-													<span className="participate-friend-topic">
-														{t('Deelnemende vrienden')}
-													</span>
+													<span className="participate-friend-topic">{t('Deelnemers')}</span>
 													<div className="friends">
 														<a href="#/" className="friend-link">
-															<img alt="avatar" src="/img/navbar-avatar.png" />
+															<img
+																alt="avatar"
+																src={
+																	Math.random() > 0.5 ? (
+																		`/img/Male-avatar.png`
+																	) : (
+																		`/img/Female-avatar.png`
+																	)
+																}
+															/>
 														</a>
 														<a href="#/" className="friend-link">
-															<img alt="avatar" src="/img/navbar-avatar.png" />
+															<img
+																alt="avatar"
+																src={
+																	Math.random() > 0.5 ? (
+																		`/img/Male-avatar.png`
+																	) : (
+																		`/img/Female-avatar.png`
+																	)
+																}
+															/>
 														</a>
 														<a href="#/" className="friend-link">
-															<img alt="avatar" src="/img/navbar-avatar.png" />
+															<img
+																alt="avatar"
+																src={
+																	Math.random() > 0.5 ? (
+																		`/img/Male-avatar.png`
+																	) : (
+																		`/img/Female-avatar.png`
+																	)
+																}
+															/>
 														</a>
 														<a href="#/" className="friend-link">
-															<img alt="avatar" src="/img/navbar-avatar.png" />
+															<img
+																alt="avatar"
+																src={
+																	Math.random() > 0.5 ? (
+																		`/img/Male-avatar.png`
+																	) : (
+																		`/img/Female-avatar.png`
+																	)
+																}
+															/>
 														</a>
 														<a href="#/" className="friend-link">
-															<img alt="avatar" src="/img/navbar-avatar.png" />
+															<img
+																alt="avatar"
+																src={
+																	Math.random() > 0.5 ? (
+																		`/img/Male-avatar.png`
+																	) : (
+																		`/img/Female-avatar.png`
+																	)
+																}
+															/>
 														</a>
 													</div>
 												</div>
@@ -233,6 +277,7 @@ class Eventpage extends Component {
 													<FacebookShareButton
 														url={shareUrl}
 														quote={title}
+														hashtag={eventDetail.ShareDescription}
 														className="link-social"
 													>
 														<FacebookIcon size={32} round className="link-social-icon" />
@@ -240,6 +285,7 @@ class Eventpage extends Component {
 													<TwitterShareButton
 														url={shareUrl}
 														title={title}
+														via={eventDetail.ShareDescription}
 														className="link-social"
 													>
 														<TwitterIcon size={32} round className="link-social-icon" />
@@ -247,7 +293,7 @@ class Eventpage extends Component {
 													<EmailShareButton
 														url={shareUrl}
 														subject={title}
-														// body="body"
+														body={eventDetail.ShareDescription}
 														className="link-social"
 													>
 														<EmailIcon size={32} round className="link-social-icon" />
@@ -261,13 +307,6 @@ class Eventpage extends Component {
 														<WhatsappIcon size={32} round className="link-social-icon" />
 													</WhatsappShareButton>
 												</div>
-											</div>
-											<div className="event-tags">
-												<span className="event-tags-topic">Tags</span>
-												<span className="event-tags-detail">
-													Loopwedstrijd, Marathon, Oost-Vlaanderen, Wortegem-Petegem, 10km,
-													20km, 25km
-												</span>
 											</div>
 										</div>
 										<div className="col-4">
@@ -378,7 +417,7 @@ class Eventpage extends Component {
 								<div className="card-glass">
 									<div className="slogan">{eventDetail.Name}</div>
 								</div>
-								<div className="card-star">
+								<div className={`card-star ${eventDetail.State}`}>
 									<img alt="star" src={`/img/card-${eventDetail.State}.png`} />
 								</div>
 								<div className={`event-info ${eventDetail.Type}`}>
@@ -523,25 +562,71 @@ class Eventpage extends Component {
 									/>
 								</div>
 							</div>
-							{authToken !== '' && authToken !== 'error' ? (
+							{/* {authToken !== '' && authToken !== 'error' ? ( */}
+							{eventDetail.DisplayParticipantList ? (
 								<div className="participate-block">
 									<div className="container">
-										<span className="participate-friend-topic">{t('Deelnemende vrienden')}</span>
+										<span className="participate-friend-topic">{t('Deelnemers')}</span>
 										<div className="friends">
 											<a href="#/" className="friend-link">
-												<img alt="avatar" src="/img/navbar-avatar.png" />
+												<img
+													alt="avatar"
+													src={
+														Math.random() > 0.5 ? (
+															`/img/Male-avatar.png`
+														) : (
+															`/img/Female-avatar.png`
+														)
+													}
+												/>
 											</a>
 											<a href="#/" className="friend-link">
-												<img alt="avatar" src="/img/navbar-avatar.png" />
+												<img
+													alt="avatar"
+													src={
+														Math.random() > 0.5 ? (
+															`/img/Male-avatar.png`
+														) : (
+															`/img/Female-avatar.png`
+														)
+													}
+												/>
 											</a>
 											<a href="#/" className="friend-link">
-												<img alt="avatar" src="/img/navbar-avatar.png" />
+												<img
+													alt="avatar"
+													src={
+														Math.random() > 0.5 ? (
+															`/img/Male-avatar.png`
+														) : (
+															`/img/Female-avatar.png`
+														)
+													}
+												/>
 											</a>
 											<a href="#/" className="friend-link">
-												<img alt="avatar" src="/img/navbar-avatar.png" />
+												<img
+													alt="avatar"
+													src={
+														Math.random() > 0.5 ? (
+															`/img/Male-avatar.png`
+														) : (
+															`/img/Female-avatar.png`
+														)
+													}
+												/>
 											</a>
 											<a href="#/" className="friend-link">
-												<img alt="avatar" src="/img/navbar-avatar.png" />
+												<img
+													alt="avatar"
+													src={
+														Math.random() > 0.5 ? (
+															`/img/Male-avatar.png`
+														) : (
+															`/img/Female-avatar.png`
+														)
+													}
+												/>
 											</a>
 										</div>
 									</div>
@@ -553,16 +638,26 @@ class Eventpage extends Component {
 										<span className="share-friend-topic">{t('Deel met vrienden')}</span>
 									</div>
 									<div className="social-group-row">
-										<FacebookShareButton url={shareUrl} quote={title} className="link-social">
+										<FacebookShareButton
+											url={shareUrl}
+											quote={title}
+											hashtag={eventDetail.ShareDescription}
+											className="link-social"
+										>
 											<FacebookIcon size={32} round className="link-social-icon" />
 										</FacebookShareButton>
-										<TwitterShareButton url={shareUrl} title={title} className="link-social">
+										<TwitterShareButton
+											url={shareUrl}
+											title={title}
+											via={eventDetail.ShareDescription}
+											className="link-social"
+										>
 											<TwitterIcon size={32} round className="link-social-icon" />
 										</TwitterShareButton>
 										<EmailShareButton
 											url={shareUrl}
 											subject={title}
-											// body="body"
+											body={eventDetail.ShareDescription}
 											className="link-social"
 										>
 											<EmailIcon size={32} round className="link-social-icon" />
@@ -576,14 +671,6 @@ class Eventpage extends Component {
 											<WhatsappIcon size={32} round className="link-social-icon" />
 										</WhatsappShareButton>
 									</div>
-								</div>
-							</div>
-							<div className="tags-block">
-								<div className="container">
-									<span className="event-tags-topic">Tags</span>
-									<span className="event-tags-detail">
-										Loopwedstrijd, Marathon, Oost-Vlaanderen, Wortegem-Petegem, 10km, 20km, 25km
-									</span>
 								</div>
 							</div>
 							<div className="organisation-block">
@@ -638,7 +725,7 @@ class Eventpage extends Component {
 									) : null}
 									{eventDetail.OrganizerFacebook !== null ? (
 										<div className="event-organisation-detail">
-											<i className="fa fa-facebook" />&nbsp;
+											<i className="fa fa-facebook" />&nbsp;&nbsp;
 											<a
 												className="event-organisation-web"
 												href={`https://${eventDetail.OrganizerFacebook}`}
@@ -686,16 +773,26 @@ class Eventpage extends Component {
 					shouldCloseOnOverlayClick={true}
 				>
 					<h2>Share the event</h2>
-					<FacebookShareButton url={shareUrl} quote={title} className="link-social">
+					<FacebookShareButton
+						url={shareUrl}
+						quote={title}
+						hashtag={eventDetail.ShareDescription}
+						className="link-social"
+					>
 						<FacebookIcon size={32} round className="link-social-icon" />
 					</FacebookShareButton>
-					<TwitterShareButton url={shareUrl} title={title} className="link-social">
+					<TwitterShareButton
+						url={shareUrl}
+						title={title}
+						via={eventDetail.ShareDescription}
+						className="link-social"
+					>
 						<TwitterIcon size={32} round className="link-social-icon" />
 					</TwitterShareButton>
 					<EmailShareButton
 						url={shareUrl}
 						subject={title}
-						// body="body"
+						body={eventDetail.ShareDescription}
 						className="link-social"
 					>
 						<EmailIcon size={32} round className="link-social-icon" />
@@ -718,18 +815,16 @@ class Eventpage extends Component {
 
 function mapStateToProps(state) {
 	const eventDetail = eventsSelectors.getEventDetail(state);
-	const authToken = authSelectors.getLoginAuth(state);
 
 	return {
-		eventDetail,
-		authToken
+		eventDetail
 	};
 }
 
 export default connect(mapStateToProps)(
 	translate('translations')(
 		GoogleApiWrapper({
-			apiKey: 'AIzaSyDkHOejXgy09HKVOR0tAXjyswfAfTVo5h0',
+			apiKey: 'AIzaSyDDmytYAY3BG4eOAmq2WN9pOy4kZpn6lqI',
 			LoadingContainer: LoadingContainer
 		})(Eventpage)
 	)

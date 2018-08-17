@@ -75,8 +75,8 @@ export default class EventService {
 		return data;
 	}
 
-	static async getSimilarEvents(id, type, maxNumber, language) {
-		const url = `${API_ENDPOINT}/App/Events/EventsByType/${id}?type=${type}&maxNumber=${maxNumber}&language=${language}`;
+	static async getSimilarEvents(id, maxNumber, language) {
+		const url = `${API_ENDPOINT}/App/Events/SimilarUpcomingEvents/${id}?maxNumber=${maxNumber}&language=${language}`;
 		const data = await ServiceSecurity.GetFetch({
 			url: url,
 			errortype: true

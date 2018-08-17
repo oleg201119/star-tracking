@@ -165,7 +165,7 @@ class EventResult extends Component {
 				? (windowwidth - 80) / 3
 				: (windowwidth - 160) / (this.state.columns.length - 1);
 			let temp = [ ...this.state.columns ];
-			temp[2] = { ...temp[2], headerStyle: { width: thwidth * 2,minWidth: thwidth * 2 } };
+			temp[2] = { ...temp[2], headerStyle: { width: thwidth * 2, minWidth: thwidth * 2 } };
 			let newtemp = temp.map((col) => {
 				return { ...col, sort: !hiddencolumn };
 			});
@@ -512,7 +512,7 @@ class EventResult extends Component {
 		const { data, sizePerPage, page, columns, totalSize, loading, paginationsize, hiddencolumn } = this.state;
 		const filterclass = hiddencolumn && !this.state.hamburgermenu ? 'eventresult-custom-filter' : null;
 		const shareUrl = window.location.href;
-		const title = 'star-tracking';
+		const title = eventDetail.ShareTitle;
 		return (
 			<div className="eventresult-page">
 				{eventDetail.length !== 0 ? (
@@ -537,7 +537,9 @@ class EventResult extends Component {
 											<div className="event-name">
 												<span className="eventname">{eventDetail.Name}</span>
 												<span className="event-organizer">
-													{eventDetail.OrganizerName? `${t('Door')} : ${eventDetail.OrganizerName}` : null}
+													{eventDetail.OrganizerName ? (
+														`${t('Door')} : ${eventDetail.OrganizerName}`
+													) : null}
 												</span>
 											</div>
 											<div className="event-time">
@@ -550,7 +552,7 @@ class EventResult extends Component {
 								</div>
 							</div>
 							<div className="container">
-								<div className="card-star">
+								<div className={`card-star ${eventDetail.State}`}>
 									<img alt="star" src={`/img/card-${eventDetail.State}.png`} />
 								</div>
 							</div>
@@ -572,7 +574,7 @@ class EventResult extends Component {
 								<div className="card-glass">
 									<div className="slogan">{eventDetail.Name}</div>
 								</div>
-								<div className="card-star">
+								<div className={`card-star ${eventDetail.State}`}>
 									<img alt="star" src={`/img/card-${eventDetail.State}.png`} />
 								</div>
 								<div className={`event-info ${eventDetail.Type}`}>
@@ -586,7 +588,9 @@ class EventResult extends Component {
 											<div className="title">{eventDetail.Description}</div>
 											<div className="by-options">
 												<div className="by">
-													{eventDetail.OrganizerName? `${t('Door')} : ${eventDetail.OrganizerName}` : null}
+													{eventDetail.OrganizerName ? (
+														`${t('Door')} : ${eventDetail.OrganizerName}`
+													) : null}
 												</div>
 												<div className="options result-share">
 													<div
@@ -805,16 +809,26 @@ class EventResult extends Component {
 					shouldCloseOnOverlayClick={true}
 				>
 					<h2>Share the event</h2>
-					<FacebookShareButton url={shareUrl} quote={title} className="link-social">
+					<FacebookShareButton
+						url={shareUrl}
+						quote={title}
+						hashtag={eventDetail.ShareDescription}
+						className="link-social"
+					>
 						<FacebookIcon size={32} round className="link-social-icon" />
 					</FacebookShareButton>
-					<TwitterShareButton url={shareUrl} title={title} className="link-social">
+					<TwitterShareButton
+						url={shareUrl}
+						title={title}
+						via={eventDetail.ShareDescription}
+						className="link-social"
+					>
 						<TwitterIcon size={32} round className="link-social-icon" />
 					</TwitterShareButton>
 					<EmailShareButton
 						url={shareUrl}
 						subject={title}
-						// body="body"
+						body={eventDetail.ShareDescription}
 						className="link-social"
 					>
 						<EmailIcon size={32} round className="link-social-icon" />

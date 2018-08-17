@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { translate } from 'react-i18next';
 import {
@@ -39,22 +38,27 @@ class EventCard extends Component {
 		const startDatetime = moment(event.AgendaFrom).utc().format('YYYYMMDDTHHmmssZ');
 		const endDatetime = moment(event.AgendaTo).utc().format('YYYYMMDDTHHmmssZ');
 		const shareUrl = `${window.location.origin}/event/${event.ID}`;
-		const title = 'star-tracking';
+		const title = event.ShareTitle;
 		return (
 			<div
 				className={`event-card col-12 ${person ? 'col-md-6 col-xl-4' : 'col-md-12 col-xl-6'} ${mobiletype
 					? 'mobiletype'
 					: ''}`}
 			>
-				<Link
-					to={{
-						pathname: event.State !== 'results' ? `/event/${event.ID}` : `/eventresult/${event.ID}`
-					}}
+				<div
 					className={`card-banner ${mobiletype ? 'mobiletype' : ''}`}
+					onClick={() => {
+						window.location = event.State !== 'results' ? `/event/${event.ID}` : `/eventresult/${event.ID}`;
+					}}
 				>
 					<img alt="banner" src={event.HasSmallBackground ? event.SmallBackground : '/img/card-banner.png'} />
-				</Link>
-				<div className={`card-glass ${mobiletype ? 'mobiletype' : ''}`}>
+				</div>
+				<div
+					className={`card-glass ${mobiletype ? 'mobiletype' : ''}`}
+					onClick={(e) => {
+						window.location = event.State !== 'results' ? `/event/${event.ID}` : `/eventresult/${event.ID}`;
+					}}
+				>
 					<div className="slogan">{event.Name}</div>
 				</div>
 				<div
@@ -95,9 +99,9 @@ class EventCard extends Component {
 											className="event-option"
 											event={{
 												description: event.AgendaDescription,
-												endDatetime,
+												endDatetime: endDatetime,
 												location: event.AgendaLocation,
-												startDatetime,
+												startDatetime: startDatetime,
 												title: event.AgendaTitle
 											}}
 										/>
@@ -113,17 +117,34 @@ class EventCard extends Component {
 								</div>
 							</div>
 							{mobiletype ? <div className="event-smalldescription">{event.SmallDescription}</div> : null}
-							<div className="friends">
-								<a href="#/" className="friend-link">
-									<img alt="avatar" src="/img/avatar.png" />
-								</a>
-								<a href="#/" className="friend-link">
-									<img alt="avatar" src="/img/avatar.png" />
-								</a>
-								<a href="#/" className="friend-link">
-									<img alt="avatar" src="/img/avatar.png" />
-								</a>
-							</div>
+							{event.DisplayParticipantList ? (
+								<div className="friends">
+									<a href="#/" className="friend-link">
+										<img
+											alt="avatar"
+											src={
+												Math.random() > 0.5 ? `/img/Male-avatar.png` : `/img/Female-avatar.png`
+											}
+										/>
+									</a>
+									<a href="#/" className="friend-link">
+										<img
+											alt="avatar"
+											src={
+												Math.random() > 0.5 ? `/img/Male-avatar.png` : `/img/Female-avatar.png`
+											}
+										/>
+									</a>
+									<a href="#/" className="friend-link">
+										<img
+											alt="avatar"
+											src={
+												Math.random() > 0.5 ? `/img/Male-avatar.png` : `/img/Female-avatar.png`
+											}
+										/>
+									</a>
+								</div>
+							) : null}
 						</div>
 					</div>
 				</div>
@@ -136,16 +157,26 @@ class EventCard extends Component {
 					shouldCloseOnOverlayClick={true}
 				>
 					<h2>Share the event</h2>
-					<FacebookShareButton url={shareUrl} quote={title} className="link-social">
+					<FacebookShareButton
+						url={shareUrl}
+						quote={title}
+						hashtag={event.ShareDescription}
+						className="link-social"
+					>
 						<FacebookIcon size={32} round className="link-social-icon" />
 					</FacebookShareButton>
-					<TwitterShareButton url={shareUrl} title={title} className="link-social">
+					<TwitterShareButton
+						url={shareUrl}
+						title={title}
+						via={event.ShareDescription}
+						className="link-social"
+					>
 						<TwitterIcon size={32} round className="link-social-icon" />
 					</TwitterShareButton>
 					<EmailShareButton
 						url={shareUrl}
 						subject={title}
-						// body="body"
+						body={event.ShareDescription}
 						className="link-social"
 					>
 						<EmailIcon size={32} round className="link-social-icon" />

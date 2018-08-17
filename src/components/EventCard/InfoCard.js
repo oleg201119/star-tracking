@@ -39,17 +39,28 @@ class InfoCard extends Component {
 								</a>
 							</div> */}
 						</div>
-						<div className="friends">
-							<a href="#/" className="friend-link">
-								<img alt="avatar" src="/img/avatar.png" />
-							</a>
-							<a href="#/" className="friend-link">
-								<img alt="avatar" src="/img/avatar.png" />
-							</a>
-							<a href="#/" className="friend-link">
-								<img alt="avatar" src="/img/avatar.png" />
-							</a>
-						</div>
+						{event.DisplayParticipantList ? (
+							<div className="friends">
+								<a href="#/" className="friend-link">
+									<img
+										alt="avatar"
+										src={Math.random() > 0.5 ? `/img/Male-avatar.png` : `/img/Female-avatar.png`}
+									/>
+								</a>
+								<a href="#/" className="friend-link">
+									<img
+										alt="avatar"
+										src={Math.random() > 0.5 ? `/img/Male-avatar.png` : `/img/Female-avatar.png`}
+									/>
+								</a>
+								<a href="#/" className="friend-link">
+									<img
+										alt="avatar"
+										src={Math.random() > 0.5 ? `/img/Male-avatar.png` : `/img/Female-avatar.png`}
+									/>
+								</a>
+							</div>
+						) : null}
 					</div>
 				</div>
 			</div>

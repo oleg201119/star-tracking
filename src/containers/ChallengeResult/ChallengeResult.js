@@ -157,7 +157,7 @@ class ChallengeResult extends Component {
 				? (windowwidth - 85) / 3
 				: (windowwidth - 85) / (this.state.columns.length - 1);
 			let temp = [ ...this.state.columns ];
-			temp[1] = { ...temp[1], headerStyle: { width: thwidth * 2,minWidth: thwidth * 2 } };
+			temp[1] = { ...temp[1], headerStyle: { width: thwidth * 2, minWidth: thwidth * 2 } };
 			let newtemp = temp.map((col) => {
 				return { ...col, sort: !hiddencolumn };
 			});
@@ -197,7 +197,7 @@ class ChallengeResult extends Component {
 									text: headerarray[i],
 									sort: !self.state.hiddencolumn,
 									formatter: self.priceFormatter,
-									headerStyle: { width: thwidth * 2,minWidth: thwidth * 2 }
+									headerStyle: { width: thwidth * 2, minWidth: thwidth * 2 }
 								});
 							} else if (i === 0) {
 								columns.push({
@@ -423,7 +423,7 @@ class ChallengeResult extends Component {
 					dataField: `${i}`,
 					text: headerarray[i],
 					formatter: self.priceFormatter,
-					headerStyle: { width: thwidth * 2,minWidth: thwidth * 2 }
+					headerStyle: { width: thwidth * 2, minWidth: thwidth * 2 }
 				});
 			} else if (i === 0) {
 				columns.push({
@@ -487,7 +487,7 @@ class ChallengeResult extends Component {
 		const { data, sizePerPage, page, columns, totalSize, loading, paginationsize, hiddencolumn } = this.state;
 		const filterclass = hiddencolumn && !this.state.hamburgermenu ? 'eventresult-custom-filter' : null;
 		const shareUrl = window.location.href;
-		const title = 'star-tracking';
+		const title = challengeDetail.ShareTitle;
 		return (
 			<div className="eventresult-page">
 				{this.state.chrome ? <Header {...this.props} /> : null}
@@ -513,7 +513,9 @@ class ChallengeResult extends Component {
 											<div className="event-name">
 												<span className="eventname">{challengeDetail.Name}</span>
 												<span className="event-organizer">
-													{challengeDetail.OrganizerName? `${t('Door')} : ${challengeDetail.OrganizerName}` : null}
+													{challengeDetail.OrganizerName ? (
+														`${t('Door')} : ${challengeDetail.OrganizerName}`
+													) : null}
 												</span>
 											</div>
 											<div className="event-time">
@@ -562,7 +564,9 @@ class ChallengeResult extends Component {
 											<div className="title">{challengeDetail.Description}</div>
 											<div className="by-options">
 												<div className="by">
-													{challengeDetail.OrganizerName? `${t('Door')} : ${challengeDetail.OrganizerName}` : null}
+													{challengeDetail.OrganizerName ? (
+														`${t('Door')} : ${challengeDetail.OrganizerName}`
+													) : null}
 												</div>
 												<div className="options result-share">
 													<div
@@ -774,10 +778,20 @@ class ChallengeResult extends Component {
 					shouldCloseOnOverlayClick={true}
 				>
 					<h2>Share the event</h2>
-					<FacebookShareButton url={shareUrl} quote={title} className="link-social">
+					<FacebookShareButton
+						url={shareUrl}
+						quote={title}
+						hashtag={challengeDetail.ShareDescription}
+						className="link-social"
+					>
 						<FacebookIcon size={32} round className="link-social-icon" />
 					</FacebookShareButton>
-					<TwitterShareButton url={shareUrl} title={title} className="link-social">
+					<TwitterShareButton
+						url={shareUrl}
+						title={title}
+						via={challengeDetail.ShareDescription}
+						className="link-social"
+					>
 						<TwitterIcon size={32} round className="link-social-icon" />
 					</TwitterShareButton>
 					<EmailShareButton
@@ -788,7 +802,13 @@ class ChallengeResult extends Component {
 					>
 						<EmailIcon size={32} round className="link-social-icon" />
 					</EmailShareButton>
-					<WhatsappShareButton url={shareUrl} title={title} separator=":: " className="link-social">
+					<WhatsappShareButton
+						url={shareUrl}
+						title={title}
+						separator=":: "
+						body={challengeDetail.ShareDescription}
+						className="link-social"
+					>
 						<WhatsappIcon size={32} round className="link-social-icon" />
 					</WhatsappShareButton>
 					<div
